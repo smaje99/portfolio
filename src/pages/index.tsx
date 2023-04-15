@@ -1,14 +1,20 @@
-import Head from 'next/head';
+import { Layout } from '@/components/Layout';
+import { NextPageWithLayout } from '@/types/next';
 
-export default function Home() {
+const Home: NextPageWithLayout = () => {
   return (
-    <>
-      <Head>
-        <title>Sergio Majé's Portfolio</title>
-      </Head>
-      <main>
+    <main>
 
-      </main>
-    </>
+    </main>
   );
 }
+
+Home.getLayout = function getLayout(page) {
+  return (
+    <Layout>
+      {page}
+    </Layout>
+  )
+}
+
+export default Home;

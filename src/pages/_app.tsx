@@ -1,10 +1,13 @@
-import type { AppProps } from 'next/app';
 import Head from 'next/head';
+
+import { AppPropsWithLayout } from '@/types/next';
 
 import 'normalize.css';
 import '@/styles/globals.scss';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
     <>
       <Head>
@@ -15,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name='robots' content='index, follow' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </>
   );
 }
