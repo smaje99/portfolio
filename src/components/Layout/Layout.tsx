@@ -1,5 +1,7 @@
 import Head from 'next/head';
-import React, { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
+
+import { NavBar } from '@/components/NavBar';
 
 type Props = {
   readonly title?: string;
@@ -11,6 +13,7 @@ const Layout: FC<Props> = ({ title, children }) => {
       <Head>
         <title>{title ? `${title} | ` : ''}Sergio Majé's Portfolio</title>
       </Head>
+      <NavBar />
       {children}
     </>
   );
