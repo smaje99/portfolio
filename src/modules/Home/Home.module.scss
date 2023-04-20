@@ -1,9 +1,6 @@
 @import '@/styles/settings/colors';
 
 .main {
-  width: 80vw;
-  height: 100%;
-  display: grid;
   place-content: center;
   grid-template:
     'picture brand' 3fr
@@ -11,7 +8,6 @@
     'picture resume' 1fr /
     40% 60%;
   gap: 0 8rem;
-  margin: auto;
 }
 
 .picture {
