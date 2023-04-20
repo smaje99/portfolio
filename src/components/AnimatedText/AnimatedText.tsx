@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import type { FC, PropsWithChildren } from 'react';
+import Balancer from 'react-wrap-balancer';
 
 import styles from './AnimatedText.module.scss';
 
@@ -28,15 +29,20 @@ const AnimatedText: FC<PropsWithChildren> = ({ children }) => {
       initial='initial'
       animate='animate'
     >
-      {children?.toString().split(' ').map((word, idx) => (
-        <motion.span
-          key={`${word} - ${idx}`}
-          className={styles.word}
-          variants={singleWord}
-        >
-          {word}&nbsp;
-        </motion.span>
-      ))}
+      <Balancer>
+        {children
+          ?.toString()
+          .split(' ')
+          .map((word, idx) => (
+            <motion.span
+              key={`${word} - ${idx}`}
+              className={styles.word}
+              variants={singleWord}
+            >
+              {word}&nbsp;
+            </motion.span>
+          ))}
+      </Balancer>
     </motion.h1>
   );
 };

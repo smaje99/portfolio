@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Provider as WrapBalancerProvider } from 'react-wrap-balancer';
 
 import { AppPropsWithLayout } from '@/types/next';
 
@@ -18,7 +19,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         <meta name='robots' content='index, follow' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
-      {getLayout(<Component {...pageProps} />)}
+
+      <WrapBalancerProvider>
+          {getLayout(<Component {...pageProps} />)}
+      </WrapBalancerProvider>
     </>
   );
 }

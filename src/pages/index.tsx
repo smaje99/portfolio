@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { HiDocumentText } from 'react-icons/hi';
+import Balancer from 'react-wrap-balancer';
 
 import { AnimatedText } from '@/components/AnimatedText';
 import { Layout } from '@/components/Layout';
@@ -22,9 +23,11 @@ const Home: NextPageWithLayout = () => {
         <AnimatedText>Turning vision into reality with code and design.</AnimatedText>
       </section>
       <p className={styles.paragraph}>
-        As a skilled full-stack developer, I am dedicated to turning ideas into innovative
-        web applications. Explore my latest projects and articles, showcasing my expertise
-        in React.js and web development.
+        <Balancer>
+          As a skilled full-stack developer, I am dedicated to turning ideas into
+          innovative web applications. Explore my latest projects and articles, showcasing
+          my expertise in React.js and web development.
+        </Balancer>
       </p>
       <section className={styles['resume-container']}>
         <a
