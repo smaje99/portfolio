@@ -21,7 +21,7 @@ export const SocialMedia = Object.freeze({
     Icon: BsGithub,
   }),
   LINKEDIN: Object.freeze<SocialMediaType>({
-    path: 'https://www.linkedin.com/in/smaje99/',
+    path: 'https://www.linkedin.com/in/smaje/',
     description: "Sergio Majé's LinkedIn",
     Icon: BsLinkedin,
   }),
