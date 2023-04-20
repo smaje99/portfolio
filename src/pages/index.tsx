@@ -19,9 +19,9 @@ const Home: NextPageWithLayout = () => {
         height={580}
         priority
       />
-      <section className={styles['brand-message']}>
-        <AnimatedText>Turning vision into reality with code and design.</AnimatedText>
-      </section>
+      <AnimatedText className={styles['brand-message']}>
+        Turning vision into reality with code and design.
+      </AnimatedText>
       <p className={styles.paragraph}>
         <Balancer>
           As a skilled full-stack developer, I am dedicated to turning ideas into

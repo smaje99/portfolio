@@ -4,6 +4,10 @@ import Balancer from 'react-wrap-balancer';
 
 import styles from './AnimatedText.module.scss';
 
+type Props = {
+  className?: string;
+} & PropsWithChildren;
+
 const quote = {
   initial: { opacity: 1 },
   animate: {
@@ -21,10 +25,10 @@ const singleWord = {
   },
 };
 
-const AnimatedText: FC<PropsWithChildren> = ({ children }) => {
+const AnimatedText: FC<Props> = ({ className, children }) => {
   return (
     <motion.h1
-      className={styles.text}
+      className={`${styles.text} ${className ?? ''}`}
       variants={quote}
       initial='initial'
       animate='animate'
