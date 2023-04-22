@@ -1,18 +1,17 @@
 import { Layout } from '@/components/Layout';
-import { NextPageWithLayout } from '@/types/next';
-
-import { styles } from '@/modules/Home';
+import { Profile, styles } from '@/modules/About';
+import type { NextPageWithLayout } from '@/types/next';
 
 const Home: NextPageWithLayout = () => {
   return (
     <main className={styles.main}>
-      About
+      <Profile />
     </main>
   );
 };
 
 Home.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
+  return <Layout title='About'>{page}</Layout>;
 };
 
 export default Home;

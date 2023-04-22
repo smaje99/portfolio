@@ -1,0 +1,93 @@
+@import '@/styles/settings/colors';
+@import '@/styles/settings/shadow';
+@import '@/styles/settings/z-index';
+
+.profile {
+  width: 100%;
+  height: calc(100vh - 7.2rem);
+  display: grid;
+  place-content: center;
+  grid-template:
+    'title      title   title' auto
+    'biography  frame   stats' auto
+    'abstract   frame   stats' 1fr /
+    3fr 3fr 2fr;
+  gap: 1.6rem 1.6rem;
+}
+
+.title {
+  grid-area: title;
+  text-align: center;
+  line-height: 1;
+  margin: 1.2rem 0 2.4rem 0;
+}
+
+.biography {
+  grid-area: biography;
+  font-size: 14pt;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  color: rgba($dark, 0.75);
+  margin: 0;
+}
+
+.abstract {
+  grid-area: abstract;
+
+  & > .text {
+    font-size: 12pt;
+    font-weight: 500;
+    line-height: 1.5;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.frame {
+  grid-area: frame;
+  justify-self: center;
+  width: max-content;
+  height: max-content;
+  position: relative;
+  display: flex;
+  place-content: center;
+
+  background-color: $light;
+  border: 2px solid rgba($dark, 0.8);
+  border-radius: 1.6rem;
+  padding: 2.8rem;
+  box-sizing: border-box;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -1.2rem;
+    z-index: -1;
+    width: 102%;
+    height: 103%;
+    background-color: rgba($dark, 0.8);
+    border-radius: 3.2rem;
+    border-bottom-right-radius: 2.4rem;
+  }
+
+  & > .picture {
+    border-radius: 1.6rem;
+    object-fit: cover;
+
+    @include box-shadow-elevation-medium($dark);
+  }
+}
+
+.stats {
+  grid-area: stats;
+  height: 88%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
