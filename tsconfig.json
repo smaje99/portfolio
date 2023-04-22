@@ -16,6 +16,7 @@
     "incremental": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
+    "types": ["next"],
     "paths": {
       "@/*": ["./src/*"]
     }

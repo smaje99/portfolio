@@ -12,11 +12,14 @@ type Props = LinkProps & {
 const NavLink: React.FC<Props> = ({ className, children, ...props }) => {
   const pathname = usePathname();
 
-  const isActive = useMemo<boolean>(() => pathname === props.href, [pathname]);
+  const isActive = useMemo<boolean>(
+    () => pathname === props.href,
+    [pathname, props.href]
+  );
 
   const newClassName = useMemo<string>(
     () => (typeof className === 'function' ? className(isActive) : className),
-    [isActive]
+    [isActive, className]
   );
 
   return (

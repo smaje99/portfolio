@@ -22,7 +22,7 @@ const Layout: FC<Props> = ({ title, children }) => {
   return (
     <>
       <Head>
-        <title>{title ? `${title} | ` : ''}Sergio Majé's Portfolio</title>
+        <title>{title ? `${title} | ` : ''}Sergio Majé&apos;s Portfolio</title>
       </Head>
       <NavBar />
       {children}
