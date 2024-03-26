@@ -13,38 +13,34 @@ import Layout from "../layouts/Layout.astro";
 >
   <main>
     <section>
-      <h1
-        class="text-white text-5xl font-bold inline-flex flex-col gap-4 pb-10 m-0"
-      >
+      <h1>
         Hey, soy Sergio Majé
         <a
           href="http://linkedin.com/in/smaje"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex w-fit"
         >
           <Badge>Disponible para trabajar</Badge>
         </a>
       </h1>
-      <h2 class="text-2xl text-wrap">
+      <h2>
         <span>+1 año de experiencia.</span>
-        <span class="text-yellow-200/80 font-semibold">Desarrollador Web.</span>
-        <span class="text-blue-400/90">Desde Colombia.</span>
-        <span class="opacity-80">Simplificando e innovado tus soluciones.</span
-        >
+        <span>Desarrollador Web.</span>
+        <span>Desde Colombia.</span>
+        <span>Simplificando e innovado tus soluciones.</span>
       </h2>
 
-      <nav class="flex gap-x-4 max-w-fit mt-8">
+      <nav>
         <SocialPill href="http://linkedin.com/in/smaje">
-          <LinkedInIcon class="size-6" />
+          <LinkedInIcon />
           LinkedIn
         </SocialPill>
         <SocialPill href="https://github.com/smaje99">
-          <GitHubIcon class="size-6 text-white" />
+          <GitHubIcon />
           GitHub
         </SocialPill>
         <SocialPill href="mailto:smajefranco@gmail.com">
-          <MailIcon class="size-6 text-white" />
+          <MailIcon />
           Contáctame
         </SocialPill>
       </nav>
@@ -61,5 +57,68 @@ import Layout from "../layouts/Layout.astro";
     color: white;
     font-size: 20px;
     line-height: 1.6;
+  }
+
+  section {
+    & > h1 {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      padding-bottom: 2.5rem;
+      margin: 0;
+
+      font-size: 3rem;
+      line-height: 1;
+      font-weight: 700;
+
+      color: rgb(255 255 255);
+
+      & > a {
+        width: fit-content;
+        display: inline-flex;
+      }
+    }
+
+    & > h2 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+      text-wrap: wrap;
+
+      & > span {
+        &:nth-child(2) {
+          color: rgb(254 240 138 / 80%);
+          font-weight: 600;
+        }
+
+        &:nth-child(3) {
+          color: rgb(96 165 250 / 90%);
+        }
+
+        &:last-child {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    &> nav {
+      max-width: fit-content;
+
+      display: flex;
+      column-gap: 1rem;
+
+      margin-top: 2rem;
+
+      &> a {
+        &> svg {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+
+        &:not(:first-child) > svg {
+          color: rgb(255 255 255);
+        }
+      }
+    }
   }
 </style>

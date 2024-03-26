@@ -2,7 +2,6 @@
 import "@fontsource-variable/onest";
 
 import Header from "../components/Header.astro";
-import { cn } from "../lib/utils";
 
 interface Props {
   title: string;
@@ -23,20 +22,13 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <div
-      class={cn(
-        "absolute top-0 z-[-2]",
-        "h-screen w-screen",
-        "bg-neutral-950",
-				"bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-      )}
-    >
-    </div>
+    <div class="layout-background"></div>
 
     <Header />
     <slot />
   </body>
 </html>
+
 <style is:global>
   :root {
     color-scheme: light dark;
@@ -50,5 +42,21 @@ const { title, description } = Astro.props;
     display: flex;
     justify-content: center;
     flex-direction: column;
+  }
+
+  .layout-background {
+    position: absolute;
+    top: 0;
+    z-index: -2;
+
+    width: 100vw;
+    height: 100dvh;
+
+    background-color: rgb(10 10 10);
+    background-image: radial-gradient(
+      ellipse 80% 80% at 50% -20%,
+      rgb(120 119 198 / 30%),
+      rgb(255 255 255 / 0)
+    );
   }
 </style>
