@@ -8,9 +8,6 @@ dependencies:
   '@astrojs/check':
     specifier: ^0.5.6
     version: 0.5.6(typescript@5.3.3)
-  '@astrojs/tailwind':
-    specifier: ^5.1.0
-    version: 5.1.0(astro@4.4.9)(tailwindcss@3.4.1)
   '@fontsource-variable/onest':
     specifier: ^5.0.2
     version: 5.0.2
@@ -128,21 +125,6 @@ packages:
     engines: {node: '>=18.14.1'}
     dependencies:
       prismjs: 1.29.0
-    dev: false
-
-  /@astrojs/tailwind@5.1.0(astro@4.4.9)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
-    peerDependencies:
-      astro: ^3.0.0 || ^4.0.0
-      tailwindcss: ^3.0.24
-    dependencies:
-      astro: 4.4.9(typescript@5.3.3)
-      autoprefixer: 10.4.18(postcss@8.4.35)
-      postcss: 8.4.35
-      postcss-load-config: 4.0.2(postcss@8.4.35)
-      tailwindcss: 3.4.1
-    transitivePeerDependencies:
-      - ts-node
     dev: false
 
   /@astrojs/telemetry@3.0.4:
@@ -1114,22 +1096,6 @@ packages:
       - typescript
     dev: false
 
-  /autoprefixer@10.4.18(postcss@8.4.35):
-    resolution: {integrity: sha512-1DKbDfsr6KUElM6wg+0zRNkB/Q7WcKYAaK+pzXn+Xqmszm/5Xa9coeNdtP88Vi+dPzZnMjhge8GIV49ZQkDa+g==}
-    engines: {node: ^10 || ^12 || >=14}
-    hasBin: true
-    peerDependencies:
-      postcss: ^8.1.0
-    dependencies:
-      browserslist: 4.23.0
-      caniuse-lite: 1.0.30001591
-      fraction.js: 4.3.7
-      normalize-range: 0.1.2
-      picocolors: 1.0.0
-      postcss: 8.4.35
-      postcss-value-parser: 4.2.0
-    dev: false
-
   /axobject-query@4.0.0:
     resolution: {integrity: sha512-+60uv1hiVFhHZeO+Lz0RYzsVHy5Wr1ayX0mwda9KPDVLNJgZ1T9Ny7VmFbLDzxsH0D87I86vgj3gFrjTJUYznw==}
     dependencies:
@@ -1734,10 +1700,6 @@ packages:
     dependencies:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
-    dev: false
-
-  /fraction.js@4.3.7:
-    resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
     dev: false
 
   /fs-constants@1.0.0:
@@ -2722,11 +2684,6 @@ packages:
 
   /normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
-    engines: {node: '>=0.10.0'}
-    dev: false
-
-  /normalize-range@0.1.2:
-    resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
     engines: {node: '>=0.10.0'}
     dev: false
 
