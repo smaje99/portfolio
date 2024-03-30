@@ -5,6 +5,7 @@ import MailIcon from "../icons/MailIcon.astro";
 import Badge from "../components/Badge.astro";
 import SocialPill from "../components/SocialPill.astro";
 import Layout from "../layouts/Layout.astro";
+import SectionContainer from "../components/SectionContainer.astro";
 ---
 
 <Layout
@@ -12,7 +13,7 @@ import Layout from "../layouts/Layout.astro";
   description="Contrata a Sergio Majé para crear tu aplicación web. Desarrollador Web. Simplificando e innovando tus soluciones."
 >
   <main>
-    <section>
+    <SectionContainer>
       <h1>
         Hey, soy Sergio Majé
         <a
@@ -44,7 +45,7 @@ import Layout from "../layouts/Layout.astro";
           Contáctame
         </SocialPill>
       </nav>
-    </section>
+    </SectionContainer>
   </main>
 </Layout>
 
@@ -59,65 +60,63 @@ import Layout from "../layouts/Layout.astro";
     line-height: 1.6;
   }
 
-  section {
-    & > h1 {
+  h1 {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding-bottom: 2.5rem;
+    margin: 0;
+
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+
+    color: rgb(255 255 255);
+
+    & > a {
+      width: fit-content;
       display: inline-flex;
-      flex-direction: column;
-      gap: 1rem;
+    }
+  }
 
-      padding-bottom: 2.5rem;
-      margin: 0;
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-wrap: wrap;
 
-      font-size: 3rem;
-      line-height: 1;
-      font-weight: 700;
+    & > span {
+      &:nth-child(2) {
+        color: rgb(254 240 138 / 80%);
+        font-weight: 600;
+      }
 
-      color: rgb(255 255 255);
+      &:nth-child(3) {
+        color: rgb(96 165 250 / 90%);
+      }
 
-      & > a {
-        width: fit-content;
-        display: inline-flex;
+      &:last-child {
+        opacity: 0.8;
       }
     }
+  }
 
-    & > h2 {
-      font-size: 1.5rem;
-      line-height: 2rem;
-      text-wrap: wrap;
+  nav {
+    max-width: fit-content;
 
-      & > span {
-        &:nth-child(2) {
-          color: rgb(254 240 138 / 80%);
-          font-weight: 600;
-        }
+    display: flex;
+    column-gap: 1rem;
 
-        &:nth-child(3) {
-          color: rgb(96 165 250 / 90%);
-        }
+    margin-top: 2rem;
 
-        &:last-child {
-          opacity: 0.8;
-        }
+    & > a {
+      & > svg {
+        width: 1.5rem;
+        height: 1.5rem;
       }
-    }
 
-    &> nav {
-      max-width: fit-content;
-
-      display: flex;
-      column-gap: 1rem;
-
-      margin-top: 2rem;
-
-      &> a {
-        &> svg {
-          width: 1.5rem;
-          height: 1.5rem;
-        }
-
-        &:not(:first-child) > svg {
-          color: rgb(255 255 255);
-        }
+      &:not(:first-child) > svg {
+        color: rgb(255 255 255);
       }
     }
   }
