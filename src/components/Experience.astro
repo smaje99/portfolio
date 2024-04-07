@@ -1,0 +1,26 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+import { type Experience } from '../types/experience';
+
+interface Props {
+  readonly experiences: Experience[];
+}
+
+const { experiences } = Astro.props;
+---
+
+<ol class="experience">
+  {experiences.map((experience) => <ExperienceItem {...experience} />)}
+</ol>
+
+<style>
+  .experience {
+    position: relative;
+    border-inline-start-width: 1px;
+    border-color: rgb(229 231 235);
+
+    &:hover {
+      border-color: rgb(55 65 81);
+    }
+  }
+</style>

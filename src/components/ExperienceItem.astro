@@ -1,0 +1,121 @@
+---
+import CalendarIcon from "../icons/CalendarIcon.astro";
+import { type Experience } from "../types/experience";
+import { formatDateToMonthYear } from '../utils/date';
+import { capitalizeFirstLetter } from '../utils/string';
+
+interface Props extends Experience {}
+
+const {
+  position,
+  company,
+  description,
+  startDate,
+  endDate,
+  typeOfEmployment,
+  link,
+  current,
+  latest,
+  skills,
+} = Astro.props;
+---
+
+<li class="experience-item">
+  <span>
+    <CalendarIcon />
+  </span>
+  <h3>
+    {position}
+    {current ? <span>Current</span> : null}
+    {latest ? <span>Latest</span> : null}
+    <span>{company}</span>
+  </h3>
+  <time datetime={startDate.toDateString()}>
+    {capitalizeFirstLetter(formatDateToMonthYear(startDate))}
+  </time>
+  <p>{description}</p>
+  {link ? <a href="#" /> : null}
+</li>
+
+<style>
+  .experience-item {
+    margin-inline-start: 1.5rem;
+    margin-bottom: 2.5rem;
+
+    & > span {
+      position: absolute;
+      inset-inline-start: -0.75rem;
+
+      width: 1.5rem;
+      height: 1.5rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: rgb(219 234 254);
+
+      border-radius: calc(infinity * 1px);
+      box-shadow:
+        rgb(255 255 255) 0px 0px 0px 0px,
+        rgb(255 255 255) 0px 0px 0px 8px,
+        rgba(0 0 0 / 0) 0px 0px 0px 0px;
+
+      & > svg {
+        width: 0.625rem;
+        height: 0.625rem;
+
+        color: rgb(30 64 175);
+      }
+    }
+
+    & > h3 {
+      display: inline-flex;
+      align-items: center;
+
+      margin-bottom: 0.25rem;
+
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+      font-weight: 600;
+
+      color: rgb(17 24 39);
+
+      & > span {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+
+        margin-inline-start: 0.75rem;
+        margin-inline-end: 0.5rem;
+        padding: 0.125rem 0.625rem;
+
+        border-radius: 0.25rem;
+
+        background-color: rgb(219 234 254);
+        color: rgb(30 64 175);
+      }
+    }
+
+    & > time {
+      display: block;
+
+      margin-bottom: 0.5rem;
+
+      font-size: 0.875rem;
+      line-height: 1;
+      font-weight: 400;
+
+      color: rgb(156 163 175);
+    }
+
+    & > p {
+      margin-bottom: 1rem;
+
+      font-size: 1rem;
+      line-height: 1.5rem;
+      font-weight: 400;
+
+      color: rgb(107 114 128);
+    }
+  }
+</style>
