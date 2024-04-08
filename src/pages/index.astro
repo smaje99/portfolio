@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+
 import GitHubIcon from "../icons/GitHubIcon.astro";
 import LinkedInIcon from "../icons/LinkedInIcon.astro";
 import MailIcon from "../icons/MailIcon.astro";
@@ -6,6 +8,12 @@ import Badge from "../components/Badge.astro";
 import SocialPill from "../components/SocialPill.astro";
 import Layout from "../layouts/Layout.astro";
 import SectionContainer from "../components/SectionContainer.astro";
+import ExperienceContainer from "../components/Experience.astro";
+
+const response = await getCollection("experiences");
+const experiences = response
+  .map((experience) => experience.data)
+  .sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
 ---
 
 <Layout
@@ -45,6 +53,10 @@ import SectionContainer from "../components/SectionContainer.astro";
           Contáctame
         </SocialPill>
       </nav>
+    </SectionContainer>
+
+    <SectionContainer>
+      <ExperienceContainer experiences={experiences} />
     </SectionContainer>
   </main>
 </Layout>
