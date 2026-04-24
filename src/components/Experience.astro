@@ -1,16 +1,24 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
 import { type Experience } from '../types/experience';
+import type { Locale } from '../i18n/site';
 
 interface Props {
   readonly experiences: Experience[];
+  readonly locale: Locale;
+  readonly labels: {
+    current: string;
+    latest: string;
+  };
 }
 
-const { experiences } = Astro.props;
+const { experiences, locale, labels } = Astro.props;
 ---
 
 <ol class="experience">
-  {experiences.map((experience) => <ExperienceItem {...experience} />)}
+  {experiences.map((experience) => (
+    <ExperienceItem {...experience} locale={locale} labels={labels} />
+  ))}
 </ol>
 
 <style>

@@ -1,32 +1,83 @@
 ---
 import "@fontsource-variable/onest";
 import "normalize.css";
-import "../styles/global.css";
+import "@/styles/global.css";
 
-import Header from "../components/Header.astro";
+import Header from "@/components/Header.astro";
+import type { Locale } from "@/i18n/site";
 
 interface Props {
   title: string;
   description: string;
+  lang: Locale;
+  canonicalPath: string;
+  alternates: { hreflang: string; href: string }[];
+  navigation: { label: string; href: string }[];
+  languageSwitcherLabel: string;
+  languageLabel: string;
+  languageSwitcherHref: string;
+  languageSwitcherLocale: Locale;
+  logoAlt: string;
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  lang,
+  canonicalPath,
+  alternates,
+  navigation,
+  languageSwitcherLabel,
+  languageLabel,
+  languageSwitcherHref,
+  languageSwitcherLocale,
+  logoAlt,
+} = Astro.props;
+
+const resolveHref = (href: string) => {
+  if (!Astro.site) return href;
+  return new URL(href, Astro.site).toString();
+};
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={resolveHref(canonicalPath)} />
+    {alternates.map((alternate) => (
+      <link
+        rel="alternate"
+        hreflang={alternate.hreflang}
+        href={resolveHref(alternate.href)}
+      />
+    ))}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_CO' : 'en_US'} />
+    <meta property="og:url" content={resolveHref(canonicalPath)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <title>{title}</title>
   </head>
   <body>
     <div class="layout-background"></div>
 
-    <Header />
+    <Header
+      navigation={navigation}
+      languageSwitcherLabel={languageSwitcherLabel}
+      languageLabel={languageLabel}
+      languageSwitcherHref={languageSwitcherHref}
+      languageSwitcherLocale={languageSwitcherLocale}
+      logoAlt={logoAlt}
+    />
     <slot />
   </body>
 </html>

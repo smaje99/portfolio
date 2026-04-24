@@ -3,8 +3,15 @@ import CalendarIcon from "../icons/CalendarIcon.astro";
 import { type Experience } from "../types/experience";
 import { formatDateToMonthYear } from '../utils/date';
 import { capitalizeFirstLetter } from '../utils/string';
+import type { Locale } from '../i18n/site';
 
-interface Props extends Experience {}
+interface Props extends Experience {
+  locale: Locale;
+  labels: {
+    current: string;
+    latest: string;
+  };
+}
 
 const {
   position,
@@ -14,6 +21,8 @@ const {
   link,
   current,
   latest,
+  locale,
+  labels,
 } = Astro.props;
 ---
 
@@ -23,12 +32,12 @@ const {
   </span>
   <h3>
     {position}
-    {current ? <span>Current</span> : null}
-    {latest ? <span>Latest</span> : null}
+    {current ? <span>{labels.current}</span> : null}
+    {latest ? <span>{labels.latest}</span> : null}
     <span>{company}</span>
   </h3>
   <time datetime={startDate.toDateString()}>
-    {capitalizeFirstLetter(formatDateToMonthYear(startDate))}
+    {capitalizeFirstLetter(formatDateToMonthYear(startDate, locale))}
   </time>
   <p>{description}</p>
   {link ? <a href="#" /> : null}

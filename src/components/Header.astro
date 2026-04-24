@@ -1,16 +1,42 @@
+---
+interface Props {
+  navigation: { label: string; href: string }[];
+  languageSwitcherLabel: string;
+  languageLabel: string;
+  languageSwitcherHref: string;
+  languageSwitcherLocale: 'es' | 'en';
+  logoAlt: string;
+}
+
+const {
+  navigation,
+  languageSwitcherLabel,
+  languageLabel,
+  languageSwitcherHref,
+  languageSwitcherLocale,
+  logoAlt,
+} = Astro.props;
+---
+
 <header class="header">
   <img
-    src="brand.svg"
-    alt="Sergio Majé logo"
+    src="/brand.svg"
+    alt={logoAlt}
     width="48"
     height="48"
   />
 
   <nav class="nav">
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/projects">Projects</a>
-    <a href="/contact">Contact</a>
+    {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    <a
+      class="language-switcher"
+      href={languageSwitcherHref}
+      aria-label={languageSwitcherLabel}
+      rel="alternate"
+      hreflang={languageSwitcherLocale}
+    >
+      {languageLabel}
+    </a>
   </nav>
 </header>
 
@@ -54,6 +80,12 @@
         border-color: var(--brand-lime-soft);
         background: rgb(21 62 68 / 90%);
         transform: translateY(-1px);
+      }
+
+      & > .language-switcher {
+        color: var(--foreground);
+        border-color: rgb(224 255 79 / 38%);
+        background: rgb(224 255 79 / 10%);
       }
     }
   }
