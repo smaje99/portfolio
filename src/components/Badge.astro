@@ -4,20 +4,22 @@
 
 <style>
   .badge {
-    background-color: rgb(219 234 254);
-    color: rgb(30 64 175);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    background: linear-gradient(135deg, rgb(224 255 79 / 20%), rgb(115 216 207 / 14%));
+    color: var(--foreground);
+    border: 1px solid rgb(224 255 79 / 42%);
+    box-shadow: 0 0 0 1px rgb(4 30 35 / 42%) inset;
 
     font-size: 0.75rem;
     line-height: 1rem;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.01em;
 
     margin-inline-end: 0.5rem;
-    padding: 0.125rem 0.625rem;
-    border-radius: 0.25rem;
-
-    &:is(.dark) {
-      background-color: rgb(30 58 138);
-      color: rgb(147 197 253);
-    }
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
   }
 </style>

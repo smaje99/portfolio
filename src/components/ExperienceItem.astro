@@ -50,19 +50,19 @@ const {
       justify-content: center;
       align-items: center;
 
-      background-color: rgb(219 234 254);
+      background-color: var(--primary);
 
       border-radius: calc(infinity * 1px);
       box-shadow:
-        rgb(255 255 255) 0px 0px 0px 0px,
-        rgb(255 255 255) 0px 0px 0px 8px,
-        rgba(0 0 0 / 0) 0px 0px 0px 0px;
+        rgb(4 30 35) 0px 0px 0px 0px,
+        rgb(4 30 35) 0px 0px 0px 8px,
+        rgb(0 0 0 / 0) 0px 0px 0px 0px;
 
       & > svg {
         width: 0.625rem;
         height: 0.625rem;
 
-        color: rgb(30 64 175);
+        color: var(--primary-foreground);
       }
     }
 
@@ -76,7 +76,7 @@ const {
       line-height: 1.75rem;
       font-weight: 600;
 
-      color: rgb(17 24 39);
+      color: var(--foreground);
 
       & > span {
         font-size: 0.875rem;
@@ -86,10 +86,11 @@ const {
         margin-inline-end: 0.5rem;
         padding: 0.125rem 0.625rem;
 
-        border-radius: 0.25rem;
+        border: 1px solid rgb(224 255 79 / 40%);
+        border-radius: 999px;
 
-        background-color: rgb(219 234 254);
-        color: rgb(30 64 175);
+        background-color: rgb(224 255 79 / 14%);
+        color: var(--foreground);
       }
     }
 
@@ -102,7 +103,7 @@ const {
       line-height: 1;
       font-weight: 400;
 
-      color: rgb(156 163 175);
+      color: var(--muted-foreground);
     }
 
     & > p {
@@ -112,7 +113,7 @@ const {
       line-height: 1.5rem;
       font-weight: 400;
 
-      color: rgb(107 114 128);
+      color: var(--secondary-foreground);
     }
   }
 </style>

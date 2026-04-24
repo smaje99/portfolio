@@ -1,5 +1,131 @@
-@layer theme, base, components, utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-/* Keep Preflight disabled to avoid overriding the existing handcrafted base styles. */
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
+@theme inline {
+  --font-sans: "Onest Variable", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 0.5rem);
+  --radius-md: calc(var(--radius) - 0.25rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.5rem);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  color-scheme: dark;
+  --radius: 1rem;
+  --brand-ink-950: #04191e;
+  --brand-ink-900: #072229;
+  --brand-ink-850: #0b2b31;
+  --brand-ink-800: #12363d;
+  --brand-ink-700: #17444b;
+  --brand-mist-100: #e3fff7;
+  --brand-mist-50: #f3ffea;
+  --brand-sage-300: #a4beb8;
+  --brand-aqua-400: #7fddd3;
+  --brand-lime-500: #e0ff4f;
+  --brand-lime-400: #d1ff71;
+  --brand-rose-500: #91273a;
+  --brand-amber-400: #e8d86f;
+
+  --background: var(--brand-ink-950);
+  --foreground: var(--brand-mist-50);
+  --card: rgb(11 43 49 / 90%);
+  --card-foreground: var(--brand-mist-50);
+  --popover: rgb(18 54 61 / 96%);
+  --popover-foreground: var(--brand-mist-50);
+  --primary: var(--brand-lime-500);
+  --primary-foreground: var(--brand-ink-950);
+  --secondary: var(--brand-ink-800);
+  --secondary-foreground: var(--brand-mist-100);
+  --muted: rgb(10 39 45 / 92%);
+  --muted-foreground: var(--brand-sage-300);
+  --accent: var(--brand-ink-700);
+  --accent-foreground: var(--brand-mist-100);
+  --destructive: var(--brand-rose-500);
+  --destructive-foreground: #fff1f3;
+  --border: #4b838c;
+  --input: #3b6a72;
+  --ring: var(--brand-lime-400);
+  --chart-1: var(--brand-lime-500);
+  --chart-2: var(--brand-aqua-400);
+  --chart-3: #5296a0;
+  --chart-4: var(--brand-amber-400);
+  --chart-5: #ca7181;
+  --sidebar: var(--brand-ink-850);
+  --sidebar-foreground: var(--brand-mist-50);
+  --sidebar-primary: var(--brand-lime-500);
+  --sidebar-primary-foreground: var(--brand-ink-950);
+  --sidebar-accent: var(--brand-ink-700);
+  --sidebar-accent-foreground: var(--brand-mist-100);
+  --sidebar-border: #4b838c;
+  --sidebar-ring: var(--brand-lime-400);
+  --brand-lime: var(--brand-lime-500);
+  --brand-lime-soft: var(--brand-lime-400);
+  --brand-aqua: var(--brand-aqua-400);
+  --brand-panel: rgb(11 43 49 / 88%);
+  --brand-grid: rgb(127 221 211 / 10%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: rgb(224 255 79 / 28%);
+    color: var(--foreground);
+  }
+}

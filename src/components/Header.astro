@@ -19,19 +19,50 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 
-    padding: 0.75rem 4rem;
+    padding: 1rem 4rem;
 
     & > img {
       width: 3rem;
       height: 3rem;
+      filter: drop-shadow(0 0 1.25rem rgb(224 255 79 / 20%));
     }
 
     & > .nav {
       display: flex;
-      column-gap: 2.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
 
-      opacity: 0.9;
+      & > a {
+        color: var(--muted-foreground);
+        padding: 0.55rem 0.95rem;
+        border-radius: 999px;
+        border: 1px solid rgb(66 119 127 / 45%);
+        background: rgb(11 43 49 / 56%);
+        transition:
+          color 180ms ease,
+          border-color 180ms ease,
+          background-color 180ms ease,
+          transform 180ms ease;
+      }
+
+      & > a:hover,
+      & > a:focus-visible {
+        color: var(--foreground);
+        border-color: var(--brand-lime-soft);
+        background: rgb(21 62 68 / 90%);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  @media (width <= 720px) {
+    .header {
+      padding-inline: 1rem;
+      align-items: flex-start;
+      flex-direction: column;
     }
   }
 </style>
