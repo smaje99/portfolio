@@ -21,7 +21,7 @@ const experiences = response
   description="Contrata a Sergio Majé para crear tu aplicación web. Desarrollador Web. Simplificando e innovando tus soluciones."
 >
   <main>
-    <SectionContainer>
+    <SectionContainer class:list={['section-main']}>
       <h1>
         Hey, soy Sergio Majé
         <a
@@ -131,5 +131,10 @@ const experiences = response
         color: rgb(255 255 255);
       }
     }
+  }
+
+  .section-main {
+    height: 100dvh;
+    color: red;
   }
 </style>

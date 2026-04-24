@@ -1,8 +1,13 @@
 import { defineCollection } from 'astro:content';
-import { experienceSchema } from '../types/experience';
+import { glob } from 'astro/loaders';
+
+import { experienceSchema } from './types/experience';
 
 const experiencesCollection = defineCollection({
-  type: 'content',
+  loader: glob({
+    base: './src/content/experiences',
+    pattern: '**/*.md',
+  }),
   schema: experienceSchema,
 });
 
