@@ -10,13 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground shadow-[0_0_0_1px_rgb(4_25_30/24%),0_18px_50px_rgb(224_255_79/12%)] hover:-translate-y-0.5 hover:bg-[color-mix(in_srgb,var(--primary)_91%,white)]',
+          'bg-primary text-primary-foreground shadow-[0_0_0_1px_rgb(224_255_79/12%),0_14px_34px_rgb(224_255_79/24%)] hover:-translate-y-0.5 hover:bg-[color-mix(in_srgb,var(--primary)_90%,white)] hover:shadow-[0_0_0_1px_rgb(224_255_79/18%),0_22px_48px_rgb(224_255_79/30%)] focus-visible:ring-primary',
         destructive:
           'bg-destructive text-destructive-foreground shadow-sm hover:-translate-y-0.5 hover:bg-[color-mix(in_srgb,var(--destructive)_88%,black)]',
         outline:
-          'border-border bg-card/72 text-card-foreground shadow-sm hover:-translate-y-0.5 hover:border-primary/65 hover:bg-accent hover:text-accent-foreground',
+          'border-border/75 bg-card/66 text-card-foreground shadow-sm hover:-translate-y-0.5 hover:border-primary/70 hover:bg-accent/90 hover:text-foreground',
         secondary:
-          'bg-secondary text-secondary-foreground shadow-sm hover:-translate-y-0.5 hover:bg-[color-mix(in_srgb,var(--secondary)_88%,white)]',
+          'border border-transparent bg-secondary/70 text-secondary-foreground shadow-sm hover:-translate-y-0.5 hover:border-border/60 hover:bg-[color-mix(in_srgb,var(--secondary)_90%,white)]',
         ghost: 'text-foreground hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
       },

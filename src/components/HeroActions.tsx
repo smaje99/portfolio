@@ -1,25 +1,32 @@
-import { ArrowUpRight, Mail } from 'lucide-react';
+import { ArrowDownRight, Download, Mail } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 
 interface Props {
-  talkLabel: string;
-  githubLabel: string;
+  projectsLabel: string;
+  resumeLabel: string;
+  contactLabel: string;
 }
 
-export default function HeroActions({ talkLabel, githubLabel }: Props) {
+export default function HeroActions({ projectsLabel, resumeLabel, contactLabel }: Props) {
   return (
-    <div className="mt-8 flex flex-wrap gap-3">
-      <Button asChild size="lg">
-        <a href="mailto:smajefranco@gmail.com">
-          {talkLabel}
-          <Mail data-icon="inline-end" />
+    <div className="mt-8 flex flex-wrap items-center gap-3">
+      <Button asChild size="lg" className="min-w-40 font-bold">
+        <a href="#projects">
+          {projectsLabel}
+          <ArrowDownRight data-icon="inline-end" />
         </a>
       </Button>
-      <Button asChild variant="outline" size="lg">
-        <a href="https://github.com/smaje99" target="_blank" rel="noopener noreferrer">
-          {githubLabel}
-          <ArrowUpRight data-icon="inline-end" />
+      <Button asChild variant="outline" size="lg" className="min-w-40">
+        <a href="/docs/curriculum-vitae-sergio-maje.pdf" target="_blank" rel="noopener noreferrer">
+          {resumeLabel}
+          <Download data-icon="inline-end" />
+        </a>
+      </Button>
+      <Button asChild variant="secondary" size="lg" className="min-w-40">
+        <a href="mailto:smajefranco@gmail.com">
+          {contactLabel}
+          <Mail data-icon="inline-end" />
         </a>
       </Button>
     </div>

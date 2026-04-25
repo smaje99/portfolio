@@ -10,6 +10,15 @@ type NavItem = {
   hash: string;
 };
 
+type FocusItem = {
+  title: string;
+};
+
+type ProjectItem = {
+  title: string;
+  description: string;
+};
+
 type ExperienceLabels = {
   current: string;
   latest: string;
@@ -18,21 +27,38 @@ type ExperienceLabels = {
 type HomeCopy = {
   title: string;
   description: string;
-  greeting: string;
-  availability: string;
-  heroFacts: [string, string, string, string];
+  hero: {
+    name: string;
+    nameLines: [string, string];
+    role: string;
+    specialties: string;
+    summary: string;
+  };
   heroActions: {
-    talk: string;
-    github: string;
+    projects: string;
+    resume: string;
+    contact: string;
   };
   socials: {
     linkedin: string;
     github: string;
     contact: string;
   };
+  contactSection: {
+    eyebrow: string;
+    title: string;
+  };
   navigation: NavItem[];
   languageSwitcherLabel: string;
   languageLabel: string;
+  focusSection: {
+    title: string;
+    items: FocusItem[];
+  };
+  projectsSection: {
+    title: string;
+    items: ProjectItem[];
+  };
   experienceSection: {
     title: string;
     intro: string;
@@ -43,38 +69,78 @@ type HomeCopy = {
 
 const homeCopy: Record<Locale, HomeCopy> = {
   es: {
-    title:
-      'Portfolio de Sergio Majé - Desarrollador web con experiencia en productos y plataformas',
+    title: 'Sergio Andrés Majé Franco | Desarrollador de Software',
     description:
-      'Portfolio bilingüe de Sergio Majé, desarrollador web en Colombia. Diseño, desarrollo y optimización de aplicaciones web con enfoque en producto y rendimiento.',
-    greeting: 'Hey, soy Sergio Majé',
-    availability: 'Disponible para trabajar',
-    heroFacts: [
-      '+1 año de experiencia.',
-      'Desarrollador web.',
-      'Desde Colombia.',
-      'Simplificando e innovando tus soluciones.',
-    ],
+      'Portafolio de Sergio Andrés Majé Franco. Ingeniería de soluciones y sistemas de información: planificación, diseño, desarrollo, implementación y mejora continua.',
+    hero: {
+      name: 'Sergio Andrés Majé Franco',
+      nameLines: ['Sergio Andrés', 'Majé Franco'],
+      role: 'Ingeniería de soluciones para sistemas de información',
+      specialties: 'Procesos · Datos · Desarrollo · Arquitectura · Transformación digital',
+      summary:
+        'Diseño y desarrollo sistemas de información que conectan procesos, datos y operación, transformando necesidades reales en soluciones digitales claras, mantenibles y útiles.',
+    },
     heroActions: {
-      talk: 'Hablemos',
-      github: 'Ver GitHub',
+      projects: 'Ver proyectos',
+      resume: 'Descargar CV',
+      contact: 'Contactar',
     },
     socials: {
       linkedin: 'LinkedIn',
       github: 'GitHub',
-      contact: 'Contáctame',
+      contact: 'Correo',
+    },
+    contactSection: {
+      eyebrow: 'Contacto',
+      title: 'Si tienes una idea, un sistema por ordenar o un proceso por mejorar, conversemos.',
     },
     navigation: [
       { label: 'Inicio', hash: '#top' },
+      { label: 'Enfoque', hash: '#focus' },
+      { label: 'Proyectos', hash: '#projects' },
       { label: 'Experiencia', hash: '#experience' },
       { label: 'Contacto', hash: '#contact' },
     ],
     languageSwitcherLabel: 'Cambiar idioma',
     languageLabel: 'EN',
+    focusSection: {
+      title: 'Áreas de enfoque',
+      items: [
+        { title: 'Backend Engineering' },
+        { title: 'Data Processing' },
+        { title: 'Business Process Management' },
+        { title: 'Sistemas de Información' },
+      ],
+    },
+    projectsSection: {
+      title: 'Proyectos destacados',
+      items: [
+        {
+          title: 'SIMIGS',
+          description:
+            'Sistema orientado a centralizar información operativa y apoyar procesos internos con una base técnica mantenible.',
+        },
+        {
+          title: 'ERP Turismo',
+          description:
+            'Solución ERP enfocada en la organización de operaciones, flujos de trabajo y control de información en el sector turístico.',
+        },
+        {
+          title: 'ERP Agroinsumos',
+          description:
+            'Plataforma para administrar inventario, procesos comerciales y trazabilidad de datos en distribución de agroinsumos.',
+        },
+        {
+          title: 'Proyecto educativo de estructuras de datos',
+          description:
+            'Desarrollo académico centrado en lógica, modelado de estructuras y resolución de problemas con enfoque práctico.',
+        },
+      ],
+    },
     experienceSection: {
       title: 'Experiencia',
       intro:
-        'He trabajado en producto, desarrollo web y soporte técnico, siempre orientado a resolver problemas reales con herramientas mantenibles.',
+        'Mi experiencia combina desarrollo, soporte técnico y ejecución de soluciones funcionales orientadas a problemas reales y sistemas mantenibles.',
     },
     experienceLabels: {
       current: 'Actual',
@@ -83,37 +149,79 @@ const homeCopy: Record<Locale, HomeCopy> = {
     logoAlt: 'Logotipo de Sergio Majé',
   },
   en: {
-    title: 'Sergio Majé Portfolio - Web developer building performant product experiences',
+    title: 'Sergio Andrés Majé Franco | Software Developer',
     description:
-      'Bilingual portfolio of Sergio Majé, a web developer based in Colombia. I design, build, and improve web applications with a product and performance mindset.',
-    greeting: "Hey, I'm Sergio Majé",
-    availability: 'Available for work',
-    heroFacts: [
-      '1+ year of experience.',
-      'Web developer.',
-      'Based in Colombia.',
-      'Simplifying and improving your digital solutions.',
-    ],
+      'Portfolio of Sergio Andrés Majé Franco. Solution engineering for information systems: planning, design, development, implementation, and continuous improvement.',
+    hero: {
+      name: 'Sergio Andrés Majé Franco',
+      nameLines: ['Sergio Andrés', 'Majé Franco'],
+      role: 'Solution engineering for information systems',
+      specialties: 'Processes · Data · Development · Architecture · Digital transformation',
+      summary:
+        'I design and build information systems that connect processes, data, and operations, turning real needs into digital solutions that are clear, maintainable, and useful.',
+    },
     heroActions: {
-      talk: "Let's talk",
-      github: 'View GitHub',
+      projects: 'View projects',
+      resume: 'Download resume',
+      contact: 'Contact',
     },
     socials: {
       linkedin: 'LinkedIn',
       github: 'GitHub',
-      contact: 'Contact me',
+      contact: 'Email',
+    },
+    contactSection: {
+      eyebrow: 'Contact',
+      title:
+        "If you have an idea, a system that needs structure, or a process to improve, let's talk.",
     },
     navigation: [
       { label: 'Home', hash: '#top' },
+      { label: 'Focus', hash: '#focus' },
+      { label: 'Projects', hash: '#projects' },
       { label: 'Experience', hash: '#experience' },
       { label: 'Contact', hash: '#contact' },
     ],
     languageSwitcherLabel: 'Change language',
     languageLabel: 'ES',
+    focusSection: {
+      title: 'Focus areas',
+      items: [
+        { title: 'Backend Engineering' },
+        { title: 'Data Processing' },
+        { title: 'Business Process Management' },
+        { title: 'Information Systems' },
+      ],
+    },
+    projectsSection: {
+      title: 'Featured projects',
+      items: [
+        {
+          title: 'SIMIGS',
+          description:
+            'A system designed to centralize operational information and support internal workflows with a maintainable technical base.',
+        },
+        {
+          title: 'Tourism ERP',
+          description:
+            'An ERP solution focused on organizing operations, workflows, and information control for the tourism sector.',
+        },
+        {
+          title: 'Agro-input ERP',
+          description:
+            'A platform built to manage inventory, commercial processes, and data traceability in agro-input distribution.',
+        },
+        {
+          title: 'Educational data structures project',
+          description:
+            'An academic project centered on logic, data structure modeling, and practical problem-solving.',
+        },
+      ],
+    },
     experienceSection: {
       title: 'Experience',
       intro:
-        'My work spans product-minded web development and technical support, always focused on solving real problems with maintainable systems.',
+        'My experience spans development, technical support, and the execution of practical solutions focused on real operational needs and maintainable systems.',
     },
     experienceLabels: {
       current: 'Current',
