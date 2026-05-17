@@ -241,33 +241,51 @@ const experienceTranslations: Partial<
         company?: string;
         description?: string;
         typeOfEmployment?: string;
+        skills?: string[];
       }
     >
   >
 > = {
   en: {
-    'software-developer-cidti-2026.md': {
+    'software-developer-cidti-2026': {
       position: 'Software Developer',
       company:
         'Centro de Desarrollo Tecnológico para la Transformación Digital y la Industria 4.0 - Cidti 4.0',
       description:
         'I work as a software developer on a medical auditing project, turning requirements gathered in stakeholder meetings into user stories and implementing new features with support from automation and technical assistance. Alongside feature development on the existing codebase, I occasionally handle deployments to the testing server connected through Cloudflare Tunnel and, when needed, drive the gradual migration toward a hexagonal architecture and an Atomic + ITCSS styling approach.',
       typeOfEmployment: 'Service contractor',
+      skills: [
+        'Python',
+        'FastAPI',
+        'MongoDB',
+        'Redis',
+        'Celery',
+        'Jinja2',
+        'CSS',
+        'Cloudflare Tunnel',
+        'Requirements management',
+      ],
     },
-    'university-intern-cidti-2025.md': {
+    'university-intern-cidti-2025': {
       position: 'University Intern',
       company:
         'Centro de Desarrollo Tecnológico para la Transformación Digital y la Industria 4.0 - Cidti 4.0',
       description:
         'I worked as a university intern in backend development and data analysis, contributing to digital transformation initiatives through tools for information extraction and processing, improvements to internal platform components, and the integration of technical data into MongoDB-based systems. I also strengthened software security, organization, and quality by applying good practices, refactoring, and careful configuration management, standing out for autonomy, adaptability to scope changes, and the delivery of solutions aligned with the center’s needs.',
       typeOfEmployment: 'Internship contract',
+      skills: ['Python', 'FastAPI', 'MongoDB', 'Backend', 'Data analysis'],
     },
-    'internship-2015.md': {
+    'internship-2015': {
       position: 'Intern',
       company: 'Fotocopiadora del Lector',
       description:
         'As a technical intern, I was responsible for both preventive and corrective maintenance of computer equipment, ensuring stable day-to-day operation. I also acted as a mentor for less experienced interns, helping them grow professionally in a technical environment.',
       typeOfEmployment: 'Internship contract',
+      skills: [
+        'Computer equipment maintenance',
+        'Teamwork',
+        'Mentoring and guidance',
+      ],
     },
   },
 };
@@ -290,6 +308,7 @@ export function localizeExperiences(entries: CollectionEntry<'experiences'>[], l
       company: overrides?.company ?? entry.data.company,
       description: overrides?.description ?? entry.data.description,
       typeOfEmployment: overrides?.typeOfEmployment ?? entry.data.typeOfEmployment,
+      skills: overrides?.skills ?? entry.data.skills,
     };
   });
 
