@@ -21,7 +21,7 @@ type ProjectItem = {
 
 type ExperienceLabels = {
   current: string;
-  latest: string;
+  present: string;
 };
 
 type HomeCopy = {
@@ -144,7 +144,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
     },
     experienceLabels: {
       current: 'Actual',
-      latest: 'Último',
+      present: 'Actualidad',
     },
     logoAlt: 'Logotipo de Sergio Majé',
   },
@@ -225,7 +225,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
     },
     experienceLabels: {
       current: 'Current',
-      latest: 'Latest',
+      present: 'Present',
     },
     logoAlt: 'Sergio Majé logo',
   },
@@ -246,11 +246,21 @@ const experienceTranslations: Partial<
   >
 > = {
   en: {
-    'freelance-2022.md': {
-      company: 'Independent',
+    'software-developer-cidti-2026.md': {
+      position: 'Software Developer',
+      company:
+        'Centro de Desarrollo Tecnológico para la Transformación Digital y la Industria 4.0 - Cidti 4.0',
       description:
-        'As an independent developer for Medintegral IPS S.A.S, I design and improve a healthcare web platform that lets users submit suggestions and book medical appointments efficiently. My work strengthens Medintegral’s online presence and helps optimize operational workflows. I also keep close communication with the company manager, sharing progress updates and planning new features using Scrum.',
-      typeOfEmployment: 'Independent contractor',
+        'I work as a software developer on a medical auditing project, turning requirements gathered in stakeholder meetings into user stories and implementing new features with support from automation and technical assistance. Alongside feature development on the existing codebase, I occasionally handle deployments to the testing server connected through Cloudflare Tunnel and, when needed, drive the gradual migration toward a hexagonal architecture and an Atomic + ITCSS styling approach.',
+      typeOfEmployment: 'Service contractor',
+    },
+    'university-intern-cidti-2025.md': {
+      position: 'University Intern',
+      company:
+        'Centro de Desarrollo Tecnológico para la Transformación Digital y la Industria 4.0 - Cidti 4.0',
+      description:
+        'I worked as a university intern in backend development and data analysis, contributing to digital transformation initiatives through tools for information extraction and processing, improvements to internal platform components, and the integration of technical data into MongoDB-based systems. I also strengthened software security, organization, and quality by applying good practices, refactoring, and careful configuration management, standing out for autonomy, adaptability to scope changes, and the delivery of solutions aligned with the center’s needs.',
+      typeOfEmployment: 'Internship contract',
     },
     'internship-2015.md': {
       position: 'Intern',

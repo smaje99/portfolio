@@ -1,7 +1,7 @@
 ---
 import CalendarIcon from "../icons/CalendarIcon.astro";
 import { type Experience } from "../types/experience";
-import { formatDateToMonthYear } from '../utils/date';
+import { formatDateRange } from '../utils/date';
 import { capitalizeFirstLetter } from '../utils/string';
 import type { Locale } from '../i18n/site';
 
@@ -9,7 +9,7 @@ interface Props extends Experience {
   locale: Locale;
   labels: {
     current: string;
-    latest: string;
+    present: string;
   };
 }
 
@@ -18,9 +18,11 @@ const {
   company,
   description,
   startDate,
+  endDate,
+  typeOfEmployment,
   link,
   current,
-  latest,
+  skills,
   locale,
   labels,
 } = Astro.props;
@@ -30,16 +32,30 @@ const {
   <span>
     <CalendarIcon />
   </span>
-  <h3>
-    {position}
-    {current ? <span>{labels.current}</span> : null}
-    {latest ? <span>{labels.latest}</span> : null}
-    <span>{company}</span>
-  </h3>
-  <time datetime={startDate.toDateString()}>
-    {capitalizeFirstLetter(formatDateToMonthYear(startDate, locale))}
-  </time>
-  <p>{description}</p>
+  <div class="experience-copy">
+    <div class="experience-header">
+      <h3>
+        {position}
+        {current ? <span>{labels.current}</span> : null}
+      </h3>
+      <p>{company}</p>
+    </div>
+    <p class="experience-meta">
+      <time datetime={startDate.toISOString()}>
+        {capitalizeFirstLetter(formatDateRange(startDate, endDate, locale, labels.present))}
+      </time>
+      <span aria-hidden="true">·</span>
+      <span>{typeOfEmployment}</span>
+    </p>
+    <p class="experience-description">{description}</p>
+    {skills.length ? (
+      <ul class="experience-skills">
+        {skills.map((skill) => (
+          <li>{skill}</li>
+        ))}
+      </ul>
+    ) : null}
+  </div>
   {link ? <a href="#" /> : null}
 </li>
 
@@ -75,54 +91,84 @@ const {
       }
     }
 
-    & > h3 {
-      display: inline-flex;
-      align-items: center;
+    & .experience-copy {
+      display: grid;
+      gap: 0.75rem;
+    }
 
-      margin-bottom: 0.25rem;
+    & .experience-header {
+      display: grid;
+      gap: 0.25rem;
 
-      font-size: 1.125rem;
-      line-height: 1.75rem;
-      font-weight: 600;
-
-      color: var(--foreground);
-
-      & > span {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-
-        margin-inline-start: 0.75rem;
-        margin-inline-end: 0.5rem;
-        padding: 0.125rem 0.625rem;
-
-        border: 1px solid rgb(224 255 79 / 40%);
-        border-radius: 999px;
-
-        background-color: rgb(224 255 79 / 14%);
+      & > h3 {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0;
+        font-size: 1.125rem;
+        line-height: 1.5rem;
+        font-weight: 600;
         color: var(--foreground);
+
+        & > span {
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          padding: 0.125rem 0.625rem;
+          border: 1px solid rgb(224 255 79 / 40%);
+          border-radius: 999px;
+          background-color: rgb(224 255 79 / 14%);
+          color: var(--foreground);
+        }
+      }
+
+      & > p {
+        margin: 0;
+        font-size: 0.975rem;
+        line-height: 1.5rem;
+        color: var(--secondary-foreground);
       }
     }
 
-    & > time {
-      display: block;
-
-      margin-bottom: 0.5rem;
-
+    & .experience-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0;
       font-size: 0.875rem;
-      line-height: 1;
-      font-weight: 400;
-
+      line-height: 1.4;
       color: var(--muted-foreground);
+
+      & > time {
+        display: inline;
+      }
     }
 
-    & > p {
-      margin-bottom: 1rem;
-
+    & .experience-description {
+      margin: 0;
       font-size: 1rem;
       line-height: 1.5rem;
       font-weight: 400;
-
       color: var(--secondary-foreground);
+    }
+
+    & .experience-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      & > li {
+        padding: 0.35rem 0.7rem;
+        border: 1px solid rgb(127 221 211 / 25%);
+        border-radius: 999px;
+        background: rgb(127 221 211 / 10%);
+        color: var(--foreground);
+        font-size: 0.85rem;
+        line-height: 1.2;
+      }
     }
   }
 </style>
