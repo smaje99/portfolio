@@ -24,6 +24,27 @@ type ExperienceLabels = {
   present: string;
 };
 
+type AboutSection = {
+  title: string;
+  eyebrow: string;
+  intro: string;
+  principles: {
+    label: string;
+    text: string;
+  }[];
+};
+
+type LearningSection = {
+  title: string;
+  eyebrow: string;
+  intro: string;
+  inventoryTitle: string;
+  pillarsTitle: string;
+  highlightsTitle: string;
+  skillsTitle: string;
+  linkedinLabel: string;
+};
+
 type HomeCopy = {
   title: string;
   description: string;
@@ -51,6 +72,8 @@ type HomeCopy = {
   navigation: NavItem[];
   languageSwitcherLabel: string;
   languageLabel: string;
+  aboutSection: AboutSection;
+  learningSection: LearningSection;
   focusSection: {
     title: string;
     items: FocusItem[];
@@ -96,6 +119,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
     },
     navigation: [
       { label: 'Inicio', hash: '#top' },
+      { label: 'About', hash: '#about' },
       { label: 'Enfoque', hash: '#focus' },
       { label: 'Proyectos', hash: '#projects' },
       { label: 'Experiencia', hash: '#experience' },
@@ -103,6 +127,37 @@ const homeCopy: Record<Locale, HomeCopy> = {
     ],
     languageSwitcherLabel: 'Cambiar idioma',
     languageLabel: 'EN',
+    aboutSection: {
+      title: 'Ingeniero integral con foco en sistemas útiles',
+      eyebrow: 'About me',
+      intro:
+        'Soy un desarrollador orientado a sistemas de información: me interesa entender procesos, ordenar datos y construir soluciones mantenibles que funcionen en contextos reales. Mi formación combina backend, analítica de datos, gestión ágil, UX/frontend y liderazgo técnico, lo que me permite moverme entre requerimientos, arquitectura, implementación y mejora continua.',
+      principles: [
+        {
+          label: 'Pienso en procesos',
+          text: 'Antes de escribir código busco entender el flujo operativo, las restricciones y el problema real.',
+        },
+        {
+          label: 'Construyo con datos',
+          text: 'Uso bases de datos, extracción y análisis como soporte para decisiones y sistemas más claros.',
+        },
+        {
+          label: 'Aprendo con dirección',
+          text: 'La formación continua funciona como refuerzo de una ruta profesional, no como una colección de insignias.',
+        },
+      ],
+    },
+    learningSection: {
+      title: 'Formación aplicada',
+      eyebrow: 'Evidencia curada',
+      intro:
+        'Los certificados no se muestran como archivo público. Los uso como mapa de aprendizaje para explicar qué capacidades sostienen mi trabajo y qué señales vale la pena revisar.',
+      inventoryTitle: 'Mapa de aprendizaje',
+      pillarsTitle: 'Pilares que construyen la persona profesional',
+      highlightsTitle: 'Credenciales destacadas',
+      skillsTitle: 'Skills reforzadas',
+      linkedinLabel: 'Credenciales completas en LinkedIn',
+    },
     focusSection: {
       title: 'Áreas de enfoque',
       items: [
@@ -177,6 +232,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
     },
     navigation: [
       { label: 'Home', hash: '#top' },
+      { label: 'About', hash: '#about' },
       { label: 'Focus', hash: '#focus' },
       { label: 'Projects', hash: '#projects' },
       { label: 'Experience', hash: '#experience' },
@@ -184,6 +240,37 @@ const homeCopy: Record<Locale, HomeCopy> = {
     ],
     languageSwitcherLabel: 'Change language',
     languageLabel: 'ES',
+    aboutSection: {
+      title: 'An integral engineer focused on useful systems',
+      eyebrow: 'About me',
+      intro:
+        'I am a developer oriented toward information systems: I care about understanding processes, structuring data, and building maintainable solutions that work in real contexts. My learning path combines backend, data analytics, agile management, UX/frontend, and technical leadership, which lets me move across requirements, architecture, implementation, and continuous improvement.',
+      principles: [
+        {
+          label: 'I think in processes',
+          text: 'Before writing code, I look for the operational flow, constraints, and the real problem.',
+        },
+        {
+          label: 'I build with data',
+          text: 'I use databases, extraction, and analysis to support clearer decisions and systems.',
+        },
+        {
+          label: 'I learn with direction',
+          text: 'Continuous learning works as reinforcement for a professional path, not as a badge collection.',
+        },
+      ],
+    },
+    learningSection: {
+      title: 'Applied learning',
+      eyebrow: 'Curated evidence',
+      intro:
+        'Certificates are not displayed as a public archive. I use them as a learning map to explain which capabilities support my work and which signals are worth reviewing.',
+      inventoryTitle: 'Learning map',
+      pillarsTitle: 'Pillars behind the professional persona',
+      highlightsTitle: 'Selected credentials',
+      skillsTitle: 'Reinforced skills',
+      linkedinLabel: 'Full credentials on LinkedIn',
+    },
     focusSection: {
       title: 'Focus areas',
       items: [
@@ -281,11 +368,7 @@ const experienceTranslations: Partial<
       description:
         'As a technical intern, I was responsible for both preventive and corrective maintenance of computer equipment, ensuring stable day-to-day operation. I also acted as a mentor for less experienced interns, helping them grow professionally in a technical environment.',
       typeOfEmployment: 'Internship contract',
-      skills: [
-        'Computer equipment maintenance',
-        'Teamwork',
-        'Mentoring and guidance',
-      ],
+      skills: ['Computer equipment maintenance', 'Teamwork', 'Mentoring and guidance'],
     },
   },
 };

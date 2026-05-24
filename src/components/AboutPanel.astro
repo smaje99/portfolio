@@ -1,0 +1,176 @@
+---
+import type { getHomeCopy } from '@/i18n/site';
+
+interface Props {
+  copy: ReturnType<typeof getHomeCopy>['aboutSection'];
+}
+
+const { copy } = Astro.props;
+---
+
+<section id="about" class="about-panel" aria-labelledby="about-title">
+  <div class="about-frame">
+    <header class="about-header">
+      <p><span>01</span>{copy.eyebrow}</p>
+      <h2 id="about-title">{copy.title}</h2>
+    </header>
+
+    <div class="about-body">
+      <p class="about-intro">{copy.intro}</p>
+
+      <ol class="about-principles">
+        {copy.principles.map((principle, index) => (
+          <li>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{principle.label}</h3>
+              <p>{principle.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgb(75 131 140 / 36%);
+    border-radius: 2rem;
+    background:
+      radial-gradient(circle at 92% 12%, rgb(224 255 79 / 12%), transparent 0 18rem),
+      linear-gradient(180deg, rgb(11 43 49 / 88%), rgb(7 34 40 / 94%));
+    box-shadow:
+      0 24px 80px rgb(0 0 0 / 28%),
+      inset 0 1px 0 rgb(255 255 255 / 4%);
+    backdrop-filter: blur(16px);
+  }
+
+  .about-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(135deg, rgb(127 221 211 / 0%) 0%, rgb(127 221 211 / 8%) 48%, rgb(224 255 79 / 0%) 100%);
+  }
+
+  .about-frame {
+    position: relative;
+    z-index: 1;
+    padding: 1.75rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .about-header {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .about-header > p,
+  .about-header > p > span,
+  .about-principles span {
+    margin: 0;
+    color: var(--brand-aqua);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .about-header > p {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  .about-header > p > span {
+    color: color-mix(in srgb, var(--brand-lime) 82%, white 18%);
+  }
+
+  .about-header > h2 {
+    margin: 0;
+    max-width: 14ch;
+    font-size: clamp(1.9rem, 4vw, 3.4rem);
+    line-height: 0.96;
+    letter-spacing: -0.055em;
+    text-wrap: balance;
+  }
+
+  .about-body {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .about-intro {
+    margin: 0;
+    max-width: 58rem;
+    color: color-mix(in srgb, var(--secondary-foreground) 86%, white 14%);
+    font-size: clamp(1.02rem, 2vw, 1.2rem);
+    line-height: 1.8;
+    text-wrap: pretty;
+  }
+
+  .about-principles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .about-principles li {
+    display: grid;
+    gap: 0.85rem;
+    padding: 1rem;
+    border: 1px solid rgb(75 131 140 / 24%);
+    border-radius: 1.35rem;
+    background: rgb(4 25 30 / 42%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
+  }
+
+  .about-principles h3 {
+    margin: 0;
+    color: var(--foreground);
+    font-size: 1.02rem;
+    line-height: 1.25;
+  }
+
+  .about-principles p {
+    margin: 0.4rem 0 0;
+    color: var(--muted-foreground);
+    line-height: 1.65;
+  }
+
+  @media (width >= 860px) {
+    .about-frame {
+      grid-template-columns: minmax(13rem, 0.42fr) minmax(0, 0.58fr);
+      align-items: start;
+    }
+  }
+
+  @media (width >= 720px) {
+    .about-principles {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (width <= 720px) {
+    .about-panel {
+      border-radius: 1.5rem;
+    }
+
+    .about-frame {
+      padding: 1.25rem;
+    }
+
+    .about-header > p,
+    .about-header > p > span,
+    .about-principles span {
+      letter-spacing: 0.12em;
+    }
+  }
+</style>

@@ -10,10 +10,7 @@ export const experienceSchema = z.object({
   company: z.string(),
   description: z.string(),
   startDate: z.string().transform(parseDateOnly),
-  endDate: z
-    .string()
-    .transform(parseDateOnly)
-    .optional(),
+  endDate: z.string().transform(parseDateOnly).optional(),
   typeOfEmployment: z.string(),
   link: z.string().optional(),
   current: z.boolean().default(false),
