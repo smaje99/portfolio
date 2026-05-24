@@ -59,6 +59,8 @@ type ExperienceSection = {
 type HomeCopy = {
   title: string;
   description: string;
+  brandName: string;
+  homeLinkLabel: string;
   hero: {
     name: string;
     nameLines: [string, string];
@@ -92,7 +94,6 @@ type HomeCopy = {
   projectsSection: ProjectsSection;
   experienceSection: ExperienceSection;
   experienceLabels: ExperienceLabels;
-  logoAlt: string;
 };
 
 const homeCopy: Record<Locale, HomeCopy> = {
@@ -100,6 +101,8 @@ const homeCopy: Record<Locale, HomeCopy> = {
     title: 'Sergio Andrés Majé Franco | Desarrollador de Software',
     description:
       'Portafolio de Sergio Andrés Majé Franco. Ingeniería de soluciones y sistemas de información: planificación, diseño, desarrollo, implementación y mejora continua.',
+    brandName: 'Sergio Majé',
+    homeLinkLabel: 'Volver al inicio',
     hero: {
       name: 'Sergio Andrés Majé Franco',
       nameLines: ['Sergio Andrés', 'Majé Franco'],
@@ -194,12 +197,13 @@ const homeCopy: Record<Locale, HomeCopy> = {
       current: 'Actual',
       present: 'Actualidad',
     },
-    logoAlt: 'Logotipo de Sergio Majé',
   },
   en: {
     title: 'Sergio Andrés Majé Franco | Software Developer',
     description:
       'Portfolio of Sergio Andrés Majé Franco. Solution engineering for information systems: planning, design, development, implementation, and continuous improvement.',
+    brandName: 'Sergio Majé',
+    homeLinkLabel: 'Back to home',
     hero: {
       name: 'Sergio Andrés Majé Franco',
       nameLines: ['Sergio Andrés', 'Majé Franco'],
@@ -295,7 +299,6 @@ const homeCopy: Record<Locale, HomeCopy> = {
       current: 'Current',
       present: 'Present',
     },
-    logoAlt: 'Sergio Majé logo',
   },
 };
 

@@ -1,17 +1,10 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
-
 import AboutPanel from '@/components/AboutPanel.astro';
+import BasePage from '@/components/BasePage.astro';
 import LearningEvidence from '@/components/LearningEvidence.astro';
 import SectionContainer from '@/components/SectionContainer.astro';
 import { credentialsByLocale } from '@/data/credentials';
-import {
-  getAlternateLocale,
-  getHomeCopy,
-  locales,
-  type Locale,
-} from '@/i18n/site';
-import Layout from '@/layouts/Layout.astro';
+import { getHomeCopy, type Locale } from '@/i18n/site';
 
 interface Props {
   locale: Locale;
@@ -21,61 +14,19 @@ const { locale } = Astro.props;
 
 const copy = getHomeCopy(locale);
 const credentials = credentialsByLocale[locale];
-const alternateLocale = getAlternateLocale(locale);
-const basePath = getRelativeLocaleUrl(locale, '');
-const canonicalPath = getRelativeLocaleUrl(locale, 'about');
-const alternatePath = getRelativeLocaleUrl(alternateLocale, 'about');
-const navigation = copy.navigation.map((item) => ({
-  label: item.label,
-  href: item.href.startsWith('/') ? item.href : `${basePath}${item.href}`,
-}));
-const alternates = locales.map((localeCode) => ({
-  hreflang: localeCode,
-  href: getRelativeLocaleUrl(localeCode, 'about'),
-}));
 ---
 
-<Layout
+<BasePage
+  locale={locale}
+  slug="about"
   title={`${copy.aboutSection.eyebrow} | ${copy.title}`}
   description={copy.aboutSection.intro}
-  lang={locale}
-  canonicalPath={canonicalPath}
-  alternates={[
-    ...alternates,
-    { hreflang: 'x-default', href: getRelativeLocaleUrl('es', 'about') },
-  ]}
-  navigation={navigation}
-  languageSwitcherLabel={copy.languageSwitcherLabel}
-  languageLabel={copy.languageLabel}
-  languageSwitcherHref={alternatePath}
-  languageSwitcherLocale={alternateLocale}
-  logoAlt={copy.logoAlt}
 >
-  <main class="about-page">
-    <SectionContainer>
-      <AboutPanel copy={copy.aboutSection} />
-    </SectionContainer>
+  <SectionContainer>
+    <AboutPanel copy={copy.aboutSection} />
+  </SectionContainer>
 
-    <SectionContainer>
-      <LearningEvidence copy={copy.learningSection} credentials={credentials} />
-    </SectionContainer>
-  </main>
-</Layout>
-
-<style>
-  .about-page {
-    width: min(1100px, calc(100% - 2rem));
-    margin: 0 auto;
-    padding: 2rem 0 5rem;
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  @media (width <= 720px) {
-    .about-page {
-      width: min(100%, calc(100% - 1rem));
-      padding-top: 1rem;
-      gap: 1rem;
-    }
-  }
-</style>
+  <SectionContainer>
+    <LearningEvidence copy={copy.learningSection} credentials={credentials} />
+  </SectionContainer>
+</BasePage>

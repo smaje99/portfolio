@@ -2,23 +2,18 @@
 import { getCollection } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
+import BasePage from '@/components/BasePage.astro';
 import ExperienceContainer from '@/components/Experience.astro';
 import HeroActions from '@/components/HeroActions';
 import ProjectsGrid from '@/components/ProjectsGrid.astro';
-import SocialPill from '@/components/SocialPill.astro';
 import SectionContainer from '@/components/SectionContainer.astro';
+import SocialPill from '@/components/SocialPill.astro';
 import { getFeaturedProjects } from '@/data/projects';
 import GitHubIcon from '@/icons/GitHubIcon.astro';
 import LinkedInIcon from '@/icons/LinkedInIcon.astro';
 import MailIcon from '@/icons/MailIcon.astro';
-import {
-  getAlternateLocale,
-  getHomeCopy,
-  localizeExperiences,
-  locales,
-  type Locale,
-} from '@/i18n/site';
-import Layout from '@/layouts/Layout.astro';
+import { localizeExperiences, type Locale } from '@/i18n/site';
+import { getPageContext } from '@/utils/page';
 
 interface Props {
   locale: Locale;
@@ -26,183 +21,169 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const copy = getHomeCopy(locale);
+const { copy } = getPageContext(locale);
 const entries = await getCollection('experiences');
 const experiences = localizeExperiences(entries, locale);
 const featuredProjects = getFeaturedProjects(locale);
 const recentExperiences = experiences.slice(0, 2);
-const alternateLocale = getAlternateLocale(locale);
-const basePath = getRelativeLocaleUrl(locale, '');
-const canonicalPath = basePath;
-const alternatePath = getRelativeLocaleUrl(alternateLocale, '');
 const projectsPath = getRelativeLocaleUrl(locale, 'projects');
 const experiencePath = getRelativeLocaleUrl(locale, 'experience');
-const navigation = copy.navigation.map((item) => ({
-  label: item.label,
-  href: item.href.startsWith('/') ? item.href : `${basePath}${item.href}`,
-}));
-const alternates = locales.map((localeCode) => ({
-  hreflang: localeCode,
-  href: getRelativeLocaleUrl(localeCode, ''),
-}));
 ---
 
-<Layout
+<BasePage
+  locale={locale}
   title={copy.title}
   description={copy.description}
-  lang={locale}
-  canonicalPath={canonicalPath}
-  alternates={[
-    ...alternates,
-    { hreflang: 'x-default', href: getRelativeLocaleUrl('es', '') },
-  ]}
-  navigation={navigation}
-  languageSwitcherLabel={copy.languageSwitcherLabel}
-  languageLabel={copy.languageLabel}
-  languageSwitcherHref={alternatePath}
-  languageSwitcherLocale={alternateLocale}
-  logoAlt={copy.logoAlt}
+  mainId="top"
+  mainClass="portfolio-page"
 >
-  <main id="top" class="portfolio-page">
-    <SectionContainer>
-      <section class="hero-panel" aria-labelledby="intro-title">
-        <div class="hero-grid">
-          <div class="hero-copy animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <h1 id="intro-title" aria-label={copy.hero.name} class="animate-in fade-in slide-in-from-bottom-3 duration-700">
-              <span>{copy.hero.nameLines[0]}</span>
-              <span>{copy.hero.nameLines[1]}</span>
-            </h1>
-            <p class="hero-role animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100">{copy.hero.role}</p>
-            <p class="hero-kicker animate-in fade-in slide-in-from-bottom-2 duration-700 delay-150">{copy.hero.specialties}</p>
-            <p class="hero-summary animate-in fade-in slide-in-from-bottom-2 duration-700 delay-200">{copy.hero.summary}</p>
-
-            <HeroActions
-              projectsLabel={copy.heroActions.projects}
-              projectsHref={projectsPath}
-              resumeLabel={copy.heroActions.resume}
-              contactLabel={copy.heroActions.contact}
-            />
-          </div>
-
-          <aside
-            class="hero-visual animate-in fade-in zoom-in-95 slide-in-from-right-4 duration-700 delay-150"
-            aria-hidden="true"
+  <SectionContainer>
+    <section class="hero-panel" aria-labelledby="intro-title">
+      <div class="hero-grid">
+        <div class="hero-copy animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <h1
+            id="intro-title"
+            aria-label={copy.hero.name}
+            class="animate-in fade-in slide-in-from-bottom-3 duration-700"
           >
-            <div class="hero-visual-shell">
-              <div class="hero-visual-frame"></div>
-              <div class="hero-orbit hero-orbit-large"></div>
-              <div class="hero-orbit hero-orbit-small"></div>
-              <div class="hero-grid-runes">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div class="hero-data-lines">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <img src="/brand.svg" alt="" width="261" height="278" class="hero-brand-mark" />
+            <span>{copy.hero.nameLines[0]}</span>
+            <span>{copy.hero.nameLines[1]}</span>
+          </h1>
+          <p class="hero-role animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100">
+            {copy.hero.role}
+          </p>
+          <p class="hero-kicker animate-in fade-in slide-in-from-bottom-2 duration-700 delay-150">
+            {copy.hero.specialties}
+          </p>
+          <p class="hero-summary animate-in fade-in slide-in-from-bottom-2 duration-700 delay-200">
+            {copy.hero.summary}
+          </p>
+
+          <HeroActions
+            projectsLabel={copy.heroActions.projects}
+            projectsHref={projectsPath}
+            resumeLabel={copy.heroActions.resume}
+            contactLabel={copy.heroActions.contact}
+          />
+        </div>
+
+        <aside
+          class="hero-visual animate-in fade-in zoom-in-95 slide-in-from-right-4 duration-700 delay-150"
+          aria-hidden="true"
+        >
+          <div class="hero-visual-shell">
+            <div class="hero-visual-frame"></div>
+            <div class="hero-orbit hero-orbit-large"></div>
+            <div class="hero-orbit hero-orbit-small"></div>
+            <div class="hero-grid-runes">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
-          </aside>
+            <div class="hero-data-lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <img src="/brand.svg" alt="" width="261" height="278" class="hero-brand-mark" />
+          </div>
+        </aside>
+      </div>
+
+      <div
+        id="contact"
+        class="hero-contact-band animate-in fade-in slide-in-from-bottom-3 duration-700 delay-300"
+      >
+        <div class="hero-contact-copy">
+          <p class="hero-contact-label">{copy.contactSection.eyebrow}</p>
+          <p class="hero-contact-title">{copy.contactSection.title}</p>
         </div>
 
-        <div id="contact" class="hero-contact-band animate-in fade-in slide-in-from-bottom-3 duration-700 delay-300">
-          <div class="hero-contact-copy">
-            <p class="hero-contact-label">{copy.contactSection.eyebrow}</p>
-            <p class="hero-contact-title">{copy.contactSection.title}</p>
-          </div>
-
-          <div class="hero-contact-links" aria-label={copy.socials.contact}>
-            <SocialPill href="http://linkedin.com/in/smaje">
-              <LinkedInIcon />
-              {copy.socials.linkedin}
-            </SocialPill>
-            <SocialPill href="https://github.com/smaje99">
-              <GitHubIcon />
-              {copy.socials.github}
-            </SocialPill>
-            <SocialPill href="mailto:smajefranco@gmail.com">
-              <MailIcon />
-              {copy.socials.contact}
-            </SocialPill>
-          </div>
+        <div class="hero-contact-links" aria-label={copy.socials.contact}>
+          <SocialPill href="http://linkedin.com/in/smaje">
+            <LinkedInIcon />
+            {copy.socials.linkedin}
+          </SocialPill>
+          <SocialPill href="https://github.com/smaje99">
+            <GitHubIcon />
+            {copy.socials.github}
+          </SocialPill>
+          <SocialPill href="mailto:smajefranco@gmail.com">
+            <MailIcon />
+            {copy.socials.contact}
+          </SocialPill>
         </div>
-      </section>
-    </SectionContainer>
+      </div>
+    </section>
+  </SectionContainer>
 
-    <SectionContainer>
-      <section id="focus" class="content-panel" aria-labelledby="focus-title">
-        <header class="panel-header">
-          <p>01</p>
-          <h2 id="focus-title">{copy.focusSection.title}</h2>
-        </header>
+  <SectionContainer>
+    <section id="focus" class="content-panel" aria-labelledby="focus-title">
+      <header class="panel-header">
+        <p>01</p>
+        <h2 id="focus-title">{copy.focusSection.title}</h2>
+      </header>
 
-        <ol class="focus-grid">
-          {copy.focusSection.items.map((item, index) => (
-            <li class="focus-item">
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{item.title}</h3>
-            </li>
-          ))}
-        </ol>
-      </section>
-    </SectionContainer>
+      <ol class="focus-grid">
+        {copy.focusSection.items.map((item, index) => (
+          <li class="focus-item">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{item.title}</h3>
+          </li>
+        ))}
+      </ol>
+    </section>
+  </SectionContainer>
 
-    <SectionContainer>
-      <section id="projects" class="content-panel" aria-labelledby="projects-title">
-        <header class="panel-header">
-          <p>02</p>
-          <div class="panel-heading-copy">
-            <h2 id="projects-title">{copy.projectsSection.title}</h2>
-            <p>{copy.projectsSection.intro}</p>
-          </div>
-        </header>
-
-        <ProjectsGrid projects={featuredProjects} />
-
-        <div class="panel-cta">
-          <a href={projectsPath} class="panel-link">{copy.projectsSection.ctaLabel}</a>
+  <SectionContainer>
+    <section id="projects" class="content-panel" aria-labelledby="projects-title">
+      <header class="panel-header">
+        <p>02</p>
+        <div class="panel-heading-copy">
+          <h2 id="projects-title">{copy.projectsSection.title}</h2>
+          <p>{copy.projectsSection.intro}</p>
         </div>
-      </section>
-    </SectionContainer>
+      </header>
 
-    <SectionContainer>
-      <section id="experience" class="content-panel experience-panel" aria-labelledby="experience-title">
-        <header class="panel-header">
-          <p>03</p>
-          <div class="panel-heading-copy">
-            <h2 id="experience-title">{copy.experienceSection.title}</h2>
-            <p>{copy.experienceSection.intro}</p>
-          </div>
-        </header>
+      <ProjectsGrid projects={featuredProjects} />
 
-        <ExperienceContainer
-          experiences={recentExperiences}
-          locale={locale}
-          labels={copy.experienceLabels}
-        />
+      <div class="panel-cta">
+        <a href={projectsPath} class="panel-link">{copy.projectsSection.ctaLabel}</a>
+      </div>
+    </section>
+  </SectionContainer>
 
-        <div class="panel-cta">
-          <a href={experiencePath} class="panel-link">{copy.experienceSection.ctaLabel}</a>
+  <SectionContainer>
+    <section
+      id="experience"
+      class="content-panel experience-panel"
+      aria-labelledby="experience-title"
+    >
+      <header class="panel-header">
+        <p>03</p>
+        <div class="panel-heading-copy">
+          <h2 id="experience-title">{copy.experienceSection.title}</h2>
+          <p>{copy.experienceSection.intro}</p>
         </div>
-      </section>
-    </SectionContainer>
-  </main>
-</Layout>
+      </header>
+
+      <ExperienceContainer
+        experiences={recentExperiences}
+        locale={locale}
+        labels={copy.experienceLabels}
+      />
+
+      <div class="panel-cta">
+        <a href={experiencePath} class="panel-link">{copy.experienceSection.ctaLabel}</a>
+      </div>
+    </section>
+  </SectionContainer>
+</BasePage>
 
 <style>
-  .portfolio-page {
-    width: min(1100px, calc(100% - 2rem));
-    margin: 0 auto;
-    padding: 2rem 0 5rem;
-    display: grid;
-    gap: 1.5rem;
-  }
-
   .hero-panel,
   .content-panel {
     position: relative;
@@ -473,17 +454,14 @@ const alternates = locales.map((localeCode) => ({
 
   .focus-item {
     min-height: 100%;
-    border: 1px solid rgb(75 131 140 / 24%);
-    border-radius: 1.5rem;
-    background: rgb(4 25 30 / 42%);
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
-  }
-
-  .focus-item {
     padding: 1.25rem;
     display: grid;
     gap: 0.9rem;
     align-content: start;
+    border: 1px solid rgb(75 131 140 / 24%);
+    border-radius: 1.5rem;
+    background: rgb(4 25 30 / 42%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
   }
 
   .focus-item > h3 {
@@ -582,18 +560,13 @@ const alternates = locales.map((localeCode) => ({
 
   @media (width <= 720px) {
     .portfolio-page {
-      width: min(100%, calc(100% - 1rem));
       gap: 1rem;
     }
 
     .hero-panel,
     .content-panel {
-      border-radius: 1.5rem;
-    }
-
-    .hero-panel,
-    .content-panel {
       padding: 1.25rem;
+      border-radius: 1.5rem;
     }
 
     .focus-grid {

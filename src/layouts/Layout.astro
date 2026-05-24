@@ -9,6 +9,9 @@ import type { Locale } from "@/i18n/site";
 interface Props {
   title: string;
   description: string;
+  brandName: string;
+  homeHref: string;
+  homeLinkLabel: string;
   lang: Locale;
   canonicalPath: string;
   alternates: { hreflang: string; href: string }[];
@@ -17,12 +20,14 @@ interface Props {
   languageLabel: string;
   languageSwitcherHref: string;
   languageSwitcherLocale: Locale;
-  logoAlt: string;
 }
 
 const {
   title,
   description,
+  brandName,
+  homeHref,
+  homeLinkLabel,
   lang,
   canonicalPath,
   alternates,
@@ -31,7 +36,6 @@ const {
   languageLabel,
   languageSwitcherHref,
   languageSwitcherLocale,
-  logoAlt,
 } = Astro.props;
 
 const resolveHref = (href: string) => {
@@ -71,12 +75,14 @@ const resolveHref = (href: string) => {
     <div class="layout-background"></div>
 
     <Header
+      brandName={brandName}
+      homeHref={homeHref}
+      homeLinkLabel={homeLinkLabel}
       navigation={navigation}
       languageSwitcherLabel={languageSwitcherLabel}
       languageLabel={languageLabel}
       languageSwitcherHref={languageSwitcherHref}
       languageSwitcherLocale={languageSwitcherLocale}
-      logoAlt={logoAlt}
     />
     <slot />
   </body>

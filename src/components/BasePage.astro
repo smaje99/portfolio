@@ -1,0 +1,56 @@
+---
+import PageMain from '@/components/PageMain.astro';
+import type { Locale } from '@/i18n/site';
+import Layout from '@/layouts/Layout.astro';
+import { getPageContext } from '@/utils/page';
+
+interface Props {
+  locale: Locale;
+  slug?: string;
+  title: string;
+  description: string;
+  mainId?: string;
+  mainClass?: string;
+}
+
+const {
+  locale,
+  slug = '',
+  title,
+  description,
+  mainId,
+  mainClass = '',
+} = Astro.props;
+
+const {
+  copy,
+  basePath,
+  canonicalPath,
+  alternatePath,
+  alternateLocale,
+  navigation,
+  alternates,
+} = getPageContext(locale, slug);
+const defaultAlternate =
+  alternates.find((alternate) => alternate.hreflang === 'es') ?? alternates[0];
+---
+
+<Layout
+  title={title}
+  description={description}
+  brandName={copy.brandName}
+  homeHref={basePath}
+  homeLinkLabel={copy.homeLinkLabel}
+  lang={locale}
+  canonicalPath={canonicalPath}
+  alternates={[...alternates, { hreflang: 'x-default', href: defaultAlternate.href }]}
+  navigation={navigation}
+  languageSwitcherLabel={copy.languageSwitcherLabel}
+  languageLabel={copy.languageLabel}
+  languageSwitcherHref={alternatePath}
+  languageSwitcherLocale={alternateLocale}
+>
+  <PageMain id={mainId} class={mainClass}>
+    <slot />
+  </PageMain>
+</Layout>

@@ -1,16 +1,10 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
-
+import BasePage from '@/components/BasePage.astro';
 import ProjectsGrid from '@/components/ProjectsGrid.astro';
 import SectionContainer from '@/components/SectionContainer.astro';
+import SectionPage from '@/components/SectionPage.astro';
 import { getProjects } from '@/data/projects';
-import {
-  getAlternateLocale,
-  getHomeCopy,
-  locales,
-  type Locale,
-} from '@/i18n/site';
-import Layout from '@/layouts/Layout.astro';
+import { getHomeCopy, type Locale } from '@/i18n/site';
 
 interface Props {
   locale: Locale;
@@ -20,139 +14,22 @@ const { locale } = Astro.props;
 
 const copy = getHomeCopy(locale);
 const projects = getProjects(locale);
-const alternateLocale = getAlternateLocale(locale);
-const basePath = getRelativeLocaleUrl(locale, '');
-const canonicalPath = getRelativeLocaleUrl(locale, 'projects');
-const alternatePath = getRelativeLocaleUrl(alternateLocale, 'projects');
-const navigation = copy.navigation.map((item) => ({
-  label: item.label,
-  href: item.href.startsWith('/') ? item.href : `${basePath}${item.href}`,
-}));
-const alternates = locales.map((localeCode) => ({
-  hreflang: localeCode,
-  href: getRelativeLocaleUrl(localeCode, 'projects'),
-}));
 ---
 
-<Layout
+<BasePage
+  locale={locale}
+  slug="projects"
   title={`${copy.projectsSection.pageTitle} | ${copy.title}`}
   description={copy.projectsSection.pageDescription}
-  lang={locale}
-  canonicalPath={canonicalPath}
-  alternates={[
-    ...alternates,
-    { hreflang: 'x-default', href: getRelativeLocaleUrl('es', 'projects') },
-  ]}
-  navigation={navigation}
-  languageSwitcherLabel={copy.languageSwitcherLabel}
-  languageLabel={copy.languageLabel}
-  languageSwitcherHref={alternatePath}
-  languageSwitcherLocale={alternateLocale}
-  logoAlt={copy.logoAlt}
 >
-  <main class="subpage">
-    <SectionContainer>
-      <section class="page-panel" aria-labelledby="projects-title">
-        <header class="page-header">
-          <p>01</p>
-          <div class="page-heading-copy">
-            <h1 id="projects-title">{copy.projectsSection.pageTitle}</h1>
-            <p>{copy.projectsSection.intro}</p>
-          </div>
-        </header>
-
-        <ProjectsGrid projects={projects} />
-      </section>
-    </SectionContainer>
-  </main>
-</Layout>
-
-<style>
-  .subpage {
-    width: min(1100px, calc(100% - 2rem));
-    margin: 0 auto;
-    padding: 2rem 0 5rem;
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .page-panel {
-    position: relative;
-    overflow: hidden;
-    padding: 1.75rem;
-    border: 1px solid rgb(75 131 140 / 36%);
-    border-radius: 2rem;
-    background:
-      linear-gradient(180deg, rgb(11 43 49 / 88%), rgb(7 34 40 / 94%));
-    box-shadow:
-      0 24px 80px rgb(0 0 0 / 28%),
-      inset 0 1px 0 rgb(255 255 255 / 4%);
-    backdrop-filter: blur(16px);
-  }
-
-  .page-panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(135deg, rgb(224 255 79 / 0%) 0%, rgb(224 255 79 / 6%) 46%, rgb(127 221 211 / 0%) 100%);
-    opacity: 0.9;
-  }
-
-  .page-header {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .page-header > p {
-    margin: 0;
-    color: var(--brand-aqua);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .page-heading-copy {
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  .page-heading-copy > h1 {
-    margin: 0;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    line-height: 1;
-    letter-spacing: -0.04em;
-  }
-
-  .page-heading-copy > p {
-    margin: 0;
-    max-width: 54rem;
-    color: var(--muted-foreground);
-    line-height: 1.7;
-  }
-
-  @media (width >= 860px) {
-    .page-header {
-      grid-template-columns: 4rem minmax(0, 1fr);
-      align-items: start;
-    }
-  }
-
-  @media (width <= 720px) {
-    .subpage {
-      width: min(100%, calc(100% - 1rem));
-      padding-top: 1rem;
-      gap: 1rem;
-    }
-
-    .page-panel {
-      padding: 1.25rem;
-      border-radius: 1.5rem;
-    }
-  }
-</style>
+  <SectionContainer>
+    <SectionPage
+      headingId="projects-title"
+      number="01"
+      title={copy.projectsSection.pageTitle}
+      intro={copy.projectsSection.intro}
+    >
+      <ProjectsGrid projects={projects} />
+    </SectionPage>
+  </SectionContainer>
+</BasePage>

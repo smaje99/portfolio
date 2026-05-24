@@ -1,30 +1,40 @@
 ---
 interface Props {
+  brandName: string;
+  homeHref: string;
+  homeLinkLabel: string;
   navigation: { label: string; href: string }[];
   languageSwitcherLabel: string;
   languageLabel: string;
   languageSwitcherHref: string;
   languageSwitcherLocale: 'es' | 'en';
-  logoAlt: string;
 }
 
 const {
+  brandName,
+  homeHref,
+  homeLinkLabel,
   navigation,
   languageSwitcherLabel,
   languageLabel,
   languageSwitcherHref,
   languageSwitcherLocale,
-  logoAlt,
 } = Astro.props;
 ---
 
 <header class="header">
-  <img
-    src="/brand.svg"
-    alt={logoAlt}
-    width="48"
-    height="48"
-  />
+  <a class="brand-link" href={homeHref} aria-label={`${brandName} · ${homeLinkLabel}`}>
+    <img
+      src="/brand.svg"
+      alt=""
+      aria-hidden="true"
+      width="48"
+      height="48"
+    />
+    <span class="brand-copy">
+      <span class="brand-name">{brandName}</span>
+    </span>
+  </a>
 
   <nav class="nav">
     {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
@@ -48,45 +58,80 @@ const {
     gap: 1rem;
 
     padding: 1rem 4rem;
+  }
 
-    & > img {
-      width: 3rem;
-      height: 3rem;
-      filter: drop-shadow(0 0 1.25rem rgb(224 255 79 / 20%));
+  .brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    min-width: 0;
+    border-radius: 1rem;
+    color: var(--foreground);
+    transition: transform 180ms ease;
+  }
+
+  .brand-link:hover,
+  .brand-link:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  .brand-link:focus-visible {
+    outline: 2px solid rgb(224 255 79 / 75%);
+    outline-offset: 4px;
+  }
+
+  .brand-link > img {
+    flex: none;
+    width: 3rem;
+    height: 3rem;
+    filter: drop-shadow(0 0 1.25rem rgb(224 255 79 / 20%));
+  }
+
+  .brand-copy {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+  }
+
+  .brand-name {
+    color: var(--foreground);
+    font-size: 1.14rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-wrap: nowrap;
+  }
+
+  .header > .nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+
+    & > a {
+      color: var(--muted-foreground);
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid rgb(66 119 127 / 45%);
+      background: rgb(11 43 49 / 56%);
+      transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        background-color 180ms ease,
+        transform 180ms ease;
     }
 
-    & > .nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75rem;
+    & > a:hover,
+    & > a:focus-visible {
+      color: var(--foreground);
+      border-color: var(--brand-lime-soft);
+      background: rgb(21 62 68 / 90%);
+      transform: translateY(-1px);
+    }
 
-      & > a {
-        color: var(--muted-foreground);
-        padding: 0.55rem 0.95rem;
-        border-radius: 999px;
-        border: 1px solid rgb(66 119 127 / 45%);
-        background: rgb(11 43 49 / 56%);
-        transition:
-          color 180ms ease,
-          border-color 180ms ease,
-          background-color 180ms ease,
-          transform 180ms ease;
-      }
-
-      & > a:hover,
-      & > a:focus-visible {
-        color: var(--foreground);
-        border-color: var(--brand-lime-soft);
-        background: rgb(21 62 68 / 90%);
-        transform: translateY(-1px);
-      }
-
-      & > .language-switcher {
-        color: var(--foreground);
-        border-color: rgb(224 255 79 / 38%);
-        background: rgb(224 255 79 / 10%);
-      }
+    & > .language-switcher {
+      color: var(--foreground);
+      border-color: rgb(224 255 79 / 38%);
+      background: rgb(224 255 79 / 10%);
     }
   }
 
@@ -95,6 +140,10 @@ const {
       padding-inline: 1rem;
       align-items: flex-start;
       flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
     }
   }
 </style>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id, class: className = '' } = Astro.props;
+---
+
+<main id={id} class:list={['page-main', className]}>
+  <slot />
+</main>
+
+<style>
+  .page-main {
+    width: min(1100px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2rem 0 5rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (width <= 720px) {
+    .page-main {
+      width: min(100%, calc(100% - 1rem));
+      padding-top: 1rem;
+      gap: 1rem;
+    }
+  }
+</style>
