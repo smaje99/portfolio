@@ -14,11 +14,6 @@ type FocusItem = {
   title: string;
 };
 
-type ProjectItem = {
-  title: string;
-  description: string;
-};
-
 type ExperienceLabels = {
   current: string;
   present: string;
@@ -43,6 +38,22 @@ type LearningSection = {
   highlightsTitle: string;
   skillsTitle: string;
   linkedinLabel: string;
+};
+
+type ProjectsSection = {
+  title: string;
+  intro: string;
+  ctaLabel: string;
+  pageTitle: string;
+  pageDescription: string;
+};
+
+type ExperienceSection = {
+  title: string;
+  intro: string;
+  ctaLabel: string;
+  pageTitle: string;
+  pageDescription: string;
 };
 
 type HomeCopy = {
@@ -78,14 +89,8 @@ type HomeCopy = {
     title: string;
     items: FocusItem[];
   };
-  projectsSection: {
-    title: string;
-    items: ProjectItem[];
-  };
-  experienceSection: {
-    title: string;
-    intro: string;
-  };
+  projectsSection: ProjectsSection;
+  experienceSection: ExperienceSection;
   experienceLabels: ExperienceLabels;
   logoAlt: string;
 };
@@ -121,8 +126,8 @@ const homeCopy: Record<Locale, HomeCopy> = {
       { label: 'Inicio', href: '#top' },
       { label: 'Perfil', href: '/about' },
       { label: 'Enfoque', href: '#focus' },
-      { label: 'Proyectos', href: '#projects' },
-      { label: 'Experiencia', href: '#experience' },
+      { label: 'Proyectos', href: '/projects' },
+      { label: 'Experiencia', href: '/experience' },
       { label: 'Contacto', href: '#contact' },
     ],
     languageSwitcherLabel: 'Cambiar idioma',
@@ -168,34 +173,22 @@ const homeCopy: Record<Locale, HomeCopy> = {
       ],
     },
     projectsSection: {
-      title: 'Proyectos destacados',
-      items: [
-        {
-          title: 'SIMIGS',
-          description:
-            'Sistema orientado a centralizar información operativa y apoyar procesos internos con una base técnica mantenible.',
-        },
-        {
-          title: 'ERP Turismo',
-          description:
-            'Solución ERP enfocada en la organización de operaciones, flujos de trabajo y control de información en el sector turístico.',
-        },
-        {
-          title: 'ERP Agroinsumos',
-          description:
-            'Plataforma para administrar inventario, procesos comerciales y trazabilidad de datos en distribución de agroinsumos.',
-        },
-        {
-          title: 'Proyecto educativo de estructuras de datos',
-          description:
-            'Desarrollo académico centrado en lógica, modelado de estructuras y resolución de problemas con enfoque práctico.',
-        },
-      ],
+      title: 'Proyectos',
+      intro:
+        'Una selección breve de sistemas y soluciones donde el foco ha estado en estructura, operación y claridad técnica.',
+      ctaLabel: 'Ver todos los proyectos',
+      pageTitle: 'Proyectos',
+      pageDescription:
+        'Selección de proyectos de Sergio Andrés Majé Franco en sistemas de información, procesos, backend y organización operativa.',
     },
     experienceSection: {
       title: 'Experiencia',
       intro:
-        'Mi experiencia combina desarrollo, soporte técnico y ejecución de soluciones funcionales orientadas a problemas reales y sistemas mantenibles.',
+        'Experiencia en desarrollo, soporte técnico y construcción de soluciones orientadas a procesos, datos y operación real.',
+      ctaLabel: 'Ver experiencia completa',
+      pageTitle: 'Experiencia',
+      pageDescription:
+        'Experiencia profesional de Sergio Andrés Majé Franco en desarrollo de software, backend, análisis de datos y soporte técnico.',
     },
     experienceLabels: {
       current: 'Actual',
@@ -234,8 +227,8 @@ const homeCopy: Record<Locale, HomeCopy> = {
       { label: 'Home', href: '/en/' },
       { label: 'About', href: '/en/about' },
       { label: 'Focus', href: '/en/#focus' },
-      { label: 'Projects', href: '/en/#projects' },
-      { label: 'Experience', href: '/en/#experience' },
+      { label: 'Projects', href: '/en/projects' },
+      { label: 'Experience', href: '/en/experience' },
       { label: 'Contact', href: '/en/#contact' },
     ],
     languageSwitcherLabel: 'Change language',
@@ -281,34 +274,22 @@ const homeCopy: Record<Locale, HomeCopy> = {
       ],
     },
     projectsSection: {
-      title: 'Featured projects',
-      items: [
-        {
-          title: 'SIMIGS',
-          description:
-            'A system designed to centralize operational information and support internal workflows with a maintainable technical base.',
-        },
-        {
-          title: 'Tourism ERP',
-          description:
-            'An ERP solution focused on organizing operations, workflows, and information control for the tourism sector.',
-        },
-        {
-          title: 'Agro-input ERP',
-          description:
-            'A platform built to manage inventory, commercial processes, and data traceability in agro-input distribution.',
-        },
-        {
-          title: 'Educational data structures project',
-          description:
-            'An academic project centered on logic, data structure modeling, and practical problem-solving.',
-        },
-      ],
+      title: 'Projects',
+      intro:
+        'A short selection of systems and solutions shaped around structure, operations, and technical clarity.',
+      ctaLabel: 'View all projects',
+      pageTitle: 'Projects',
+      pageDescription:
+        'Selected projects by Sergio Andrés Majé Franco across information systems, processes, backend, and operational organization.',
     },
     experienceSection: {
       title: 'Experience',
       intro:
-        'My experience spans development, technical support, and the execution of practical solutions focused on real operational needs and maintainable systems.',
+        'Experience across development, technical support, and solutions shaped by processes, data, and real operational needs.',
+      ctaLabel: 'View full experience',
+      pageTitle: 'Experience',
+      pageDescription:
+        'Professional experience of Sergio Andrés Majé Franco in software development, backend work, data analysis, and technical support.',
     },
     experienceLabels: {
       current: 'Current',

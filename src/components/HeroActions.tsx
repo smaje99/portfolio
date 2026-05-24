@@ -4,15 +4,21 @@ import { Button } from '@/components/ui/button';
 
 interface Props {
   projectsLabel: string;
+  projectsHref: string;
   resumeLabel: string;
   contactLabel: string;
 }
 
-export default function HeroActions({ projectsLabel, resumeLabel, contactLabel }: Props) {
+export default function HeroActions({
+  projectsLabel,
+  projectsHref,
+  resumeLabel,
+  contactLabel,
+}: Props) {
   return (
     <div className="mt-8 flex flex-wrap items-center gap-3">
       <Button asChild size="lg" className="min-w-40 font-bold">
-        <a href="#projects">
+        <a href={projectsHref}>
           {projectsLabel}
           <ArrowDownRight data-icon="inline-end" />
         </a>
