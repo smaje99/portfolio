@@ -7,7 +7,7 @@ export type Locale = (typeof locales)[number];
 
 type NavItem = {
   label: string;
-  hash: string;
+  href: string;
 };
 
 type FocusItem = {
@@ -38,7 +38,7 @@ type LearningSection = {
   title: string;
   eyebrow: string;
   intro: string;
-  inventoryTitle: string;
+  practicesTitle: string;
   pillarsTitle: string;
   highlightsTitle: string;
   skillsTitle: string;
@@ -118,20 +118,20 @@ const homeCopy: Record<Locale, HomeCopy> = {
       title: 'Si tienes una idea, un sistema por ordenar o un proceso por mejorar, conversemos.',
     },
     navigation: [
-      { label: 'Inicio', hash: '#top' },
-      { label: 'About', hash: '#about' },
-      { label: 'Enfoque', hash: '#focus' },
-      { label: 'Proyectos', hash: '#projects' },
-      { label: 'Experiencia', hash: '#experience' },
-      { label: 'Contacto', hash: '#contact' },
+      { label: 'Inicio', href: '#top' },
+      { label: 'Perfil', href: '/about' },
+      { label: 'Enfoque', href: '#focus' },
+      { label: 'Proyectos', href: '#projects' },
+      { label: 'Experiencia', href: '#experience' },
+      { label: 'Contacto', href: '#contact' },
     ],
     languageSwitcherLabel: 'Cambiar idioma',
     languageLabel: 'EN',
     aboutSection: {
       title: 'Ingeniero integral con foco en sistemas útiles',
-      eyebrow: 'About me',
+      eyebrow: 'Perfil',
       intro:
-        'Soy un desarrollador orientado a sistemas de información: me interesa entender procesos, ordenar datos y construir soluciones mantenibles que funcionen en contextos reales. Mi formación combina backend, analítica de datos, gestión ágil, UX/frontend y liderazgo técnico, lo que me permite moverme entre requerimientos, arquitectura, implementación y mejora continua.',
+        'Soy un desarrollador orientado a construir sistemas de información con sentido práctico. Me enfoco en comprender procesos, estructurar datos y diseñar soluciones que no solo funcionen técnicamente, sino que también sean claras, mantenibles y útiles para las personas que las usan. Mi formación combina backend, analítica de datos, gestión de procesos, arquitectura de software, UX/frontend y liderazgo técnico, lo que me permite conectar la visión del negocio con decisiones técnicas concretas y aplicables en contextos reales.',
       principles: [
         {
           label: 'Pienso en procesos',
@@ -143,20 +143,20 @@ const homeCopy: Record<Locale, HomeCopy> = {
         },
         {
           label: 'Aprendo con dirección',
-          text: 'La formación continua funciona como refuerzo de una ruta profesional, no como una colección de insignias.',
+          text: 'Elijo formación que refuerza decisiones técnicas concretas y mejora la forma de entregar soluciones.',
         },
       ],
     },
     learningSection: {
       title: 'Formación aplicada',
-      eyebrow: 'Evidencia curada',
+      eyebrow: 'Criterio técnico',
       intro:
-        'Los certificados no se muestran como archivo público. Los uso como mapa de aprendizaje para explicar qué capacidades sostienen mi trabajo y qué señales vale la pena revisar.',
-      inventoryTitle: 'Mapa de aprendizaje',
-      pillarsTitle: 'Pilares que construyen la persona profesional',
-      highlightsTitle: 'Credenciales destacadas',
-      skillsTitle: 'Skills reforzadas',
-      linkedinLabel: 'Credenciales completas en LinkedIn',
+        'He orientado mi formación hacia la construcción de mejores sistemas, aprendiendo a comprender los procesos, modelar la información y transformar decisiones técnicas en soluciones claras, útiles y mantenibles.',
+      practicesTitle: 'Cómo convierto formación en práctica',
+      pillarsTitle: 'Capacidades que sostienen mi trabajo',
+      highlightsTitle: 'Hitos de formación y experiencia',
+      skillsTitle: 'Habilidades reforzadas',
+      linkedinLabel: 'Ver trayectoria formativa en LinkedIn',
     },
     focusSection: {
       title: 'Áreas de enfoque',
@@ -231,20 +231,20 @@ const homeCopy: Record<Locale, HomeCopy> = {
         "If you have an idea, a system that needs structure, or a process to improve, let's talk.",
     },
     navigation: [
-      { label: 'Home', hash: '#top' },
-      { label: 'About', hash: '#about' },
-      { label: 'Focus', hash: '#focus' },
-      { label: 'Projects', hash: '#projects' },
-      { label: 'Experience', hash: '#experience' },
-      { label: 'Contact', hash: '#contact' },
+      { label: 'Home', href: '/en/' },
+      { label: 'About', href: '/en/about' },
+      { label: 'Focus', href: '/en/#focus' },
+      { label: 'Projects', href: '/en/#projects' },
+      { label: 'Experience', href: '/en/#experience' },
+      { label: 'Contact', href: '/en/#contact' },
     ],
     languageSwitcherLabel: 'Change language',
     languageLabel: 'ES',
     aboutSection: {
       title: 'An integral engineer focused on useful systems',
-      eyebrow: 'About me',
+      eyebrow: 'About',
       intro:
-        'I am a developer oriented toward information systems: I care about understanding processes, structuring data, and building maintainable solutions that work in real contexts. My learning path combines backend, data analytics, agile management, UX/frontend, and technical leadership, which lets me move across requirements, architecture, implementation, and continuous improvement.',
+        'I am a developer focused on building information systems with practical purpose. I work to understand processes, structure data, and design solutions that not only work technically, but are also clear, maintainable, and useful for the people who use them. My background combines backend, data analytics, process management, software architecture, UX/frontend, and technical leadership, which allows me to connect business vision with concrete technical decisions that can be applied in real contexts.',
       principles: [
         {
           label: 'I think in processes',
@@ -256,20 +256,20 @@ const homeCopy: Record<Locale, HomeCopy> = {
         },
         {
           label: 'I learn with direction',
-          text: 'Continuous learning works as reinforcement for a professional path, not as a badge collection.',
+          text: 'I choose learning that strengthens concrete technical decisions and improves how I deliver solutions.',
         },
       ],
     },
     learningSection: {
       title: 'Applied learning',
-      eyebrow: 'Curated evidence',
+      eyebrow: 'Technical judgment',
       intro:
-        'Certificates are not displayed as a public archive. I use them as a learning map to explain which capabilities support my work and which signals are worth reviewing.',
-      inventoryTitle: 'Learning map',
-      pillarsTitle: 'Pillars behind the professional persona',
-      highlightsTitle: 'Selected credentials',
+        'I have shaped my learning toward building better systems, learning to understand processes, model information, and turn technical decisions into clear, useful, maintainable solutions.',
+      practicesTitle: 'How I turn learning into practice',
+      pillarsTitle: 'Capabilities behind my work',
+      highlightsTitle: 'Learning and experience milestones',
       skillsTitle: 'Reinforced skills',
-      linkedinLabel: 'Full credentials on LinkedIn',
+      linkedinLabel: 'View learning path on LinkedIn',
     },
     focusSection: {
       title: 'Focus areas',

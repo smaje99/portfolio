@@ -11,15 +11,13 @@ type CredentialHighlight = {
   issuer: string;
   date: string;
   area: string;
+  meaning: string;
 };
 
 type CredentialData = {
-  inventory: {
-    totalEntries: string;
-    providers: string;
-    strongestSources: string;
-    evidencePolicy: string;
-  };
+  thesis: string;
+  thesisEmphasis: string;
+  practices: string[];
   pillars: CredentialPillar[];
   highlights: CredentialHighlight[];
   skills: string[];
@@ -27,22 +25,25 @@ type CredentialData = {
 
 export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
   es: {
-    inventory: {
-      totalEntries: '373 registros documentados',
-      providers: '16 fuentes de formación y evidencia laboral',
-      strongestSources: 'Platzi, LinkedIn Learning, Udemy, SENA, UNIR y CIDTI 4.0',
-      evidencePolicy:
-        'El portfolio muestra señales curadas; los documentos completos permanecen fuera del sitio y se comparten bajo solicitud o por LinkedIn.',
-    },
+    thesis:
+      'Mi aprendizaje parte de una regla simple: debe ayudarme a analizar, construir o comunicar mejor una solución. Por eso lo organizo alrededor de capacidades que aplico en proyectos reales: backend, datos, procesos, interfaces y liderazgo técnico.',
+    thesisEmphasis: 'debe ayudarme a analizar, construir o comunicar mejor una solución',
+    practices: [
+      'Profundizo en backend para tomar mejores decisiones de diseño, integración y mantenimiento.',
+      'Trabajo con datos para transformar información dispersa en estructuras útiles para operar y decidir.',
+      'Estudio procesos para comprender mejor el alcance, ordenar prioridades y conversar con mayor claridad con los usuarios.',
+    ],
     pillars: [
       {
         title: 'Backend & APIs',
-        signal: 'Construcción de servicios, modelos de datos y lógica de negocio.',
+        signal:
+          'Convertir reglas de negocio en servicios claros, datos consistentes y flujos mantenibles.',
         evidence: ['Python', 'FastAPI', 'Node.js', 'Java', 'C#', 'Arquitectura backend'],
       },
       {
         title: 'Datos & Analítica',
-        signal: 'Uso de datos para extracción, procesamiento, análisis y soporte a decisiones.',
+        signal:
+          'Leer la operación desde sus datos para encontrar patrones, riesgos y oportunidades.',
         evidence: [
           'SQL',
           'MongoDB',
@@ -54,17 +55,19 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
       },
       {
         title: 'Procesos & Agile',
-        signal: 'Traducción de necesidades reales en historias, alcance y entregables mantenibles.',
+        signal:
+          'Reducir ambigüedad antes de construir: requisitos, prioridades y conversaciones mejor formuladas.',
         evidence: ['Scrum', 'Kanban', 'Lean', 'Requisitos', 'Gestión de proyectos', 'DevOps'],
       },
       {
         title: 'Frontend & UX',
-        signal: 'Criterio visual y técnico para interfaces claras, responsivas y sostenibles.',
+        signal:
+          'Diseñar interfaces que expliquen el sistema y no obliguen al usuario a descifrarlo.',
         evidence: ['Astro', 'React', 'TypeScript', 'CSS Grid', 'Tailwind CSS', 'UX/UI'],
       },
       {
         title: 'Liderazgo & Comunicación',
-        signal: 'Trabajo con equipos, comunicación técnica y mejora continua personal.',
+        signal: 'Sostener el trabajo técnico con criterio, comunicación, autonomía y colaboración.',
         evidence: [
           'Leadership',
           'Comunicación',
@@ -81,36 +84,48 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
         issuer: 'SENA',
         date: '2015',
         area: 'Base técnica',
+        meaning:
+          'El punto de partida práctico: soporte, sistemas y contacto temprano con problemas reales.',
       },
       {
         title: 'Pasantías y experiencia en CIDTI 4.0',
         issuer: 'CIDTI 4.0',
         date: '2025',
         area: 'Evidencia laboral',
+        meaning:
+          'La formación aterriza en desarrollo, datos, requerimientos y entregas dentro de un entorno real.',
       },
       {
         title: 'Diplomado en Analítica de Datos en la Gestión Empresarial',
         issuer: 'UNIR',
         date: '2026',
         area: 'Datos y negocio',
+        meaning:
+          'Refuerza la conexión entre análisis de datos, gestión empresarial y toma de decisiones.',
       },
       {
         title: 'Continuing Education Certificate in Leadership',
         issuer: 'MIU City University Miami',
         date: '2025',
         area: 'Liderazgo',
+        meaning:
+          'Complementa la ejecución técnica con comunicación, dirección y responsabilidad profesional.',
       },
       {
         title: 'Python, FastAPI y bases de datos',
         issuer: 'Platzi, Código Facilito, Udemy',
         date: '2021-2024',
         area: 'Backend',
+        meaning:
+          'Profundiza la ruta técnica que hoy se refleja en servicios, APIs y sistemas de información.',
       },
       {
         title: 'Agile, Scrum, Kanban y gestión de proyectos',
         issuer: 'LinkedIn Learning, Platzi, Udemy',
         date: '2020-2022',
         area: 'Procesos',
+        meaning:
+          'Aporta estructura para trabajar con alcance, incertidumbre, equipos y mejora de procesos.',
       },
     ],
     skills: [
@@ -127,37 +142,42 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
     ],
   },
   en: {
-    inventory: {
-      totalEntries: '373 documented records',
-      providers: '16 learning and work-evidence sources',
-      strongestSources: 'Platzi, LinkedIn Learning, Udemy, SENA, UNIR, and CIDTI 4.0',
-      evidencePolicy:
-        'The portfolio shows curated signals; full documents stay outside the site and are shared on request or through LinkedIn.',
-    },
+    thesis:
+      'My learning starts from a simple rule: it must help me analyze, build, or communicate a solution better. I organize it around capabilities I apply in real projects: backend, data, processes, interfaces, and technical leadership.',
+    thesisEmphasis: 'it must help me analyze, build, or communicate a solution better',
+    practices: [
+      'I go deeper into backend to make better design, integration, and maintenance decisions.',
+      'I work with data to transform scattered information into useful structures for operations and decisions.',
+      'I study processes to better understand scope, organize priorities, and speak with users more clearly.',
+    ],
     pillars: [
       {
         title: 'Backend & APIs',
-        signal: 'Building services, data models, and business logic.',
+        signal:
+          'Turning business rules into clear services, consistent data, and maintainable flows.',
         evidence: ['Python', 'FastAPI', 'Node.js', 'Java', 'C#', 'Backend architecture'],
       },
       {
         title: 'Data & Analytics',
-        signal: 'Using data for extraction, processing, analysis, and decision support.',
+        signal: 'Reading operations through data to find patterns, risks, and opportunities.',
         evidence: ['SQL', 'MongoDB', 'PostgreSQL', 'MySQL', 'Scikit-learn', 'Business analytics'],
       },
       {
         title: 'Processes & Agile',
-        signal: 'Turning real needs into user stories, scope, and maintainable deliverables.',
+        signal:
+          'Reducing ambiguity before building: requirements, priorities, and better conversations.',
         evidence: ['Scrum', 'Kanban', 'Lean', 'Requirements', 'Project management', 'DevOps'],
       },
       {
         title: 'Frontend & UX',
-        signal: 'Visual and technical judgment for clear, responsive, sustainable interfaces.',
+        signal:
+          'Designing interfaces that explain the system instead of forcing users to decode it.',
         evidence: ['Astro', 'React', 'TypeScript', 'CSS Grid', 'Tailwind CSS', 'UX/UI'],
       },
       {
         title: 'Leadership & Communication',
-        signal: 'Teamwork, technical communication, and continuous personal improvement.',
+        signal:
+          'Supporting technical work with judgment, communication, ownership, and collaboration.',
         evidence: [
           'Leadership',
           'Communication',
@@ -174,36 +194,48 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
         issuer: 'SENA',
         date: '2015',
         area: 'Technical foundation',
+        meaning:
+          'The practical starting point: support, systems, and early contact with real problems.',
       },
       {
         title: 'Internship and work evidence at CIDTI 4.0',
         issuer: 'CIDTI 4.0',
         date: '2025',
         area: 'Work evidence',
+        meaning:
+          'Learning translated into development, data, requirements, and delivery in a real environment.',
       },
       {
         title: 'Diploma in Data Analytics for Business Management',
         issuer: 'UNIR',
         date: '2026',
         area: 'Data and business',
+        meaning:
+          'Strengthens the link between data analysis, business management, and decision-making.',
       },
       {
         title: 'Continuing Education Certificate in Leadership',
         issuer: 'MIU City University Miami',
         date: '2025',
         area: 'Leadership',
+        meaning:
+          'Complements technical execution with communication, direction, and professional responsibility.',
       },
       {
         title: 'Python, FastAPI, and databases',
         issuer: 'Platzi, Código Facilito, Udemy',
         date: '2021-2024',
         area: 'Backend',
+        meaning:
+          'Deepens the technical path now reflected in services, APIs, and information systems.',
       },
       {
         title: 'Agile, Scrum, Kanban, and project management',
         issuer: 'LinkedIn Learning, Platzi, Udemy',
         date: '2020-2022',
         area: 'Processes',
+        meaning:
+          'Adds structure for working with scope, uncertainty, teams, and process improvement.',
       },
     ],
     skills: [

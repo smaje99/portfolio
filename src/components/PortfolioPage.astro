@@ -2,13 +2,10 @@
 import { getCollection } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import AboutPanel from '@/components/AboutPanel.astro';
 import ExperienceContainer from '@/components/Experience.astro';
 import HeroActions from '@/components/HeroActions';
-import LearningEvidence from '@/components/LearningEvidence.astro';
 import SocialPill from '@/components/SocialPill.astro';
 import SectionContainer from '@/components/SectionContainer.astro';
-import { credentialsByLocale } from '@/data/credentials';
 import GitHubIcon from '@/icons/GitHubIcon.astro';
 import LinkedInIcon from '@/icons/LinkedInIcon.astro';
 import MailIcon from '@/icons/MailIcon.astro';
@@ -28,7 +25,6 @@ interface Props {
 const { locale } = Astro.props;
 
 const copy = getHomeCopy(locale);
-const credentials = credentialsByLocale[locale];
 const entries = await getCollection('experiences');
 const experiences = localizeExperiences(entries, locale);
 const alternateLocale = getAlternateLocale(locale);
@@ -37,7 +33,7 @@ const canonicalPath = basePath;
 const alternatePath = getRelativeLocaleUrl(alternateLocale, '');
 const navigation = copy.navigation.map((item) => ({
   label: item.label,
-  href: `${basePath}${item.hash}`,
+  href: item.href.startsWith('/') ? item.href : `${basePath}${item.href}`,
 }));
 const alternates = locales.map((localeCode) => ({
   hreflang: localeCode,
@@ -132,17 +128,9 @@ const alternates = locales.map((localeCode) => ({
     </SectionContainer>
 
     <SectionContainer>
-      <AboutPanel copy={copy.aboutSection} />
-    </SectionContainer>
-
-    <SectionContainer>
-      <LearningEvidence copy={copy.learningSection} credentials={credentials} />
-    </SectionContainer>
-
-    <SectionContainer>
       <section id="focus" class="content-panel" aria-labelledby="focus-title">
         <header class="panel-header">
-          <p>02</p>
+          <p>01</p>
           <h2 id="focus-title">{copy.focusSection.title}</h2>
         </header>
 
@@ -160,7 +148,7 @@ const alternates = locales.map((localeCode) => ({
     <SectionContainer>
       <section id="projects" class="content-panel" aria-labelledby="projects-title">
         <header class="panel-header">
-          <p>03</p>
+          <p>02</p>
           <h2 id="projects-title">{copy.projectsSection.title}</h2>
         </header>
 
@@ -178,7 +166,7 @@ const alternates = locales.map((localeCode) => ({
     <SectionContainer>
       <section id="experience" class="content-panel experience-panel" aria-labelledby="experience-title">
         <header class="panel-header">
-          <p>04</p>
+          <p>03</p>
           <div class="panel-heading-copy">
             <h2 id="experience-title">{copy.experienceSection.title}</h2>
             <p>{copy.experienceSection.intro}</p>
