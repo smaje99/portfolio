@@ -28,6 +28,7 @@ const featuredProjects = getFeaturedProjects(locale);
 const recentExperiences = experiences.slice(0, 2);
 const projectsPath = getRelativeLocaleUrl(locale, 'projects');
 const experiencePath = getRelativeLocaleUrl(locale, 'experience');
+const resumePath = `/docs/curriculum-vitae-sergio-maje.${locale}.pdf`;
 ---
 
 <BasePage
@@ -63,6 +64,7 @@ const experiencePath = getRelativeLocaleUrl(locale, 'experience');
             projectsLabel={copy.heroActions.projects}
             projectsHref={projectsPath}
             resumeLabel={copy.heroActions.resume}
+            resumeHref={resumePath}
             contactLabel={copy.heroActions.contact}
           />
         </div>

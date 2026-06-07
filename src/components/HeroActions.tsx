@@ -3,16 +3,18 @@ import { ArrowDownRight, Download, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface Props {
-  projectsLabel: string;
-  projectsHref: string;
-  resumeLabel: string;
-  contactLabel: string;
+  readonly projectsLabel: string;
+  readonly projectsHref: string;
+  readonly resumeLabel: string;
+  readonly resumeHref: string;
+  readonly contactLabel: string;
 }
 
 export default function HeroActions({
   projectsLabel,
   projectsHref,
   resumeLabel,
+  resumeHref,
   contactLabel,
 }: Props) {
   return (
@@ -24,7 +26,7 @@ export default function HeroActions({
         </a>
       </Button>
       <Button asChild variant="outline" size="lg" className="min-w-40">
-        <a href="/docs/curriculum-vitae-sergio-maje.pdf" target="_blank" rel="noopener noreferrer">
+        <a href={resumeHref} target="_blank" rel="noopener noreferrer">
           {resumeLabel}
           <Download data-icon="inline-end" />
         </a>
