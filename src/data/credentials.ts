@@ -55,9 +55,8 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
       },
       {
         title: 'Procesos & Agile',
-        signal:
-          'Reducir ambigüedad antes de construir: requisitos, prioridades y conversaciones mejor formuladas.',
-        evidence: ['Scrum', 'Kanban', 'Lean', 'Requisitos', 'Gestión de proyectos', 'DevOps'],
+        signal: 'Entender, modelar y mejorar procesos antes de construir soluciones digitales.',
+        evidence: ['BPM', 'BPMN', 'BPMS/RPA', 'Scrum', 'Lean', 'Requisitos'],
       },
       {
         title: 'Frontend & UX',
@@ -80,12 +79,12 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
     ],
     highlights: [
       {
-        title: 'Técnico en Sistemas',
-        issuer: 'SENA',
-        date: '2015',
-        area: 'Base técnica',
+        title: 'Diplomado BPM para la Transformación Digital de Procesos',
+        issuer: 'Pontificia Universidad Javeriana',
+        date: '2026',
+        area: 'Procesos digitales',
         meaning:
-          'El punto de partida práctico: soporte, sistemas y contacto temprano con problemas reales.',
+          'Refuerza la capacidad de modelar, rediseñar, automatizar y monitorear procesos con BPM, BPMN, BPMS, RPA y minería de procesos.',
       },
       {
         title: 'Pasantías y experiencia en CIDTI 4.0',
@@ -165,8 +164,8 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
       {
         title: 'Processes & Agile',
         signal:
-          'Reducing ambiguity before building: requirements, priorities, and better conversations.',
-        evidence: ['Scrum', 'Kanban', 'Lean', 'Requirements', 'Project management', 'DevOps'],
+          'Understanding, modeling, and improving processes before building digital solutions.',
+        evidence: ['BPM', 'BPMN', 'BPMS/RPA', 'Scrum', 'Lean', 'Requirements'],
       },
       {
         title: 'Frontend & UX',
@@ -190,12 +189,12 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
     ],
     highlights: [
       {
-        title: 'Technical Degree in Systems',
-        issuer: 'SENA',
-        date: '2015',
-        area: 'Technical foundation',
+        title: 'Diploma in BPM for Digital Process Transformation',
+        issuer: 'Pontificia Universidad Javeriana',
+        date: '2026',
+        area: 'Digital processes',
         meaning:
-          'The practical starting point: support, systems, and early contact with real problems.',
+          'Strengthens process modeling, redesign, automation, and monitoring with BPM, BPMN, BPMS, RPA, and process mining.',
       },
       {
         title: 'Internship and work evidence at CIDTI 4.0',

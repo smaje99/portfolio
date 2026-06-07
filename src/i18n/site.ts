@@ -139,7 +139,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       title: 'Ingeniero integral con foco en sistemas útiles',
       eyebrow: 'Perfil',
       intro:
-        'Soy un desarrollador orientado a construir sistemas de información con sentido práctico. Me enfoco en comprender procesos, estructurar datos y diseñar soluciones que no solo funcionen técnicamente, sino que también sean claras, mantenibles y útiles para las personas que las usan. Mi formación combina backend, analítica de datos, gestión de procesos, arquitectura de software, UX/frontend y liderazgo técnico, lo que me permite conectar la visión del negocio con decisiones técnicas concretas y aplicables en contextos reales.',
+        'Soy un desarrollador orientado a construir sistemas de información con sentido práctico. Me enfoco en comprender procesos, estructurar datos y diseñar soluciones que no solo funcionen técnicamente, sino que también sean claras, mantenibles y útiles para las personas que las usan. Mi formación combina backend, analítica de datos, BPM para transformación digital de procesos, arquitectura de software, UX/frontend y liderazgo técnico, lo que me permite conectar la visión del negocio con decisiones técnicas concretas y aplicables en contextos reales.',
       principles: [
         {
           label: 'Pienso en procesos',
@@ -159,7 +159,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       title: 'Formación aplicada',
       eyebrow: 'Criterio técnico',
       intro:
-        'He orientado mi formación hacia la construcción de mejores sistemas, aprendiendo a comprender los procesos, modelar la información y transformar decisiones técnicas en soluciones claras, útiles y mantenibles.',
+        'He orientado mi formación hacia la construcción de mejores sistemas, aprendiendo a comprender procesos, modelarlos con criterio, usar datos para monitorearlos y transformar decisiones técnicas en soluciones claras, útiles y mantenibles.',
       practicesTitle: 'Cómo convierto formación en práctica',
       pillarsTitle: 'Capacidades que sostienen mi trabajo',
       highlightsTitle: 'Hitos de formación y experiencia',
@@ -241,7 +241,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       title: 'An integral engineer focused on useful systems',
       eyebrow: 'About',
       intro:
-        'I am a developer focused on building information systems with practical purpose. I work to understand processes, structure data, and design solutions that not only work technically, but are also clear, maintainable, and useful for the people who use them. My background combines backend, data analytics, process management, software architecture, UX/frontend, and technical leadership, which allows me to connect business vision with concrete technical decisions that can be applied in real contexts.',
+        'I am a developer focused on building information systems with practical purpose. I work to understand processes, structure data, and design solutions that not only work technically, but are also clear, maintainable, and useful for the people who use them. My background combines backend, data analytics, BPM for digital process transformation, software architecture, UX/frontend, and technical leadership, which allows me to connect business vision with concrete technical decisions that can be applied in real contexts.',
       principles: [
         {
           label: 'I think in processes',
@@ -261,7 +261,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       title: 'Applied learning',
       eyebrow: 'Technical judgment',
       intro:
-        'I have shaped my learning toward building better systems, learning to understand processes, model information, and turn technical decisions into clear, useful, maintainable solutions.',
+        'I have shaped my learning toward building better systems, learning to understand processes, model them with judgment, use data to monitor them, and turn technical decisions into clear, useful, maintainable solutions.',
       practicesTitle: 'How I turn learning into practice',
       pillarsTitle: 'Capabilities behind my work',
       highlightsTitle: 'Learning and experience milestones',

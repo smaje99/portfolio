@@ -1,0 +1,109 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=0.55in]{geometry}
+\usepackage{fontspec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+
+\setmainfont{Latin Modern Roman}
+\pagenumbering{gobble}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\definecolor{heading}{HTML}{0B2B31}
+
+\titleformat{\section}
+  {\large\bfseries\color{heading}}
+  {}
+  {0pt}
+  {}
+  [\vspace{-0.35em}\titlerule]
+\titlespacing*{\section}{0pt}{0.55em}{0.35em}
+
+\setlist[itemize]{
+  leftmargin=1.1em,
+  itemsep=0.1em,
+  topsep=0.15em,
+  parsep=0pt
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}p{1.4in}}
+
+\newcommand{\entry}[5]{
+  \begin{tabularx}{\textwidth}{@{}L R@{}}
+    \textbf{#1} & #3 \\
+    #2 & #4 \\
+  \end{tabularx}
+  \vspace{0.12em}
+  #5
+  \vspace{0.32em}
+}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE \textbf{Sergio Andrés Majé Franco}}\\
+  \vspace{0.12em}
+  {\large Desarrollador de Software}\\
+  \vspace{0.18em}
+  +57 312 528 0239 \,|\, \href{mailto:smajefranco@gmail.com}{smajefranco@gmail.com} \,|\,
+  \href{https://www.linkedin.com/in/smaje}{linkedin.com/in/smaje} \,|\,
+  \href{https://github.com/smaje99}{github.com/smaje99} \,|\, Florencia, Caquetá
+\end{center}
+
+\vspace{0.12em}
+
+Desarrollador de software orientado a backend y datos, con experiencia en iniciativas de transformación digital construyendo soluciones para extracción y procesamiento de información, optimización de componentes e integración de datos. Aplico buenas prácticas, refactorización y control de configuraciones para mejorar la calidad y seguridad del software. Me encuentro en noveno semestre de Ingeniería Informática y cuento con diplomados finalizados en BPM y Analítica de Datos, aportando autonomía, pensamiento analítico y adaptación a cambios de alcance.
+
+\section*{Experiencia}
+
+\entry
+  {Centro de Desarrollo Tecnológico para la Transformación Digital y la Industria 4.0}
+  {Practicante universitario}
+  {Ago. 2025 -- Oct. 2025}
+  {En remoto}
+  {Me desempeñé como practicante universitario en desarrollo backend y análisis de datos, aportando a iniciativas de transformación digital mediante la creación de herramientas para la extracción y el procesamiento de información, la mejora de componentes internos de plataformas existentes y la integración de datos técnicos en sistemas basados en MongoDB; además, reforcé la seguridad, organización y calidad del software aplicando buenas prácticas, refactorización y una gestión cuidadosa de configuraciones, destacándome por la autonomía, la adaptación a cambios de alcance y la entrega de soluciones alineadas con las necesidades del centro.}
+
+\section*{Educación}
+
+\entry
+  {Fundación Universitaria Internacional de La Rioja -- UNIR}
+  {Ingeniería Informática}
+  {Presente}
+  {Virtual}
+  {Actualmente cursando el noveno semestre del programa de Ingeniería Informática, con formación en programación, algoritmos, estructuras de datos, bases de datos, desarrollo de software y servicios informáticos.}
+
+\entry
+  {Pontificia Universidad Javeriana}
+  {Diplomado BPM para la Transformación Digital de Procesos}
+  {Feb. 2026 -- May. 2026}
+  {Virtual}
+  {Finalicé el Diplomado BPM para la Transformación Digital de Procesos, realizado del 19 de febrero al 17 de mayo de 2026 con una intensidad de 100 horas, fortaleciendo capacidades en gestión de procesos de negocio, modelado BPMN, análisis, rediseño, automatización, monitoreo y mejora de procesos con apoyo de datos.}
+
+\entry
+  {Fundación Universitaria Internacional de La Rioja -- UNIR}
+  {Diplomado en Analítica de Datos en la Gestión Empresarial}
+  {Oct. 2025 -- Dic. 2025}
+  {Virtual}
+  {Aprobé el Diplomado en Analítica de Datos en la Gestión Empresarial, adquiriendo habilidades en análisis de datos, visualización de información, modelado predictivo y toma de decisiones basada en datos.}
+
+\section*{Habilidades}
+
+\textbf{Técnicas:} Python/FastAPI, Machine Learning (SciKit-Learn), SQLAlchemy, Node.js, PostgreSQL/MongoDB, Redis, REST/JWT, OWASP, React/Next.js, HTML/CSS, JavaScript/TypeScript, Git/GitHub, Scrum, BPM/BPMN.\\
+\textbf{Blandas:} Pensamiento analítico, comunicación efectiva, trabajo en equipo, colaboración, adaptabilidad, resolución creativa de problemas.\\
+\textbf{Idiomas:} Español (nativo), Inglés (intermedio).
+
+\section*{Cursos en línea}
+
+\begin{itemize}
+  \item Curso Estadística para Ciencia de Datos y Analítica de Datos -- Udemy (2025)
+  \item Curso de next.js: seguridad web con OWASP -- Platzi (2025)
+  \item Curso de Regresión Lineal con Python y scikit-learn -- Platzi (2024)
+  \item Curso de FastAPI Modularización, datos avanzados y errores -- Platzi (2022)
+\end{itemize}
+
+\end{document}
