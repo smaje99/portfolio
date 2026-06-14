@@ -13,6 +13,13 @@ The goal of the project is to present a professional portfolio in Spanish and En
 
 The site is the public-facing product. The LaTeX documents are the source of truth for the CV downloads that live under `public/docs/`.
 
+The planning system for the project is split across two documents:
+
+- `docs/portfolio-roadmap.md` is the strategic roadmap, progress evaluation, and current-state diagnosis.
+- `docs/portfolio-backlog.md` is the operational backlog, organized by phases and sprints with actionable requirements.
+
+Use this file as the operating guide for future edits, maintenance, and handoff work.
+
 ## Repository Layout
 
 Important paths:
@@ -140,12 +147,22 @@ For resume changes:
 - Project data: edit `src/data/`.
 - CV content or formatting: edit the LaTeX sources under `docs/resume/`.
 - CV publication and cleanup: use the `Makefile`.
+- Strategy and state tracking: edit `docs/portfolio-roadmap.md`.
+- Execution planning and requirement breakdown: edit `docs/portfolio-backlog.md`.
+
+### How To Use The Planning Docs
+
+- Use the roadmap when you need to understand the project vision, current status, OKRs, or phase-level evaluation.
+- Use the backlog when you need to know what to build next, how the work is grouped by sprint, and whether an item is `Manual`, `Codex con supervisión`, or `Mixto`.
+- If a change affects both strategy and execution, update the backlog first, then update the roadmap only if the strategic framing or status changes materially.
+- Do not duplicate the same detailed task list in both documents unless a short cross-reference is enough.
 
 ### What Not to Touch Casually
 
 - Build and config files unless the task requires them.
 - Generated PDFs under `public/docs/` unless the CV pipeline changed.
 - Temporary LaTeX build outputs under `docs/resume/.build/`.
+- The roadmap and backlog structure unless the requested change is explicitly about planning or requirements.
 
 ### Validation Before Handoff
 
@@ -161,6 +178,13 @@ For LaTeX changes:
 - Confirm the PDFs were updated in `public/docs/`.
 - Check the output visually if the change affects layout or pagination.
 
+For planning/documentation changes:
+
+- Ensure the roadmap and backlog do not contradict each other.
+- Verify that every backlog item maps to a phase, sprint, and roadmap objective or gap.
+- Verify that the backlog uses the execution labels consistently.
+- Check that any new operational guidance in `AGENTS.md` matches the current repo structure and commands.
+
 ## Troubleshooting Notes
 
 ### Astro
@@ -175,10 +199,17 @@ For LaTeX changes:
 - If the PDF builds but the public file does not update, inspect the copy step in the `Makefile`.
 - If the output looks stale, run `make clean` and then `make cv` again.
 
+### Planning Docs
+
+- If the roadmap says a feature or artifact is missing but the backlog already includes it, treat the backlog as the implementation guide and the roadmap as the status source.
+- If the backlog and roadmap drift apart, update the backlog first and then refresh the roadmap status or phase assessment.
+- If a new requirement needs to be split into manual and technical work, keep the split visible in the backlog item instead of hiding it in prose.
+
 ## Minimal Handoff Rule
 
 When in doubt, keep the two pipelines separated:
 
 - Astro changes should stay in the web app source tree.
 - CV changes should stay in the LaTeX sources and be published through the `Makefile`.
-
+- Strategic framing should stay in the roadmap.
+- Actionable execution should stay in the backlog.
