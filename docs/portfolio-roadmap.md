@@ -1,56 +1,25 @@
-Perfecto. Saco **SIMIGS** del sistema. Vamos a trabajar con cinco proyectos:
-
-1. **Portfolio**
-2. **ITA**
-3. **Cognark**
-4. **Media Report CLI**
-5. **Proyecto jurídico/documental para abogados**
-
-La prioridad estratégica será **D: preparar base para consultoría formal**, así que el objetivo global no será “avanzar por avanzar”, sino convertir estos proyectos en una base visible, vendible y técnicamente defendible.
-
----
-
-# Sistema operativo semanal
-
-Para que no todo viva en tu cabeza, propongo esta distribución base:
-
-| Día / bloque    | Proyecto         | Tipo de trabajo                                     |
-| --------------- | ---------------- | --------------------------------------------------- |
-| Lunes tarde     | ITA              | Normativa, planeación, producto, arquitectura       |
-| Martes tarde    | ITA              | Documentación y diseño funcional                    |
-| Miércoles tarde | Jurídico         | Reunión, requisitos, idea, arquitectura empresarial |
-| Jueves tarde    | Jurídico         | Documentación, requerimientos, producto             |
-| Viernes tarde   | Cierre semanal   | Revisión, pendientes, backlog, decisiones           |
-| Sábado mañana   | Portfolio        | Diseño, contenido, blog, casos de estudio           |
-| Sábado tarde    | Cognark          | Desarrollo, requerimientos, arquitectura, features  |
-| Domingo mañana  | Media Report CLI | Pruebas, empaquetado, CLI, documentación            |
-| Domingo tarde   | Buffer           | Ajustes, descanso, lectura o recuperación           |
-
-La regla central sería esta:
-
-> Cada proyecto debe producir al menos un avance verificable por semana, aunque sea pequeño: documento, sección, requisito, commit, prueba, decisión o entregable.
-
-No debes medir avance por “horas trabajadas”, sino por **evidencia producida**.
-
----
-
-# Orden de roadmaps
-
-Aunque todos tengan bloques semanales, los roadmaps los iría construyendo así:
-
-1. **Portfolio**, porque es la vitrina de todo.
-2. **ITA**, porque tiene potencial comercial directo para la consultoría.
-3. **Proyecto jurídico**, porque está en etapa temprana y necesita convertirse en producto claro.
-4. **Media Report CLI**, porque ya tiene scaffold y CLI básica; puede madurar rápido.
-5. **Cognark**, porque es potente, pero más profundo y de largo aliento.
-
----
-
 # Roadmap 1: Portfolio profesional
 
 ## Estado actual
 
-El portfolio ya empezó. Falta una pieza importante: **diseñar e integrar la sección de blog conectada con Medium**.
+El portfolio ya empezó. Falta una pieza importante: **diseñar e integrar la sección de blog conectada con Medium**. Además, falta definir claramente qué proyectos mostrar y cómo clasificarlos.
+
+### Actualización de estado real al 14 de junio de 2026
+
+Con base en la revisión del repositorio y de la implementación actual del sitio:
+
+* Ya existe una base funcional en Astro con versión pública estática.
+* Ya existe versión bilingüe en español e inglés.
+* Ya existe una propuesta de valor visible en la home.
+* Ya existe una página “Sobre mí”, una sección de proyectos, una sección de experiencia y una vía clara de contacto.
+* Ya existe descarga de CV en PDF y automatización de su publicación.
+
+Pero siguen abiertas varias brechas estratégicas:
+
+* No existe todavía sección de blog ni integración con Medium.
+* No existen casos de estudio reales con profundidad técnica.
+* Los proyectos visibles actualmente en el sitio no están totalmente alineados con la selección priorizada por este roadmap.
+* No hay evidencia en el repositorio de analytics, página 404 dedicada, footer profesional o validación externa documentada.
 
 Este proyecto debe funcionar como la cara pública de tu perfil, pero no como una simple hoja de vida. Debe presentar tu posicionamiento como:
 
@@ -58,14 +27,14 @@ Este proyecto debe funcionar como la cara pública de tu perfil, pero no como un
 
 Y debe conectar tus líneas reales de trabajo:
 
-* Procesos.
-* Datos.
-* Desarrollo.
-* Arquitectura.
-* Transformación digital.
-* Consultoría de sistemas de información.
-* Productos SaaS.
-* Automatización e IA aplicada.
+* Procesos (Diplomado BPM para la TD).
+* Datos (Diplomado en Analítica de Datos en la Gestión Empresarial).
+* Desarrollo (Cursos realizados + experiencia estudiantil en la uniamazonia + proyectos personales).
+* Arquitectura. (Cursos + Libros)
+* Transformación digital (Diplomado BPM para la TD).
+* Consultoría de sistemas de información (UNIR + Diplomado BPM + Libros).
+* Productos SaaS (Proyectos).
+* Automatización e IA aplicada (Cursos + UNIR + Diplomado en Analítica de Datos en la Gestión Empresarial).
 
 ---
 
@@ -76,7 +45,7 @@ Construir una plataforma profesional que centralice tu identidad, proyectos, art
 El portfolio debe responder tres preguntas:
 
 1. **Quién eres profesionalmente.**
-2. **Qué problemas sabes convertir en sistemas.**
+2. **Qué problemas sabes convertir en sistemas.** (-> Definir mediante una gráfica de araña mediante tus capacidades técnicas y de consultoría).
 3. **Por qué alguien debería confiar en ti para diseñar o construir una solución.**
 
 ---
@@ -94,6 +63,60 @@ Un bloque útil sería:
 
 ---
 
+# Estado real del proyecto al 14 de junio de 2026
+
+## Lo que ya está implementado
+
+1. **Base técnica estable**
+   * El sitio compila correctamente y tiene una base mantenible.
+   * La estructura pública actual funciona en Astro con salida estática.
+   * Existe soporte de i18n para español e inglés.
+
+2. **Narrativa principal visible**
+   * Ya está publicada una propuesta de valor alineada con “Ingeniería de soluciones para sistemas de información”.
+   * Ya existe hero, CTA principal, acceso al CV y una capa básica de contacto.
+
+3. **Estructura pública mínima**
+   * Inicio
+   * Sobre mí
+   * Proyectos
+   * Experiencia
+   * Contacto
+
+4. **Pulido técnico parcial**
+   * Metadata básica por página.
+   * Open Graph básico.
+   * Identidad visual consistente.
+   * Responsive general funcional.
+   * CV disponible en español e inglés.
+
+## Lo que sigue incompleto o desalineado
+
+1. **Blog y autoridad técnica**
+   * No hay sección de blog.
+   * No hay integración con Medium.
+   * No hay artículos destacados, categorías ni tarjetas de contenido.
+
+2. **Casos de estudio**
+   * La sección de proyectos actual funciona más como listado que como caso de estudio.
+   * No existe todavía la estructura de contexto, problema, solución, arquitectura, estado y aprendizajes.
+
+3. **Inventario de proyectos**
+   * Este roadmap prioriza una selección estratégica concreta.
+   * El sitio actual todavía requiere realinearse con esa selección para que la narrativa pública coincida con el objetivo consultivo.
+
+4. **Cierre de lanzamiento**
+   * No hay evidencia documentada de analytics.
+   * No hay evidencia documentada de página 404 dedicada.
+   * No hay evidencia documentada de footer profesional.
+   * No hay evidencia documentada de validación externa formal.
+
+## Lectura ejecutiva del avance
+
+El portfolio **sí avanzó técnicamente**, pero todavía **no cumple por completo la intención estratégica** de este documento. La base del sistema ya existe; el reto principal actual ya no es “construir el sitio”, sino **alinear el contenido, los proyectos y la autoridad profesional con el posicionamiento definido**.
+
+---
+
 # OKRs del Portfolio
 
 ## Objetivo 1: Consolidar una identidad profesional clara y vendible
@@ -103,6 +126,15 @@ Un bloque útil sería:
 **KR3.** Tener una narrativa coherente entre GitHub, LinkedIn y portfolio.
 **KR4.** Tener una estructura visual que comunique ingeniería, claridad y confianza.
 
+### Evaluación actual
+
+**Cumplimiento estimado:** 75%
+
+* La propuesta de valor principal ya está visible.
+* La sección “Sobre mí” ya existe.
+* La estructura visual ya transmite claridad y confianza.
+* La coherencia narrativa completa con GitHub y LinkedIn aún debe revisarse mejor.
+
 ---
 
 ## Objetivo 2: Convertir proyectos reales en casos de estudio
@@ -111,6 +143,15 @@ Un bloque útil sería:
 **KR2.** Documentar cada caso con problema, contexto, solución, arquitectura, tecnologías y estado actual.
 **KR3.** Diferenciar proyectos construidos, en desarrollo y en fase de análisis.
 **KR4.** Evitar que los proyectos parezcan ideas sueltas; deben verse como líneas reales de trabajo.
+
+### Evaluación actual
+
+**Cumplimiento estimado:** 15%
+
+* Ya existe una sección de proyectos.
+* No existen todavía casos de estudio completos.
+* Los proyectos visibles necesitan alinearse mejor con esta estrategia.
+* La profundidad actual de presentación aún no demuestra criterio técnico al nivel esperado.
 
 Casos iniciales recomendados:
 
@@ -130,6 +171,13 @@ Casos iniciales recomendados:
 **KR3.** Publicar al menos 3 artículos base durante los primeros 90 días.
 **KR4.** Hacer que cada artículo refuerce tu posicionamiento profesional, no que sea contenido aislado.
 
+### Evaluación actual
+
+**Cumplimiento estimado:** 0%
+
+* Este objetivo sigue sin implementación visible.
+* Continúa siendo la brecha más importante del roadmap.
+
 Artículos iniciales sugeridos:
 
 1. **Ingeniería de soluciones para sistemas de información: mi enfoque profesional**
@@ -147,6 +195,45 @@ Artículos iniciales sugeridos:
 **KR3.** Tener enlaces funcionales a GitHub, LinkedIn, Medium y correo.
 **KR4.** Tener una sección de contacto orientada a oportunidades, proyectos y consultoría.
 **KR5.** Tener al menos una medición básica: visitas, clics o formularios recibidos.
+
+### Evaluación actual
+
+**Cumplimiento estimado:** 40%
+
+* Ya existe una base pública funcional.
+* Ya existen enlaces funcionales a GitHub, LinkedIn y correo.
+* Ya existe descarga de CV.
+* No hay evidencia en el repositorio de Medium, analytics, dominio documentado ni validación posterior al lanzamiento.
+
+---
+
+# Evaluación general del roadmap
+
+## Diagnóstico
+
+El roadmap sigue siendo correcto como visión estratégica, pero hoy debe leerse en dos niveles:
+
+1. Como la visión del portfolio que se quiere consolidar.
+2. Como una referencia para corregir desalineaciones del estado actual.
+
+## Cumplimiento global estimado
+
+**Avance general estimado:** 35% a 45%
+
+Hay mejor progreso en:
+
+* base técnica
+* estructura pública
+* narrativa inicial
+* bilingüismo
+* identidad visual
+
+Los mayores retrasos están en:
+
+* blog y Medium
+* casos de estudio
+* realineación de proyectos
+* medición y validación externa
 
 ---
 
@@ -179,6 +266,12 @@ Artículos iniciales sugeridos:
 ### Resultado esperado
 
 Al final de esta fase debes tener claridad absoluta sobre qué va en el portfolio y qué no.
+
+### Estado actual de la fase
+
+**Avance estimado:** 80%
+
+La estructura base ya está bastante definida, pero todavía falta alinear por completo el inventario de proyectos y añadir la capa de blog y casos de estudio prevista desde esta etapa.
 
 ### Qué no hacer todavía
 
@@ -222,6 +315,12 @@ Diseño y desarrollo sistemas de información que conectan procesos, datos y ope
 
 La página de inicio debe dejar claro que tu perfil no es simplemente “desarrollador web”, sino alguien que piensa sistemas completos.
 
+### Estado actual de la fase
+
+**Avance estimado:** 85%
+
+Esta fase es una de las más sólidas del proyecto actual. La home ya comunica bastante bien el enfoque de sistemas, el mensaje central y una dirección profesional clara.
+
 ---
 
 ## Fase 3 — Casos de estudio iniciales
@@ -257,6 +356,12 @@ Cada caso debería tener esta estructura:
 ### Resultado esperado
 
 El visitante debe poder ver tu forma de pensar, no solo una captura o un enlace a GitHub.
+
+### Estado actual de la fase
+
+**Avance estimado:** 20%
+
+La sección de proyectos existe, pero todavía no alcanza el nivel de profundidad necesario para llamarse “casos de estudio” en el sentido de este roadmap.
 
 ---
 
@@ -300,6 +405,12 @@ Para tu caso, recomiendo comenzar con la opción intermedia:
 
 El blog no debe verse como un añadido; debe funcionar como una sección de autoridad profesional.
 
+### Estado actual de la fase
+
+**Avance estimado:** 0%
+
+Esta fase no muestra implementación visible al día de hoy.
+
 ---
 
 ## Fase 5 — Pulido técnico y confianza
@@ -332,6 +443,12 @@ El blog no debe verse como un añadido; debe funcionar como una sección de auto
 ### Resultado esperado
 
 El portfolio debe sentirse suficientemente serio para enviarlo a un cliente, profesor, empresa o contacto profesional.
+
+### Estado actual de la fase
+
+**Avance estimado:** 50%
+
+El sitio ya transmite seriedad y una base defendible, pero todavía le faltan piezas de cierre como analytics, 404, footer y una capa más completa de confianza operativa.
 
 ---
 
@@ -370,6 +487,12 @@ Pide retroalimentación a perfiles distintos:
 * ¿Qué sección falta?
 * ¿Me contactarías para una solución informática?
 
+### Estado actual de la fase
+
+**Avance estimado:** 10%
+
+No hay evidencia documentada en el repositorio de una ronda formal de validación externa ni de revisión estructurada por perfiles distintos.
+
 ---
 
 # Backlog operativo del Portfolio
@@ -378,28 +501,34 @@ Pide retroalimentación a perfiles distintos:
 
 * Diseñar sección de blog.
 * Integrar Medium.
-* Definir casos de estudio.
-* Refinar copy principal.
-* Revisar coherencia con GitHub y LinkedIn.
-* Definir CTA.
+* Reemplazar y realinear el inventario de proyectos con la estrategia definida aquí.
+* Convertir los proyectos prioritarios en casos de estudio reales.
+* Revisar coherencia narrativa entre portfolio, GitHub y LinkedIn.
+* Refinar el copy principal desde una óptica más consultiva.
 
 ## Pendiente importante
 
 * Sección de tecnologías.
-* Página “Sobre mí”.
 * Sección de servicios/capacidades.
-* SEO básico.
 * Analytics.
-* Contacto.
+* Página 404.
+* Footer profesional.
+* Evidencia de validación externa.
 
 ## Pendiente futuro
 
 * Newsletter.
 * Sistema propio de artículos.
-* Descarga de CV.
-* Versión en inglés.
 * Página específica para consultoría.
 * Página específica para productos.
+
+## Ya resuelto o parcialmente resuelto
+
+* Descarga de CV.
+* Versión en inglés.
+* Página “Sobre mí”.
+* Contacto básico.
+* Metadata básica y Open Graph.
 
 ---
 
@@ -417,6 +546,18 @@ Para este proyecto, no mediría solo commits. Mediría:
 | Versión pública estable          | 1            |
 | Actualización de LinkedIn/GitHub | Sí           |
 
+## Lectura actual de métricas al 14 de junio de 2026
+
+| Métrica                          | Meta 90 días | Estado actual estimado |
+| -------------------------------- | ------------ | ---------------------- |
+| Páginas principales publicadas   | 5 a 7        | 4 principales + versión en inglés |
+| Casos de estudio publicados      | 3 a 5        | 0 |
+| Artículos integrados o enlazados | 3            | 0 |
+| Proyectos destacados             | 4            | 3 visibles, pero desalineados |
+| Revisiones externas recibidas    | 3 a 5        | 0 documentadas |
+| Versión pública estable          | 1            | Parcialmente lograda |
+| Actualización de LinkedIn/GitHub | Sí           | Parcial, no verificable completamente desde el repo |
+
 ---
 
 # Criterio para considerar terminado el MVP
@@ -431,6 +572,22 @@ El MVP del portfolio estará terminado cuando puedas enviar un solo enlace y esa
 6. Cómo contactarte.
 
 No necesita estar perfecto. Necesita ser **claro, navegable, serio y defendible**.
+
+## Evaluación actual frente al MVP
+
+Hoy el portfolio ya permite comunicar con bastante claridad:
+
+1. quién eres
+2. qué haces
+3. cómo contactarte
+
+Pero todavía no comunica con suficiente fuerza:
+
+1. qué proyectos prioritarios has trabajado según esta estrategia
+2. cómo piensas técnicamente a través de casos de estudio
+3. tu autoridad intelectual mediante blog o artículos
+
+Por lo tanto, **el MVP estratégico aún no puede considerarse terminado**.
 
 ---
 
@@ -452,6 +609,37 @@ La clave es mostrar también proyectos en evolución, pero con honestidad: **en 
 ---
 
 # Próxima acción concreta
+
+Con base en el estado real del proyecto, la siguiente prioridad ya no debería ser solo definir estructura general. Esa base ya avanzó. Ahora el foco debe estar en cerrar la brecha entre la estrategia del roadmap y el contenido actualmente publicado.
+
+## Sprint Portfolio 02
+
+### Objetivo
+
+Realinear el portfolio con este roadmap y preparar la base real de casos de estudio y blog.
+
+### Tareas
+
+1. Reemplazar los proyectos visibles por la selección prioritaria definida aquí.
+2. Definir el estado de cada proyecto: análisis, desarrollo, MVP, prototipo o documentación arquitectónica.
+3. Diseñar una plantilla base de caso de estudio.
+4. Crear al menos el primer caso de estudio real.
+5. Definir la arquitectura mínima de la sección blog.
+6. Elegir el mecanismo de integración con Medium.
+7. Preparar backlog técnico de analytics, 404 y footer.
+
+### Entregable mínimo
+
+1. Nueva lista de proyectos alineada con el roadmap.
+2. Primera plantilla o página de caso de estudio.
+3. Decisión técnica documentada sobre Medium.
+4. Lista priorizada de tareas de cierre para MVP.
+
+---
+
+## Referencia histórica conservada
+
+La siguiente sección se conserva como referencia del primer sprint conceptual y sigue siendo útil como origen del roadmap:
 
 Este fin de semana deberías cerrar únicamente esto:
 
@@ -506,4 +694,3 @@ Jurídico | Ideación/análisis | Producto sectorial | Gestión documental, proc
 El portfolio será la pieza que conecte tu identidad profesional con tus proyectos reales. Su función no es decorar tu perfil, sino convertir tu experiencia dispersa en una narrativa clara de consultoría: procesos, datos, desarrollo, arquitectura y transformación digital.
 
 Durante los próximos 90 días, el objetivo es lanzar una versión pública estable con página de inicio, proyectos, casos de estudio, blog integrado con Medium y contacto profesional. El avance se hará los fines de semana, evitando perfeccionismo visual y priorizando claridad, estructura y confianza.
-
