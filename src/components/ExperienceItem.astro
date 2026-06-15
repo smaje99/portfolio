@@ -78,10 +78,7 @@ const {
       background-color: var(--primary);
 
       border-radius: calc(infinity * 1px);
-      box-shadow:
-        rgb(4 30 35) 0px 0px 0px 0px,
-        rgb(4 30 35) 0px 0px 0px 8px,
-        rgb(0 0 0 / 0) 0px 0px 0px 0px;
+      box-shadow: 0 0 0 8px var(--panel-scrim);
 
       & > svg {
         width: 0.625rem;
@@ -115,9 +112,9 @@ const {
           font-size: 0.875rem;
           line-height: 1.25rem;
           padding: 0.125rem 0.625rem;
-          border: 1px solid rgb(224 255 79 / 40%);
+          border: 1px solid var(--border-primary);
           border-radius: 999px;
-          background-color: rgb(224 255 79 / 14%);
+          background-color: var(--surface-primary);
           color: var(--foreground);
         }
       }
@@ -162,9 +159,9 @@ const {
 
       & > li {
         padding: 0.35rem 0.7rem;
-        border: 1px solid rgb(127 221 211 / 25%);
+        border: 1px solid var(--border-accent);
         border-radius: 999px;
-        background: rgb(127 221 211 / 10%);
+        background: var(--surface-accent);
         color: var(--foreground);
         font-size: 0.85rem;
         line-height: 1.2;

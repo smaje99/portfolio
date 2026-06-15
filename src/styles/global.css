@@ -45,57 +45,150 @@
 :root {
   color-scheme: dark;
   --radius: 1rem;
-  --brand-ink-950: #04191e;
-  --brand-ink-900: #072229;
-  --brand-ink-850: #0b2b31;
-  --brand-ink-800: #12363d;
-  --brand-ink-700: #17444b;
-  --brand-mist-100: #e3fff7;
-  --brand-mist-50: #f3ffea;
-  --brand-sage-300: #a4beb8;
-  --brand-aqua-400: #7fddd3;
-  --brand-lime-500: #e0ff4f;
-  --brand-lime-400: #d1ff71;
-  --brand-rose-500: #91273a;
-  --brand-amber-400: #e8d86f;
+
+  --brand-ink-950: oklch(18% 0.024 205);
+  --brand-ink-900: oklch(22% 0.027 205);
+  --brand-ink-850: oklch(26% 0.031 204);
+  --brand-ink-800: oklch(31% 0.035 203);
+  --brand-ink-700: oklch(38% 0.041 201);
+  --brand-mist-100: oklch(97% 0.028 170);
+  --brand-mist-50: oklch(98.5% 0.02 145);
+  --brand-sage-300: oklch(79% 0.027 184);
+  --brand-aqua-400: oklch(84% 0.09 185);
+  --brand-lime-500: oklch(93% 0.19 116);
+  --brand-lime-400: oklch(94% 0.15 125);
+  --brand-rose-500: oklch(54% 0.17 14);
+  --brand-amber-400: oklch(88% 0.12 104);
 
   --background: var(--brand-ink-950);
   --foreground: var(--brand-mist-50);
-  --card: rgb(11 43 49 / 90%);
+  --card: color-mix(in oklab, var(--brand-ink-850) 90%, transparent);
   --card-foreground: var(--brand-mist-50);
-  --popover: rgb(18 54 61 / 96%);
+  --popover: color-mix(in oklab, var(--brand-ink-800) 96%, transparent);
   --popover-foreground: var(--brand-mist-50);
   --primary: var(--brand-lime-500);
   --primary-foreground: var(--brand-ink-950);
-  --secondary: var(--brand-ink-800);
+  --secondary: color-mix(in oklab, var(--brand-ink-800) 84%, var(--brand-ink-900));
   --secondary-foreground: var(--brand-mist-100);
-  --muted: rgb(10 39 45 / 92%);
+  --muted: color-mix(in oklab, var(--brand-ink-900) 92%, transparent);
   --muted-foreground: var(--brand-sage-300);
-  --accent: var(--brand-ink-700);
+  --accent: color-mix(in oklab, var(--brand-ink-700) 76%, var(--brand-ink-900));
   --accent-foreground: var(--brand-mist-100);
   --destructive: var(--brand-rose-500);
-  --destructive-foreground: #fff1f3;
-  --border: #4b838c;
-  --input: #3b6a72;
+  --destructive-foreground: color-mix(in oklab, white 96%, var(--brand-rose-500) 4%);
+  --border: color-mix(in oklab, var(--brand-aqua-400) 42%, var(--brand-ink-700));
+  --input: color-mix(in oklab, var(--brand-aqua-400) 30%, var(--brand-ink-700));
   --ring: var(--brand-lime-400);
   --chart-1: var(--brand-lime-500);
   --chart-2: var(--brand-aqua-400);
-  --chart-3: #5296a0;
+  --chart-3: color-mix(in oklab, var(--brand-aqua-400) 64%, var(--brand-ink-700));
   --chart-4: var(--brand-amber-400);
-  --chart-5: #ca7181;
+  --chart-5: color-mix(in oklab, var(--brand-rose-500) 72%, var(--brand-mist-100) 28%);
   --sidebar: var(--brand-ink-850);
   --sidebar-foreground: var(--brand-mist-50);
   --sidebar-primary: var(--brand-lime-500);
   --sidebar-primary-foreground: var(--brand-ink-950);
   --sidebar-accent: var(--brand-ink-700);
   --sidebar-accent-foreground: var(--brand-mist-100);
-  --sidebar-border: #4b838c;
+  --sidebar-border: var(--border);
   --sidebar-ring: var(--brand-lime-400);
   --brand-lime: var(--brand-lime-500);
   --brand-lime-soft: var(--brand-lime-400);
   --brand-aqua: var(--brand-aqua-400);
-  --brand-panel: rgb(11 43 49 / 88%);
-  --brand-grid: rgb(127 221 211 / 10%);
+
+  --surface-1: color-mix(in oklab, var(--brand-ink-950) 42%, transparent);
+  --surface-2: color-mix(in oklab, var(--brand-ink-900) 82%, transparent);
+  --surface-elevated: color-mix(in oklab, var(--brand-ink-850) 88%, transparent);
+  --surface-interactive: color-mix(in oklab, var(--brand-ink-800) 88%, transparent);
+  --surface-interactive-strong: color-mix(in oklab, var(--brand-ink-800) 94%, transparent);
+  --surface-primary-soft: color-mix(in oklab, var(--brand-lime-500) 7%, transparent);
+  --surface-primary: color-mix(in oklab, var(--brand-lime-500) 12%, transparent);
+  --surface-primary-strong: color-mix(in oklab, var(--brand-lime-500) 20%, transparent);
+  --surface-accent-soft: color-mix(in oklab, var(--brand-aqua-400) 7%, transparent);
+  --surface-accent: color-mix(in oklab, var(--brand-aqua-400) 10%, transparent);
+  --surface-accent-strong: color-mix(in oklab, var(--brand-aqua-400) 14%, transparent);
+  --surface-glass: color-mix(in oklab, var(--brand-ink-850) 78%, transparent);
+
+  --border-subtle: color-mix(in oklab, var(--border) 50%, transparent);
+  --border-soft: color-mix(in oklab, var(--border) 36%, transparent);
+  --border-faint: color-mix(in oklab, var(--border) 24%, transparent);
+  --border-ghost: color-mix(in oklab, var(--border) 16%, transparent);
+  --border-primary: color-mix(in oklab, var(--brand-lime-500) 36%, transparent);
+  --border-primary-strong: color-mix(in oklab, var(--brand-lime-500) 48%, transparent);
+  --border-accent: color-mix(in oklab, var(--brand-aqua-400) 25%, transparent);
+
+  --text-highlight: color-mix(in oklab, var(--brand-lime-500) 82%, white 18%);
+  --text-soft: color-mix(in oklab, var(--secondary-foreground) 88%, white 12%);
+  --text-accent-soft: color-mix(in oklab, var(--brand-aqua-400) 74%, white 26%);
+
+  --glow-primary: color-mix(in oklab, var(--brand-lime-500) 36%, transparent);
+  --glow-primary-soft: color-mix(in oklab, var(--brand-lime-500) 12%, transparent);
+  --glow-accent: color-mix(in oklab, var(--brand-aqua-400) 22%, transparent);
+  --grid-line: color-mix(in oklab, var(--brand-aqua-400) 10%, transparent);
+  --hero-radial: color-mix(in oklab, var(--brand-lime-500) 9%, transparent);
+  --panel-scrim-soft: color-mix(in oklab, var(--brand-ink-950) 16%, transparent);
+  --panel-scrim: color-mix(in oklab, var(--brand-ink-950) 48%, transparent);
+  --mask-strong: color-mix(in srgb, black 65%, transparent);
+  --focus-outline: color-mix(in oklab, var(--brand-lime-500) 75%, transparent);
+  --selection-bg: color-mix(in oklab, var(--brand-lime-500) 28%, transparent);
+
+  --shadow-elevated:
+    0 24px 80px color-mix(in oklab, black 28%, transparent),
+    inset 0 1px 0 color-mix(in oklab, white 4%, transparent);
+  --shadow-inset-soft: inset 0 1px 0 color-mix(in oklab, white 3%, transparent);
+  --shadow-inset-dual:
+    inset 0 1px 0 color-mix(in oklab, white 4%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, white 2%, transparent);
+  --shadow-pill: 0 1rem 2.5rem color-mix(in oklab, black 18%, transparent);
+  --shadow-brand: drop-shadow(0 0 1.5rem var(--glow-primary-soft))
+    drop-shadow(0 1rem 2.25rem color-mix(in oklab, black 28%, transparent));
+
+  --gradient-panel: linear-gradient(
+    180deg,
+    var(--surface-elevated),
+    color-mix(in oklab, var(--brand-ink-900) 94%, transparent)
+  );
+  --gradient-panel-overlay: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--brand-lime-500) 0%, transparent) 0%,
+    color-mix(in oklab, var(--brand-lime-500) 6%, transparent) 46%,
+    color-mix(in oklab, var(--brand-aqua-400) 0%, transparent) 100%
+  );
+  --gradient-panel-overlay-aqua: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--brand-aqua-400) 0%, transparent) 0%,
+    color-mix(in oklab, var(--brand-aqua-400) 8%, transparent) 48%,
+    color-mix(in oklab, var(--brand-lime-500) 0%, transparent) 100%
+  );
+  --gradient-glass: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--brand-ink-950) 8%, transparent),
+    color-mix(in oklab, var(--brand-ink-950) 0%, transparent)
+  );
+  --gradient-surface-accent: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--brand-aqua-400) 6%, transparent),
+    color-mix(in oklab, var(--brand-ink-950) 12%, transparent) 42%
+  );
+  --gradient-primary-accent: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--brand-lime-500) 20%, transparent),
+    color-mix(in oklab, var(--brand-aqua-400) 14%, transparent)
+  );
+
+  --primary-hover: color-mix(in oklab, var(--primary) 90%, white 10%);
+  --destructive-hover: color-mix(in oklab, var(--destructive) 88%, black 12%);
+  --secondary-hover: color-mix(in oklab, var(--secondary) 90%, white 10%);
+  --shadow-button-primary:
+    0 0 0 1px color-mix(in oklab, var(--brand-lime-500) 12%, transparent),
+    0 14px 34px color-mix(in oklab, var(--brand-lime-500) 24%, transparent);
+  --shadow-button-primary-hover:
+    0 0 0 1px color-mix(in oklab, var(--brand-lime-500) 18%, transparent),
+    0 22px 48px color-mix(in oklab, var(--brand-lime-500) 30%, transparent);
+
+  --brand-panel: var(--surface-elevated);
+  --brand-grid: var(--grid-line);
+  --accent-gradient: var(--gradient-primary-accent);
 }
 
 @layer base {
@@ -125,7 +218,7 @@
   }
 
   ::selection {
-    background: rgb(224 255 79 / 28%);
+    background: var(--selection-bg);
     color: var(--foreground);
   }
 }

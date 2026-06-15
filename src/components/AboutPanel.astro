@@ -37,14 +37,12 @@ const { copy } = Astro.props;
   .about-panel {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgb(75 131 140 / 36%);
+    border: 1px solid var(--border-subtle);
     border-radius: 2rem;
     background:
-      radial-gradient(circle at 92% 12%, rgb(224 255 79 / 12%), transparent 0 18rem),
-      linear-gradient(180deg, rgb(11 43 49 / 88%), rgb(7 34 40 / 94%));
-    box-shadow:
-      0 24px 80px rgb(0 0 0 / 28%),
-      inset 0 1px 0 rgb(255 255 255 / 4%);
+      radial-gradient(circle at 92% 12%, var(--glow-primary-soft), transparent 0 18rem),
+      var(--gradient-panel);
+    box-shadow: var(--shadow-elevated);
     backdrop-filter: blur(16px);
   }
 
@@ -53,8 +51,7 @@ const { copy } = Astro.props;
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background:
-      linear-gradient(135deg, rgb(127 221 211 / 0%) 0%, rgb(127 221 211 / 8%) 48%, rgb(224 255 79 / 0%) 100%);
+    background: var(--gradient-panel-overlay-aqua);
   }
 
   .about-frame {
@@ -88,7 +85,7 @@ const { copy } = Astro.props;
   }
 
   .about-header > p > span {
-    color: color-mix(in srgb, var(--brand-lime) 82%, white 18%);
+    color: var(--text-highlight);
   }
 
   .about-header > p > span::after {
@@ -97,7 +94,7 @@ const { copy } = Astro.props;
     width: 1px;
     height: 0.82em;
     margin-left: 1rem;
-    background: rgb(127 221 211 / 34%);
+    background: color-mix(in oklab, var(--brand-aqua-400) 34%, transparent);
     vertical-align: -0.08em;
   }
 
@@ -118,7 +115,7 @@ const { copy } = Astro.props;
   .about-intro {
     margin: 0;
     max-width: 58rem;
-    color: color-mix(in srgb, var(--secondary-foreground) 86%, white 14%);
+    color: color-mix(in oklab, var(--secondary-foreground) 86%, white 14%);
     font-size: clamp(1.02rem, 2vw, 1.2rem);
     line-height: 1.8;
     text-wrap: pretty;
@@ -138,10 +135,10 @@ const { copy } = Astro.props;
     gap: 0.85rem;
     align-content: start;
     padding: 1rem;
-    border: 1px solid rgb(75 131 140 / 24%);
+    border: 1px solid var(--border-faint);
     border-radius: 1.35rem;
-    background: rgb(4 25 30 / 42%);
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
+    background: var(--surface-1);
+    box-shadow: var(--shadow-inset-soft);
   }
 
   .about-principles li > div {

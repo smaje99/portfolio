@@ -88,6 +88,15 @@ For website changes:
 - Update `src/data/` when changing project listings, credentials, or other structured content.
 - Update `src/i18n/` when changing localized copy or locale behavior.
 
+For color and visual system changes:
+
+- Treat `src/styles/global.css` as the source of truth for palette tokens and repeated color behavior.
+- Do not introduce hardcoded component colors if a semantic token already exists.
+- Define new base palette values with perceptual color functions such as `oklch()` or `oklab()`.
+- Derive state variants, overlays, borders, and highlights with modern CSS functions such as `color-mix()` instead of copying numeric color literals.
+- If the same color variation appears in more than one place, promote it to a reusable token before duplicating it.
+- If a static asset such as an SVG needs color changes, align it with the design system palette instead of picking an isolated value.
+
 Avoid casual edits to:
 
 - `astro.config.mjs`
@@ -171,6 +180,7 @@ For Astro changes:
 - Run `pnpm build`.
 - Run `pnpm lint` if you changed code, components, or styles.
 - Verify the affected routes in the browser.
+- If the change touches colors, verify contrast, focus visibility, and consistency between layout, components, and public brand assets.
 
 For LaTeX changes:
 

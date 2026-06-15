@@ -76,7 +76,7 @@ const {
   }
 
   .brand-link:focus-visible {
-    outline: 2px solid rgb(224 255 79 / 75%);
+    outline: 2px solid var(--focus-outline);
     outline-offset: 4px;
   }
 
@@ -84,7 +84,7 @@ const {
     flex: none;
     width: 3rem;
     height: 3rem;
-    filter: drop-shadow(0 0 1.25rem rgb(224 255 79 / 20%));
+    filter: drop-shadow(0 0 1.25rem var(--glow-primary-soft));
   }
 
   .brand-copy {
@@ -111,8 +111,8 @@ const {
       color: var(--muted-foreground);
       padding: 0.55rem 0.95rem;
       border-radius: 999px;
-      border: 1px solid rgb(66 119 127 / 45%);
-      background: rgb(11 43 49 / 56%);
+      border: 1px solid var(--border-soft);
+      background: var(--surface-glass);
       transition:
         color 180ms ease,
         border-color 180ms ease,
@@ -124,14 +124,14 @@ const {
     & > a:focus-visible {
       color: var(--foreground);
       border-color: var(--brand-lime-soft);
-      background: rgb(21 62 68 / 90%);
+      background: var(--surface-interactive-strong);
       transform: translateY(-1px);
     }
 
     & > .language-switcher {
       color: var(--foreground);
-      border-color: rgb(224 255 79 / 38%);
-      background: rgb(224 255 79 / 10%);
+      border-color: var(--border-primary);
+      background: var(--surface-primary-soft);
     }
   }
 

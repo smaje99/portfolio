@@ -17,15 +17,15 @@
     align-items: center;
     column-gap: 0.5rem;
 
-    background-color: rgb(11 43 49 / 78%);
+    background-color: var(--surface-glass);
 
     padding: 0.75rem 1rem;
 
     color: var(--secondary-foreground);
 
-    border: 1px solid rgb(66 119 127 / 55%);
+    border: 1px solid var(--border-soft);
     border-radius: calc(infinity * 1px);
-    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 18%);
+    box-shadow: var(--shadow-pill);
 
     font-size: 1rem;
     line-height: 1.5rem;
@@ -37,7 +37,7 @@
       transform 180ms ease;
 
     &:hover {
-      background-color: rgb(21 62 68 / 92%);
+      background-color: var(--surface-interactive-strong);
       border-color: var(--brand-lime-soft);
       color: var(--foreground);
       transform: translateY(-2px);

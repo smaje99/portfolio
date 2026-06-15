@@ -27,13 +27,10 @@ const { headingId, number, title, intro, panelClass = '' } = Astro.props;
     position: relative;
     overflow: hidden;
     padding: 1.75rem;
-    border: 1px solid rgb(75 131 140 / 36%);
+    border: 1px solid var(--border-subtle);
     border-radius: 2rem;
-    background:
-      linear-gradient(180deg, rgb(11 43 49 / 88%), rgb(7 34 40 / 94%));
-    box-shadow:
-      0 24px 80px rgb(0 0 0 / 28%),
-      inset 0 1px 0 rgb(255 255 255 / 4%);
+    background: var(--gradient-panel);
+    box-shadow: var(--shadow-elevated);
     backdrop-filter: blur(16px);
   }
 
@@ -42,8 +39,7 @@ const { headingId, number, title, intro, panelClass = '' } = Astro.props;
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background:
-      linear-gradient(135deg, rgb(224 255 79 / 0%) 0%, rgb(224 255 79 / 6%) 46%, rgb(127 221 211 / 0%) 100%);
+    background: var(--gradient-panel-overlay);
     opacity: 0.9;
   }
 
