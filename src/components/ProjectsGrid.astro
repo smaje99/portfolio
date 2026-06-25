@@ -1,14 +1,8 @@
 ---
-type Project = {
-  slug: string;
-  title: string;
-  description: string;
-  focus: string;
-  tags: string[];
-};
+import type { ProjectCardProject } from '@/data/projects';
 
 interface Props {
-  projects: Project[];
+  projects: ProjectCardProject[];
 }
 
 const { projects } = Astro.props;
