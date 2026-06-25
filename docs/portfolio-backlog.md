@@ -144,22 +144,29 @@ Ejemplo:
 * Los proyectos retirados del MVP están marcados como fuera de narrativa principal o en segundo plano.
 * No quedan proyectos “temporales” dentro del inventario por falta de decisión.
 * La prioridad entre proyectos destacados y secundarios no depende de interpretación posterior.
-**Preguntas de definicion y cierre:**
+**Estado actual:** Cerrado el 2026-06-25.
+**Cierre de implementación:**
+* El inventario oficial del MVP quedó materializado en `src/data/projects.ts` como fuente canónica bilingüe y reutilizable.
+* Los cuatro proyectos visibles actuales quedaron definidos con nombre público ES/EN, estado narrativo, tipo, capacidades demostradas, prioridad estratégica y visibilidad dentro del portfolio.
+* La visibilidad pública actual se conserva: tres proyectos `featured` y un proyecto `secondary`, sin alterar todavía rutas ni UI.
+* La correspondencia entre español e inglés quedó normalizada sobre slugs canónicos únicos por proyecto.
+* Validación técnica ejecutada: `./node_modules/.bin/astro check`, `./node_modules/.bin/astro build` y `./node_modules/.bin/biome check src/data/projects.ts src/components/ProjectsGrid.astro`.
+**Preguntas de definición y cierre:**
 * ¿Qué proyectos hoy visibles en `src/data/projects.ts` siguen siendo estratégicos para el MVP y cuáles solo conservan valor de archivo o contexto?
 * ¿Existe algún proyecto que deba mantenerse visible por credibilidad técnica aunque no sea prioritario narrativamente?
 * ¿Qué evidencia mínima permite decidir que un proyecto “entra” al MVP y no queda como aspiración futura?
 * ¿Hay proyectos con traducción pública diferente entre español e inglés que deban normalizarse desde este sprint?
 
 #### BLG-F1-S01-02 — Definir taxonomía de estados de proyecto
-**Objetivo:** estandarizar cómo se clasifica cada proyecto dentro del portfolio.  
-**Descripción:** la comunicación pública debe diferenciar análisis, desarrollo, MVP, prototipo y documentación arquitectónica para evitar ambigüedad o sobreventa.  
+**Objetivo:** estandarizar cómo se clasifica cada proyecto dentro del portfolio.
+**Descripción:** la comunicación pública debe diferenciar análisis, desarrollo, MVP, prototipo y documentación arquitectónica para evitar ambigüedad o sobreventa.
 **Actividades:**
 * Definir un catálogo corto de estados válidos.
 * Asignar definición operativa a cada estado.
 * Asociar cada estado con el tono narrativo que debe usar el portfolio.
-**Entregable esperado:** taxonomía de estados con definiciones y reglas de uso.  
-**Dependencias:** inventario estratégico de proyectos.  
-**Tipo de ejecución:** Mixto  
+**Entregable esperado:** taxonomía de estados con definiciones y reglas de uso.
+**Dependencias:** inventario estratégico de proyectos.
+**Tipo de ejecución:** Mixto
 **Notas de validación:** cada proyecto debe poder clasificarse sin ambigüedad y sin requerir estados nuevos improvisados.
 **Contexto técnico:** la taxonomía regulará cómo se describe el inventario consolidado y condicionará futuros datos, badges narrativos o criterios editoriales. No debe inventarse una clasificación desligada de los proyectos reales del repositorio ni de la narrativa ya priorizada.
 **Alcance funcional:**
