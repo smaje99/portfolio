@@ -50,7 +50,7 @@ const portfolioProjects: PortfolioProject[] = [
     ],
     rationale:
       'Permite mostrar diseño y soporte de sistemas orientados a operación real sin depender de narrativa académica.',
-    narrativeStatus: null,
+    narrativeStatus: 'Sistema implementado para centralización operativa e información interna.',
     content: {
       es: {
         title: 'SIMIGS',
@@ -82,7 +82,7 @@ const portfolioProjects: PortfolioProject[] = [
     ],
     rationale:
       'Aporta una línea clara de soluciones empresariales y refuerza el posicionamiento consultivo orientado a procesos.',
-    narrativeStatus: null,
+    narrativeStatus: 'Solución ERP implementada para organización operativa y control sectorial.',
     content: {
       es: {
         title: 'ERP Turismo',
@@ -114,7 +114,8 @@ const portfolioProjects: PortfolioProject[] = [
     ],
     rationale:
       'Refuerza capacidad para construir soluciones transversales a negocio, inventario y operación con foco en datos.',
-    narrativeStatus: null,
+    narrativeStatus:
+      'Plataforma ERP implementada para inventario, procesos comerciales y trazabilidad.',
     content: {
       es: {
         title: 'ERP Agroinsumos',
@@ -146,7 +147,8 @@ const portfolioProjects: PortfolioProject[] = [
     ],
     rationale:
       'Se conserva como evidencia secundaria de fundamentos técnicos, sin competir con los sistemas principales del MVP.',
-    narrativeStatus: null,
+    narrativeStatus:
+      'Proyecto académico aplicado como evidencia secundaria de fundamentos técnicos.',
     content: {
       es: {
         title: 'Proyecto educativo de estructuras de datos',
