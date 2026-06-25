@@ -41,6 +41,45 @@ Ejemplo:
 
 ### Sprint 01
 
+**Objetivo del sprint:** realinear la narrativa base del portfolio ya existente con el roadmap vigente, dejando definido qué proyectos entran en el MVP, cómo se clasifican y cómo se compara la estructura pública actual del sitio con la estructura mínima objetivo.
+**Alcance funcional:** inventario oficial de proyectos v1, taxonomía de estados de proyecto y matriz de correspondencia entre roadmap y estructura actual del sitio.
+**No alcance:** implementación de nuevas rutas, redacción completa del copy final, cambios visuales, integración con Medium/blog, desarrollo de casos de estudio completos, analytics, SEO o pulido de microinteracciones.
+**Entregables consolidados:**
+* Tabla oficial de proyectos del portfolio v1 con criterio de inclusión, prioridad y visibilidad narrativa.
+* Catálogo cerrado de estados de proyecto con definiciones operativas y reglas de uso.
+* Matriz de correspondencia entre estructura mínima del roadmap y artefactos/rutas actuales del repositorio.
+* Decisiones de alcance y trazabilidad que habilitan el Sprint 02 sin reabrir decisiones narrativas base.
+**Criterio de salida:** el sprint termina cuando exista una versión única, verificable y consistente de qué proyectos entran en el MVP, cómo se clasifican y qué secciones actuales cubren o no cubren la intención estructural del roadmap.
+**Tareas transversales:**
+* Contrastar cada definición del sprint con la Fase 1 del roadmap para evitar decisiones aisladas del objetivo consultivo.
+* Mantener trazabilidad explícita entre backlog, inventario visible en `src/data/projects.ts`, navegación/copy en `src/i18n/site.ts` y rutas reales existentes.
+* Separar en todos los entregables lo que es decisión de contenido, lo que es decisión de estructura y lo que queda diferido a implementación posterior.
+* Marcar desde este sprint los vacíos deliberadamente pospuestos para no convertirlos en deuda ambigua antes del Sprint 02.
+**Dependencias internas:**
+* `src/data/projects.ts` como fuente estructurada del inventario visible actual y punto de partida del inventario oficial.
+* `src/i18n/site.ts` como referencia de navegación, copy y localización que condiciona la arquitectura de información real.
+* Rutas actuales del sitio: `/`, `/about`, `/projects`, `/experience` y sus equivalentes `/en/`, `/en/about`, `/en/projects`, `/en/experience`.
+* `docs/portfolio-roadmap.md`, especialmente Fase 1, su estructura mínima recomendada y el gap declarado de blog/casos de estudio.
+**Riesgos tecnicos concretos:**
+* Tomar `src/data/projects.ts` como inventario definitivo sin distinguir entre lo actualmente visible y lo que debe permanecer en el MVP realineado.
+* Definir taxonomía de estados demasiado abstracta que luego no clasifique todos los proyectos existentes sin excepciones ad hoc.
+* Evaluar la arquitectura de información contra una visión ideal en lugar de contrastarla con las rutas y contenidos realmente presentes en el repositorio.
+* Mezclar decisiones narrativas bilingües con decisiones de implementación y dejar inconsistencias entre español e inglés para fases posteriores.
+**Decisiones cerradas para el sprint:**
+* Sprint 01 es de alineación narrativa y estructural; no implementa nuevas páginas ni resuelve visualmente los gaps detectados.
+* El inventario visible actual se toma como insumo, no como verdad final del MVP.
+* La taxonomía de estados debe ser corta, reutilizable y suficiente para clasificar todos los proyectos oficiales sin sobreventa.
+* La ausencia de blog y casos de estudio se documenta como gap estructural verificable, no como alcance de implementación inmediata.
+**Cambios importantes de interfaces y tipos:**
+* El sprint debe dejar documentado que la estructura tipo `Project` hoy usada en `src/data/projects.ts` podría requerir más semántica futura para soportar estado narrativo, prioridad o visibilidad, sin fijar todavía el shape final.
+* Debe quedar explícito qué decisiones afectan navegación localizada o copy centralizado en `src/i18n/site.ts` y cuáles son solo de priorización editorial.
+* La matriz roadmap-estructura debe tratar rutas existentes y faltantes como artefactos verificables del backlog, no solo como observaciones descriptivas.
+**Escenarios de prueba de referencia:**
+* Validar que todo proyecto del inventario oficial tenga correspondencia clara con el inventario visible actual o una justificación explícita de exclusión.
+* Validar que la taxonomía propuesta clasifique todos los proyectos oficiales sin crear estados improvisados para casos aislados.
+* Validar que cada elemento de la estructura mínima del roadmap tenga estado de cobertura observable frente a rutas y secciones reales del sitio.
+* Validar que una decisión que afecte nombre, estado o navegación tenga criterio consistente entre español e inglés.
+
 #### BLG-F1-S01-01 — Consolidar inventario estratégico de proyectos
 **Objetivo:** definir el conjunto oficial de proyectos que deben aparecer en la primera versión alineada del portfolio.  
 **Descripción:** el sitio actual muestra proyectos, pero no coincide completamente con la selección prioritaria del roadmap. Este ítem establece el inventario de referencia para contenido, navegación y futuros casos de estudio.  
@@ -52,6 +91,64 @@ Ejemplo:
 **Dependencias:** roadmap actualizado y criterio estratégico vigente.  
 **Tipo de ejecución:** Mixto  
 **Notas de validación:** la lista final debe coincidir con la narrativa consultiva del roadmap y no contradecir el contenido actual del sitio.
+**Contexto técnico:** hoy ya existe un inventario visible en `src/data/projects.ts`, con proyectos destacados y secundarios por locale. Este WI no asume que ese archivo ya represente la decisión correcta del MVP; define el inventario oficial que después debe alimentar datos, navegación, priorización editorial y backlog de casos de estudio.
+**Alcance funcional:**
+* Definir por cada proyecto oficial: nombre público en español e inglés, estado narrativo, tipo de proyecto, capacidad demostrada, prioridad relativa y condición de visibilidad dentro del MVP.
+* Marcar si cada proyecto queda como destacado, secundario o excluido de la narrativa principal del portfolio v1.
+* Establecer una regla explícita para proyectos actualmente visibles que no pasen el corte estratégico del roadmap.
+* Asegurar que la selección final sea utilizable por sprints posteriores sin volver a debatir “entra/no entra” a nivel de proyecto.
+**No alcance:**
+* Redacción completa de casos de estudio.
+* Implementación de filtros, tabs o controles UI para proyectos.
+* Creación de nuevas páginas o cambios en rutas existentes.
+**Gherkin ampliado:**
+* **Escenario: consolidación nominal del inventario oficial**
+  **Dado** el roadmap de Fase 1 y el inventario visible actual en `src/data/projects.ts`
+  **Cuando** se consolida la tabla oficial de proyectos del MVP
+  **Entonces** cada proyecto incluido queda con nombre público ES/EN, tipo, estado narrativo, capacidad demostrada, prioridad y condición de visibilidad.
+* **Escenario: exclusión sin contradicción del contenido visible actual**
+  **Dado** un proyecto que hoy aparece en el sitio pero no soporta la narrativa prioritaria del roadmap
+  **Cuando** se decide excluirlo del MVP o pasarlo a segundo plano
+  **Entonces** la decisión queda documentada con justificación y sin dejarlo ambiguamente dentro de la narrativa principal.
+* **Escenario: persistencia del inventario de referencia para sprints siguientes**  
+  **Dado** que Sprint 02 dependerá del mapa del sitio y la priorización de contenido  
+  **Cuando** se cierra este WI  
+  **Entonces** existe una única tabla de referencia que puede reutilizarse sin reinterpretar nombres, estados ni prioridad.
+* **Escenario: compatibilidad con el roadmap actual**  
+  **Dado** el objetivo consultivo del portfolio definido en `docs/portfolio-roadmap.md`  
+  **Cuando** se revisa la tabla final de proyectos  
+  **Entonces** el conjunto priorizado demuestra sistemas, procesos, datos, desarrollo o transformación digital sin inflar alcance académico o anecdótico.
+**Desglose de tareas:**
+* **Arquitectura**
+  * Identificar la fuente actual de inventario visible y sus límites semánticos.
+  * Definir el contrato mínimo del inventario estratégico sin fijar todavía el shape técnico final.
+* **Negocio/valor**
+  * Alinear la selección de proyectos con la narrativa consultiva que el roadmap quiere comunicar.
+  * Determinar qué proyectos aportan autoridad profesional y cuáles distraen o diluyen el mensaje.
+* **Funcional**
+  * Consolidar la tabla oficial con campos narrativos y de visibilidad.
+  * Marcar explícitamente proyectos destacados, secundarios y fuera del MVP.
+* **No funcional**
+  * Verificar consistencia bilingüe en nombres públicos y criterio de correspondencia ES/EN.
+  * Evitar categorías ambiguas o dependientes de memoria informal.
+* **Pruebas**
+  * Revisar que ningún proyecto oficial quede sin capacidad demostrada asociada.
+  * Revisar que ningún proyecto visible actual quede sin decisión de inclusión, exclusión o segundo plano.
+* **Documentacion/aceptacion**
+  * Dejar la tabla lista para ser referenciada desde Sprint 02 y Fase 3.
+  * Documentar supuestos de proyectos dudosos o pendientes de validación manual.
+**Checklist de implementacion:**
+* El inventario oficial existe y no depende de releer el roadmap completo para entender prioridades.
+* Ningún proyecto quedó listado sin capacidad demostrada asociada.
+* La versión en español está definida y existe criterio explícito de correspondencia con inglés.
+* Los proyectos retirados del MVP están marcados como fuera de narrativa principal o en segundo plano.
+* No quedan proyectos “temporales” dentro del inventario por falta de decisión.
+* La prioridad entre proyectos destacados y secundarios no depende de interpretación posterior.
+**Preguntas de definicion y cierre:**
+* ¿Qué proyectos hoy visibles en `src/data/projects.ts` siguen siendo estratégicos para el MVP y cuáles solo conservan valor de archivo o contexto?
+* ¿Existe algún proyecto que deba mantenerse visible por credibilidad técnica aunque no sea prioritario narrativamente?
+* ¿Qué evidencia mínima permite decidir que un proyecto “entra” al MVP y no queda como aspiración futura?
+* ¿Hay proyectos con traducción pública diferente entre español e inglés que deban normalizarse desde este sprint?
 
 #### BLG-F1-S01-02 — Definir taxonomía de estados de proyecto
 **Objetivo:** estandarizar cómo se clasifica cada proyecto dentro del portfolio.  
@@ -64,6 +161,68 @@ Ejemplo:
 **Dependencias:** inventario estratégico de proyectos.  
 **Tipo de ejecución:** Mixto  
 **Notas de validación:** cada proyecto debe poder clasificarse sin ambigüedad y sin requerir estados nuevos improvisados.
+**Contexto técnico:** la taxonomía regulará cómo se describe el inventario consolidado y condicionará futuros datos, badges narrativos o criterios editoriales. No debe inventarse una clasificación desligada de los proyectos reales del repositorio ni de la narrativa ya priorizada.
+**Alcance funcional:**
+* Definir un catálogo corto, cerrado y mutuamente entendible de estados válidos para el portfolio.
+* Asignar a cada estado una definición operativa, criterios de entrada/salida y tono narrativo permitido.
+* Incluir ejemplos positivos y negativos que eviten sobrerrepresentar prototipos, análisis o piezas documentales como si fueran productos finales.
+* Definir una regla de uso consistente entre español e inglés para que el estado sea canónico aunque cambie su redacción pública.
+**No alcance:**
+* Implementación de badges, chips o indicadores visuales.
+* Diseño de estilos o semántica CSS.
+* Filtros interactivos o navegación basada en estados.
+**Cambios esperados de interfaces/tipos:**
+* Documentar que la futura estructura de proyectos probablemente necesitará un campo canónico de estado o taxonomía.
+* Documentar que podría requerirse una regla de traducción o presentación por locale distinta del valor semántico base.
+* No fijar en este sprint una interfaz TypeScript definitiva ni un cambio efectivo en `src/data/projects.ts`.
+**Gherkin ampliado:**
+* **Escenario: clasificación nominal del inventario consolidado**
+  **Dado** el inventario oficial de proyectos del Sprint 01
+  **Cuando** se aplica la taxonomía definida
+  **Entonces** cada proyecto puede clasificarse con un único estado válido y una narrativa coherente.
+* **Escenario: rechazo de clasificación ambigua**
+  **Dado** un proyecto cuya descripción encaja parcialmente en más de un estado
+  **Cuando** la definición operativa no permite distinguirlo con claridad
+  **Entonces** la taxonomía se considera incompleta y debe ajustarse antes de cerrarse el WI.
+* **Escenario: consistencia bilingüe del estado**
+  **Dado** un estado definido en español
+  **Cuando** se describe el mismo proyecto en inglés
+  **Entonces** se mantiene el mismo valor semántico base y solo cambia su formulación pública.
+* **Escenario: reutilización sin estados ad hoc**
+  **Dado** el conjunto de proyectos oficiales del MVP
+  **Cuando** se intenta clasificar el último proyecto del inventario
+  **Entonces** no es necesario crear un estado nuevo improvisado para que encaje.
+**Desglose de tareas:**
+* **Arquitectura**
+  * Determinar qué dimensión semántica será estable: estado narrativo, tipo de proyecto o ambos.
+  * Separar la taxonomía de estado de otras etiquetas como foco técnico o tags de tecnologías.
+* **Negocio/valor**
+  * Definir cómo cada estado protege la credibilidad del portfolio y evita sobreventa.
+  * Alinear la taxonomía con la intención consultiva y no solo con etiquetas de delivery técnico.
+* **Funcional**
+  * Crear el catálogo cerrado y sus definiciones operativas.
+  * Asignar criterio de uso y ejemplos por estado.
+* **No funcional**
+  * Garantizar consistencia entre español e inglés.
+  * Evitar definiciones que dependan de conocimiento tácito o interpretación personal futura.
+* **Pruebas**
+  * Verificar que todos los proyectos oficiales clasifican sin solapamientos.
+  * Probar casos límite: proyecto en análisis, MVP parcial, documentación arquitectónica o pieza educativa.
+* **Documentacion/aceptacion**
+  * Dejar reglas de uso reutilizables para backlog narrativo, proyectos y futuros casos de estudio.
+  * Registrar restricciones para no degradar la taxonomía en sprints posteriores.
+**Checklist de implementacion:**
+* El catálogo está definido y no presenta solapamientos que obliguen a dobles clasificaciones.
+* Cada estado tiene definición operativa y regla narrativa, no solo nombre.
+* Existe correspondencia clara entre español e inglés para cada estado.
+* Ningún proyecto del inventario oficial requiere crear un estado ad hoc.
+* La taxonomía no mezcla estado narrativo con tags técnicos o foco funcional.
+* Los ejemplos negativos dejan claro qué no debe venderse como producto o implementación completa.
+**Preguntas de definicion y cierre:**
+* ¿La taxonomía debe priorizar etapa de madurez, tipo de entrega o naturaleza narrativa del proyecto?
+* ¿Qué estados son indispensables para comunicar con honestidad lo ya construido sin devaluar proyectos valiosos pero parciales?
+* ¿Hay algún proyecto actual que tensione el catálogo y obligue a revisar definiciones antes de cerrar el WI?
+* ¿Qué redacción pública en inglés podría inducir sobreventa aunque el estado semántico sea correcto?
 
 #### BLG-F1-S01-03 — Revisar la arquitectura de información actual frente al roadmap
 **Objetivo:** identificar qué secciones actuales se conservan, ajustan o amplían.  
@@ -76,6 +235,68 @@ Ejemplo:
 **Dependencias:** revisión del repositorio y del roadmap.  
 **Tipo de ejecución:** Codex con supervisión  
 **Notas de validación:** la matriz debe permitir justificar por qué cada fase del backlog existe.
+**Contexto técnico:** este WI debe contrastar la estructura real del sitio y no una arquitectura objetivo hipotética. Hoy existen rutas públicas para inicio, perfil, proyectos y experiencia, además de navegación localizada en `src/i18n/site.ts`; blog y casos de estudio todavía no existen como rutas o secciones públicas equivalentes.  
+**Alcance funcional:**
+* Construir una matriz sección/ruta actual vs estructura mínima recomendada por el roadmap.
+* Marcar por cada elemento su estado de cobertura: `completa`, `parcial`, `ausente` o `reubicable`.
+* Registrar si el gap depende de contenido, navegación, estructura o implementación futura.
+* Decidir explícitamente si cada vacío detectado debe resolverse en el MVP o diferirse a un sprint posterior identificado.
+**No alcance:**
+* Diseño visual de nuevas páginas o secciones.
+* Implementación de rutas faltantes.
+* Redacción definitiva de copy para navegación o páginas futuras.
+**Cambios importantes de interfaces y tipos:**
+* Documentar impactos esperados en navegación localizada si una sección deja de ser bloque interno y pasa a página o viceversa.
+* Documentar posibles necesidades de nuevos artefactos de datos o copy centralizado para cubrir secciones faltantes.
+* No prometer aún nuevos componentes, tipos o rutas; solo dejar identificados los impactos previsibles.
+**Gherkin ampliado:**
+* **Escenario: cobertura nominal de la estructura mínima**  
+  **Dado** el roadmap de Fase 1 y las rutas actuales del sitio  
+  **Cuando** se levanta la matriz de correspondencia  
+  **Entonces** cada sección objetivo queda asociada a una ruta/sección existente o marcada como `ausente` o `reubicable`.
+* **Escenario: detección explícita de vacíos actuales**  
+  **Dado** que blog y casos de estudio no están resueltos en la estructura pública actual  
+  **Cuando** se evalúa la cobertura del roadmap  
+  **Entonces** esos gaps quedan registrados con su dependencia y sin convertirse automáticamente en implementación del sprint.
+* **Escenario: correspondencia bilingüe observable**  
+  **Dado** una ruta o sección existente en español  
+  **Cuando** se valida su equivalente en inglés  
+  **Entonces** la matriz refleja si la cobertura es consistente entre `/` y `/en/`.
+* **Escenario: trazabilidad hacia backlog siguiente**  
+  **Dado** un gap marcado como `parcial`, `ausente` o `reubicable`  
+  **Cuando** se cierra el WI  
+  **Entonces** queda indicado qué sprint o decisión posterior debe absorberlo.
+**Desglose de tareas:**
+* **Arquitectura**
+  * Inventariar rutas, páginas y grandes bloques existentes del sitio.
+  * Traducir la estructura mínima del roadmap a un marco comparable con la arquitectura actual.
+* **Negocio/valor**
+  * Evaluar si la estructura existente soporta la intención de posicionamiento profesional del roadmap.
+  * Diferenciar vacíos que dañan el mensaje del MVP de vacíos que solo aplazan profundidad.
+* **Funcional**
+  * Construir la matriz de cobertura por sección objetivo.
+  * Marcar estados de cobertura y dependencias por gap.
+* **No funcional**
+  * Verificar consistencia de localización y navegabilidad entre español e inglés.
+  * Evitar conclusiones basadas en secciones implícitas o contenido no visible públicamente.
+* **Pruebas**
+  * Comprobar que toda sección mínima del roadmap tenga un estado observable en la matriz.
+  * Comprobar que los gaps tengan dependencia y decisión de tratamiento posterior.
+* **Documentacion/aceptacion**
+  * Dejar la matriz lista para alimentar sitemap, priorización de contenido y backlog narrativo del Sprint 02.
+  * Señalar explícitamente qué hallazgos son estructurales y cuáles son solo editoriales.
+**Checklist de implementacion:**
+* La matriz está levantada y contiene no alcance explícito del WI.
+* Cada ruta existente relevante está mapeada a un objetivo del roadmap o marcada como fuera de estructura mínima.
+* Cada gap identificado indica si se resuelve en MVP, se difiere o requiere decisión manual.
+* La navegación y cobertura en español fueron contrastadas con su impacto en `/en/`.
+* No se confundieron secciones deseadas del roadmap con artefactos ya existentes en el repo.
+* La matriz permite explicar por qué existen los sprints posteriores de blog, casos de estudio y home.
+**Preguntas de definicion y cierre:**
+* ¿Qué secciones actuales del sitio ya cumplen suficientemente el objetivo del roadmap aunque su copy aún no esté refinado?
+* ¿Qué gaps son estructurales de verdad y cuáles son solo ausencia de contenido o profundidad?
+* ¿Hay alguna ruta actual que deba degradarse a bloque interno o, al contrario, convertirse luego en página independiente?
+* ¿Qué vacíos deben quedar explícitamente diferidos para no inflar el alcance del MVP antes de Sprint 02?
 
 ### Sprint 02
 
