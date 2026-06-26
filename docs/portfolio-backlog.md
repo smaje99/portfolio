@@ -60,7 +60,7 @@ Ejemplo:
 * `src/i18n/site.ts` como referencia de navegación, copy y localización que condiciona la arquitectura de información real.
 * Rutas actuales del sitio: `/`, `/about`, `/projects`, `/experience` y sus equivalentes `/en/`, `/en/about`, `/en/projects`, `/en/experience`.
 * `docs/portfolio-roadmap.md`, especialmente Fase 1, su estructura mínima recomendada y el gap declarado de blog/casos de estudio.
-**Riesgos tecnicos concretos:**
+**Riesgos técnicos concretos:**
 * Tomar `src/data/projects.ts` como inventario definitivo sin distinguir entre lo actualmente visible y lo que debe permanecer en el MVP realineado.
 * Definir taxonomía de estados demasiado abstracta que luego no clasifique todos los proyectos existentes sin excepciones ad hoc.
 * Evaluar la arquitectura de información contra una visión ideal en lugar de contrastarla con las rutas y contenidos realmente presentes en el repositorio.
@@ -81,15 +81,15 @@ Ejemplo:
 * Validar que una decisión que afecte nombre, estado o navegación tenga criterio consistente entre español e inglés.
 
 #### BLG-F1-S01-01 — Consolidar inventario estratégico de proyectos
-**Objetivo:** definir el conjunto oficial de proyectos que deben aparecer en la primera versión alineada del portfolio.  
-**Descripción:** el sitio actual muestra proyectos, pero no coincide completamente con la selección prioritaria del roadmap. Este ítem establece el inventario de referencia para contenido, navegación y futuros casos de estudio.  
+**Objetivo:** definir el conjunto oficial de proyectos que deben aparecer en la primera versión alineada del portfolio.
+**Descripción:** el sitio actual muestra proyectos, pero no coincide completamente con la selección prioritaria del roadmap. Este ítem establece el inventario de referencia para contenido, navegación y futuros casos de estudio.
 **Actividades:**
 * Revisar la lista priorizada del roadmap y confirmar cuáles proyectos entran en la primera versión pública.
 * Definir por cada proyecto: nombre público, estado, tipo de proyecto y qué capacidad demuestra.
 * Marcar proyectos a retirar de la narrativa principal o pasar a segundo plano.
-**Entregable esperado:** tabla consolidada de proyectos oficiales para el portfolio v1.  
-**Dependencias:** roadmap actualizado y criterio estratégico vigente.  
-**Tipo de ejecución:** Mixto  
+**Entregable esperado:** tabla consolidada de proyectos oficiales para el portfolio v1.
+**Dependencias:** roadmap actualizado y criterio estratégico vigente.
+**Tipo de ejecución:** Mixto
 **Notas de validación:** la lista final debe coincidir con la narrativa consultiva del roadmap y no contradecir el contenido actual del sitio.
 **Contexto técnico:** hoy ya existe un inventario visible en `src/data/projects.ts`, con proyectos destacados y secundarios por locale. Este WI no asume que ese archivo ya represente la decisión correcta del MVP; define el inventario oficial que después debe alimentar datos, navegación, priorización editorial y backlog de casos de estudio.
 **Alcance funcional:**
@@ -110,13 +110,13 @@ Ejemplo:
   **Dado** un proyecto que hoy aparece en el sitio pero no soporta la narrativa prioritaria del roadmap
   **Cuando** se decide excluirlo del MVP o pasarlo a segundo plano
   **Entonces** la decisión queda documentada con justificación y sin dejarlo ambiguamente dentro de la narrativa principal.
-* **Escenario: persistencia del inventario de referencia para sprints siguientes**  
-  **Dado** que Sprint 02 dependerá del mapa del sitio y la priorización de contenido  
-  **Cuando** se cierra este WI  
+* **Escenario: persistencia del inventario de referencia para sprints siguientes**
+  **Dado** que Sprint 02 dependerá del mapa del sitio y la priorización de contenido
+  **Cuando** se cierra este WI
   **Entonces** existe una única tabla de referencia que puede reutilizarse sin reinterpretar nombres, estados ni prioridad.
-* **Escenario: compatibilidad con el roadmap actual**  
-  **Dado** el objetivo consultivo del portfolio definido en `docs/portfolio-roadmap.md`  
-  **Cuando** se revisa la tabla final de proyectos  
+* **Escenario: compatibilidad con el roadmap actual**
+  **Dado** el objetivo consultivo del portfolio definido en `docs/portfolio-roadmap.md`
+  **Cuando** se revisa la tabla final de proyectos
   **Entonces** el conjunto priorizado demuestra sistemas, procesos, datos, desarrollo o transformación digital sin inflar alcance académico o anecdótico.
 **Desglose de tareas:**
 * **Arquitectura**
@@ -134,10 +134,10 @@ Ejemplo:
 * **Pruebas**
   * Revisar que ningún proyecto oficial quede sin capacidad demostrada asociada.
   * Revisar que ningún proyecto visible actual quede sin decisión de inclusión, exclusión o segundo plano.
-* **Documentacion/aceptacion**
+* **Documentación/aceptación**
   * Dejar la tabla lista para ser referenciada desde Sprint 02 y Fase 3.
   * Documentar supuestos de proyectos dudosos o pendientes de validación manual.
-**Checklist de implementacion:**
+**Checklist de implementación:**
 * El inventario oficial existe y no depende de releer el roadmap completo para entender prioridades.
 * Ningún proyecto quedó listado sin capacidad demostrada asociada.
 * La versión en español está definida y existe criterio explícito de correspondencia con inglés.
@@ -215,34 +215,39 @@ Ejemplo:
 * **Pruebas**
   * Verificar que todos los proyectos oficiales clasifican sin solapamientos.
   * Probar casos límite: proyecto en análisis, MVP parcial, documentación arquitectónica o pieza educativa.
-* **Documentacion/aceptacion**
+* **Documentación/aceptación**
   * Dejar reglas de uso reutilizables para backlog narrativo, proyectos y futuros casos de estudio.
   * Registrar restricciones para no degradar la taxonomía en sprints posteriores.
-**Checklist de implementacion:**
+**Checklist de implementación:**
 * El catálogo está definido y no presenta solapamientos que obliguen a dobles clasificaciones.
 * Cada estado tiene definición operativa y regla narrativa, no solo nombre.
 * Existe correspondencia clara entre español e inglés para cada estado.
 * Ningún proyecto del inventario oficial requiere crear un estado ad hoc.
 * La taxonomía no mezcla estado narrativo con tags técnicos o foco funcional.
 * Los ejemplos negativos dejan claro qué no debe venderse como producto o implementación completa.
-**Preguntas de definicion y cierre:**
+**Preguntas de definición y cierre:**
 * ¿La taxonomía debe priorizar etapa de madurez, tipo de entrega o naturaleza narrativa del proyecto?
 * ¿Qué estados son indispensables para comunicar con honestidad lo ya construido sin devaluar proyectos valiosos pero parciales?
 * ¿Hay algún proyecto actual que tensione el catálogo y obligue a revisar definiciones antes de cerrar el WI?
 * ¿Qué redacción pública en inglés podría inducir sobreventa aunque el estado semántico sea correcto?
+**Estado actual:** Cerrado el 2026-06-26.
+**Cierre de implementación:**
+* La taxonomía normativa quedó documentada en `docs/project-status-taxonomy.md` con catálogo cerrado, definiciones operativas, reglas de uso y validación sobre roadmap e inventario visible actual.
+* Se formalizó la separación entre estado de proyecto, tipo, visibilidad narrativa, prioridad estratégica y tags técnicos para evitar que `narrativeStatus` siga funcionando como estado implícito.
+* Quedó documentado el impacto futuro esperado en `src/data/projects.ts`: un posible campo canónico `projectStatus` con presentación localizada separada del valor semántico base, sin fijar todavía el shape TypeScript.
 
 #### BLG-F1-S01-03 — Revisar la arquitectura de información actual frente al roadmap
-**Objetivo:** identificar qué secciones actuales se conservan, ajustan o amplían.  
-**Descripción:** el sitio ya tiene estructura base, pero necesita contrastarse contra el roadmap para decidir qué entra en el MVP real.  
+**Objetivo:** identificar qué secciones actuales se conservan, ajustan o amplían.
+**Descripción:** el sitio ya tiene estructura base, pero necesita contrastarse contra el roadmap para decidir qué entra en el MVP real.
 **Actividades:**
 * Comparar secciones actuales del sitio con la estructura mínima recomendada.
 * Identificar vacíos: blog, casos de estudio, stack/capacidades, cierre de lanzamiento.
 * Marcar secciones completas, parciales o ausentes.
-**Entregable esperado:** matriz de correspondencia entre roadmap y estructura actual.  
-**Dependencias:** revisión del repositorio y del roadmap.  
-**Tipo de ejecución:** Codex con supervisión  
+**Entregable esperado:** matriz de correspondencia entre roadmap y estructura actual.
+**Dependencias:** revisión del repositorio y del roadmap.
+**Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** la matriz debe permitir justificar por qué cada fase del backlog existe.
-**Contexto técnico:** este WI debe contrastar la estructura real del sitio y no una arquitectura objetivo hipotética. Hoy existen rutas públicas para inicio, perfil, proyectos y experiencia, además de navegación localizada en `src/i18n/site.ts`; blog y casos de estudio todavía no existen como rutas o secciones públicas equivalentes.  
+**Contexto técnico:** este WI debe contrastar la estructura real del sitio y no una arquitectura objetivo hipotética. Hoy existen rutas públicas para inicio, perfil, proyectos y experiencia, además de navegación localizada en `src/i18n/site.ts`; blog y casos de estudio todavía no existen como rutas o secciones públicas equivalentes.
 **Alcance funcional:**
 * Construir una matriz sección/ruta actual vs estructura mínima recomendada por el roadmap.
 * Marcar por cada elemento su estado de cobertura: `completa`, `parcial`, `ausente` o `reubicable`.
@@ -257,21 +262,21 @@ Ejemplo:
 * Documentar posibles necesidades de nuevos artefactos de datos o copy centralizado para cubrir secciones faltantes.
 * No prometer aún nuevos componentes, tipos o rutas; solo dejar identificados los impactos previsibles.
 **Gherkin ampliado:**
-* **Escenario: cobertura nominal de la estructura mínima**  
-  **Dado** el roadmap de Fase 1 y las rutas actuales del sitio  
-  **Cuando** se levanta la matriz de correspondencia  
+* **Escenario: cobertura nominal de la estructura mínima**
+  **Dado** el roadmap de Fase 1 y las rutas actuales del sitio
+  **Cuando** se levanta la matriz de correspondencia
   **Entonces** cada sección objetivo queda asociada a una ruta/sección existente o marcada como `ausente` o `reubicable`.
-* **Escenario: detección explícita de vacíos actuales**  
-  **Dado** que blog y casos de estudio no están resueltos en la estructura pública actual  
-  **Cuando** se evalúa la cobertura del roadmap  
+* **Escenario: detección explícita de vacíos actuales**
+  **Dado** que blog y casos de estudio no están resueltos en la estructura pública actual
+  **Cuando** se evalúa la cobertura del roadmap
   **Entonces** esos gaps quedan registrados con su dependencia y sin convertirse automáticamente en implementación del sprint.
-* **Escenario: correspondencia bilingüe observable**  
-  **Dado** una ruta o sección existente en español  
-  **Cuando** se valida su equivalente en inglés  
+* **Escenario: correspondencia bilingüe observable**
+  **Dado** una ruta o sección existente en español
+  **Cuando** se valida su equivalente en inglés
   **Entonces** la matriz refleja si la cobertura es consistente entre `/` y `/en/`.
-* **Escenario: trazabilidad hacia backlog siguiente**  
-  **Dado** un gap marcado como `parcial`, `ausente` o `reubicable`  
-  **Cuando** se cierra el WI  
+* **Escenario: trazabilidad hacia backlog siguiente**
+  **Dado** un gap marcado como `parcial`, `ausente` o `reubicable`
+  **Cuando** se cierra el WI
   **Entonces** queda indicado qué sprint o decisión posterior debe absorberlo.
 **Desglose de tareas:**
 * **Arquitectura**
