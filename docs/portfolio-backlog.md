@@ -294,51 +294,57 @@ Ejemplo:
 * **Pruebas**
   * Comprobar que toda sección mínima del roadmap tenga un estado observable en la matriz.
   * Comprobar que los gaps tengan dependencia y decisión de tratamiento posterior.
-* **Documentacion/aceptacion**
+* **Documentación/aceptación**
   * Dejar la matriz lista para alimentar sitemap, priorización de contenido y backlog narrativo del Sprint 02.
   * Señalar explícitamente qué hallazgos son estructurales y cuáles son solo editoriales.
-**Checklist de implementacion:**
+**Checklist de implementación:**
 * La matriz está levantada y contiene no alcance explícito del WI.
 * Cada ruta existente relevante está mapeada a un objetivo del roadmap o marcada como fuera de estructura mínima.
 * Cada gap identificado indica si se resuelve en MVP, se difiere o requiere decisión manual.
 * La navegación y cobertura en español fueron contrastadas con su impacto en `/en/`.
 * No se confundieron secciones deseadas del roadmap con artefactos ya existentes en el repo.
 * La matriz permite explicar por qué existen los sprints posteriores de blog, casos de estudio y home.
-**Preguntas de definicion y cierre:**
+**Preguntas de definición y cierre:**
 * ¿Qué secciones actuales del sitio ya cumplen suficientemente el objetivo del roadmap aunque su copy aún no esté refinado?
 * ¿Qué gaps son estructurales de verdad y cuáles son solo ausencia de contenido o profundidad?
 * ¿Hay alguna ruta actual que deba degradarse a bloque interno o, al contrario, convertirse luego en página independiente?
 * ¿Qué vacíos deben quedar explícitamente diferidos para no inflar el alcance del MVP antes de Sprint 02?
+**Estado actual:** Cerrado el 11 de julio de 2026.
+**Cierre de implementación:**
+* La matriz de correspondencia quedó documentada en `docs/portfolio-information-architecture-audit.md`, basada en las rutas, componentes, navegación localizada y datos públicos realmente observables.
+* Se confirmó cobertura bilingüe para inicio, perfil, proyectos y experiencia; contacto se conserva como bloque de la home y experiencia se incorpora como ruta complementaria a la estructura mínima.
+* Blog y casos de estudio quedaron identificados como gaps estructurales; stack/capacidades quedó clasificado como contenido existente pero reubicable, sin crear rutas ni componentes prematuramente.
+* Cada gap quedó asociado a su dependencia, decisión de tratamiento y work items posteriores, incluidos los pendientes de footer, analytics, 404 y validación de lanzamiento.
 
 ### Sprint 02
 
 #### BLG-F1-S02-01 — Formalizar mapa del sitio objetivo del MVP
-**Objetivo:** definir la estructura pública objetivo del portfolio v1.  
-**Descripción:** este ítem aterriza la navegación y las páginas finales que el MVP debe exponer, considerando lo ya construido y lo faltante.  
+**Objetivo:** definir la estructura pública objetivo del portfolio v1.
+**Descripción:** este ítem aterriza la navegación y las páginas finales que el MVP debe exponer, considerando lo ya construido y lo faltante.
 **Actividades:**
 * Definir páginas obligatorias y secciones internas por página.
 * Señalar qué irá como página independiente y qué irá como bloque dentro de otra página.
 * Incluir rutas bilingües cuando aplique.
-**Entregable esperado:** sitemap funcional del MVP.  
-**Dependencias:** inventario de proyectos y matriz de correspondencia.  
-**Tipo de ejecución:** Codex con supervisión  
+**Entregable esperado:** sitemap funcional del MVP.
+**Dependencias:** inventario de proyectos y matriz de correspondencia.
+**Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** el mapa debe cubrir identidad, proyectos, experiencia, blog, contacto y futuros casos de estudio.
 
 #### BLG-F1-S02-02 — Definir criterio de priorización de contenido público
-**Objetivo:** decidir qué contenido entra en v1, qué se posterga y qué se reserva para fases futuras.  
-**Descripción:** evita inflar el alcance del MVP con piezas todavía inmaduras o innecesarias para el objetivo consultivo.  
+**Objetivo:** decidir qué contenido entra en v1, qué se posterga y qué se reserva para fases futuras.
+**Descripción:** evita inflar el alcance del MVP con piezas todavía inmaduras o innecesarias para el objetivo consultivo.
 **Actividades:**
 * Clasificar contenido en crítico, importante y futuro.
 * Marcar contenidos bloqueados por falta de información o madurez.
 * Relacionar prioridades con los OKRs del roadmap.
-**Entregable esperado:** matriz de priorización de contenido del MVP.  
-**Dependencias:** sitemap funcional y backlog del roadmap.  
-**Tipo de ejecución:** Codex con supervisión  
+**Entregable esperado:** matriz de priorización de contenido del MVP.
+**Dependencias:** sitemap funcional y backlog del roadmap.
+**Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** los contenidos críticos deben explicar claramente quién eres, qué haces, qué proyectos puedes construir y cómo contactarte.
 
 #### BLG-F1-S02-03 — Definir backlog narrativo inicial
-**Objetivo:** convertir la estrategia discursiva del portfolio en piezas concretas de contenido.  
-**Descripción:** la narrativa del sitio debe pasar de intención general a unidades redactables: hero, capacidades, proyectos, autoridad técnica y contacto.  
+**Objetivo:** convertir la estrategia discursiva del portfolio en piezas concretas de contenido.
+**Descripción:** la narrativa del sitio debe pasar de intención general a unidades redactables: hero, capacidades, proyectos, autoridad técnica y contacto.
 **Actividades:**
 * Listar piezas de copy pendientes por sección.
 * Priorizar el copy que bloquea diseño o implementación.
