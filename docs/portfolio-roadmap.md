@@ -150,7 +150,7 @@ El portfolio **sí avanzó técnicamente**, pero todavía **no cumple por comple
 
 * Ya existe una sección de proyectos.
 * No existen todavía casos de estudio completos.
-* Los proyectos visibles necesitan alinearse mejor con esta estrategia.
+* El inventario público base del MVP ya quedó delimitado en Sprint 01, pero los casos de estudio prioritarios de esta estrategia siguen pendientes de maduración y publicación.
 * La profundidad actual de presentación aún no demuestra criterio técnico al nivel esperado.
 
 Casos iniciales recomendados:
@@ -161,6 +161,8 @@ Casos iniciales recomendados:
 4. **Proyecto jurídico/documental**
 5. Opcional: proyecto de estructuras de datos en Java
 6. Opcional: trabajos de BI / BPM / automatización
+
+Estos casos conforman el pipeline recomendado para la Fase 3. No equivalen automáticamente al inventario público base ya visible en el MVP actual.
 
 ---
 
@@ -501,7 +503,7 @@ No hay evidencia documentada en el repositorio de una ronda formal de validació
 
 * Diseñar sección de blog.
 * Integrar Medium.
-* Reemplazar y realinear el inventario de proyectos con la estrategia definida aquí.
+* Conectar el inventario público base ya definido con el pipeline de casos de estudio priorizados por este roadmap.
 * Convertir los proyectos prioritarios en casos de estudio reales.
 * Revisar coherencia narrativa entre portfolio, GitHub y LinkedIn.
 * Refinar el copy principal desde una óptica más consultiva.
@@ -610,18 +612,18 @@ La clave es mostrar también proyectos en evolución, pero con honestidad: **en 
 
 # Próxima acción concreta
 
-Con base en el estado real del proyecto, la siguiente prioridad ya no debería ser solo definir estructura general. Esa base ya avanzó. Ahora el foco debe estar en cerrar la brecha entre la estrategia del roadmap y el contenido actualmente publicado.
+Con base en el estado real del proyecto, la siguiente prioridad ya no debería ser solo definir estructura general. Esa base ya avanzó. Ahora el foco debe estar en convertir la base narrativa ya delimitada en una arquitectura objetivo del MVP y en un pipeline ejecutable de casos de estudio y blog.
 
 ## Sprint Portfolio 02
 
 ### Objetivo
 
-Realinear el portfolio con este roadmap y preparar la base real de casos de estudio y blog.
+Formalizar el sitemap del MVP sobre la base ya delimitada y preparar la ejecución real de casos de estudio y blog.
 
 ### Tareas
 
-1. Reemplazar los proyectos visibles por la selección prioritaria definida aquí.
-2. Definir el estado de cada proyecto: análisis, desarrollo, MVP, prototipo o documentación arquitectónica.
+1. Formalizar la relación entre inventario público base y pipeline priorizado de casos de estudio.
+2. Definir sitemap y priorización de contenido del MVP.
 3. Diseñar una plantilla base de caso de estudio.
 4. Crear al menos el primer caso de estudio real.
 5. Definir la arquitectura mínima de la sección blog.
@@ -630,16 +632,19 @@ Realinear el portfolio con este roadmap y preparar la base real de casos de estu
 
 ### Entregable mínimo
 
-1. Nueva lista de proyectos alineada con el roadmap.
-2. Primera plantilla o página de caso de estudio.
-3. Decisión técnica documentada sobre Medium.
-4. Lista priorizada de tareas de cierre para MVP.
+1. Sitemap funcional del MVP con reglas de cobertura y navegación.
+2. Matriz de priorización de contenido y relación explícita entre inventario público base y pipeline de casos.
+3. Primera plantilla o página de caso de estudio.
+4. Decisión técnica documentada sobre Medium.
+5. Lista priorizada de tareas de cierre para MVP.
 
 ---
 
 ## Referencia histórica conservada
 
 La siguiente sección se conserva como referencia del primer sprint conceptual y sigue siendo útil como origen del roadmap:
+
+La selección `ITA` / `Cognark` / `Media Report CLI` / `Proyecto Jurídico` se preserva aquí como referencia histórica y como pipeline sugerido de casos de estudio. No representa por sí sola el inventario público base que Sprint 01 cerró para el MVP actual.
 
 Este fin de semana deberías cerrar únicamente esto:
 

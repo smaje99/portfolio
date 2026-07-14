@@ -144,12 +144,14 @@ Ejemplo:
 * Los proyectos retirados del MVP están marcados como fuera de narrativa principal o en segundo plano.
 * No quedan proyectos “temporales” dentro del inventario por falta de decisión.
 * La prioridad entre proyectos destacados y secundarios no depende de interpretación posterior.
-**Estado actual:** Cerrado el 2026-06-25.
+**Estado actual:** Cerrado el 2026-06-25. Regularizado el 2026-07-13.
 **Cierre de implementación:**
-* El inventario oficial del MVP quedó materializado en `src/data/projects.ts` como fuente canónica bilingüe y reutilizable.
+* El inventario oficial del MVP quedó materializado en `src/data/projects.ts` como inventario público base canónico, bilingüe y reutilizable para el portfolio v1.
 * Los cuatro proyectos visibles actuales quedaron definidos con nombre público ES/EN, estado narrativo, tipo, capacidades demostradas, prioridad estratégica y visibilidad dentro del portfolio.
 * La visibilidad pública actual se conserva: tres proyectos `featured` y un proyecto `secondary`, sin alterar todavía rutas ni UI.
 * La correspondencia entre español e inglés quedó normalizada sobre slugs canónicos únicos por proyecto.
+* La divergencia con la selección estratégica del roadmap quedó resuelta a nivel de cierre: `SIMIGS`, `ERP Turismo`, `ERP Agroinsumos` y `Proyecto educativo de estructuras de datos` conforman el inventario público base del MVP; `ITA`, `Cognark`, `Media Report CLI` y el proyecto jurídico/documental quedan como pipeline priorizado para futuros casos de estudio y no como sustitución inmediata del inventario visible.
+* Los proyectos fuera del inventario público base no se consideran descartados; quedan explícitamente diferidos a Fase 3 por madurez narrativa, profundidad de artefacto y necesidad de estructura de caso de estudio.
 * Validación técnica ejecutada: `./node_modules/.bin/astro check`, `./node_modules/.bin/astro build` y `./node_modules/.bin/biome check src/data/projects.ts src/components/ProjectsGrid.astro`.
 **Preguntas de definición y cierre:**
 * ¿Qué proyectos hoy visibles en `src/data/projects.ts` siguen siendo estratégicos para el MVP y cuáles solo conservan valor de archivo o contexto?
@@ -315,6 +317,18 @@ Ejemplo:
 * Se confirmó cobertura bilingüe para inicio, perfil, proyectos y experiencia; contacto se conserva como bloque de la home y experiencia se incorpora como ruta complementaria a la estructura mínima.
 * Blog y casos de estudio quedaron identificados como gaps estructurales; stack/capacidades quedó clasificado como contenido existente pero reubicable, sin crear rutas ni componentes prematuramente.
 * Cada gap quedó asociado a su dependencia, decisión de tratamiento y work items posteriores, incluidos los pendientes de footer, analytics, 404 y validación de lanzamiento.
+
+**Estado actual del sprint:** Cerrado el 2026-07-13.
+**Cierre del sprint:**
+* El sprint deja una base verificable y no ambigua para Sprint 02: inventario público base del MVP, taxonomía normativa de estados y auditoría de arquitectura de información.
+* La relación entre estrategia y ejecución quedó cerrada sin reabrir Fase 3: el inventario público base del MVP se mantiene sobre proyectos ya visibles y defendibles; el roadmap conserva un pipeline separado de casos de estudio prioritarios para madurar y publicar después.
+* Los vacíos diferidos quedaron identificados sin inflar el alcance del sprint: blog, casos de estudio, stack/capacidades, footer, analytics, 404 y validación de lanzamiento.
+* Sprint 02 queda desbloqueado con trazabilidad explícita hacia sitemap, priorización de contenido y backlog narrativo.
+**Evidencia de verificación del sprint:**
+* `src/data/projects.ts` materializa el inventario público base y su correspondencia bilingüe.
+* `docs/project-status-taxonomy.md` define la taxonomía canónica y documenta su aplicación sobre el roadmap y el inventario visible.
+* `docs/portfolio-information-architecture-audit.md` deja la matriz de cobertura, gaps y dependencias para las fases siguientes.
+* Validación técnica de regularización ejecutada el 2026-07-13: `./node_modules/.bin/astro check`, `./node_modules/.bin/astro build` y `./node_modules/.bin/biome check .`.
 
 ### Sprint 02
 

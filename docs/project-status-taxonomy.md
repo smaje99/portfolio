@@ -187,20 +187,21 @@ La frontera acordada no es solo técnica; depende del contexto de uso.
 * `analysis` se centra en descubrimiento, framing o arquitectura exploratoria de una solución futura.
 * `architectural-documentation` se usa cuando el principal entregable público ya es el blueprint o artefacto arquitectónico.
 
-## Nota de divergencia entre roadmap e inventario visible
+## Resolución de la divergencia entre roadmap e inventario visible
 
-Esta taxonomía es normativa, pero no resuelve por sí misma qué inventario debe dominar la narrativa pública del MVP.
+Esta taxonomía es normativa y, tras el cierre regularizado de `BLG-F1-S01-01`, ya no deja abierta una ambigüedad operativa sobre qué inventario domina cada capa narrativa.
 
-Hoy existe una divergencia explícita:
+Quedan definidos dos conjuntos con funciones distintas:
 
-* El roadmap prioriza ITA, Cognark, Media Report CLI y el proyecto jurídico/documental.
-* El sitio actual visible muestra SIMIGS, ERP Turismo, ERP Agroinsumos y el proyecto educativo de estructuras de datos.
+* El inventario público base del MVP usa los proyectos hoy visibles en el sitio: `SIMIGS`, `ERP Turismo`, `ERP Agroinsumos` y `Proyecto educativo de estructuras de datos`.
+* El roadmap conserva `ITA`, `Cognark`, `Media Report CLI` y el proyecto jurídico/documental como pipeline priorizado para futuros casos de estudio.
 
 Reglas para manejar esa divergencia:
 
-* Este WI define cómo clasificar proyectos, no cuál conjunto gana la priorización final.
-* Cualquier re-clasificación posterior debe reutilizar este catálogo sin agregar estados nuevos.
-* La reconciliación entre inventario estratégico, narrativa pública y estructura del sitio corresponde a los WI de inventario y arquitectura de información, no a este documento.
+* Este documento sigue definiendo cómo clasificar proyectos, no el orden exacto en que se publicarán como casos de estudio.
+* Cualquier proyecto que migre del pipeline de casos de estudio al inventario público o a una ruta de detalle debe reutilizar este catálogo sin agregar estados nuevos.
+* La separación entre `inventario público base` y `pipeline de casos de estudio` evita confundir evidencia ya publicada con narrativa futura todavía no materializada.
+* La decisión de si el pipeline complementa, reordena o sustituye parcialmente el inventario público base pertenece a Sprint 02 y Fase 3, no a la taxonomía.
 
 ## Impacto futuro esperado en datos e interfaces
 
