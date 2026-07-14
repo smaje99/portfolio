@@ -449,6 +449,14 @@ Ejemplo:
 * ¿Casos de estudio deben vivir como detalle de proyectos o como agrupación separada cuando llegue Fase 3?
 * ¿`Stack/capacidades` comunica mejor como bloque de home, bloque de perfil o ruta independiente?
 * ¿Existe algún nodo actual cuya permanencia estructural contradiga el posicionamiento consultivo del roadmap?
+**Estado actual:** Cerrado el 2026-07-13.
+**Cierre de implementación:**
+* El sitemap funcional del MVP quedó documentado en `docs/portfolio-mvp-sitemap.md` como entregable canónico de `BLG-F1-S02-01`.
+* La arquitectura objetivo distingue `página independiente`, `bloque interno`, `nodo reservado` y `diferido fuera de v1`, evitando mezclar rutas reales, anchors internos y promesas futuras.
+* Inicio, perfil, proyectos y experiencia quedan como páginas públicas bilingües; enfoque/capacidades y contacto quedan como bloques internos de la home con paridad ES/EN.
+* Blog y casos de estudio quedan contemplados como nodos reservados sin enlace público en v1, dependientes de Fase 4 y Fase 3 respectivamente.
+* Footer, analytics y 404 quedan explícitamente diferidos a Fase 5 como piezas de cierre técnico, no como parte del sitemap funcional de contenido del Sprint 02.
+* No se modificaron rutas Astro, `src/i18n/site.ts`, `Header.astro`, `BasePage.astro` ni `Layout.astro`; la navegación runtime conserva el contrato simple `{ label, href }[]`.
 
 #### BLG-F1-S02-02 — Definir criterio de priorización de contenido público
 **Objetivo:** decidir qué contenido entra en v1, qué se posterga y qué se reserva para fases futuras.
