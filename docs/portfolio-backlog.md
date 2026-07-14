@@ -332,6 +332,50 @@ Ejemplo:
 
 ### Sprint 02
 
+**Objetivo del sprint:** convertir la alineación lograda en Sprint 01 en una arquitectura objetivo del MVP, una prioridad de contenido explícita y un backlog narrativo inicial reutilizable por las fases de implementación.
+**Alcance funcional:** sitemap objetivo bilingüe del MVP, matriz de priorización de contenido por página/sección y backlog narrativo inicial con piezas de copy, dependencias y tipo de ejecución.
+**No alcance:** implementación de rutas nuevas, redacción final del copy, publicación de casos de estudio, integración efectiva con Medium, definición técnica de analytics/footer/404, cambios visuales o refactor de datos/componentes fuera de lo que el sprint deje especificado.
+**Entregables consolidados:**
+* Sitemap objetivo del MVP con distinción entre páginas independientes, bloques internos, nodos reservados y elementos explícitamente diferidos.
+* Matriz de priorización de contenido con clasificación `critico`, `importante`, `posterior` y bloqueo documentado cuando aplique.
+* Backlog narrativo inicial por página/sección con piezas de contenido, dependencia, evidencia mínima y tipo de ejecución.
+* Trazabilidad explícita entre inventario público base, taxonomía de estados, auditoría de arquitectura de información y fases posteriores del roadmap.
+**Criterio de salida:** el sprint termina cuando exista una definición única y reutilizable de qué estructura pública debe tener el MVP, qué contenido entra realmente en v1 y qué piezas narrativas concretas deben producirse después, sin reabrir decisiones de Sprint 01 ni mezclar diseño/implementación con planificación.
+**Tareas transversales:**
+* Mantener trazabilidad explícita entre `docs/portfolio-information-architecture-audit.md`, `docs/portfolio-roadmap.md`, `src/i18n/site.ts`, `src/pages/` y `src/data/projects.ts`.
+* Separar en cada entregable qué queda visible en el MVP actual, qué queda reservado para evolución estructural y qué se difiere con work item identificado.
+* Verificar paridad bilingüe entre español e inglés para rutas, labels de navegación y criterios de publicación.
+* Evitar que la priorización de contenido dependa de intuición editorial no documentada o de recordar conversaciones previas.
+* Dejar base suficiente para que Fase 2 implemente home/CTAs y Fases 3-4 implementen casos de estudio y blog sin rediscutir el mapa del sitio.
+**Dependencias internas:**
+* `docs/portfolio-information-architecture-audit.md` como línea base estructural y fuente principal para diferenciar `completa`, `parcial`, `ausente` y `reubicable`.
+* `docs/project-status-taxonomy.md` para no perder consistencia entre estado narrativo, visibilidad y profundidad posterior de casos de estudio.
+* `src/i18n/site.ts` como estado actual de navegación localizada y copy centralizado.
+* `src/pages/` y componentes de página como evidencia de qué rutas y bloques existen realmente hoy.
+* `src/data/projects.ts` como inventario público base que condiciona proyectos destacados, secundarios y futuras rutas de profundidad.
+**Riesgos técnicos concretos:**
+* Diseñar un sitemap idealizado que ignore restricciones reales de navegación localizada, anchors existentes y rutas ya maduras del sitio.
+* Priorizar contenido solo por intuición estratégica sin mapearlo a páginas, secciones, origen de datos y dependencia de implementación.
+* Tratar blog y casos de estudio como si ya tuvieran arquitectura o integración decidida, cuando el repositorio solo soporta reservarles espacio narrativo y estructural.
+* Reabrir decisiones ya cerradas en Sprint 01 sobre inventario base, taxonomía o función de experiencia dentro del MVP.
+* Mezclar backlog narrativo con copy final y dejar piezas sin responsable, sin evidencia mínima o sin dependencia explícita.
+**Decisiones cerradas para el sprint:**
+* El inventario público base definido en Sprint 01 no se reevalúa; Sprint 02 solo lo usa para decidir jerarquía, profundidad y trazabilidad de contenido.
+* `Experiencia` se conserva como página independiente dentro del MVP por su aporte de confianza y evidencia profesional.
+* `Contacto` se mantiene como bloque interno de la home mientras no exista una razón estructural verificable para volverlo página independiente.
+* `Stack/capacidades` se resolverá primero como función narrativa antes de decidir si merece o no una ruta propia.
+* `Blog` y `casos de estudio` deben quedar contemplados en la arquitectura objetivo, pero su implementación y sus decisiones técnicas específicas permanecen diferidas a Fase 3 y Fase 4.
+**Cambios importantes de interfaces y tipos:**
+* El sprint debe dejar explícito qué labels y enlaces de `src/i18n/site.ts` podrían cambiar cuando blog o casos de estudio pasen a navegación pública, sin exigir todavía una edición de implementación.
+* Debe quedar documentado si el MVP necesita distinguir entre nodos navegables, bloques internos y nodos reservados para fases posteriores.
+* La priorización de contenido debe anticipar que algunos textos hoy centralizados en `src/i18n/site.ts` podrían migrar a artefactos narrativos más granulares si crece la profundidad editorial del sitio.
+* Debe quedar indicado si `src/data/projects.ts` necesitará más adelante una relación explícita entre proyecto listado y caso de estudio publicable, sin fijar todavía el shape final.
+**Escenarios de prueba de referencia:**
+* Validar que cada elemento del sitemap objetivo tenga estado observable: página, bloque interno, reservado o diferido.
+* Validar que cada contenido clasificado como `critico` esté vinculado a una página/sección concreta, a un objetivo del roadmap y a un tipo de ejecución.
+* Validar que cada pieza del backlog narrativo indique evidencia mínima, dependencia y responsable principal sin exigir reinterpretación posterior.
+* Validar que ninguna decisión del sprint contradiga el inventario base, la taxonomía normativa ni la auditoría de arquitectura de información ya cerrados.
+
 #### BLG-F1-S02-01 — Formalizar mapa del sitio objetivo del MVP
 **Objetivo:** definir la estructura pública objetivo del portfolio v1.
 **Descripción:** este ítem aterriza la navegación y las páginas finales que el MVP debe exponer, considerando lo ya construido y lo faltante.
@@ -343,6 +387,68 @@ Ejemplo:
 **Dependencias:** inventario de proyectos y matriz de correspondencia.
 **Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** el mapa debe cubrir identidad, proyectos, experiencia, blog, contacto y futuros casos de estudio.
+**Contexto técnico:** hoy el sitio ya expone rutas públicas bilingües para inicio, perfil, proyectos y experiencia, además de bloques internos navegables para enfoque y contacto. `docs/portfolio-information-architecture-audit.md` ya concluyó que blog y casos de estudio están ausentes, que `stack/capacidades` es reubicable y que `experiencia` debe preservarse como página independiente. Este WI no rediseña la UI; convierte esa línea base en un sitemap objetivo verificable.
+**Alcance funcional:**
+* Definir el conjunto de nodos del MVP distinguiendo `página independiente`, `bloque interno`, `nodo reservado` y `diferido fuera de v1`.
+* Documentar por cada nodo su objetivo narrativo, su paridad ES/EN y su relación con navegación pública o acceso contextual.
+* Resolver explícitamente la ubicación estructural de `stack/capacidades`, `experiencia`, `contacto`, `blog` y `casos de estudio`.
+* Establecer para blog y casos de estudio si quedan visibles desde la navegación del MVP, visibles solo como destino futuro o reservados sin enlace público hasta su fase correspondiente.
+**No alcance:**
+* Implementación de rutas Astro nuevas o cambios efectivos en `src/i18n/site.ts`.
+* Redacción de títulos finales, microcopy o metadata por página.
+* Decisión técnica de integración con Medium.
+**Cambios esperados de interfaces/tipos:**
+* Registrar si la navegación actual necesitará nuevos labels, anchors o rutas localizadas cuando se ejecute el sitemap.
+* Registrar si la noción de “nodo reservado” requiere una convención documental o futura interfaz de navegación más expresiva que la lista simple actual.
+* No fijar todavía un contrato TypeScript nuevo para navegación o sitemap.
+**Gherkin ampliado:**
+* **Escenario: consolidación nominal del sitemap objetivo**
+  **Dado** la auditoría de arquitectura de información y las rutas públicas actuales del repositorio
+  **Cuando** se formaliza el sitemap del MVP
+  **Entonces** cada función del sitio queda clasificada como página independiente, bloque interno, nodo reservado o elemento diferido fuera de v1.
+* **Escenario: rechazo de sitemap ambiguo frente a rutas y locales**
+  **Dado** una propuesta de sitemap que no distingue entre rutas reales, anchors internos y nodos futuros
+  **Cuando** se intenta cerrarla como referencia del MVP
+  **Entonces** el WI no puede darse por válido hasta documentar la paridad ES/EN y el comportamiento estructural de cada nodo.
+* **Escenario: trazabilidad estructural hacia fases posteriores**
+  **Dado** que blog y casos de estudio aún no existen como rutas públicas implementadas
+  **Cuando** el sitemap los contempla dentro de la arquitectura objetivo
+  **Entonces** queda indicada su condición de reserva, su dependencia y la fase posterior que materializará cada nodo.
+* **Escenario: compatibilidad con los artefactos ya maduros del sitio**
+  **Dado** que `experiencia`, `proyectos`, `perfil` e `inicio` ya existen con cobertura pública bilingüe
+  **Cuando** se define el sitemap objetivo
+  **Entonces** esos nodos se conservan o reubican con justificación explícita y sin perder su trazabilidad con la implementación actual.
+**Desglose de tareas:**
+* **Arquitectura**
+  * Traducir la auditoría actual a un modelo de nodos del sitemap con estado y función narrativa.
+  * Definir reglas para distinguir rutas, bloques internos y nodos reservados.
+* **Negocio/valor**
+  * Asegurar que la estructura soporte identidad profesional, prueba de capacidad, autoridad técnica y contacto.
+  * Evitar que la arquitectura del MVP parezca una expansión descontrolada del sitio en lugar de una versión consultiva focalizada.
+* **Funcional**
+  * Listar páginas obligatorias y secciones internas por página.
+  * Resolver el tratamiento de blog, casos de estudio, stack/capacidades y experiencia dentro del mapa objetivo.
+* **No funcional**
+  * Garantizar paridad bilingüe y consistencia de reglas de navegación.
+  * Evitar dependencias estructurales que supongan integración externa todavía no decidida.
+* **Pruebas**
+  * Verificar que cada nodo tenga un estado observable y no quede en una categoría ambigua.
+  * Verificar que el sitemap permita justificar la secuencia de fases posteriores del backlog.
+* **Documentación/aceptación**
+  * Dejar el sitemap en un formato reutilizable para implementación y revisión editorial.
+  * Registrar decisiones de diferimiento sin esconder vacíos estructurales del MVP.
+**Checklist de implementación:**
+* Cada nodo del sitemap está clasificado y no depende de interpretación posterior.
+* La relación entre página independiente, bloque interno y nodo reservado quedó explícita.
+* `Experiencia` y `contacto` tienen tratamiento estructural cerrado y coherente con la auditoría.
+* `Blog` y `casos de estudio` aparecen con dependencia y estado, no como promesas implícitas.
+* La paridad ES/EN está definida para todos los nodos que deban ser públicos.
+* No se introducen rutas hipotéticas sin indicar si son inmediatas o diferidas.
+**Preguntas de definición y cierre:**
+* ¿Blog debe figurar en navegación pública desde el MVP inicial o solo quedar reservado hasta la Fase 4?
+* ¿Casos de estudio deben vivir como detalle de proyectos o como agrupación separada cuando llegue Fase 3?
+* ¿`Stack/capacidades` comunica mejor como bloque de home, bloque de perfil o ruta independiente?
+* ¿Existe algún nodo actual cuya permanencia estructural contradiga el posicionamiento consultivo del roadmap?
 
 #### BLG-F1-S02-02 — Definir criterio de priorización de contenido público
 **Objetivo:** decidir qué contenido entra en v1, qué se posterga y qué se reserva para fases futuras.
@@ -355,6 +461,68 @@ Ejemplo:
 **Dependencias:** sitemap funcional y backlog del roadmap.
 **Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** los contenidos críticos deben explicar claramente quién eres, qué haces, qué proyectos puedes construir y cómo contactarte.
+**Contexto técnico:** el repositorio ya contiene contenido público distribuido entre home, perfil, proyectos, experiencia, contacto y CV, pero su jerarquía editorial aún no está formalizada. Además, varios gaps del roadmap dependen de madurez narrativa o de decisiones externas: blog, casos de estudio profundos, validación externa, analytics y piezas de cierre. Este WI define una matriz que permita diferenciar lo publicable ahora de lo que debe bloquearse o diferirse sin ambigüedad.
+**Alcance funcional:**
+* Definir una escala de priorización mínima para el MVP: `critico`, `importante`, `posterior` y `bloqueado` cuando aplique.
+* Clasificar contenidos por página/sección, indicando objetivo del roadmap, dependencia principal, fuente actual y tipo de ejecución.
+* Documentar qué contenido ya existe y requiere solo reubicación o ajuste, y qué contenido aún no existe o no es suficientemente maduro para entrar en v1.
+* Establecer reglas explícitas para no promover a contenido crítico piezas sin evidencia, sin voz propia o sin soporte estructural del sitemap.
+**No alcance:**
+* Redactar el contenido final de cada pieza.
+* Implementar componentes, páginas o integraciones nuevas.
+* Repriorizar objetivos del roadmap por fuera del alcance del MVP.
+**Cambios esperados de interfaces/tipos:**
+* Dejar indicado qué piezas hoy viven en `src/i18n/site.ts` y podrían migrar a un backlog narrativo o a módulos de contenido más específicos.
+* Registrar si alguna prioridad depende de un futuro artefacto estructurado adicional, como detalle de caso de estudio o fuente editorial para blog.
+* No introducir todavía nuevos tipos en el código para modelar prioridad de contenido.
+**Gherkin ampliado:**
+* **Escenario: clasificación nominal del contenido del MVP**
+  **Dado** el sitemap objetivo del Sprint 02 y los OKRs activos del roadmap
+  **Cuando** se construye la matriz de priorización
+  **Entonces** cada contenido relevante queda clasificado como `critico`, `importante`, `posterior` o `bloqueado`, con página/sección y dependencia asociadas.
+* **Escenario: contenido bloqueado por falta de madurez o evidencia**
+  **Dado** una pieza asociada a blog, caso de estudio o validación externa que aún no cuenta con insumos suficientes
+  **Cuando** se evalúa su entrada al MVP
+  **Entonces** la pieza se marca como `bloqueado` o `posterior` con su causa explícita, sin inflar el alcance de v1.
+* **Escenario: trazabilidad entre prioridad y objetivos del roadmap**
+  **Dado** una pieza marcada como `critico`
+  **Cuando** se revisa su razón de entrada al MVP
+  **Entonces** existe vínculo observable con una página concreta, un objetivo del roadmap y una necesidad de lanzamiento del portfolio.
+* **Escenario: compatibilidad con contenido ya visible pero disperso**
+  **Dado** contenido que ya existe parcialmente en home, perfil, experiencia o proyectos
+  **Cuando** se lo clasifica en la matriz
+  **Entonces** se diferencia si requiere conservación, reubicación, expansión o diferimiento sin duplicar su función narrativa.
+**Desglose de tareas:**
+* **Arquitectura**
+  * Identificar las fuentes actuales de contenido público y sus límites de reutilización.
+  * Relacionar cada pieza con la estructura definida en el sitemap objetivo.
+* **Negocio/valor**
+  * Priorizar lo que mejor responde quién eres, qué problemas resuelves y por qué confiar en ti.
+  * Evitar que el MVP quede sobrecargado con piezas todavía inmaduras o accesorias.
+* **Funcional**
+  * Clasificar el contenido por prioridad, dependencia, estado de madurez y página destino.
+  * Marcar explícitamente el contenido diferido a Fases 3, 4, 5 y 6.
+* **No funcional**
+  * Asegurar consistencia bilingüe y trazabilidad editorial.
+  * Evitar prioridades que dependan de conocimiento tácito o criterio no documentado.
+* **Pruebas**
+  * Verificar que todo contenido `critico` tenga ubicación, intención y tipo de ejecución claros.
+  * Verificar que todo contenido diferido tenga fase posterior o causa de bloqueo documentada.
+* **Documentación/aceptación**
+  * Dejar la matriz lista para alimentar implementación de home, backlog narrativo y fases posteriores.
+  * Registrar supuestos editoriales o dependencias manuales que puedan cambiar prioridad.
+**Checklist de implementación:**
+* No hay piezas críticas sin página o sección destino.
+* No hay piezas priorizadas sin razón ligada a roadmap, MVP o lanzamiento.
+* El contenido existente y el contenido faltante están diferenciados.
+* Las piezas bloqueadas indican causa y no quedan ambiguamente “pendientes”.
+* La matriz distingue trabajo manual, mixto y técnico cuando esa diferencia afecta ejecución.
+* Los diferimientos hacia fases posteriores están trazados y no dependen de memoria informal.
+**Preguntas de definición y cierre:**
+* ¿Qué contenido debe considerarse crítico aunque todavía requiera una validación manual breve?
+* ¿Qué piezas hoy visibles podrían pasar a segundo plano sin debilitar la propuesta consultiva?
+* ¿Hay contenido deseable para SEO o autoridad que deba excluirse del MVP por falta de madurez?
+* ¿Qué dependencias externas o personales deben bloquear explícitamente una pieza para evitar promesas vacías?
 
 #### BLG-F1-S02-03 — Definir backlog narrativo inicial
 **Objetivo:** convertir la estrategia discursiva del portfolio en piezas concretas de contenido.
@@ -363,10 +531,72 @@ Ejemplo:
 * Listar piezas de copy pendientes por sección.
 * Priorizar el copy que bloquea diseño o implementación.
 * Definir qué piezas pueden prepararse técnicamente y cuáles requieren tu voz directa.
-**Entregable esperado:** lista priorizada de piezas narrativas por sección.  
-**Dependencias:** mapa del sitio y priorización de contenido.  
-**Tipo de ejecución:** Mixto  
+**Entregable esperado:** lista priorizada de piezas narrativas por sección.
+**Dependencias:** mapa del sitio y priorización de contenido.
+**Tipo de ejecución:** Mixto
 **Notas de validación:** cada pieza narrativa debe quedar asociada a una página o sección concreta del MVP.
+**Contexto técnico:** hoy el copy principal del sitio está concentrado en `src/i18n/site.ts`, mientras que proyectos, experiencia y CV ya aportan evidencia estructurada desde otros artefactos. Para implementar fases siguientes sin improvisar redacción, hace falta convertir la narrativa del roadmap y la prioridad del sprint en piezas concretas con dueño, evidencia mínima, destino estructural y criterio de cierre. Este WI no escribe el copy final; prepara el backlog que lo hará ejecutable.
+**Alcance funcional:**
+* Listar piezas narrativas por página/sección del MVP: identidad, hero, capacidades/servicios, proyectos, autoridad técnica, experiencia, contacto, blog reservado y futuros casos de estudio cuando correspondan como placeholder narrativo.
+* Definir para cada pieza su objetivo comunicativo, evidencia mínima requerida, tipo de ejecución y dependencia de otras piezas o decisiones.
+* Separar lo que puede redactarse técnicamente o estructurarse desde el repo de lo que requiere tu voz directa, validación estratégica o evidencia externa.
+* Indicar qué piezas bloquean implementación de home, CTAs, proyectos, casos de estudio o blog aunque todavía no se redacten por completo.
+**No alcance:**
+* Escritura final bilingüe de todas las piezas.
+* Implementación visual de componentes o restructuración de rutas.
+* Producción de artículos de blog o casos de estudio completos.
+**Cambios esperados de interfaces/tipos:**
+* Dejar indicado qué piezas actuales podrían seguir viviendo en `src/i18n/site.ts` y cuáles convendría desacoplar después en módulos o colecciones narrativas específicas.
+* Registrar si algunas piezas dependen de nuevos identificadores de sección o slug editorial para futuras implementaciones.
+* No imponer todavía un modelo de datos narrativo en el código.
+**Gherkin ampliado:**
+* **Escenario: construcción nominal del backlog narrativo**
+  **Dado** el sitemap objetivo y la matriz de priorización del Sprint 02
+  **Cuando** se define el backlog narrativo inicial
+  **Entonces** cada pieza queda asociada a una página o sección concreta, con objetivo comunicativo, evidencia mínima, tipo de ejecución y dependencia.
+* **Escenario: rechazo de pieza sin evidencia o sin responsable**
+  **Dado** una pieza narrativa que pretende entrar en el backlog del MVP
+  **Cuando** no tiene fuente, evidencia mínima o tipo de ejecución definidos
+  **Entonces** la pieza no puede considerarse lista para implementación ni para redacción.
+* **Escenario: trazabilidad entre copy y artefacto estructural**
+  **Dado** una pieza asociada a proyectos, experiencia o capacidades
+  **Cuando** se revisa su backlog narrativo
+  **Entonces** se identifica el artefacto del repositorio que aporta evidencia o el documento futuro que deberá sostenerla.
+* **Escenario: compatibilidad bilingüe y reutilización controlada**
+  **Dado** una pieza base definida en español
+  **Cuando** se prepara su contraparte en inglés
+  **Entonces** queda claro qué elementos deben conservar equivalencia semántica y cuáles requieren adaptación editorial sin cambiar la intención estratégica.
+**Desglose de tareas:**
+* **Arquitectura**
+  * Definir el inventario de piezas narrativas y su correspondencia con nodos del sitemap.
+  * Relacionar cada pieza con la fuente estructurada que la soporta o con la dependencia que la bloquea.
+* **Negocio/valor**
+  * Priorizar las piezas que mejor explican identidad profesional, capacidad consultiva y confianza operativa.
+  * Distinguir entre mensajes fundacionales del MVP y piezas de autoridad que pueden madurar después.
+* **Funcional**
+  * Listar piezas por sección y marcar cuáles bloquean diseño o implementación.
+  * Asignar tipo de ejecución `Manual`, `Codex con supervisión` o `Mixto` según el nivel de voz personal requerido.
+* **No funcional**
+  * Garantizar consistencia bilingüe y evitar backlog narrativo dependiente de intuiciones no registradas.
+  * Evitar piezas que prometan profundidad técnica sin evidencia disponible.
+* **Pruebas**
+  * Verificar que ninguna pieza crítica quede sin fuente, dependencia o responsable.
+  * Verificar que las piezas bilingües tengan criterio explícito de equivalencia.
+* **Documentación/aceptación**
+  * Dejar el backlog narrativo listo para alimentar Sprint 03, Sprint 04 y la preparación de Fases 3 y 4.
+  * Registrar huecos de información que requieran captura manual o validación externa antes de redactar.
+**Checklist de implementación:**
+* Cada pieza narrativa tiene página o sección destino.
+* Cada pieza narrativa tiene objetivo comunicativo y evidencia mínima definida.
+* Las piezas que requieren tu voz directa están marcadas como `Manual` o `Mixto`.
+* Las piezas que pueden prepararse desde el repo están separadas de las que dependen de información externa.
+* No hay piezas críticas sin dependencia o sin criterio de cierre.
+* La relación entre español e inglés está indicada para las piezas reutilizables o adaptables.
+**Preguntas de definición y cierre:**
+* ¿Qué piezas requieren necesariamente tu voz personal para que no suenen genéricas?
+* ¿Qué narrativa puede apoyarse en evidencia ya presente en proyectos, experiencia o CV sin esperar nuevas fuentes?
+* ¿Qué piezas deben quedar solo como placeholders del sitemap hasta que exista implementación de blog o casos de estudio?
+* ¿Qué bloque narrativo sería el primero en romperse si se intentara implementar la home sin este backlog?
 
 ---
 
