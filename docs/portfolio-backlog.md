@@ -531,6 +531,13 @@ Ejemplo:
 * ¿Qué piezas hoy visibles podrían pasar a segundo plano sin debilitar la propuesta consultiva?
 * ¿Hay contenido deseable para SEO o autoridad que deba excluirse del MVP por falta de madurez?
 * ¿Qué dependencias externas o personales deben bloquear explícitamente una pieza para evitar promesas vacías?
+**Estado actual:** Cerrado el 2026-07-20.
+**Cierre de implementación:**
+* La matriz canónica quedó documentada en `docs/portfolio-content-prioritization.md`, con prioridad, madurez, fuente, tratamiento, dependencia, tipo de ejecución y trazabilidad al roadmap para cada pieza relevante.
+* Identidad, capacidades, proyectos públicos, experiencia, CV, contacto y perfiles profesionales permanecen como contenido `critico` del MVP; sus validaciones manuales de precisión o coherencia no los bloquean.
+* Perfil profundo, formación/credenciales y el proyecto académico secundario quedan como `importante`; blog, casos de estudio, footer, analytics, 404 y evolución de consultoría/productos quedan diferidos con fase y work item de destino.
+* Los casos individuales sin información fuente, los artículos aún no escritos, la decisión de Medium y la validación externa se registran como `bloqueado`, sin presentarlos como cobertura pública actual.
+* No se modificaron rutas, componentes, `src/i18n/site.ts`, `src/data/projects.ts` ni el inventario público definido en Sprint 01. Sprint 02 continúa pendiente de `BLG-F1-S02-03`.
 
 #### BLG-F1-S02-03 — Definir backlog narrativo inicial
 **Objetivo:** convertir la estrategia discursiva del portfolio en piezas concretas de contenido.
