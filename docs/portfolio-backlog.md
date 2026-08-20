@@ -787,6 +787,51 @@ Ejemplo:
 
 **Entregable esperado:** ficha de propuesta de valor con audiencia, tesis, afirmaciones descompuestas, vocabulario permitido/no permitido, evidencia primaria y de apoyo, límites, versión semántica ES, adaptación EN, dependencias y registro de validación de voz.
 
+**Ficha editorial implementada (fuente ES; pendiente de validación manual):**
+
+* **Audiencia principal:** personas que evalúan una colaboración o incorporación en equipos técnicos y organizaciones que necesitan ordenar procesos, datos y operación mediante software. La home debe facilitar una primera conversación profesional; no debe presentar una oferta de consultoría ni asumir que existe un encargo comercial.
+* **Identidad profesional propuesta:** desarrollador de software orientado a backend y datos, con experiencia en iniciativas de transformación digital y formación complementaria en gestión de procesos de negocio, analítica de datos y arquitectura de software. Esta formulación mantiene el foco observable en desarrollo y datos; `ingeniería de soluciones`, `transformación digital` y `arquitectura` funcionan como contexto de trabajo y quedan sujetas a `IN-M01`/`IN-M02`.
+* **Problema que ayuda a abordar:** convertir necesidades de procesos y operación en sistemas de información que conecten requisitos, datos y decisiones de desarrollo. La afirmación describe el tipo de problema abordable, no garantiza una transformación, resultado operativo o disponibilidad de servicio.
+* **Valor diferencial propuesto:** conectar comprensión de procesos, organización de información y construcción backend para producir soluciones digitales claras, mantenibles y útiles para quienes las utilizan. `Claro`, `mantenible` y `útil` describen criterios de diseño; no significan impacto medido, calidad certificada ni resultado garantizado.
+
+**Afirmaciones, evidencia y límites:**
+
+| ID | Afirmación semántica | Evidencia primaria observable | Evidencia de apoyo | Límite de publicación | Estado |
+| --- | --- | --- | --- | --- | --- |
+| `VP-01` | Sergio es un desarrollador de software orientado a backend y datos. | `src/content/experiences/university-intern-cidti-2025.md` registra desarrollo backend y análisis de datos; `src/content/experiences/software-developer-cidti-2026.md` registra desarrollo de software actual. | Resumen y experiencia de `docs/resume/curriculum-vitae.es.tex`; `hero.role` y `hero.summary` en `src/i18n/site.ts`. | No usar `experto`, `especialista`, `senior` ni una jerarquía no validada. La orientación no equivale a dominio exclusivo o exhaustivo. | `pendiente IN-M01/IN-M02` |
+| `VP-02` | Ayuda a traducir necesidades y requisitos en funcionalidades y sistemas digitales. | La experiencia CIDTI 2026 documenta levantamiento de requerimientos, historias de usuario e implementación de funcionalidades sobre una base existente. | Proyecto educativo y experiencias de CIDTI 2025; `aboutSection.principles` y `hero.summary` como contexto narrativo. | No atribuir liderazgo integral, propiedad exclusiva de los sistemas ni resultados de negocio que no estén documentados. | `pendiente IN-M01/IN-M02` |
+| `VP-03` | Conecta procesos, datos y desarrollo para apoyar soluciones de información claras, mantenibles y útiles. | CIDTI 2025 documenta extracción, procesamiento e integración de información; CIDTI 2026 documenta desarrollo, despliegues ocasionales y migración progresiva de arquitectura. | `simigs`, `erp-turismo` y `erp-agroinsumos` en `src/data/projects.ts`, sujetos a confirmación de alcance por `IN-M03`; CV y credenciales. | `Operación`, `arquitectura` y la relación con los tres sistemas no deben ampliarse más allá de la contribución validada. No afirmar impactos cuantificados ni garantías de mantenibilidad o utilidad. | `pendiente IN-M01/IN-M02/IN-M03` |
+| `VP-04` | Su formación en BPM y analítica de datos refuerza la forma de comprender procesos y trabajar con información. | Diplomados consignados en `docs/resume/curriculum-vitae.es.tex` y registros de `src/data/credentials.ts`. | Experiencia CIDTI 2025 y `learningSection` de `src/i18n/site.ts`. | La formación es evidencia de aprendizaje, no sustituye experiencia aplicada, certificación profesional, consultoría BPM ni resultados analíticos. | `pendiente IN-M01/IN-M02` |
+
+**Vocabulario editorial:**
+
+* **Conservar como núcleo:** `desarrollador de software`, `backend`, `datos`, `procesos`, `requisitos`, `sistemas de información`, `desarrollo`, `mantenibles`, `útiles` y `formación aplicada`.
+* **Usar con contexto y validar:** `ingeniería de soluciones`, `transformación digital`, `arquitectura`, `operación`, `consultivo` y `conectar`. Deben describir el enfoque o el contexto de una contribución, no convertirlo en una oferta o un nivel de autoridad.
+* **Evitar salvo evidencia y aprobación explícitas:** `consultor`, `especialista`, `experto`, `senior`, `arquitecto`, `líder técnico`, `end-to-end`, `impacto`, `optimización garantizada`, `transformación asegurada`, `servicios` y cualquier promesa de disponibilidad, plazo o resultado.
+
+**Versión semántica propuesta en ES:**
+
+> Soy desarrollador de software orientado a backend y datos. Convierto necesidades de procesos y operación en sistemas de información claros, mantenibles y útiles, conectando requisitos, datos y decisiones de desarrollo. Mi experiencia en desarrollo backend, extracción y procesamiento de información, y formación en gestión de procesos de negocio orientan la construcción y mejora de soluciones digitales.
+
+Esta redacción es una base semántica para aprobación, no copy runtime aprobado. Se debe retirar o acotar cualquier segmento que Sergio no reconozca como propio o que no pueda sostenerse con las fuentes indicadas.
+
+**Adaptación semántica equivalente en EN:**
+
+> I am a software developer focused on backend and data. I turn process and operational needs into clear, maintainable, useful information systems by connecting requirements, data, and development decisions. My experience in backend development, information extraction and processing, and training in business process management guides how I build and improve digital solutions.
+
+La adaptación conserva sujeto, alcance, madurez y grado de certeza de ES. `Focused on` no implica especialización exclusiva; `training` conserva el carácter formativo de BPM; `build and improve` no promete resultados ni responsabilidad integral. La versión EN queda igualmente pendiente de la aprobación de voz y alcance.
+
+**Registro de validación y resolución de preguntas:**
+
+| Punto | Resolución propuesta | Validación requerida | Estado |
+| --- | --- | --- | --- |
+| Audiencia y contexto de decisión | Priorizar evaluadores de equipos técnicos y organizaciones con necesidades de procesos/datos; la home abre conversación, no vende un servicio. | Sergio debe confirmar que esta audiencia representa su objetivo profesional inmediato. | `pendiente IN-M01` |
+| Voz y nivel de lenguaje consultivo | Usar primera persona sobria, verbos de contribución y criterios de diseño; evitar tono de agencia, promesas y seniority no confirmado. | Sergio debe marcar expresiones aceptadas, rechazadas o sujetas a matiz. | `pendiente IN-M01` |
+| Afirmaciones que requieren más fuente | La relación concreta con SIMIGS, ERP Turismo y ERP Agroinsumos requiere alcance y contribución confirmados antes de usarla como respaldo principal. | Completar `IN-M03` si estas afirmaciones se incorporan a la versión final. | `pendiente IN-M03` |
+| Límites visibles | Mantener la diferencia entre experiencia aplicada, formación y exploración; no prometer disponibilidad, resultados, consultoría ni servicios. | Sergio debe aprobar estos límites junto con las afirmaciones profesionales. | `pendiente IN-M01/IN-M02` |
+
+**Estado de implementación del WI:** la ficha editorial, la tesis ES, la adaptación EN, la matriz de evidencia y los límites ya están documentados en el backlog. El WI permanece `pendiente de validación manual` hasta registrar `IN-M01` e `IN-M02` y, si se usan los proyectos del inventario como evidencia principal, `IN-M03`. No se modificó copy runtime ni se declara implementada la propuesta en la aplicación.
+
 **Gherkin ampliado:**
 
 * **Escenario: propuesta de valor nominal y defendible**
