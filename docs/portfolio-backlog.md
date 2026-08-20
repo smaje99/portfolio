@@ -1017,9 +1017,34 @@ Los nombres de los proyectos actuales y archivados se mantienen únicamente para
 * El recurso debe poder convertirse más adelante en componente sin fijar ahora props, tipos TypeScript, fuente de datos o estrategia visual.
 * No debe alterar anchors, navegación, orden de secciones ni estructura actual de la home.
 
+**Especificación editorial validada de la matriz (fuente ES; no es copy runtime):**
+
+La matriz canónica se define con las columnas `Capacidad`, `Problema abordable`, `Valor`, `Evidencia y madurez`, `Límites` y `Certeza editorial`. Las cuatro filas conservan los identificadores de `BLG-F2-S03-02` y el mismo orden del bloque `#focus`:
+
+| ID / capacidad | Problema abordable | Valor | Evidencia y madurez | Límites | Certeza editorial |
+| --- | --- | --- | --- | --- | --- |
+| `CAP-01` — Backend Engineering / Ingeniería backend | Convertir requisitos y necesidades de producto en funcionalidades backend e integraciones sobre sistemas existentes. | Construir servicios y flujos que conecten decisiones de desarrollo con datos y operación, con atención a claridad y mantenibilidad. | `Primaria + apoyo`: experiencia aplicada documentada en desarrollo backend, funcionalidades, integraciones y despliegues ocasionales; CV y formación como respaldo. `EpicrisisIA` solo aporta contexto superficial de un sistema en construcción. | No afirmar diseño integral, liderazgo técnico, especialización exclusiva, seniority, disponibilidad de servicio ni resultados operativos garantizados. | `Confirmada` a la profundidad descrita; no es una puntuación de dominio. |
+| `CAP-02` — Data Processing / Procesamiento de datos | Extraer, ordenar y llevar información a estructuras utilizables por sistemas y procesos. | Facilitar información organizada para apoyar funcionalidades y decisiones de desarrollo. | `Primaria + apoyo`: experiencia aplicada en extracción, procesamiento e integración de información técnica; Python, MongoDB, CV y formación como apoyo. `EpicrisisIA` se mantiene como contexto superficial, sin datos clínicos ni resultados. | No afirmar analítica avanzada, predicción, gobierno de datos, calidad certificada, impacto medido ni decisiones de negocio garantizadas. | `Confirmada` a la profundidad descrita; no equivale a una escala analítica. |
+| `CAP-03` — Business Process Management / Gestión de procesos de negocio | Traducir necesidades de procesos, operación y requisitos en alcance funcional y modelos comprensibles. | Conectar comprensión de procesos con historias de usuario, funcionalidades y aprendizaje de modelado BPMN. | `Primaria + apoyo`: experiencia aplicada en requerimientos, historias de usuario y traducción de necesidades a funcionalidades; diplomado BPM, credenciales BPM/BPMN y `BPMNPlay` como apoyo contextual de una herramienta pedagógica en construcción. | No presentarse como consultoría BPM, certificación profesional, liderazgo de procesos, transformación garantizada ni resultado de una organización concreta. | `Confirmada` a la profundidad descrita; formación y exploración permanecen diferenciadas. |
+| `CAP-04` — Information Systems / Sistemas de información | Integrar procesos, datos, desarrollo y operación sin reducir el problema a una sola tecnología. | Aportar una mirada de conexión entre requisitos, información y construcción o mejora de sistemas digitales. | `Primaria + apoyo`: combinación de experiencias CIDTI 2025/2026 sobre desarrollo, datos, requisitos y mejora de sistemas existentes; `EpicrisisIA`, el proyecto educativo colombiano y `BPMNPlay` como contexto superficial de proyectos en construcción; CV y credenciales como respaldo. `SIMIGS`, `ERP Turismo` y `ERP Agroinsumos` permanecen archivados. | No incluir datos clínicos, escolares o comerciales, identificadores de stakeholders, documentos internos ni resultados no verificados. No atribuir propiedad, alcance integral o caso de estudio a ningún proyecto. | `Confirmada` como eje integrador a esta profundidad; no representa una solución empresarial universal. |
+
+**Reglas de composición y lectura:**
+
+* `Primaria` identifica evidencia aplicada directamente observable; `apoyo` identifica fuentes que refuerzan el contexto; `contextual` identifica proyectos en construcción o referencias que no sostienen por sí solas una afirmación principal; `pendiente` queda reservado para una fila sin evidencia mínima. Estas categorías describen respaldo, no nivel de habilidad.
+* En el estado actual las cuatro filas usan `primaria + apoyo`; la presencia de apoyo contextual no eleva la madurez ni convierte un proyecto en caso de estudio.
+* `Confirmada` significa que la formulación está validada para la profundidad editorial indicada y bajo sus límites. No significa porcentaje, ranking, seniority, especialización ni resultado.
+* Cada fila y cada afirmación compuesta debe conservar trazabilidad a su ficha `CAP-*`, a una fuente verificable y, cuando corresponda, a `IN-M02` o `IN-M03`. Los nombres de proyectos se mantienen solo como trazabilidad interna.
+
+**Reglas de accesibilidad y fallback:**
+
+* La tabla semántica textual es el fallback normativo y debe estar disponible sin hover, tooltip, animación, color, posición, área, polígono o interacción adicional.
+* La futura implementación debe exponer un caption o introducción equivalente, encabezados identificables, asociación entre cada fila y su capacidad, y lectura comprensible cuando las celdas se apilen o el viewport sea estrecho.
+* La adaptación visual puede mejorar la comparación, pero no puede ocultar la evidencia, los límites, la madurez o la certeza. El contenido debe seguir siendo operable con teclado y verificable con zoom y lector de pantalla.
+* La versión EN conserva los mismos identificadores, filas, columnas, orden lógico, madurez, responsabilidad, límites y fallback. La adaptación puede ser idiomática, pero no puede ampliar el alcance de la versión ES.
+
 **No alcance:**
 
-* No implementar la tabla, un radar, un SVG, una gráfica ni estilos en este sprint.
+* No implementar en runtime la tabla, un radar, un SVG, una gráfica ni estilos en este sprint; la matriz anterior es una especificación editorial, no un componente.
 * No decidir una escala de competencia, porcentaje de dominio o priorización de capacidades.
 * No agregar proyectos, capacidades, filtros, rutas, enlaces a casos de estudio o CTAs.
 
@@ -1043,6 +1068,10 @@ Los nombres de los proyectos actuales y archivados se mantienen únicamente para
   **Dado** la matriz semántica en español
   **Cuando** se prepara la contraparte inglesa o un futuro componente
   **Entonces** se conserva el mismo orden lógico, contenido, alcance, fallback textual y estado de certeza, sin depender de color o geometría.
+* **Escenario: fallback y viewport estrecho**
+  **Dado** un dispositivo o lector que no presenta la composición visual prevista
+  **Cuando** se consulta el bloque de capacidades
+  **Entonces** las cuatro filas, sus encabezados, evidencia, madurez, límites y certeza siguen disponibles como contenido textual operable y comprensible.
 
 **Desglose de tareas:**
 
@@ -1066,16 +1095,28 @@ Los nombres de los proyectos actuales y archivados se mantienen únicamente para
 
 **Preguntas de definición y cierre:**
 
-* ¿Qué categorías de composición de evidencia son suficientemente claras sin parecer niveles de habilidad?
-* ¿Qué columnas son imprescindibles para el valor narrativo y cuáles sobrecargarían la lectura?
-* ¿El fallback textual debe ser una tabla siempre visible o un bloque alternativo definido para la implementación?
-* ¿Qué criterio de accesibilidad debe verificarse en navegador cuando la matriz pase a Fase 2 de implementación?
+* **Resuelta:** `primaria`, `apoyo`, `contextual` y `pendiente` describen respaldo y madurez de la evidencia; no son niveles de competencia. El estado actual de las cuatro filas es `primaria + apoyo`.
+* **Resuelta:** las columnas imprescindibles son capacidad, problema, valor, evidencia/madurez, límites y certeza. Tecnologías, fechas, stakeholders y resultados quedan en las fuentes, no en la matriz.
+* **Resuelta:** el fallback normativo es la tabla semántica textual; cualquier composición visual futura es una mejora opcional que no puede ocultar contenido.
+* **Resuelta para la siguiente implementación:** verificar encabezados y asociación de celdas, lectura lineal, teclado, zoom, lector de pantalla, contraste y foco, además de la ausencia de información comunicada solo por color o geometría.
 
 **Dependencias:** `BLG-F2-S03-02`, `NAR-B03`, `IN-M02`, `IN-M03`, `docs/portfolio-mvp-sitemap.md`, `docs/portfolio-content-prioritization.md` y contrato actual de `#focus`.
 **Tipo de ejecución:** Mixto
-**Criterio de aceptación:** existe una especificación textual, accesible y bilingüe de la matriz que descarta el radar, evita puntuaciones/rankings, conserva `#focus` y deja trazabilidad por capacidad sin definir todavía el componente runtime.
+**Criterio de aceptación:** existe una especificación textual, accesible y bilingüe de la matriz con cuatro filas, seis columnas, categorías de evidencia, fallback normativo y trazabilidad por capacidad; descarta el radar, evita puntuaciones/rankings, conserva `#focus` y no define todavía el componente runtime.
 
-**Estado del sprint:** Pendiente de implementación posterior y validación manual. Esta ampliación es una especificación de Fase 2; no constituye un cierre técnico ni declara cambios realizados.
+**Estado del WI:** `Cerrado — especificación editorial validada`. La matriz, sus cuatro filas, reglas de composición, fallback textual, paridad ES/EN, criterios de accesibilidad y trazabilidad quedan definidos para implementación posterior. Este cierre no implementa una tabla o gráfica, no crea rutas ni anchors, no modifica interfaces TypeScript ni declara copy runtime publicado.
+
+**Cierre del Sprint 03:**
+
+* `BLG-F2-S03-01` deja validada la propuesta de valor y sus límites de voz, audiencia, evidencia y privacidad.
+* `BLG-F2-S03-02` deja validadas las cuatro capacidades, sus relaciones, evidencia clasificada y tratamiento de proyectos actuales en construcción frente a proyectos archivados.
+* `BLG-F2-S03-03` deja validada la matriz textual accesible como recurso comparativo, con el radar y cualquier escala subjetiva descartados.
+* `IN-M01` e `IN-M02` quedan registrados como validados en el alcance de los WIs correspondientes; `IN-M03` queda resuelto solo para el alcance superficial y contextual de este sprint. Las fichas detalladas, los casos de estudio y las decisiones de publicación de proyectos permanecen abiertas en Fase 3.
+* Se conservan `/`, `/en/`, `#focus`, el contrato localizado, las interfaces TypeScript, las fuentes runtime y el inventario público. No se declara implementación de aplicación ni copy runtime.
+
+**Evidencia de cierre del sprint:** la propuesta de valor, el catálogo de capacidades y la matriz comparativa están descritos en español como fuente editorial, con equivalencia semántica EN, fuentes y límites explícitos. La documentación queda lista para una futura implementación de Fase 2 y para la captura detallada de proyectos de Fase 3.
+
+**Estado del sprint:** `Cerrado — especificación editorial validada` (2026-08-20). El cierre confirma el alcance documental y no equivale a implementación runtime, cambio de rutas, modificación de datos públicos ni validación definitiva de casos de estudio.
 
 ### Sprint 04
 
