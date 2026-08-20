@@ -663,41 +663,341 @@ Ejemplo:
 
 ### Sprint 03
 
+**Objetivo de negocio:** convertir la sección de enfoque de la home en un mensaje profesional defendible: una persona que llega al portfolio debe entender quién es Sergio, qué problemas ayuda a convertir en sistemas y qué valor puede aportar, sin que el sitio prometa seniority, consultoría, resultados o servicios que no estén validados.
+
+**Resultado verificable:** queda una especificación editorial y funcional lista para alimentar la implementación posterior de Fase 2, con una propuesta de valor principal, cuatro capacidades nucleares y una matriz comparativa textual. Cada afirmación tiene fuente, evidencia primaria y de apoyo, límites, tratamiento ES/EN y estado de validación manual. El sprint no modifica código, rutas, anchors, copy runtime ni datos públicos.
+
+**Alcance funcional:**
+
+* Definir la propuesta de valor principal para la home y su relación con procesos, datos, desarrollo, arquitectura y operación.
+* Consolidar como ejes semánticos las cuatro capacidades actuales: `Backend Engineering`, `Data Processing`, `Business Process Management` e `Information Systems`.
+* Especificar problema, valor, evidencia y límites para cada capacidad, distinguiendo experiencia aplicada, formación y exploración.
+* Sustituir el radar como recurso predeterminado por una matriz comparativa que pueda leerse completamente como texto.
+* Dejar trazabilidad entre narrativa, inventario canónico de proyectos, experiencias, credenciales, CV, taxonomía de estados y validaciones manuales.
+
+**No alcance explícito:**
+
+* No editar `src/i18n/site.ts`, `PortfolioPage.astro`, `src/data/projects.ts`, componentes, estilos ni rutas.
+* No crear una ruta propia de capacidades, una página de servicios, un catálogo comercial, un blog, casos de estudio ni nuevos CTAs.
+* No implementar la matriz, un radar, una gráfica ni props o tipos de runtime.
+* No publicar copy final ni hacer automáticamente cambios en GitHub, LinkedIn, CV o perfiles externos.
+* No asignar puntuaciones subjetivas de habilidad, ranking profesional, seniority ni promesas de resultados.
+
+**Criterios de entrada:**
+
+* Sprint 02 permanece cerrado y sus artefactos canónicos están disponibles: sitemap, priorización de contenido y backlog narrativo.
+* `NAR-B01`, `NAR-B02`, `NAR-B03`, `NAR-M03`, `NAR-M04` e `IN-M01` a `IN-M03` están identificados como fuentes de decisión, aunque sus validaciones manuales puedan seguir pendientes.
+* El inventario público base de `src/data/projects.ts` y la taxonomía de estados de proyecto no se reabren como decisiones de este sprint.
+* La especificación se redacta en español como fuente editorial; la contraparte inglesa se define por equivalencia semántica para una implementación posterior.
+
+**Entregables y trazabilidad:**
+
+| Entregable | Contenido mínimo | Trazabilidad |
+| --- | --- | --- |
+| Propuesta de valor defendible | Audiencia, identidad, problemas abordables, valor diferencial, vocabulario permitido y límites, con evidencia y validación de voz. | `NAR-B01`, `NAR-B02`, `IN-M01`, `IN-M02`; `BLG-F2-S03-01`. |
+| Catálogo de cuatro capacidades | Nombre base/localizado, problema, valor, evidencia primaria y de apoyo, límites, relaciones, certeza editorial y distinción entre experiencia, formación y exploración. | `NAR-B03`, `NAR-M03`, `NAR-M04`, `IN-M02`, `IN-M03`; `BLG-F2-S03-02`. |
+| Matriz comparativa accesible | Comparación textual de problema, valor, evidencia y límites; presencia/profundidad de evidencia sin escala de dominio ni dependencia visual. | `NAR-B03`, `IN-M02`, `IN-M03`; `BLG-F2-S03-03`. |
+| Registro de decisiones y bloqueos | Decisiones cerradas, supuestos, riesgos, validaciones manuales pendientes y criterios de entrada/salida. | `docs/portfolio-narrative-backlog.md`, `docs/portfolio-content-prioritization.md`, `docs/portfolio-mvp-sitemap.md`. |
+
+**Tareas transversales:**
+
+* **Arquitectura:** conservar el bloque de `/#focus` y `/en/#focus`; separar capacidad demostrada, estado de proyecto y prioridad narrativa; reutilizar las fuentes actuales sin fijar un modelo de datos nuevo.
+* **Negocio/valor:** validar audiencia, identidad profesional, problemas abordables y valor diferencial; distinguir una capacidad comunicable de una oferta comercial o servicio contratado.
+* **Funcional:** definir las cuatro fichas de capacidad, la evidencia mínima de cada afirmación, sus límites y el orden narrativo que conecte hero, enfoque, proyectos, experiencia y CV.
+* **No funcional:** asegurar lectura textual completa, paridad semántica ES/EN, independencia de color/posición/área geométrica, lenguaje prudente y exclusión de información confidencial o no publicable.
+* **Pruebas:** convertir cada condición de cierre en escenarios observables de nominal, fallo por voz/evidencia/dependencia, trazabilidad y compatibilidad bilingüe.
+* **Documentación/aceptación:** registrar fuentes concretas, decisiones editoriales, versión semántica ES, adaptación equivalente EN y validación manual de Sergio antes de cerrar cualquier WI.
+
+**Dependencias internas:**
+
+* `src/i18n/site.ts`: `hero`, `focusSection`, `aboutSection`, `learningSection`, navegación y contrato localizado actual; `focusSection.items` hoy solo expone `title`.
+* `src/data/projects.ts`: inventario público base canónico, campo `demonstrates`, `rationale`, `narrativeStatus`, `projectType`, `portfolioTier` y contenido localizado.
+* `src/data/credentials.ts`: tesis de formación, pilares, señales, evidencia, hitos, fechas e instituciones; sirve como apoyo y no sustituye experiencia aplicada.
+* `src/content/experiences/`: experiencias actuales de desarrollo, backend, datos, requisitos, soporte y mentoría; deben revisarse como fuentes de afirmaciones profesionales.
+* `docs/resume/curriculum-vitae.es.tex`, `docs/resume/curriculum-vitae.en.tex` y PDFs publicados: respaldo de experiencia, formación, habilidades y alcance declarado.
+* `docs/project-status-taxonomy.md`: regla para no confundir madurez de proyecto con capacidad o nivel de dominio.
+* `docs/portfolio-roadmap.md`, `docs/portfolio-mvp-sitemap.md`, `docs/portfolio-content-prioritization.md` y `docs/portfolio-narrative-backlog.md`: objetivo, estructura, prioridad, fuentes y piezas bloqueantes.
+
+**Riesgos técnicos concretos:**
+
+* **Sobreventa profesional:** convertir “ingeniería de soluciones” o una capacidad de formación en una promesa de consultoría, liderazgo o resultados no respaldados.
+* **Equivalencia bilingüe:** permitir que EN suene más senior, comercial o amplio que ES por una traducción aparentemente natural pero semánticamente más fuerte.
+* **Evidencia insuficiente:** declarar una capacidad a partir de una lista de tecnologías o cursos sin una evidencia primaria observable y una fuente de apoyo.
+* **Capacidad versus dominio:** interpretar presencia de una capacidad como puntuación de competencia o ranking, especialmente si se implementa una visualización.
+* **Sobrecarga de la matriz:** introducir demasiadas columnas, etiquetas o fuentes hasta hacerla ilegible y convertir el bloque narrativo en un inventario de tecnologías.
+* **Deriva de fuentes:** mezclar el inventario público actual, el pipeline futuro de casos de estudio y los estados de proyecto como si fueran la misma dimensión.
+
+**Decisiones cerradas para el sprint:**
+
+* No se crea una ruta propia de capacidades; el bloque sigue siendo una función narrativa de `/#focus` y `/en/#focus`.
+* Se conserva el anchor `#focus` y la navegación localizada actual.
+* Se mantienen los cuatro ejes base: `Backend Engineering`, `Data Processing`, `Business Process Management` e `Information Systems`; cualquier adaptación editorial conserva su significado.
+* Se usa una matriz comparativa accesible como recurso de referencia, no una gráfica de radar.
+* La gráfica de araña mencionada como posibilidad en el roadmap se trata como hipótesis inicial; este sprint la resuelve operativamente a favor de la matriz, sin reescribir el roadmap estratégico.
+* La matriz describe presencia y profundidad de evidencia; no asigna puntuaciones subjetivas de habilidad ni implica ranking profesional.
+* El español es la fuente editorial; el inglés se adapta después con el mismo alcance, madurez y grado de certeza.
+* La validación manual de voz, alcance y evidencia es puerta de entrada para cerrar la especificación y puerta de salida para cerrar el sprint.
+* Blog, casos de estudio, perfiles externos, servicios comerciales y cambios de diseño quedan fuera de este sprint.
+
+**Cambios importantes de interfaces y tipos:**
+
+* Sprint 03 no cambia ninguna interfaz TypeScript ni el shape de `focusSection.items` en runtime.
+* La futura implementación deberá ampliar conceptualmente cada capacidad con: `label`, `problem`, `value`, `primaryEvidence`, `supportingEvidence`, `limits` y `localeEquivalent`.
+* Ese shape es una guía editorial y no un contrato aprobado: la forma exacta del tipo, los identificadores, el componente y la fuente de datos se decidirán durante la implementación posterior.
+* Se conservan las rutas `/` y `/en/`, los anchors `#focus`, el contrato localizado actual, el inventario canónico de proyectos y la separación entre estado de proyecto, capacidad demostrada y prioridad narrativa.
+
+**Escenarios de prueba de referencia:**
+
+* La propuesta de valor responde quién es Sergio, qué problemas aborda y qué valor aporta sin introducir términos no respaldados por fuentes actuales.
+* Una afirmación sin evidencia primaria y de apoyo, o sin límite explícito cuando corresponda, no puede marcarse como cerrada.
+* Las cuatro capacidades aparecen con problema, valor, evidencia, límites y distinción entre experiencia aplicada, formación y exploración.
+* La versión inglesa conserva el mismo alcance, madurez y grado de certeza de la española, aunque adapte sintaxis o terminología.
+* La matriz comparativa no muestra escala numérica, ranking, área geométrica ni una inferencia visual de competencia profesional.
+* El sprint no introduce rutas, anchors nuevos, servicios comerciales, blog, casos de estudio ni componentes nuevos.
+* Cada afirmación queda trazada hacia el backlog narrativo, la priorización y una fuente actual del repositorio.
+* Si falta validación manual de voz, alcance o evidencia, el WI afectado permanece pendiente y sus bloqueos siguen visibles.
+
+**Criterio de aceptación y cierre manual:**
+
+* Los tres WIs tienen especificación implementable, Gherkin ampliado, checklist de estado parcial y preguntas de cierre respondidas o marcadas explícitamente como bloqueo.
+* Sergio valida la voz y las afirmaciones profesionales de la propuesta de valor (`IN-M01` e `IN-M02`).
+* Sergio valida la contribución, estado, publicabilidad y límites de los proyectos usados como evidencia (`IN-M03`).
+* La equivalencia ES/EN está aprobada como alcance semántico, aunque la redacción runtime quede para una fase posterior.
+* No se registra “implementado”, fecha de cierre técnico ni cambio de código como resultado de este sprint; el backlog queda listo para Fase 2.
+
 #### BLG-F2-S03-01 — Refinar propuesta de valor principal de la home
-**Objetivo:** consolidar un mensaje central más consultivo y menos genérico.  
-**Descripción:** la home ya tiene una propuesta de valor funcional, pero este ítem busca afinarla para que conecte mejor con soluciones, sistemas y transformación organizacional.  
-**Actividades:**
-* Revisar el copy actual de hero, subtítulo y summary.
-* Identificar términos vagos o demasiado amplios.
-* Proponer una versión ajustada al enfoque consultivo del roadmap.
-**Entregable esperado:** versión refinada del mensaje principal de la home.  
-**Dependencias:** backlog narrativo inicial.  
-**Tipo de ejecución:** Mixto  
-**Notas de validación:** el copy debe responder con claridad quién eres, qué resuelves y por qué tu enfoque es sistémico.
+**Objetivo:** consolidar una tesis profesional central, consultiva y defendible para `/` y `/en/`.
+
+**Contexto técnico y editorial:** la home ya tiene `hero.role`, `hero.specialties` y `hero.summary` en `src/i18n/site.ts`. El WI define la intención y los límites del mensaje que podrá implementarse después; no redacta ni publica el copy runtime. Su entrada narrativa son `NAR-B01` y `NAR-B02`, y su validación depende de `IN-M01` e `IN-M02`.
+
+**Alcance funcional:**
+
+* Identificar la audiencia principal y el contexto de decisión al que responde la home.
+* Definir la identidad profesional de Sergio en términos compatibles con experiencia, proyectos, formación y CV.
+* Explicar qué problemas ayuda a convertir en sistemas y cómo se relacionan procesos, datos, desarrollo, arquitectura y operación.
+* Registrar términos que deben conservarse, evitarse o pasar por validación manual.
+* Preparar una versión semántica aprobable en ES y una regla de adaptación equivalente en EN.
+* Documentar evidencia mínima por afirmación y límites explícitos contra promesas de consultoría, seniority, resultados o servicios no validados.
+
+**No alcance:**
+
+* No reemplazar `hero.role`, `hero.specialties` ni `hero.summary` en `src/i18n/site.ts`.
+* No definir CTAs, perfiles externos, servicios comerciales, blog o casos de estudio.
+* No convertir la propuesta en una biografía completa ni repetir el contenido de `/about`.
+
+**Entregable esperado:** ficha de propuesta de valor con audiencia, tesis, afirmaciones descompuestas, vocabulario permitido/no permitido, evidencia primaria y de apoyo, límites, versión semántica ES, adaptación EN, dependencias y registro de validación de voz.
+
+**Gherkin ampliado:**
+
+* **Escenario: propuesta de valor nominal y defendible**
+  **Dado** el hero actual, el objetivo consultivo del roadmap y las fuentes de proyectos, experiencias y CV
+  **Cuando** se descompone la propuesta de valor en identidad, problemas y valor aportado
+  **Entonces** cada afirmación tiene una redacción semántica en ES, una evidencia identificable y un límite que evita prometer más de lo demostrado.
+* **Escenario: rechazo por voz o alcance no validado**
+  **Dado** un mensaje que usa un tono ajeno a Sergio o presenta consultoría, seniority, resultados o disponibilidad no confirmados
+  **Cuando** se revisa la ficha antes del cierre
+  **Entonces** el WI permanece pendiente, la afirmación se corrige o se marca como bloqueo en `IN-M01`/`IN-M02`, y no se genera copy runtime.
+* **Escenario: trazabilidad de cada afirmación**
+  **Dado** una afirmación sobre procesos, datos, desarrollo, arquitectura u operación
+  **Cuando** se audita su ficha editorial
+  **Entonces** se puede seguir desde la afirmación hasta `src/i18n/site.ts`, un proyecto/experiencia/CV y la validación manual correspondiente.
+* **Escenario: equivalencia localizada**
+  **Dado** el significado aprobado en español
+  **Cuando** se prepara la contraparte inglesa
+  **Entonces** EN conserva el mismo sujeto, alcance, madurez y grado de certeza, aunque adapte sintaxis o terminología profesional.
+
+**Desglose de tareas:**
+
+* **Arquitectura:** mapear cada afirmación a las claves actuales del hero y a las fuentes que la sostienen; separar la especificación editorial del contrato runtime.
+* **Negocio/valor:** cerrar audiencia, identidad, problemas abordables, valor diferencial y límites de una eventual lectura consultiva.
+* **Funcional:** descomponer la tesis en afirmaciones verificables y producir versión semántica ES/adaptación equivalente EN.
+* **No funcional:** evitar lenguaje ambiguo, datos confidenciales, claims de resultados y diferencias de seniority entre locales.
+* **Pruebas:** revisar cobertura de evidencia, términos prohibidos/pendientes, trazabilidad y paridad semántica.
+* **Documentación/aceptación:** registrar la validación de voz de Sergio y los bloqueos que impidan marcar una afirmación como aprobada.
+
+**Checklist de implementación:**
+
+* La audiencia principal y el contexto de lectura están definidos.
+* La identidad profesional no excede cargos, experiencia, formación ni proyectos verificables.
+* Cada problema y valor declarado tiene evidencia primaria y de apoyo o queda pendiente.
+* Los términos vagos, comerciales o de seniority no validado están sustituidos, acotados o marcados.
+* La versión semántica ES tiene una adaptación EN equivalente en alcance y certeza.
+* La validación manual `IN-M01` e `IN-M02` está registrada; sin ella el WI sigue pendiente.
+* No se modificaron claves, rutas, anchors ni copy runtime.
+
+**Preguntas de definición y cierre:**
+
+* ¿Qué audiencia debe priorizar la home: empleadores, equipos técnicos, organizaciones con necesidades de transformación u otra combinación explícita?
+* ¿Qué expresiones representan la voz de Sergio y cuáles suenan a agencia, consultoría formal o seniority no validado?
+* ¿Qué afirmaciones requieren una ficha de proyecto o experiencia adicional antes de publicarse?
+* ¿Qué límites deben permanecer visibles para no prometer disponibilidad, resultados o servicios no confirmados?
+
+**Dependencias:** `NAR-B01`, `NAR-B02`, `IN-M01`, `IN-M02`, `src/i18n/site.ts`, `src/data/projects.ts`, experiencias, CV y cierre de Sprint 02.
+**Tipo de ejecución:** Mixto
+**Criterio de aceptación:** existe una tesis ES aprobable, una adaptación EN equivalente, evidencia y límites por afirmación, y validación manual de voz/alcance; no se considera cerrada si falta cualquiera de esos elementos.
 
 #### BLG-F2-S03-02 — Definir bloque explícito de capacidades/servicios
-**Objetivo:** hacer visible la relación entre tus capacidades y los problemas que puedes abordar.  
-**Descripción:** el roadmap pide un bloque de servicios o capacidades; actualmente el sitio comunica enfoque, pero no una propuesta operacional claramente separada.  
-**Actividades:**
-* Definir catálogo inicial de capacidades o servicios.
-* Relacionar cada capacidad con valor para cliente u organización.
-* Proponer estructura de contenido para presentarlas sin sonar a lista de buzzwords.
-**Entregable esperado:** definición funcional del bloque de capacidades/servicios.  
-**Dependencias:** propuesta de valor refinada.  
-**Tipo de ejecución:** Mixto  
-**Notas de validación:** las capacidades deben ser consistentes con proyectos, experiencia y formación.
+**Objetivo:** especificar un bloque de capacidades que conecte problemas organizacionales, valor y evidencia sin convertirse en un catálogo comercial de servicios.
 
-#### BLG-F2-S03-03 — Definir criterio para la gráfica de araña o visual equivalente
-**Objetivo:** decidir si se implementa una visualización comparativa de capacidades y cómo se justificaría.  
-**Descripción:** el roadmap sugiere una gráfica de araña para explicar qué problemas sabes convertir en sistemas. Este ítem define si se mantiene esa idea o si conviene otro recurso más claro.  
-**Actividades:**
-* Evaluar utilidad comunicativa de la gráfica.
-* Definir dimensiones, escalas y fuentes de información si se conserva.
-* Definir alternativa si la visualización no aporta claridad suficiente.
-**Entregable esperado:** decisión documentada sobre uso o descarte de la visualización.  
-**Dependencias:** bloque de capacidades/servicios.  
-**Tipo de ejecución:** Mixto  
-**Notas de validación:** la decisión debe priorizar comprensión real, no solo estética.
+**Contexto técnico y editorial:** `focusSection` ya presenta cuatro títulos en `src/i18n/site.ts`, mientras que `credentialsByLocale`, `src/data/projects.ts` y las experiencias contienen señales de apoyo distribuidas. El WI amplía la semántica del bloque para una implementación posterior, pero conserva `/#focus`, `/en/#focus` y el significado de los cuatro ejes.
+
+**Catálogo base obligatorio:**
+
+| Capacidad | Problema que debe explicar | Evidencia primaria candidata | Evidencia de apoyo candidata | Límite editorial inicial | Certeza editorial inicial |
+| --- | --- | --- | --- | --- | --- |
+| `Backend Engineering` | Convertir reglas y necesidades de sistema en servicios, integraciones y flujos mantenibles. | Experiencia de desarrollo backend en CIDTI y funciones verificadas en proyectos del inventario. | `credentialsByLocale`, CV y proyectos con backend/ERP. | No afirmar dominio experto, liderazgo integral ni resultados operativos no validados. | `por validar` hasta `IN-M02`/`IN-M03`. |
+| `Data Processing` | Ordenar, extraer, integrar y hacer útil información para operar o decidir. | Experiencia de extracción/procesamiento e integración de datos en CIDTI, validada con `IN-M04` si se usa. | ERP Agroinsumos, MongoDB/CV y diplomado de analítica. | No presentar analítica predictiva, impacto cuantificado o gobierno de datos si no existe evidencia específica. | `por validar` hasta `IN-M02`/`IN-M03`. |
+| `Business Process Management` | Comprender, modelar y mejorar procesos antes o durante la construcción de una solución digital. | Evidencia aplicada de requisitos/procesos y el diplomado BPM, con distinción clara entre práctica y formación. | Experiencias, proyectos ERP, credencial y CV. | La formación no equivale a consultoría BPM ejecutada ni a resultados de transformación garantizados. | `por validar` hasta `IN-M02`/`IN-M04`. |
+| `Information Systems` | Conectar personas, procesos, datos y operación en sistemas útiles y mantenibles. | Proyectos SIMIGS, ERP Turismo y ERP Agroinsumos, sujetos a validación de alcance mediante `IN-M03`. | Experiencia, CV, `rationale`, `narrativeStatus` y taxonomía de proyectos. | No generalizar cuatro proyectos a una capacidad enterprise o a soluciones universales. | `por validar` hasta `IN-M02`/`IN-M03`. |
+
+Para cada fila, el entregable definitivo debe registrar obligatoriamente `label`, `problem`, `value`, `primaryEvidence`, `supportingEvidence`, `limits` y `localeEquivalent` como shape conceptual, sin convertirlo todavía en interfaz TypeScript.
+
+**Reglas de evidencia y madurez:**
+
+* Cada capacidad exige al menos una evidencia primaria y una evidencia de apoyo; una lista de tecnologías o un curso aislado no satisface el mínimo.
+* La evidencia primaria debe ser observable en un proyecto o experiencia cuando exista; una credencial puede reforzar una capacidad, pero no sustituye evidencia aplicada.
+* La evidencia de apoyo puede provenir de proyectos adicionales, experiencia, formación o CV, y debe declarar su naturaleza.
+* `experiencia aplicada` significa contribución o trabajo verificable; `formación` significa aprendizaje acreditado; `exploración` significa interés o trabajo todavía no suficiente para una afirmación principal.
+* La certeza editorial usa estados como `confirmada`, `por validar` o `exploratoria`; nunca representa un porcentaje, nivel de dominio ni ranking.
+* La relación entre capacidades debe explicar complementariedad —por ejemplo, procesos que orientan datos y backend, o sistemas de información que integran las demás— sin duplicar la misma afirmación cuatro veces.
+
+**Alcance funcional:**
+
+* Definir nombre base, etiqueta localizada, problema, valor, evidencia, límites, relaciones y certeza para los cuatro ejes.
+* Decidir si el lenguaje público debe decir “capacidades”, “áreas de enfoque” o una fórmula equivalente; no cerrar una oferta de servicios comerciales.
+* Preparar equivalencia ES/EN conservando madurez, responsabilidad y grado de certeza.
+
+**No alcance:**
+
+* No agregar capacidades nuevas, quitar ejes base ni convertir `Frontend & UX` o `Leadership & Communication` de credenciales en ejes principales de este sprint.
+* No crear una ruta `/capabilities`, `/services` u otra ruta propia.
+* No modificar `focusSection.items`, proyectos, credenciales, experiencias, CV ni componentes.
+* No usar capacidades para alterar `projectStatus`, `portfolioTier`, `strategicPriority` o la taxonomía de estados.
+
+**Gherkin ampliado:**
+
+* **Escenario: catálogo nominal de cuatro capacidades**
+  **Dado** los cuatro títulos actuales de `focusSection` y las fuentes de proyectos, experiencias, formación y CV
+  **Cuando** se define el bloque de capacidades
+  **Entonces** aparecen exactamente los cuatro ejes base, cada uno con problema, valor, evidencia primaria, apoyo, límites, relaciones y certeza editorial.
+* **Escenario: rechazo por evidencia insuficiente**
+  **Dado** una capacidad sustentada solo por tecnologías, cursos o aspiración
+  **Cuando** se revisa su criterio de cierre
+  **Entonces** no puede marcarse como confirmada; queda `por validar` o `exploratoria` y el bloqueo se vincula a `IN-M02`/`IN-M03`.
+* **Escenario: trazabilidad de capacidad a fuentes**
+  **Dado** una afirmación de valor para una organización
+  **Cuando** se audita la ficha de capacidad
+  **Entonces** existe una relación observable con un proyecto o experiencia primaria, una fuente de apoyo y el artefacto narrativo que la consume (`NAR-B03`, `NAR-M03` o `NAR-M04`).
+* **Escenario: compatibilidad ES/EN y distinción de madurez**
+  **Dado** una ficha validada en español que distingue experiencia aplicada, formación y exploración
+  **Cuando** se prepara su adaptación inglesa
+  **Entonces** se conserva la misma clasificación y alcance, sin convertir formación en experiencia ni exploración en especialización.
+
+**Desglose de tareas:**
+
+* **Arquitectura:** mapear el bloque a `/#focus` y `/en/#focus`; definir la separación entre capacidad, estado de proyecto y prioridad narrativa; documentar el shape conceptual futuro.
+* **Negocio/valor:** traducir cada eje a una necesidad organizacional y un valor comprensible, sin cerrar servicios comerciales ni resultados garantizados.
+* **Funcional:** completar la matriz de cuatro capacidades y sus versiones ES/EN, relaciones, límites y certeza editorial.
+* **No funcional:** asegurar que la información pueda leerse como texto, que no dependa de colores y que no exponga información confidencial de proyectos o empleadores.
+* **Pruebas:** comprobar exactamente cuatro ejes, evidencia primaria/apoyo, distinción de madurez, trazabilidad y paridad bilingüe.
+* **Documentación/aceptación:** registrar la confirmación manual de afirmaciones y nivel real de cada capacidad, junto con los bloqueos de `IN-M02` e `IN-M03`.
+
+**Checklist de implementación:**
+
+* Las cuatro capacidades conservan su significado y nombres base.
+* Cada capacidad tiene problema, valor, evidencia primaria, apoyo, límites, relación y certeza editorial.
+* Cada evidencia está clasificada como experiencia aplicada, formación o exploración.
+* Ninguna capacidad se presenta como puntuación, ranking, seniority o servicio contratado.
+* La etiqueta y el significado ES/EN son equivalentes.
+* `IN-M02` y las fichas de proyecto de `IN-M03` están validadas o los bloqueos continúan visibles.
+* El bloque sigue siendo una función narrativa de `#focus` y no una ruta nueva.
+* No se modificó ninguna interfaz, dato, ruta o componente runtime.
+
+**Preguntas de definición y cierre:**
+
+* ¿Qué evidencia primaria puede aprobarse para cada eje sin atribuir una contribución que no esté confirmada?
+* ¿Qué formulación de valor entiende mejor una organización sin convertir el bloque en una lista de servicios?
+* ¿Qué capacidades deben aparecer como experiencia aplicada, cuáles como formación y cuáles solo como exploración?
+* ¿Qué relaciones entre ejes aclaran el enfoque sistémico sin repetir el hero?
+
+**Dependencias:** `NAR-B03`, `NAR-M03`, `NAR-M04`, `IN-M02`, `IN-M03`, `src/i18n/site.ts`, `src/data/projects.ts`, `src/data/credentials.ts`, experiencias, CV y taxonomía de estados.
+**Tipo de ejecución:** Mixto
+**Criterio de aceptación:** los cuatro ejes tienen ficha completa, evidencia primaria y de apoyo, límites y equivalencia ES/EN; la validación manual de afirmaciones y nivel real queda registrada antes de cerrar.
+
+#### BLG-F2-S03-03 — Definir matriz comparativa accesible de capacidades
+**Objetivo:** reemplazar el radar como recurso predeterminado por una matriz que haga comparable la evidencia de las cuatro capacidades sin simular una medición objetiva de habilidad.
+
+**Decisión funcional:** la matriz comparará cada capacidad por problema, valor, evidencia y límites. Podrá incluir una columna de composición de evidencia —por ejemplo, `primaria`, `primaria + apoyo` o `pendiente`— para expresar presencia/profundidad de respaldo, pero no una escala numérica, porcentaje, ranking o orden de “mejor capacidad”.
+
+**Requisitos de la matriz:**
+
+* Debe tener una fila por cada uno de los cuatro ejes y encabezados comprensibles fuera de cualquier contexto visual.
+* Debe poder leerse completamente como contenido textual lineal, tabla semántica o equivalente accesible.
+* La comparación debe mostrar problema, valor, evidencia primaria/de apoyo, límites y estado de certeza editorial.
+* No puede depender de color, posición, área geométrica, proximidad visual, tooltip, animación o interpretación de un polígono.
+* La versión ES y la adaptación EN deben conservar las mismas filas, columnas, alcance, madurez y grado de certeza.
+* El recurso debe poder convertirse más adelante en componente sin fijar ahora props, tipos TypeScript, fuente de datos o estrategia visual.
+* No debe alterar anchors, navegación, orden de secciones ni estructura actual de la home.
+
+**No alcance:**
+
+* No implementar la tabla, un radar, un SVG, una gráfica ni estilos en este sprint.
+* No decidir una escala de competencia, porcentaje de dominio o priorización de capacidades.
+* No agregar proyectos, capacidades, filtros, rutas, enlaces a casos de estudio o CTAs.
+
+**Entregable esperado:** especificación de la matriz con columnas, filas, reglas de lectura, categorías de evidencia, fallback textual, paridad ES/EN, criterios de accesibilidad y trazabilidad hacia las fichas de `BLG-F2-S03-02`.
+
+**Gherkin ampliado:**
+
+* **Escenario: matriz comparativa nominal**
+  **Dado** el catálogo de cuatro capacidades cerrado por `BLG-F2-S03-02`
+  **Cuando** se define la matriz comparativa
+  **Entonces** cada fila expone problema, valor, evidencia, límites y certeza, y la composición de evidencia no se interpreta como una puntuación de dominio.
+* **Escenario: rechazo de radar o escala subjetiva**
+  **Dado** una propuesta que usa área, color, posición, escala numérica o ranking para representar “nivel”
+  **Cuando** se revisa contra el criterio del sprint
+  **Entonces** la propuesta se rechaza o se reconduce a evidencia textual observable, sin fijar una competencia que las fuentes no demuestran.
+* **Escenario: trazabilidad de celdas**
+  **Dado** una celda que afirma valor o evidencia de una capacidad
+  **Cuando** se audita la matriz
+  **Entonces** la celda puede rastrearse a la ficha de capacidad, a `src/data/projects.ts`, experiencias, credenciales, CV o a una validación manual identificada.
+* **Escenario: compatibilidad accesible ES/EN**
+  **Dado** la matriz semántica en español
+  **Cuando** se prepara la contraparte inglesa o un futuro componente
+  **Entonces** se conserva el mismo orden lógico, contenido, alcance, fallback textual y estado de certeza, sin depender de color o geometría.
+
+**Desglose de tareas:**
+
+* **Arquitectura:** definir la matriz como artefacto editorial reutilizable por un futuro componente y mantenerla dentro de `#focus`.
+* **Negocio/valor:** elegir solo comparadores que ayuden a entender problemas, valor y respaldo; eliminar indicadores decorativos o competitivos.
+* **Funcional:** especificar columnas, filas, categorías de evidencia y fallback textual ES/EN.
+* **No funcional:** exigir semántica accesible, lectura lineal, contraste/foco cuando se implemente y ausencia de dependencia de color, geometría o interacción oculta.
+* **Pruebas:** validar cobertura de cuatro filas, ausencia de escala/ranking, trazabilidad por celda y equivalencia bilingüe.
+* **Documentación/aceptación:** registrar la decisión de descartar el radar y las restricciones que deberán respetarse en la implementación futura.
+
+**Checklist de implementación:**
+
+* La matriz compara exactamente las cuatro capacidades definidas.
+* Las columnas cubren problema, valor, evidencia, límites y certeza/composición de evidencia.
+* La composición de evidencia no se expresa como nota, porcentaje, nivel o ranking.
+* Existe una lectura textual completa y una regla de fallback accesible.
+* ES/EN conservan filas, columnas, alcance, madurez y certeza.
+* La matriz no depende de colores, área, posición, tooltips o animación.
+* No se fijaron props, tipos, rutas, anchors ni componentes nuevos.
+* La trazabilidad de cada afirmación apunta a una ficha y fuente verificable.
+
+**Preguntas de definición y cierre:**
+
+* ¿Qué categorías de composición de evidencia son suficientemente claras sin parecer niveles de habilidad?
+* ¿Qué columnas son imprescindibles para el valor narrativo y cuáles sobrecargarían la lectura?
+* ¿El fallback textual debe ser una tabla siempre visible o un bloque alternativo definido para la implementación?
+* ¿Qué criterio de accesibilidad debe verificarse en navegador cuando la matriz pase a Fase 2 de implementación?
+
+**Dependencias:** `BLG-F2-S03-02`, `NAR-B03`, `IN-M02`, `IN-M03`, `docs/portfolio-mvp-sitemap.md`, `docs/portfolio-content-prioritization.md` y contrato actual de `#focus`.
+**Tipo de ejecución:** Mixto
+**Criterio de aceptación:** existe una especificación textual, accesible y bilingüe de la matriz que descarta el radar, evita puntuaciones/rankings, conserva `#focus` y deja trazabilidad por capacidad sin definir todavía el componente runtime.
+
+**Estado del sprint:** Pendiente de implementación posterior y validación manual. Esta ampliación es una especificación de Fase 2; no constituye un cierre técnico ni declara cambios realizados.
 
 ### Sprint 04
 
