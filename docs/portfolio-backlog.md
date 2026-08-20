@@ -768,7 +768,7 @@ Ejemplo:
 #### BLG-F2-S03-01 — Refinar propuesta de valor principal de la home
 **Objetivo:** consolidar una tesis profesional central, consultiva y defendible para `/` y `/en/`.
 
-**Contexto técnico y editorial:** la home ya tiene `hero.role`, `hero.specialties` y `hero.summary` en `src/i18n/site.ts`. El WI define la intención y los límites del mensaje que podrá implementarse después; no redacta ni publica el copy runtime. Su entrada narrativa son `NAR-B01` y `NAR-B02`, y su validación depende de `IN-M01` e `IN-M02`.
+**Contexto técnico y editorial:** la home ya tiene `hero.role`, `hero.specialties` y `hero.summary` en `src/i18n/site.ts`. El WI define la intención y los límites del mensaje que podrá implementarse después; no redacta ni publica el copy runtime. Su entrada narrativa son `NAR-B01` y `NAR-B02`; la validación manual de voz, afirmaciones y alcance queda registrada en `IN-M01`, `IN-M02` e `IN-M03` para este alcance.
 
 **Alcance funcional:**
 
@@ -787,10 +787,10 @@ Ejemplo:
 
 **Entregable esperado:** ficha de propuesta de valor con audiencia, tesis, afirmaciones descompuestas, vocabulario permitido/no permitido, evidencia primaria y de apoyo, límites, versión semántica ES, adaptación EN, dependencias y registro de validación de voz.
 
-**Ficha editorial implementada (fuente ES; pendiente de validación manual):**
+**Ficha editorial validada para este WI (fuente ES; no es copy runtime):**
 
-* **Audiencia principal:** personas que evalúan una colaboración o incorporación en equipos técnicos y organizaciones que necesitan ordenar procesos, datos y operación mediante software. La home debe facilitar una primera conversación profesional; no debe presentar una oferta de consultoría ni asumir que existe un encargo comercial.
-* **Identidad profesional propuesta:** desarrollador de software orientado a backend y datos, con experiencia en iniciativas de transformación digital y formación complementaria en gestión de procesos de negocio, analítica de datos y arquitectura de software. Esta formulación mantiene el foco observable en desarrollo y datos; `ingeniería de soluciones`, `transformación digital` y `arquitectura` funcionan como contexto de trabajo y quedan sujetas a `IN-M01`/`IN-M02`.
+* **Audiencia principal:** personas que evalúan una colaboración o incorporación en equipos técnicos, y organizaciones o equipos que necesitan un perfil freelance para ordenar procesos, datos y operación mediante software. La home debe facilitar una primera conversación profesional; no debe presentar una oferta de consultoría ni asumir que existe un encargo comercial.
+* **Identidad profesional validada:** desarrollador de software orientado a backend y datos, con experiencia en iniciativas de transformación digital y formación complementaria en gestión de procesos de negocio, analítica de datos y arquitectura de software. Esta formulación mantiene el foco observable en desarrollo y datos; `ingeniería de soluciones`, `transformación digital` y `arquitectura` funcionan como contexto de trabajo y se mantienen acotadas por los límites aprobados en `IN-M01`/`IN-M02`.
 * **Problema que ayuda a abordar:** convertir necesidades de procesos y operación en sistemas de información que conecten requisitos, datos y decisiones de desarrollo. La afirmación describe el tipo de problema abordable, no garantiza una transformación, resultado operativo o disponibilidad de servicio.
 * **Valor diferencial propuesto:** conectar comprensión de procesos, organización de información y construcción backend para producir soluciones digitales claras, mantenibles y útiles para quienes las utilizan. `Claro`, `mantenible` y `útil` describen criterios de diseño; no significan impacto medido, calidad certificada ni resultado garantizado.
 
@@ -798,67 +798,74 @@ Ejemplo:
 
 | ID | Afirmación semántica | Evidencia primaria observable | Evidencia de apoyo | Límite de publicación | Estado |
 | --- | --- | --- | --- | --- | --- |
-| `VP-01` | Sergio es un desarrollador de software orientado a backend y datos. | `src/content/experiences/university-intern-cidti-2025.md` registra desarrollo backend y análisis de datos; `src/content/experiences/software-developer-cidti-2026.md` registra desarrollo de software actual. | Resumen y experiencia de `docs/resume/curriculum-vitae.es.tex`; `hero.role` y `hero.summary` en `src/i18n/site.ts`. | No usar `experto`, `especialista`, `senior` ni una jerarquía no validada. La orientación no equivale a dominio exclusivo o exhaustivo. | `pendiente IN-M01/IN-M02` |
-| `VP-02` | Ayuda a traducir necesidades y requisitos en funcionalidades y sistemas digitales. | La experiencia CIDTI 2026 documenta levantamiento de requerimientos, historias de usuario e implementación de funcionalidades sobre una base existente. | Proyecto educativo y experiencias de CIDTI 2025; `aboutSection.principles` y `hero.summary` como contexto narrativo. | No atribuir liderazgo integral, propiedad exclusiva de los sistemas ni resultados de negocio que no estén documentados. | `pendiente IN-M01/IN-M02` |
-| `VP-03` | Conecta procesos, datos y desarrollo para apoyar soluciones de información claras, mantenibles y útiles. | CIDTI 2025 documenta extracción, procesamiento e integración de información; CIDTI 2026 documenta desarrollo, despliegues ocasionales y migración progresiva de arquitectura. | `simigs`, `erp-turismo` y `erp-agroinsumos` en `src/data/projects.ts`, sujetos a confirmación de alcance por `IN-M03`; CV y credenciales. | `Operación`, `arquitectura` y la relación con los tres sistemas no deben ampliarse más allá de la contribución validada. No afirmar impactos cuantificados ni garantías de mantenibilidad o utilidad. | `pendiente IN-M01/IN-M02/IN-M03` |
-| `VP-04` | Su formación en BPM y analítica de datos refuerza la forma de comprender procesos y trabajar con información. | Diplomados consignados en `docs/resume/curriculum-vitae.es.tex` y registros de `src/data/credentials.ts`. | Experiencia CIDTI 2025 y `learningSection` de `src/i18n/site.ts`. | La formación es evidencia de aprendizaje, no sustituye experiencia aplicada, certificación profesional, consultoría BPM ni resultados analíticos. | `pendiente IN-M01/IN-M02` |
+| `VP-01` | Sergio es un desarrollador de software orientado a backend y datos. | `src/content/experiences/university-intern-cidti-2025.md` registra desarrollo backend y análisis de datos; `src/content/experiences/software-developer-cidti-2026.md` registra desarrollo de software actual. | Resumen y experiencia de `docs/resume/curriculum-vitae.es.tex`; `hero.role` y `hero.summary` en `src/i18n/site.ts`. | No usar `experto`, `especialista`, `senior` ni una jerarquía no validada. La orientación no equivale a dominio exclusivo o exhaustivo. | `validado IN-M01/IN-M02` |
+| `VP-02` | Ayuda a traducir necesidades y requisitos en funcionalidades y sistemas digitales. | La experiencia CIDTI 2026 documenta levantamiento de requerimientos, historias de usuario e implementación de funcionalidades sobre una base existente. | Proyecto educativo y experiencias de CIDTI 2025; `aboutSection.principles` y `hero.summary` como contexto narrativo. | No atribuir liderazgo integral, propiedad exclusiva de los sistemas ni resultados de negocio que no estén documentados. | `validado IN-M01/IN-M02` |
+| `VP-03` | Conecta procesos, datos y desarrollo para apoyar soluciones de información claras, mantenibles y útiles. | CIDTI 2025 documenta extracción, procesamiento e integración de información; CIDTI 2026 documenta desarrollo, despliegues ocasionales y migración progresiva de arquitectura. | Como evidencia contextual y de apoyo: `EpicrisisIA` de CIDTI 4.0, sistema en construcción para procesamiento y apoyo sobre documentos clínicos, con referencia superficial a equipos técnicos y contextos de salud/auditoría; proyecto en construcción para establecimientos educativos colombianos, orientado a gestión ITA y gestión operativa, con referencia superficial a establecimientos y equipos de gestión; y `BPMNPlay`, herramienta pedagógica en construcción para aprendizaje, modelado y evaluación de procesos BPMN, con referencia superficial a aprendices, facilitadores y equipos de procesos. Los tres proyectos se citan solo para trazabilidad interna y de forma superficial. `SIMIGS`, `ERP Turismo` y `ERP Agroinsumos` quedan registrados como proyectos archivados y dejan de ser evidencia vigente. CV y credenciales complementan el contexto. | `Operación`, `arquitectura` y la relación con los proyectos no deben ampliarse más allá de la contribución validada. No afirmar impactos cuantificados ni garantías de mantenibilidad o utilidad. No incluir datos clínicos, escolares, comerciales, identificadores de stakeholders, documentos internos ni resultados no verificados. | `validado IN-M01/IN-M02/IN-M03; alcance superficial del WI` |
+| `VP-04` | Su formación en BPM y analítica de datos refuerza la forma de comprender procesos y trabajar con información. | Diplomados consignados en `docs/resume/curriculum-vitae.es.tex` y registros de `src/data/credentials.ts`. | Experiencia CIDTI 2025 y `learningSection` de `src/i18n/site.ts`. | La formación es evidencia de aprendizaje, no sustituye experiencia aplicada, certificación profesional, consultoría BPM ni resultados analíticos. | `validado IN-M01/IN-M02` |
+
+Los nombres de `EpicrisisIA`, el proyecto educativo y `BPMNPlay` se mantienen únicamente como trazabilidad interna de este backlog. `IN-M03` no cierra las fichas detalladas, los casos de estudio ni la publicación de información de esos proyectos; esas decisiones quedan abiertas para los WIs de proyectos de Fase 3.
 
 **Vocabulario editorial:**
 
 * **Conservar como núcleo:** `desarrollador de software`, `backend`, `datos`, `procesos`, `requisitos`, `sistemas de información`, `desarrollo`, `mantenibles`, `útiles` y `formación aplicada`.
-* **Usar con contexto y validar:** `ingeniería de soluciones`, `transformación digital`, `arquitectura`, `operación`, `consultivo` y `conectar`. Deben describir el enfoque o el contexto de una contribución, no convertirlo en una oferta o un nivel de autoridad.
+* **Usar con contexto y límites aprobados:** `ingeniería de soluciones`, `transformación digital`, `arquitectura`, `operación`, `consultivo` y `conectar`. Deben describir el enfoque o el contexto de una contribución, no convertirlo en una oferta o un nivel de autoridad.
 * **Evitar salvo evidencia y aprobación explícitas:** `consultor`, `especialista`, `experto`, `senior`, `arquitecto`, `líder técnico`, `end-to-end`, `impacto`, `optimización garantizada`, `transformación asegurada`, `servicios` y cualquier promesa de disponibilidad, plazo o resultado.
 
-**Versión semántica propuesta en ES:**
+**Versión semántica validada en ES:**
 
 > Soy desarrollador de software orientado a backend y datos. Convierto necesidades de procesos y operación en sistemas de información claros, mantenibles y útiles, conectando requisitos, datos y decisiones de desarrollo. Mi experiencia en desarrollo backend, extracción y procesamiento de información, y formación en gestión de procesos de negocio orientan la construcción y mejora de soluciones digitales.
 
-Esta redacción es una base semántica para aprobación, no copy runtime aprobado. Se debe retirar o acotar cualquier segmento que Sergio no reconozca como propio o que no pueda sostenerse con las fuentes indicadas.
+Esta redacción es la base semántica validada para una implementación posterior; no es copy runtime publicado. Sus límites aprobados siguen siendo obligatorios y cualquier implementación debe sostener cada segmento con las fuentes indicadas.
 
 **Adaptación semántica equivalente en EN:**
 
 > I am a software developer focused on backend and data. I turn process and operational needs into clear, maintainable, useful information systems by connecting requirements, data, and development decisions. My experience in backend development, information extraction and processing, and training in business process management guides how I build and improve digital solutions.
 
-La adaptación conserva sujeto, alcance, madurez y grado de certeza de ES. `Focused on` no implica especialización exclusiva; `training` conserva el carácter formativo de BPM; `build and improve` no promete resultados ni responsabilidad integral. La versión EN queda igualmente pendiente de la aprobación de voz y alcance.
+La adaptación conserva sujeto, alcance, madurez y grado de certeza de ES. `Focused on` no implica especialización exclusiva; `training` conserva el carácter formativo de BPM; `build and improve` no promete resultados ni responsabilidad integral. La versión EN queda aprobada como adaptación semántica equivalente para una implementación posterior; no es copy runtime publicado.
 
 **Registro de validación y resolución de preguntas:**
 
-| Punto | Resolución propuesta | Validación requerida | Estado |
+| Punto | Resolución registrada | Evidencia de validación | Estado |
 | --- | --- | --- | --- |
-| Audiencia y contexto de decisión | Priorizar evaluadores de equipos técnicos y organizaciones con necesidades de procesos/datos; la home abre conversación, no vende un servicio. | Sergio debe confirmar que esta audiencia representa su objetivo profesional inmediato. | `pendiente IN-M01` |
-| Voz y nivel de lenguaje consultivo | Usar primera persona sobria, verbos de contribución y criterios de diseño; evitar tono de agencia, promesas y seniority no confirmado. | Sergio debe marcar expresiones aceptadas, rechazadas o sujetas a matiz. | `pendiente IN-M01` |
-| Afirmaciones que requieren más fuente | La relación concreta con SIMIGS, ERP Turismo y ERP Agroinsumos requiere alcance y contribución confirmados antes de usarla como respaldo principal. | Completar `IN-M03` si estas afirmaciones se incorporan a la versión final. | `pendiente IN-M03` |
-| Límites visibles | Mantener la diferencia entre experiencia aplicada, formación y exploración; no prometer disponibilidad, resultados, consultoría ni servicios. | Sergio debe aprobar estos límites junto con las afirmaciones profesionales. | `pendiente IN-M01/IN-M02` |
+| Audiencia y contexto de decisión | Se conserva la audiencia de personas que evalúan colaboración o incorporación en equipos técnicos y se explicita también a organizaciones o equipos que necesiten un perfil freelance; la home abre conversación, no vende un servicio. | Sergio confirma esta audiencia y su objetivo profesional inmediato. | `validado IN-M01` |
+| Voz y nivel de lenguaje consultivo | Se aprueba una voz sobria, en primera persona y con verbos de contribución; se excluyen tono de agencia, promesas y seniority no confirmado. | Sergio aprueba las expresiones y límites de lenguaje propuestos. | `validado IN-M01` |
+| Afirmaciones profesionales y tesis | Se aprueban la tesis, las afirmaciones y los límites propuestos, conservando la distinción entre experiencia aplicada, formación y exploración. | Sergio aprueba el alcance profesional sin elevarlo a especialización, seniority o resultados garantizados. | `validado IN-M02` |
+| Evidencia contextual y proyectos archivados | Los proyectos actuales en construcción se usan solo como evidencia contextual y de apoyo superficial; `SIMIGS`, `ERP Turismo` y `ERP Agroinsumos` se registran como archivados y no como evidencia vigente. | `IN-M03` queda validado únicamente para este alcance; las fichas detalladas se mantienen abiertas para Fase 3. | `validado IN-M03; alcance superficial` |
+| Límites de privacidad y publicación | No se publican datos clínicos, escolares, comerciales, identificadores de stakeholders, documentos internos ni resultados no verificados; los nombres de proyectos solo sirven para trazabilidad interna del backlog. | La restricción queda registrada como condición de cualquier implementación posterior de este WI. | `validado IN-M01/IN-M02/IN-M03` |
 
-**Estado de implementación del WI:** la ficha editorial, la tesis ES, la adaptación EN, la matriz de evidencia y los límites ya están documentados en el backlog. El WI permanece `pendiente de validación manual` hasta registrar `IN-M01` e `IN-M02` y, si se usan los proyectos del inventario como evidencia principal, `IN-M03`. No se modificó copy runtime ni se declara implementada la propuesta en la aplicación.
+**Estado del WI:** `Cerrado — especificación editorial validada`. La ficha editorial, la tesis ES, la adaptación EN, la matriz de evidencia, los límites y las validaciones manuales están documentados en el backlog. Este cierre solo cubre el alcance superficial de `IN-M03`; no cierra fichas detalladas ni casos de estudio de proyectos de Fase 3. No equivale a implementación runtime: no se modificó copy, rutas, anchors, contrato localizado, interfaces TypeScript ni fuentes runtime.
 
 **Gherkin ampliado:**
 
-* **Escenario: propuesta de valor nominal y defendible**
+* **Escenario: propuesta de valor nominal, freelance y defendible**
   **Dado** el hero actual, el objetivo consultivo del roadmap y las fuentes de proyectos, experiencias y CV
   **Cuando** se descompone la propuesta de valor en identidad, problemas y valor aportado
-  **Entonces** cada afirmación tiene una redacción semántica en ES, una evidencia identificable y un límite que evita prometer más de lo demostrado.
+  **Entonces** cada afirmación tiene una redacción semántica en ES, una evidencia identificable y un límite que evita prometer más de lo demostrado, y la audiencia incluye equipos u organizaciones que pueden necesitar un perfil freelance sin convertir el mensaje en una oferta comercial.
 * **Escenario: rechazo por voz o alcance no validado**
   **Dado** un mensaje que usa un tono ajeno a Sergio o presenta consultoría, seniority, resultados o disponibilidad no confirmados
   **Cuando** se revisa la ficha antes del cierre
   **Entonces** el WI permanece pendiente, la afirmación se corrige o se marca como bloqueo en `IN-M01`/`IN-M02`, y no se genera copy runtime.
-* **Escenario: trazabilidad de cada afirmación**
+* **Escenario: trazabilidad de cada afirmación y estado de proyectos**
   **Dado** una afirmación sobre procesos, datos, desarrollo, arquitectura u operación
   **Cuando** se audita su ficha editorial
-  **Entonces** se puede seguir desde la afirmación hasta `src/i18n/site.ts`, un proyecto/experiencia/CV y la validación manual correspondiente.
+  **Entonces** se puede seguir desde la afirmación hasta `src/i18n/site.ts`, una experiencia/CV y la validación manual correspondiente; `EpicrisisIA`, el proyecto educativo y `BPMNPlay` solo aparecen como apoyo contextual superficial, mientras que `SIMIGS`, `ERP Turismo` y `ERP Agroinsumos` constan como archivados y no como evidencia vigente.
 * **Escenario: equivalencia localizada**
   **Dado** el significado aprobado en español
   **Cuando** se prepara la contraparte inglesa
   **Entonces** EN conserva el mismo sujeto, alcance, madurez y grado de certeza, aunque adapte sintaxis o terminología profesional.
+* **Escenario: privacidad y cierre manual**
+  **Dado** el alcance superficial validado para los proyectos actuales
+  **Cuando** se revisa la especificación antes de una implementación posterior
+  **Entonces** se excluyen datos clínicos, escolares, comerciales, identificadores de stakeholders, documentos internos y resultados no verificados, se mantienen abiertas las fichas detalladas de Fase 3 y el WI puede marcarse `Cerrado — especificación editorial validada` sin afirmar cambios runtime.
 
 **Desglose de tareas:**
 
 * **Arquitectura:** mapear cada afirmación a las claves actuales del hero y a las fuentes que la sostienen; separar la especificación editorial del contrato runtime.
-* **Negocio/valor:** cerrar audiencia, identidad, problemas abordables, valor diferencial y límites de una eventual lectura consultiva.
+* **Negocio/valor:** cerrar audiencia, identidad, problemas abordables, valor diferencial y límites de una lectura profesional que también contemple colaboraciones freelance.
 * **Funcional:** descomponer la tesis en afirmaciones verificables y producir versión semántica ES/adaptación equivalente EN.
 * **No funcional:** evitar lenguaje ambiguo, datos confidenciales, claims de resultados y diferencias de seniority entre locales.
 * **Pruebas:** revisar cobertura de evidencia, términos prohibidos/pendientes, trazabilidad y paridad semántica.
-* **Documentación/aceptación:** registrar la validación de voz de Sergio y los bloqueos que impidan marcar una afirmación como aprobada.
+* **Documentación/aceptación:** registrar la validación manual completada de `IN-M01`, `IN-M02` y del alcance superficial de `IN-M03`, manteniendo abiertas las fichas detalladas de proyectos para Fase 3.
 
 **Checklist de implementación:**
 
@@ -867,19 +874,21 @@ La adaptación conserva sujeto, alcance, madurez y grado de certeza de ES. `Focu
 * Cada problema y valor declarado tiene evidencia primaria y de apoyo o queda pendiente.
 * Los términos vagos, comerciales o de seniority no validado están sustituidos, acotados o marcados.
 * La versión semántica ES tiene una adaptación EN equivalente en alcance y certeza.
-* La validación manual `IN-M01` e `IN-M02` está registrada; sin ella el WI sigue pendiente.
+* La validación manual `IN-M01`, `IN-M02` y `IN-M03` está registrada; `IN-M03` se limita al alcance superficial de este WI y las fichas detalladas permanecen abiertas para Fase 3.
+* `EpicrisisIA`, el proyecto educativo y `BPMNPlay` aparecen solo como evidencia contextual y de apoyo; `SIMIGS`, `ERP Turismo` y `ERP Agroinsumos` están marcados como archivados y no como evidencia vigente.
+* Las restricciones de privacidad excluyen datos clínicos, escolares y comerciales, identificadores de stakeholders, documentos internos y resultados no verificados.
 * No se modificaron claves, rutas, anchors ni copy runtime.
 
-**Preguntas de definición y cierre:**
+**Preguntas de definición y cierre — resueltas para este WI:**
 
-* ¿Qué audiencia debe priorizar la home: empleadores, equipos técnicos, organizaciones con necesidades de transformación u otra combinación explícita?
-* ¿Qué expresiones representan la voz de Sergio y cuáles suenan a agencia, consultoría formal o seniority no validado?
-* ¿Qué afirmaciones requieren una ficha de proyecto o experiencia adicional antes de publicarse?
-* ¿Qué límites deben permanecer visibles para no prometer disponibilidad, resultados o servicios no confirmados?
+* La audiencia conserva a quienes evalúan colaboración o incorporación en equipos técnicos e incluye explícitamente a organizaciones o equipos que necesiten un perfil freelance; el mensaje no se convierte en catálogo de servicios.
+* La voz aprobada es sobria, en primera persona y de contribución; se mantienen fuera las promesas comerciales, el seniority no validado y las afirmaciones de especialización o resultados garantizados.
+* `IN-M03` queda validado solo para mencionar de forma contextual y superficial los proyectos actuales en construcción; las fichas detalladas y los casos de estudio requieren WIs de Fase 3.
+* Los límites de privacidad permanecen obligatorios: no datos clínicos, escolares o comerciales, identificadores de stakeholders, documentos internos ni resultados no verificados.
 
-**Dependencias:** `NAR-B01`, `NAR-B02`, `IN-M01`, `IN-M02`, `src/i18n/site.ts`, `src/data/projects.ts`, experiencias, CV y cierre de Sprint 02.
+**Dependencias:** `NAR-B01`, `NAR-B02`, `IN-M01`, `IN-M02`, `IN-M03`, `src/i18n/site.ts`, `src/data/projects.ts`, experiencias, CV y cierre de Sprint 02.
 **Tipo de ejecución:** Mixto
-**Criterio de aceptación:** existe una tesis ES aprobable, una adaptación EN equivalente, evidencia y límites por afirmación, y validación manual de voz/alcance; no se considera cerrada si falta cualquiera de esos elementos.
+**Criterio de aceptación:** existe una tesis ES validada, una adaptación EN equivalente, evidencia y límites por afirmación, y registro de cierre manual para `IN-M01`, `IN-M02` y el alcance superficial de `IN-M03`; las fichas detalladas de proyectos permanecen fuera de este WI. El estado es `Cerrado — especificación editorial validada` y no implica implementación runtime.
 
 #### BLG-F2-S03-02 — Definir bloque explícito de capacidades/servicios
 **Objetivo:** especificar un bloque de capacidades que conecte problemas organizacionales, valor y evidencia sin convertirse en un catálogo comercial de servicios.
