@@ -144,8 +144,11 @@ Ejemplo:
 * Los proyectos retirados del MVP están marcados como fuera de narrativa principal o en segundo plano.
 * No quedan proyectos “temporales” dentro del inventario por falta de decisión.
 * La prioridad entre proyectos destacados y secundarios no depende de interpretación posterior.
+
 **Estado actual:** Cerrado el 2026-06-25. Regularizado el 2026-07-13.
+
 **Cierre de implementación:**
+
 * El inventario oficial del MVP quedó materializado en `src/data/projects.ts` como inventario público base canónico, bilingüe y reutilizable para el portfolio v1.
 * Los cuatro proyectos visibles actuales quedaron definidos con nombre público ES/EN, estado narrativo, tipo, capacidades demostradas, prioridad estratégica y visibilidad dentro del portfolio.
 * La visibilidad pública actual se conserva: tres proyectos `featured` y un proyecto `secondary`, sin alterar todavía rutas ni UI.
@@ -232,8 +235,11 @@ Ejemplo:
 * ¿Qué estados son indispensables para comunicar con honestidad lo ya construido sin devaluar proyectos valiosos pero parciales?
 * ¿Hay algún proyecto actual que tensione el catálogo y obligue a revisar definiciones antes de cerrar el WI?
 * ¿Qué redacción pública en inglés podría inducir sobreventa aunque el estado semántico sea correcto?
+
 **Estado actual:** Cerrado el 2026-06-26.
+
 **Cierre de implementación:**
+
 * La taxonomía normativa quedó documentada en `docs/project-status-taxonomy.md` con catálogo cerrado, definiciones operativas, reglas de uso y validación sobre roadmap e inventario visible actual.
 * Se formalizó la separación entre estado de proyecto, tipo, visibilidad narrativa, prioridad estratégica y tags técnicos para evitar que `narrativeStatus` siga funcionando como estado implícito.
 * Quedó documentado el impacto futuro esperado en `src/data/projects.ts`: un posible campo canónico `projectStatus` con presentación localizada separada del valor semántico base, sin fijar todavía el shape TypeScript.
@@ -311,15 +317,20 @@ Ejemplo:
 * ¿Qué gaps son estructurales de verdad y cuáles son solo ausencia de contenido o profundidad?
 * ¿Hay alguna ruta actual que deba degradarse a bloque interno o, al contrario, convertirse luego en página independiente?
 * ¿Qué vacíos deben quedar explícitamente diferidos para no inflar el alcance del MVP antes de Sprint 02?
+
 **Estado actual:** Cerrado el 11 de julio de 2026.
+
 **Cierre de implementación:**
+
 * La matriz de correspondencia quedó documentada en `docs/portfolio-information-architecture-audit.md`, basada en las rutas, componentes, navegación localizada y datos públicos realmente observables.
 * Se confirmó cobertura bilingüe para inicio, perfil, proyectos y experiencia; contacto se conserva como bloque de la home y experiencia se incorpora como ruta complementaria a la estructura mínima.
 * Blog y casos de estudio quedaron identificados como gaps estructurales; stack/capacidades quedó clasificado como contenido existente pero reubicable, sin crear rutas ni componentes prematuramente.
 * Cada gap quedó asociado a su dependencia, decisión de tratamiento y work items posteriores, incluidos los pendientes de footer, analytics, 404 y validación de lanzamiento.
 
 **Estado actual del sprint:** Cerrado el 2026-07-13.
+
 **Cierre del sprint:**
+
 * El sprint deja una base verificable y no ambigua para Sprint 02: inventario público base del MVP, taxonomía normativa de estados y auditoría de arquitectura de información.
 * La relación entre estrategia y ejecución quedó cerrada sin reabrir Fase 3: el inventario público base del MVP se mantiene sobre proyectos ya visibles y defendibles; el roadmap conserva un pipeline separado de casos de estudio prioritarios para madurar y publicar después.
 * Los vacíos diferidos quedaron identificados sin inflar el alcance del sprint: blog, casos de estudio, stack/capacidades, footer, analytics, 404 y validación de lanzamiento.
@@ -449,8 +460,11 @@ Ejemplo:
 * ¿Casos de estudio deben vivir como detalle de proyectos o como agrupación separada cuando llegue Fase 3?
 * ¿`Stack/capacidades` comunica mejor como bloque de home, bloque de perfil o ruta independiente?
 * ¿Existe algún nodo actual cuya permanencia estructural contradiga el posicionamiento consultivo del roadmap?
+
 **Estado actual:** Cerrado el 2026-07-13.
+
 **Cierre de implementación:**
+
 * El sitemap funcional del MVP quedó documentado en `docs/portfolio-mvp-sitemap.md` como entregable canónico de `BLG-F1-S02-01`.
 * La arquitectura objetivo distingue `página independiente`, `bloque interno`, `nodo reservado` y `diferido fuera de v1`, evitando mezclar rutas reales, anchors internos y promesas futuras.
 * Inicio, perfil, proyectos y experiencia quedan como páginas públicas bilingües; enfoque/capacidades y contacto quedan como bloques internos de la home con paridad ES/EN.
@@ -531,13 +545,16 @@ Ejemplo:
 * ¿Qué piezas hoy visibles podrían pasar a segundo plano sin debilitar la propuesta consultiva?
 * ¿Hay contenido deseable para SEO o autoridad que deba excluirse del MVP por falta de madurez?
 * ¿Qué dependencias externas o personales deben bloquear explícitamente una pieza para evitar promesas vacías?
+
 **Estado actual:** Cerrado el 2026-07-20.
+
 **Cierre de implementación:**
+
 * La matriz canónica quedó documentada en `docs/portfolio-content-prioritization.md`, con prioridad, madurez, fuente, tratamiento, dependencia, tipo de ejecución y trazabilidad al roadmap para cada pieza relevante.
 * Identidad, capacidades, proyectos públicos, experiencia, CV, contacto y perfiles profesionales permanecen como contenido `critico` del MVP; sus validaciones manuales de precisión o coherencia no los bloquean.
 * Perfil profundo, formación/credenciales y el proyecto académico secundario quedan como `importante`; blog, casos de estudio, footer, analytics, 404 y evolución de consultoría/productos quedan diferidos con fase y work item de destino.
 * Los casos individuales sin información fuente, los artículos aún no escritos, la decisión de Medium y la validación externa se registran como `bloqueado`, sin presentarlos como cobertura pública actual.
-* No se modificaron rutas, componentes, `src/i18n/site.ts`, `src/data/projects.ts` ni el inventario público definido en Sprint 01. Sprint 02 continúa pendiente de `BLG-F1-S02-03`.
+* No se modificaron rutas, componentes, `src/i18n/site.ts`, `src/data/projects.ts` ni el inventario público definido en Sprint 01. En el corte de cierre de este WI, Sprint 02 quedó pendiente únicamente de `BLG-F1-S02-03`.
 
 #### BLG-F1-S02-03 — Definir backlog narrativo inicial
 **Objetivo:** convertir la estrategia discursiva del portfolio en piezas concretas de contenido.
@@ -612,6 +629,33 @@ Ejemplo:
 * ¿Qué narrativa puede apoyarse en evidencia ya presente en proyectos, experiencia o CV sin esperar nuevas fuentes?
 * ¿Qué piezas deben quedar solo como placeholders del sitemap hasta que exista implementación de blog o casos de estudio?
 * ¿Qué bloque narrativo sería el primero en romperse si se intentara implementar la home sin este backlog?
+
+**Estado actual:** Cerrado el 2026-08-07.
+
+**Cierre de implementación:**
+
+* El backlog narrativo canónico quedó documentado en `docs/portfolio-narrative-backlog.md`, con piezas ordenadas entre bloqueantes de Fase 2, soporte del MVP y reservas de Fases 3 y 4.
+* Cada pieza crítica registra destino ES/EN, objetivo, prioridad y madurez heredadas, fuente y evidencia mínima, tipo de ejecución, dependencia, work item bloqueado, criterio de cierre y tratamiento bilingüe.
+* La propuesta de valor, capacidades, coherencia externa y jerarquía de CTAs apuntan expresamente a `BLG-F2-S03-01`, `BLG-F2-S03-02`, `BLG-F2-S03-03`, `BLG-F2-S04-01`, `BLG-F2-S04-02` y `BLG-F2-S04-03` según su dependencia.
+* La cola manual separa validación de voz, afirmaciones profesionales, alcance de proyectos, vigencia de experiencia/CV y coherencia con GitHub y LinkedIn.
+* Blog y casos de estudio permanecen como reservas narrativas sin artículos seleccionados, rutas prometidas ni copy de detalle; sus insumos y bloqueos se entregan a Fases 4 y 3.
+* No se modificaron rutas, anchors, componentes, datos públicos ni el contrato localizado de `src/i18n/site.ts`; `#focus` y `#contact` se conservan.
+
+**Estado actual del sprint:** Cerrado el 2026-08-07.
+
+**Cierre del sprint:**
+
+* Sprint 02 deja una definición única del sitemap del MVP, la prioridad del contenido público y las unidades narrativas que alimentarán la implementación de Fase 2.
+* La secuencia editorial queda cerrada sin adelantar trabajo posterior: primero mensaje profesional y capacidades, después coherencia externa y CTAs; casos de estudio y blog conservan sus fases propias.
+* La paridad ES/EN se define como equivalencia semántica adaptada, con español como base y prohibición explícita de reforzar afirmaciones en inglés.
+* Los posibles módulos o colecciones de copy se mantienen como decisión diferida hasta que la profundidad editorial justifique cambiar el contrato actual.
+
+**Evidencia de verificación del sprint:**
+
+* `docs/portfolio-mvp-sitemap.md` formaliza páginas, bloques internos, nodos reservados y elementos diferidos.
+* `docs/portfolio-content-prioritization.md` fija prioridad, madurez, fuentes, dependencias y trazabilidad del contenido.
+* `docs/portfolio-narrative-backlog.md` cubre todas las rutas y bloques del MVP, la cola manual y los bloqueos hacia Sprints 03 y 04.
+* Revisión documental confirma que blog y casos de estudio continúan sin navegación, rutas o contenido público prometido.
 
 ---
 

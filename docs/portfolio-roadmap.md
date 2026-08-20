@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-El portfolio ya empezó. Falta una pieza importante: **diseñar e integrar la sección de blog conectada con Medium**. Además, falta definir claramente qué proyectos mostrar y cómo clasificarlos.
+El portfolio ya empezó. La base narrativa y estructural de la Fase 1 quedó cerrada: el MVP ya tiene sitemap, inventario y taxonomía de proyectos, prioridad de contenido y backlog narrativo canónicos. El siguiente frente es la Fase 2, dedicada a refinar el mensaje profesional, las capacidades, la coherencia externa y la jerarquía de CTAs. Blog y casos de estudio conservan sus fases posteriores y no forman parte de la cobertura pública actual.
 
 ### Actualización de estado real al 14 de junio de 2026
 
@@ -271,9 +271,11 @@ Al final de esta fase debes tener claridad absoluta sobre qué va en el portfoli
 
 ### Estado actual de la fase
 
-**Avance estimado:** 80%
+**Avance estimado:** 100% en su base de planificación narrativa y estructural.
 
-La estructura base ya está bastante definida, pero todavía falta alinear por completo el inventario de proyectos y añadir la capa de blog y casos de estudio prevista desde esta etapa.
+La fase queda cerrada con el inventario público base y su taxonomía, la auditoría de arquitectura de información, el sitemap objetivo, la priorización de contenido y el backlog narrativo inicial. Blog y casos de estudio permanecen como nodos reservados para Fases 4 y 3 respectivamente; su ausencia pública no reabre esta fase ni anticipa su implementación.
+
+**Siguiente frente:** Fase 2 — refinar propuesta de valor, capacidades, coherencia entre portfolio/GitHub/LinkedIn y jerarquía de CTAs a partir de `docs/portfolio-narrative-backlog.md`.
 
 ### Qué no hacer todavía
 
@@ -612,31 +614,32 @@ La clave es mostrar también proyectos en evolución, pero con honestidad: **en 
 
 # Próxima acción concreta
 
-Con base en el estado real del proyecto, la siguiente prioridad ya no debería ser solo definir estructura general. Esa base ya avanzó. Ahora el foco debe estar en convertir la base narrativa ya delimitada en una arquitectura objetivo del MVP y en un pipeline ejecutable de casos de estudio y blog.
+Con la base narrativa y estructural de Fase 1 cerrada, la siguiente prioridad es ejecutar Fase 2 sin reabrir sitemap, inventario o priorización. El foco inmediato es hacer más preciso el mensaje profesional de la home y alinear sus afirmaciones con la evidencia y los perfiles externos.
 
-## Sprint Portfolio 02
+## Sprints Portfolio 03 y 04
 
 ### Objetivo
 
-Formalizar el sitemap del MVP sobre la base ya delimitada y preparar la ejecución real de casos de estudio y blog.
+Refinar la propuesta de valor, convertir el bloque de enfoque en capacidades defendibles y cerrar la coherencia narrativa y la jerarquía de CTAs del MVP.
 
 ### Tareas
 
-1. Formalizar la relación entre inventario público base y pipeline priorizado de casos de estudio.
-2. Definir sitemap y priorización de contenido del MVP.
-3. Diseñar una plantilla base de caso de estudio.
-4. Crear al menos el primer caso de estudio real.
-5. Definir la arquitectura mínima de la sección blog.
-6. Elegir el mecanismo de integración con Medium.
-7. Preparar backlog técnico de analytics, 404 y footer.
+1. Validar voz personal y nivel de las afirmaciones profesionales del hero.
+2. Refinar la propuesta de valor y sus mensajes de soporte.
+3. Definir capacidades con problema abordado, valor, evidencia y límites.
+4. Contrastar portfolio, CV, GitHub y LinkedIn y asignar los ajustes por plataforma.
+5. Definir CTA principal, CTAs secundarios y cierre de contacto.
+6. Consolidar la especificación funcional de la home v1.
 
 ### Entregable mínimo
 
-1. Sitemap funcional del MVP con reglas de cobertura y navegación.
-2. Matriz de priorización de contenido y relación explícita entre inventario público base y pipeline de casos.
-3. Primera plantilla o página de caso de estudio.
-4. Decisión técnica documentada sobre Medium.
-5. Lista priorizada de tareas de cierre para MVP.
+1. Mensaje principal validado y listo para adaptación ES/EN.
+2. Catálogo de capacidades respaldado por evidencia.
+3. Matriz de coherencia narrativa entre plataformas.
+4. Catálogo jerarquizado de CTAs.
+5. Especificación funcional cerrada de la home v1.
+
+La entrada operativa es `docs/portfolio-narrative-backlog.md`. Casos de estudio y blog continúan reservados para Fases 3 y 4; no se incluyen en estos sprints.
 
 ---
 
