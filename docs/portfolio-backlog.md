@@ -893,18 +893,29 @@ La adaptación conserva sujeto, alcance, madurez y grado de certeza de ES. `Focu
 #### BLG-F2-S03-02 — Definir bloque explícito de capacidades/servicios
 **Objetivo:** especificar un bloque de capacidades que conecte problemas organizacionales, valor y evidencia sin convertirse en un catálogo comercial de servicios.
 
-**Contexto técnico y editorial:** `focusSection` ya presenta cuatro títulos en `src/i18n/site.ts`, mientras que `credentialsByLocale`, `src/data/projects.ts` y las experiencias contienen señales de apoyo distribuidas. El WI amplía la semántica del bloque para una implementación posterior, pero conserva `/#focus`, `/en/#focus` y el significado de los cuatro ejes.
+**Contexto técnico y editorial:** `focusSection` ya presenta cuatro títulos en `src/i18n/site.ts`, mientras que `credentialsByLocale`, `src/data/projects.ts` y las experiencias contienen señales de apoyo distribuidas. El WI amplía la semántica del bloque para una implementación posterior, pero conserva `/#focus`, `/en/#focus` y el significado de los cuatro ejes. La validación de `IN-M02` permite cerrar las afirmaciones y su nivel real a esta profundidad; `IN-M03` solo aporta validación superficial de los proyectos actuales y no sustituye sus fichas detalladas de Fase 3.
 
-**Catálogo base obligatorio:**
+**Catálogo editorial validado para este WI (fuente ES; no es copy runtime):**
 
-| Capacidad | Problema que debe explicar | Evidencia primaria candidata | Evidencia de apoyo candidata | Límite editorial inicial | Certeza editorial inicial |
-| --- | --- | --- | --- | --- | --- |
-| `Backend Engineering` | Convertir reglas y necesidades de sistema en servicios, integraciones y flujos mantenibles. | Experiencia de desarrollo backend en CIDTI y funciones verificadas en proyectos del inventario. | `credentialsByLocale`, CV y proyectos con backend/ERP. | No afirmar dominio experto, liderazgo integral ni resultados operativos no validados. | `por validar` hasta `IN-M02`/`IN-M03`. |
-| `Data Processing` | Ordenar, extraer, integrar y hacer útil información para operar o decidir. | Experiencia de extracción/procesamiento e integración de datos en CIDTI, validada con `IN-M04` si se usa. | ERP Agroinsumos, MongoDB/CV y diplomado de analítica. | No presentar analítica predictiva, impacto cuantificado o gobierno de datos si no existe evidencia específica. | `por validar` hasta `IN-M02`/`IN-M03`. |
-| `Business Process Management` | Comprender, modelar y mejorar procesos antes o durante la construcción de una solución digital. | Evidencia aplicada de requisitos/procesos y el diplomado BPM, con distinción clara entre práctica y formación. | Experiencias, proyectos ERP, credencial y CV. | La formación no equivale a consultoría BPM ejecutada ni a resultados de transformación garantizados. | `por validar` hasta `IN-M02`/`IN-M04`. |
-| `Information Systems` | Conectar personas, procesos, datos y operación en sistemas útiles y mantenibles. | Proyectos SIMIGS, ERP Turismo y ERP Agroinsumos, sujetos a validación de alcance mediante `IN-M03`. | Experiencia, CV, `rationale`, `narrativeStatus` y taxonomía de proyectos. | No generalizar cuatro proyectos a una capacidad enterprise o a soluciones universales. | `por validar` hasta `IN-M02`/`IN-M03`. |
+| ID / capacidad base | Etiqueta ES / equivalente EN | Problema que explica | Valor que puede comunicar | Certeza editorial |
+| --- | --- | --- | --- | --- |
+| `CAP-01` / `Backend Engineering` | Ingeniería backend / Backend Engineering | Convertir requisitos y reglas de sistema en servicios, integraciones y flujos mantenibles. | Construir y mejorar componentes backend con atención a requisitos, datos, configuración y operación técnica. | `confirmada` para experiencia aplicada; no implica especialización exclusiva ni seniority. |
+| `CAP-02` / `Data Processing` | Procesamiento de datos / Data Processing | Extraer, ordenar e integrar información para apoyar la operación o la toma de decisiones. | Transformar información dispersa en estructuras y flujos que puedan utilizarse en un sistema. | `confirmada` para extracción, procesamiento e integración; no incluye analítica predictiva, gobierno de datos ni impacto cuantificado sin evidencia específica. |
+| `CAP-03` / `Business Process Management` | Gestión de procesos de negocio / Business Process Management | Comprender requisitos, modelar procesos y ordenar necesidades antes o durante la construcción de una solución digital. | Conectar el análisis de procesos con decisiones de alcance, prioridades y construcción de software. | `confirmada` como combinación acotada de experiencia aplicada y formación; no equivale a consultoría BPM ni a transformación garantizada. |
+| `CAP-04` / `Information Systems` | Sistemas de información / Information Systems | Conectar procesos, datos, desarrollo y operación en sistemas útiles y mantenibles. | Integrar perspectivas de proceso, información y construcción técnica para abordar necesidades organizacionales concretas. | `confirmada` como eje integrador de la experiencia documentada; no implica soluciones enterprise universales, propiedad integral ni resultados de negocio. |
 
-Para cada fila, el entregable definitivo debe registrar obligatoriamente `label`, `problem`, `value`, `primaryEvidence`, `supportingEvidence`, `limits` y `localeEquivalent` como shape conceptual, sin convertirlo todavía en interfaz TypeScript.
+El shape conceptual futuro de cada ficha registra obligatoriamente `label`, `problem`, `value`, `primaryEvidence`, `supportingEvidence`, `limits` y `localeEquivalent`. También debe conservar `evidenceMaturity` para distinguir experiencia aplicada, formación y exploración, y `relations` para explicar cómo se complementan los ejes. Este shape es una guía editorial; no es una interfaz TypeScript ni un contrato de runtime aprobado.
+
+**Fichas conceptuales y trazabilidad:**
+
+| ID | Evidencia primaria y naturaleza | Evidencia de apoyo y naturaleza | Relaciones | Límites de publicación |
+| --- | --- | --- | --- | --- |
+| `CAP-01` | `src/content/experiences/university-intern-cidti-2025.md`: desarrollo backend, extracción/procesamiento e integración en sistemas MongoDB (`experiencia aplicada`). `src/content/experiences/software-developer-cidti-2026.md`: requerimientos, historias de usuario, funcionalidades backend, despliegues ocasionales y migración progresiva de arquitectura (`experiencia aplicada`). | CV y `credentialsByLocale` para Python, FastAPI, bases de datos y arquitectura backend (`formación y respaldo`). `EpicrisisIA` de CIDTI 4.0 solo como proyecto actual en construcción y contexto técnico superficial (`apoyo contextual`). | Recibe requisitos de `CAP-03`, trabaja con información de `CAP-02` y contribuye a `CAP-04`. | No afirmar diseño integral, liderazgo técnico, dominio experto, disponibilidad de servicio ni resultados operativos. |
+| `CAP-02` | `university-intern-cidti-2025.md`: herramientas para extracción y procesamiento de información e integración de datos técnicos en MongoDB (`experiencia aplicada`). | `software-developer-cidti-2026.md` y CV para trabajo actual con Python, MongoDB y sistemas existentes (`experiencia aplicada de apoyo`); diplomado de Analítica de Datos y credenciales relacionadas (`formación`). `EpicrisisIA` se conserva como contexto superficial, sin datos clínicos ni resultados (`apoyo contextual`). | Alimenta `CAP-01` y `CAP-04`; se orienta por necesidades de `CAP-03`. | No afirmar analítica avanzada, predicción, gobierno de datos, impacto medido ni decisiones de negocio garantizadas. |
+| `CAP-03` | `software-developer-cidti-2026.md`: levantamiento de requerimientos, reuniones con stakeholders, historias de usuario y traducción de necesidades a funcionalidades (`experiencia aplicada`). | `university-intern-cidti-2025.md` y CV para iniciativas de transformación digital (`experiencia aplicada de apoyo`); diplomado BPM y credenciales BPM/BPMN (`formación`). `BPMNPlay` y el proyecto educativo colombiano solo aportan contexto superficial de aprendizaje, modelado, gestión ITA y gestión operativa (`apoyo contextual`). | Orienta el alcance de `CAP-01` y `CAP-02`, y da contexto a `CAP-04`. | No presentarse como consultor BPM, certificación profesional, liderazgo de procesos, transformación garantizada ni resultado de una organización concreta. |
+| `CAP-04` | La combinación de `university-intern-cidti-2025.md` y `software-developer-cidti-2026.md` documenta desarrollo, datos, requisitos y mejora de sistemas existentes (`experiencia aplicada`). | `EpicrisisIA`, el proyecto en construcción para establecimientos educativos colombianos y `BPMNPlay` se citan solo como evidencia contextual y de apoyo superficial (`proyectos en construcción`). CV, credenciales y `rationale` del inventario aportan contexto (`respaldo`). `SIMIGS`, `ERP Turismo` y `ERP Agroinsumos` permanecen archivados y no son evidencia vigente. | Integra `CAP-01`, `CAP-02` y `CAP-03`; no agrega una capacidad técnica separada. | No incluir datos clínicos, escolares o comerciales, identificadores de stakeholders, documentos internos ni resultados no verificados. No publicar los nombres de proyectos como casos ni atribuir propiedad o contribución detallada sin ficha Fase 3. |
+
+Los nombres de los proyectos actuales y archivados se mantienen únicamente para trazabilidad interna del backlog. La validación de `IN-M03` en este WI no reabre el inventario público ni cierra `NAR-M05` a `NAR-M07`; las fichas detalladas, los casos de estudio y las decisiones de publicación permanecen en Fase 3.
 
 **Reglas de evidencia y madurez:**
 
@@ -912,13 +923,15 @@ Para cada fila, el entregable definitivo debe registrar obligatoriamente `label`
 * La evidencia primaria debe ser observable en un proyecto o experiencia cuando exista; una credencial puede reforzar una capacidad, pero no sustituye evidencia aplicada.
 * La evidencia de apoyo puede provenir de proyectos adicionales, experiencia, formación o CV, y debe declarar su naturaleza.
 * `experiencia aplicada` significa contribución o trabajo verificable; `formación` significa aprendizaje acreditado; `exploración` significa interés o trabajo todavía no suficiente para una afirmación principal.
-* La certeza editorial usa estados como `confirmada`, `por validar` o `exploratoria`; nunca representa un porcentaje, nivel de dominio ni ranking.
-* La relación entre capacidades debe explicar complementariedad —por ejemplo, procesos que orientan datos y backend, o sistemas de información que integran las demás— sin duplicar la misma afirmación cuatro veces.
+* La certeza editorial queda en `confirmada` para las cuatro fichas a la profundidad descrita; la etiqueta no representa porcentaje, nivel de dominio ni ranking y queda acotada por los límites de cada fila.
+* Ninguna ficha convierte una señal de formación o un proyecto en construcción en experiencia aplicada principal; las tres categorías deben conservarse visibles en cualquier implementación posterior.
+* La relación entre capacidades explica complementariedad —procesos que orientan datos y backend, y sistemas de información que integran las demás— sin duplicar la misma afirmación cuatro veces.
+* La implementación posterior debe poder expresar la información como texto completo y no depender de color, posición, geometría, tooltip o una lectura visual de “nivel”.
 
 **Alcance funcional:**
 
 * Definir nombre base, etiqueta localizada, problema, valor, evidencia, límites, relaciones y certeza para los cuatro ejes.
-* Decidir si el lenguaje público debe decir “capacidades”, “áreas de enfoque” o una fórmula equivalente; no cerrar una oferta de servicios comerciales.
+* Usar `Áreas de enfoque` / `Focus areas` como encuadre localizado del bloque y `capacidades` / `capabilities` dentro de la explicación editorial; no cerrar una oferta de servicios comerciales.
 * Preparar equivalencia ES/EN conservando madurez, responsabilidad y grado de certeza.
 
 **No alcance:**
@@ -927,13 +940,14 @@ Para cada fila, el entregable definitivo debe registrar obligatoriamente `label`
 * No crear una ruta `/capabilities`, `/services` u otra ruta propia.
 * No modificar `focusSection.items`, proyectos, credenciales, experiencias, CV ni componentes.
 * No usar capacidades para alterar `projectStatus`, `portfolioTier`, `strategicPriority` o la taxonomía de estados.
+* No presentar los proyectos actuales en construcción como casos de estudio ni los proyectos archivados como evidencia vigente.
 
 **Gherkin ampliado:**
 
 * **Escenario: catálogo nominal de cuatro capacidades**
   **Dado** los cuatro títulos actuales de `focusSection` y las fuentes de proyectos, experiencias, formación y CV
   **Cuando** se define el bloque de capacidades
-  **Entonces** aparecen exactamente los cuatro ejes base, cada uno con problema, valor, evidencia primaria, apoyo, límites, relaciones y certeza editorial.
+  **Entonces** aparecen exactamente `Backend Engineering`, `Data Processing`, `Business Process Management` e `Information Systems`, cada uno con etiqueta ES/EN, problema, valor, evidencia primaria, apoyo, límites, relaciones, madurez y certeza editorial.
 * **Escenario: rechazo por evidencia insuficiente**
   **Dado** una capacidad sustentada solo por tecnologías, cursos o aspiración
   **Cuando** se revisa su criterio de cierre
@@ -946,6 +960,10 @@ Para cada fila, el entregable definitivo debe registrar obligatoriamente `label`
   **Dado** una ficha validada en español que distingue experiencia aplicada, formación y exploración
   **Cuando** se prepara su adaptación inglesa
   **Entonces** se conserva la misma clasificación y alcance, sin convertir formación en experiencia ni exploración en especialización.
+* **Escenario: proyectos actuales y archivados**
+  **Dado** que `EpicrisisIA`, el proyecto educativo colombiano y `BPMNPlay` están en construcción, y que `SIMIGS`, `ERP Turismo` y `ERP Agroinsumos` están archivados
+  **Cuando** se revisa la evidencia contextual del catálogo
+  **Entonces** los proyectos actuales solo respaldan contexto superficial, los archivados no se presentan como evidencia vigente y ninguna ficha incorpora datos sensibles, documentos internos o resultados no verificados.
 
 **Desglose de tareas:**
 
@@ -954,7 +972,7 @@ Para cada fila, el entregable definitivo debe registrar obligatoriamente `label`
 * **Funcional:** completar la matriz de cuatro capacidades y sus versiones ES/EN, relaciones, límites y certeza editorial.
 * **No funcional:** asegurar que la información pueda leerse como texto, que no dependa de colores y que no exponga información confidencial de proyectos o empleadores.
 * **Pruebas:** comprobar exactamente cuatro ejes, evidencia primaria/apoyo, distinción de madurez, trazabilidad y paridad bilingüe.
-* **Documentación/aceptación:** registrar la confirmación manual de afirmaciones y nivel real de cada capacidad, junto con los bloqueos de `IN-M02` e `IN-M03`.
+* **Documentación/aceptación:** registrar la validación manual de `IN-M02` y el alcance superficial de `IN-M03`, incluyendo la separación entre proyectos actuales en construcción y proyectos archivados.
 
 **Checklist de implementación:**
 
@@ -963,20 +981,26 @@ Para cada fila, el entregable definitivo debe registrar obligatoriamente `label`
 * Cada evidencia está clasificada como experiencia aplicada, formación o exploración.
 * Ninguna capacidad se presenta como puntuación, ranking, seniority o servicio contratado.
 * La etiqueta y el significado ES/EN son equivalentes.
-* `IN-M02` y las fichas de proyecto de `IN-M03` están validadas o los bloqueos continúan visibles.
+* `IN-M02` queda registrado como validado para las cuatro capacidades a la profundidad de este WI.
+* `IN-M03` queda registrado solo para evidencia contextual superficial; las fichas detalladas de proyectos permanecen abiertas para Fase 3.
+* `EpicrisisIA`, el proyecto educativo colombiano y `BPMNPlay` aparecen como apoyo contextual de proyectos en construcción; `SIMIGS`, `ERP Turismo` y `ERP Agroinsumos` constan como archivados y no como evidencia vigente.
+* Las restricciones de privacidad excluyen datos clínicos, escolares y comerciales, identificadores de stakeholders, documentos internos y resultados no verificados.
 * El bloque sigue siendo una función narrativa de `#focus` y no una ruta nueva.
 * No se modificó ninguna interfaz, dato, ruta o componente runtime.
 
-**Preguntas de definición y cierre:**
+**Preguntas de definición y cierre — resueltas para este WI:**
 
-* ¿Qué evidencia primaria puede aprobarse para cada eje sin atribuir una contribución que no esté confirmada?
-* ¿Qué formulación de valor entiende mejor una organización sin convertir el bloque en una lista de servicios?
-* ¿Qué capacidades deben aparecer como experiencia aplicada, cuáles como formación y cuáles solo como exploración?
-* ¿Qué relaciones entre ejes aclaran el enfoque sistémico sin repetir el hero?
+* La evidencia primaria aprobada es la experiencia documentada de CIDTI 2025/2026; proyectos, CV y credenciales funcionan como apoyo según la naturaleza indicada en cada ficha.
+* La formulación aprobada describe problemas abordables y valor de construcción de sistemas; `Áreas de enfoque` no se convierte en catálogo de servicios, oferta contractual ni promesa de resultados.
+* Las cuatro capacidades se presentan como experiencia aplicada acotada; la formación y los proyectos en construcción permanecen identificados como apoyo, y no se introduce una capacidad basada solo en exploración.
+* Las relaciones aprobadas son procesos que orientan datos y backend, con sistemas de información como eje integrador; no se repite la tesis del hero ni se calcula un nivel de dominio.
+* La equivalencia ES/EN queda resuelta por etiquetas y significado, con el mismo alcance, madurez, responsabilidad y límites.
+
+**Estado del WI:** `Cerrado — especificación editorial validada`. El catálogo de cuatro capacidades, sus fichas conceptuales, relaciones, evidencia, límites, equivalencia ES/EN y registro de validación quedan definidos para una implementación posterior. Este cierre no crea una ruta, no modifica el contrato localizado, no cambia interfaces TypeScript ni declara copy runtime implementado. Las fichas detalladas y los casos de estudio de proyectos siguen abiertos en Fase 3.
 
 **Dependencias:** `NAR-B03`, `NAR-M03`, `NAR-M04`, `IN-M02`, `IN-M03`, `src/i18n/site.ts`, `src/data/projects.ts`, `src/data/credentials.ts`, experiencias, CV y taxonomía de estados.
 **Tipo de ejecución:** Mixto
-**Criterio de aceptación:** los cuatro ejes tienen ficha completa, evidencia primaria y de apoyo, límites y equivalencia ES/EN; la validación manual de afirmaciones y nivel real queda registrada antes de cerrar.
+**Criterio de aceptación:** los cuatro ejes tienen ficha conceptual completa, evidencia primaria y de apoyo clasificada por madurez, límites, relaciones y equivalencia ES/EN; `IN-M02` y el alcance superficial de `IN-M03` quedan registrados, los proyectos archivados no se presentan como evidencia vigente y las restricciones de privacidad son explícitas. El estado es `Cerrado — especificación editorial validada` y no implica implementación runtime.
 
 #### BLG-F2-S03-03 — Definir matriz comparativa accesible de capacidades
 **Objetivo:** reemplazar el radar como recurso predeterminado por una matriz que haga comparable la evidencia de las cuatro capacidades sin simular una medición objetiva de habilidad.
