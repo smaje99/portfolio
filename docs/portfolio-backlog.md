@@ -1120,41 +1120,213 @@ La matriz canónica se define con las columnas `Capacidad`, `Problema abordable`
 
 ### Sprint 04
 
-#### BLG-F2-S04-01 — Revisar coherencia narrativa entre portfolio, GitHub y LinkedIn
-**Objetivo:** alinear identidad profesional en los principales puntos públicos de visibilidad.  
-**Descripción:** el roadmap exige consistencia entre fuentes. El portfolio no debe prometer una cosa mientras los perfiles externos cuentan otra.  
-**Actividades:**
-* Comparar encabezados, enfoque profesional y selección de proyectos entre portfolio, GitHub y LinkedIn.
-* Detectar contradicciones o enfoques fragmentados.
-* Proponer lista concreta de ajustes por plataforma.
-**Entregable esperado:** matriz de coherencia narrativa entre plataformas.  
-**Dependencias:** propuesta de valor refinada.  
-**Tipo de ejecución:** Mixto  
-**Notas de validación:** deben quedar claros los cambios que harías tú manualmente fuera del repo y los que puedo materializar en el sitio.
+**Objetivo del sprint:** convertir la propuesta validada en Sprint 03 en una experiencia de inicio bilingüe coherente con sus fuentes públicas, con contacto como acción principal, proyectos y CV como rutas secundarias y una especificación funcional estable para la home v1.
 
-#### BLG-F2-S04-02 — Definir CTA principal y CTAs secundarios del MVP
-**Objetivo:** estandarizar la intención de conversión del sitio.  
-**Descripción:** el portfolio ya tiene acciones visibles, pero este ítem formaliza qué acción principal buscas provocar y cuáles son los caminos secundarios.  
-**Actividades:**
-* Definir CTA principal orientada a contacto u oportunidad.
-* Definir CTAs secundarios para CV, proyectos o blog.
-* Relacionar cada CTA con una intención de usuario.
-**Entregable esperado:** catálogo de CTAs del MVP con jerarquía clara.  
-**Dependencias:** revisión de coherencia narrativa.  
-**Tipo de ejecución:** Mixto  
-**Notas de validación:** la acción principal del sitio debe quedar inequívoca.
+**Valor:** una persona que llegue desde una búsqueda, un perfil externo o una recomendación debe poder entender rápidamente quién es Sergio, qué tipo de problemas aborda y cómo iniciar una conversación profesional. La coherencia se evalúa por afirmación, alcance y destino; una redacción más amplia o un enlace funcional no compensan una fuente desactualizada.
 
-#### BLG-F2-S04-03 — Consolidar especificación funcional de la home v1
-**Objetivo:** dejar la página de inicio completamente especificada antes de futuros ajustes visuales o técnicos.  
-**Descripción:** este ítem cierra la fase de identidad dejando definidas sus piezas, orden, intención y validación.  
-**Actividades:**
-* Enumerar secciones definitivas de la home.
-* Definir propósito y contenido mínimo de cada sección.
-* Relacionar cada sección con al menos un OKR del roadmap.
-**Entregable esperado:** especificación funcional de la home v1.  
-**Dependencias:** CTA principal y definición de capacidades.  
-**Tipo de ejecución:** Codex con supervisión  
-**Notas de validación:** no deben quedar decisiones abiertas de contenido estructural para la home.
+**Alcance:**
+
+* Revisar claims de identidad, foco, experiencia, proyectos, formación, enlaces y acciones entre portfolio, GitHub, LinkedIn y CV.
+* Registrar una matriz con versión canónica, estado, riesgo, acción propuesta y responsable, distinguiendo acciones manuales externas de cambios aplicables al repositorio.
+* Definir el catálogo jerarquizado de CTAs del MVP y aplicar su mínimo runtime en `HeroActions`.
+* Cerrar la estructura bilingüe de la home con sus fuentes, OKRs, rutas y anchors actuales.
+* Corregir en las fuentes LaTeX el estado académico a `formación académica finalizada, grado en trámite` y publicar los PDFs mediante `make cv`.
+
+**No alcance:**
+
+* No modificar GitHub ni LinkedIn automáticamente; las recomendaciones de esos perfiles quedan asignadas a Sergio.
+* No convertir proyectos archivados o contextuales en casos de estudio ni en claims de experiencia vigente.
+* No crear blog, casos de estudio, rutas nuevas, footer, analytics, 404, catálogo comercial ni tipos runtime para el catálogo documental de CTAs.
+* No reescribir la propuesta de valor de Sprint 03, ni añadir nuevas claves de copy, capacidades, datos de proyectos o experiencias.
+* No hacer una auditoría visual; solo se verifica la jerarquía funcional, semántica y destino de las acciones.
+* No actualizar `docs/portfolio-roadmap.md` hasta que exista cierre real con evidencia técnica, editorial y manual.
+
+**Dependencias internas:** cierre de Sprint 03; `NAR-B04`, `NAR-B05`, `NAR-B06`; `IN-M03`, `IN-M04`, `IN-M05`; `src/i18n/site.ts`; `src/components/HeroActions.tsx`; `src/components/PortfolioPage.astro`; experiencias, datos de proyectos, CV, PDFs publicados y `docs/portfolio-narrative-backlog.md`.
+
+**Tareas transversales:**
+
+* **Arquitectura:** mantener la separación entre copy localizado, componentes presentacionales, datos de proyectos/experiencias y fuentes LaTeX; ampliar solo el contrato interno necesario de `HeroActions`.
+* **Negocio/valor:** comprobar que el hero invita a una conversación profesional sin convertirlo en una oferta comercial, y que los proyectos funcionan como evidencia contextual, no como casos de estudio.
+* **Funcional:** verificar jerarquía, etiqueta, destino y localización de cada CTA; conservar rutas, anchors, orden de la home y los cuatro ejes de `#focus`.
+* **No funcional:** asegurar paridad semántica ES/EN, enlaces accesibles y verificables, foco/operabilidad existentes y ausencia de claims comunicados solo por estilo o posición.
+* **Pruebas:** ejecutar build, lint, compilación/publicación de CV, smoke test de las ocho rutas y comprobaciones de anchors, etiquetas, destinos y PDFs; registrar límites del smoke test HTTP si el entorno no permite abrir un puerto.
+* **Documentación/aceptación:** mantener la matriz, el catálogo, las preguntas manuales y la evidencia técnica en el backlog; no marcar el sprint cerrado mientras falte revisión externa.
+
+**Riesgos concretos:**
+
+* GitHub conserva un posicionamiento amplio como `Web developer` y `Freelance Full Stack Web Developer`; es una divergencia narrativa que no se debe registrar automáticamente como falsedad.
+* LinkedIn y el CV pueden presentar estados académicos distintos; el CV histórico decía `9º semestre`, mientras LinkedIn declara formación finalizada con grado en trámite.
+* La lista visible de proyectos no debe reinterpretarse como casos de estudio; los proyectos archivados o contextuales siguen fuera de claims de experiencia vigente y su realineación profunda pertenece a Fase 3.
+* Una adaptación inglesa puede reforzar seniority, responsabilidad o disponibilidad aunque parezca una traducción natural; ES conserva la fuente semántica.
+* El CTA puede cambiar de aspecto y seguir apuntando a un destino incorrecto; se debe verificar el `href` generado para ambas locales.
+
+**Decisiones cerradas:**
+
+* La propuesta validada en Sprint 03 es la fuente canónica del portfolio.
+* El objetivo principal es iniciar contacto profesional; el CTA principal apunta a `#contact` o `/en/#contact` y no abre directamente el correo.
+* Proyectos y CV son las únicas acciones secundarias del hero.
+* LinkedIn canónico: `https://www.linkedin.com/in/smaje/`; GitHub canónico: `https://github.com/smaje99`; correo: `mailto:smajefranco@gmail.com`.
+* No se crean CTAs ni rutas para blog o casos de estudio.
+* La revisión externa cubre claims, experiencia, proyectos destacados, enlaces y acciones; no es una auditoría visual.
+* Los cambios de GitHub y LinkedIn son recomendaciones manuales. Las URLs y canales deben verificarse manualmente antes del cierre.
+* Estado académico válido: `formación académica finalizada, grado en trámite`.
+* La home conserva rutas, anchors, orden general y contrato bilingüe actuales. La implementación mínima puede modificar copy de etiquetas y el contrato interno de `HeroActions`, sin crear nuevas claves de copy.
+
+**Interfaces y tipos:** `HeroActions` añade la prop `contactHref: string`. El botón de contacto ocupa la variante primaria y se renderiza antes de proyectos y CV; las otras props existentes se mantienen. No se crea un tipo runtime para el catálogo de CTAs ni se altera el shape de `focusSection.items`, proyectos, experiencias o navegación.
+
+**Estado del sprint:** `Planificado — abierto hasta completar verificaciones manuales`. La implementación técnica y la regeneración de artefactos producen evidencia parcial, pero no constituyen cierre; el sprint permanece abierto si las fuentes externas, enlaces, paridad ES/EN o PDFs requieren revisión.
+
+#### BLG-F2-S04-01 — Matriz de coherencia externa
+
+**Objetivo:** dejar trazable la relación entre el portfolio, GitHub, LinkedIn y CV, separando coincidencias, divergencias de posicionamiento y verificaciones pendientes.
+
+**Entregable:** matriz de claims y elementos públicos. `Portfolio` es la versión canónica del sitio; GitHub y LinkedIn requieren acciones manuales; el CV se modifica en sus fuentes LaTeX y se publica por el Makefile.
+
+| Afirmación o elemento | Portfolio (canónico) | GitHub | LinkedIn | CV | Estado | Riesgo | Acción propuesta | Responsable |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Identidad y foco | Desarrollador de software orientado a backend y datos; ingeniería de soluciones para sistemas de información. | `Web developer`; README: `Freelance Full Stack Web Developer` y `Web Developer looking for new horizons`. | Perfil asociado a Cidti 4.0 y UNIR; el alcance profesional se revisa contra el portfolio. | Desarrollador de software orientado a backend y datos. | `diverge` | El lenguaje amplio de GitHub puede fragmentar el posicionamiento, sin ser necesariamente falso. | Revisar manualmente headline y README de GitHub; no ampliar el claim del portfolio. | Sergio (externo); Codex (portfolio). |
+| Experiencia Cidti 4.0 | La home y la colección de experiencias incluyen desarrollo de software actual y experiencia previa en Cidti 4.0. | README menciona trabajo en un sistema médico, sin usar el nombre Cidti 4.0 como eje. | La experiencia pública aparece asociada a Centro de Desarrollo Tecnológico para la Transformación Digital y la Industria 4.0 - Cidti 4.0. | La fuente contiene la pasantía 2025, pero no aún la entrada del desarrollo actual visible en el portfolio. | `diverge` | El CV puede quedar incompleto frente a la experiencia vigente del sitio. | Confirmar con Sergio si el CV debe incorporar la experiencia actual; mantener la diferencia visible hasta esa decisión. | Sergio (contenido CV); Codex (fuente repo cuando se autorice). |
+| Formación e institución | El portfolio usa formación aplicada y credenciales sin afirmar un semestre vigente. | README mantiene `Computer Engineering Student`. | UNIR; formación académica finalizada, con grado en trámite. | UNIR; estado actualizado a formación finalizada y grado en trámite en ES/EN. | `diverge` | GitHub conserva un estado académico desactualizado. | Actualizar manualmente README y `currentOccupation` si Sergio lo aprueba; conservar el estado corregido en CV. | Sergio (GitHub); Codex (CV). |
+| Proyecto y estado | Los proyectos visibles se mantienen según `src/data/projects.ts`; los archivados/contextuales no son experiencia vigente ni casos de estudio. | Repositorios públicos mezclan proyectos académicos, archivados y actuales. | La lista de proyectos y su visibilidad completa requiere revisión manual. | El CV no presenta esos proyectos como experiencia vigente. | `pendiente de verificar` | Un lector puede confundir repositorio público con trabajo profesional actual. | Auditar manualmente los repositorios y etiquetas; reservar realineación profunda para Fase 3. | Sergio (verificación externa); Codex (cambios del sitio solo en WIs posteriores). |
+| Enlaces profesionales | LinkedIn `https://www.linkedin.com/in/smaje/`; GitHub `https://github.com/smaje99`; correo vigente en `#contact`. | Enlace a LinkedIn y perfil `smaje99`. | URL canónica `/in/smaje/`. | Incluye LinkedIn, GitHub y correo enlazados. | `coincide` | Variantes `http`, sin `www` o sin `/` pueden dificultar la comprobación; no cambian el destino semántico. | Normalizar URLs del repositorio; comprobar manualmente que los tres canales continúen vigentes. | Codex (repo); Sergio (vigencia). |
+| Alcance bilingüe | EN adapta la tesis ES sin ampliar seniority, responsabilidad, disponibilidad o resultados. | Perfil y README principalmente en inglés, con lenguaje más amplio. | Perfil público principalmente en español; contenido indexado confirma la formación. | Fuentes ES/EN deben mantener idéntico alcance académico y profesional. | `pendiente de verificar` | La traducción puede reforzar claims o desalinear responsabilidades. | Revisar equivalencia ES/EN claim por claim después de generar el contenido. | Sergio + Codex. |
+
+**Reglas de la matriz:** `coincide` significa equivalencia suficiente de hecho y alcance; `diverge` identifica una diferencia observable que puede ser de enfoque, actualidad o nivel de detalle y no implica por sí sola falsedad; `pendiente de verificar` requiere una comprobación manual de vigencia, alcance o publicabilidad. Cada fila distingue la acción externa de la acción materializable en el repositorio. Los nombres de proyectos archivados o contextuales no se promocionan como experiencia vigente.
+
+**Gherkin ampliado:**
+
+* **Escenario: comparación nominal entre cuatro fuentes**
+  **Dado** un claim de identidad, experiencia, formación, proyecto o canal
+  **Cuando** se compara portfolio, GitHub, LinkedIn y CV
+  **Entonces** la matriz registra la versión canónica, el texto observable por fuente, el estado, el riesgo, la acción y el responsable.
+* **Escenario: divergencia de GitHub o LinkedIn**
+  **Dado** que una fuente externa usa un título más amplio o un estado diferente
+  **Cuando** se audita el claim
+  **Entonces** se marca `diverge`, se explica si es posicionamiento o desactualización y se deja la corrección externa como acción manual.
+* **Escenario: corrección del estado académico**
+  **Dado** el estado válido `formación académica finalizada, grado en trámite`
+  **Cuando** se compara CV, portfolio y LinkedIn
+  **Entonces** el CV no dice `9º semestre`, el claim no implica estudios en curso y cualquier estado distinto de GitHub queda como divergencia externa pendiente.
+* **Escenario: trazabilidad de cada claim**
+  **Dado** un claim publicado en la home o en una ruta enlazada
+  **Cuando** se revisa su fuente
+  **Entonces** existe una referencia a `site.ts`, una experiencia, un proyecto, una credencial, la fuente LaTeX o una URL externa verificable, junto con su límite de publicación.
+* **Escenario: proyectos fuera de claims vigentes**
+  **Dado** un proyecto archivado, contextual o en construcción
+  **Cuando** se compara la lista pública con perfiles externos y CV
+  **Entonces** no se presenta como experiencia laboral vigente ni como caso de estudio cerrado; su análisis profundo se difiere a Fase 3.
+
+**Estado del WI:** `En ejecución — matriz documentada; validación manual externa pendiente`.
+
+#### BLG-F2-S04-02 — Catálogo jerarquizado de CTAs del MVP
+
+**Objetivo:** hacer inequívoca la conversión principal del sitio y conservar caminos secundarios/contextuales honestos.
+
+| ID | Jerarquía | Intención | Etiqueta ES | Etiqueta EN | Destino ES | Destino EN | Ubicación | Responsable | Verificación requerida |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `CTA-HERO-CONTACT` | Principal | Iniciar una conversación profesional. | `Hablemos` | `Let’s talk` | `#contact` | `/en/#contact` | Hero | Codex en repo; Sergio valida tono | Verificar que el botón sea primario, aparezca primero y no abra `mailto:` directamente. |
+| `CTA-HERO-PROJECTS` | Secundario | Revisar evidencia pública antes de contactar. | `Ver proyectos` | `View projects` | `/projects` | `/en/projects` | Hero | Codex en repo | Verificar ruta real y que no se presente como caso de estudio. |
+| `CTA-HERO-CV` | Secundario | Descargar el perfil profesional resumido. | `Descargar CV` | `Download resume` | `/docs/curriculum-vitae-sergio-maje.es.pdf` | `/docs/curriculum-vitae-sergio-maje.en.pdf` | Hero | Codex en repo | Verificar que ambos PDFs existan y reflejen las fuentes LaTeX actuales. |
+| `CTA-CONTACT-LINKEDIN` | Contextual | Elegir un canal profesional de contacto y trayectoria. | `LinkedIn` | `LinkedIn` | `https://www.linkedin.com/in/smaje/` | `https://www.linkedin.com/in/smaje/` | `#contact` y enlaces formativos | Sergio valida vigencia; Codex normaliza repo | Verificar URL canónica y disponibilidad pública. |
+| `CTA-CONTACT-GITHUB` | Contextual | Revisar código y actividad pública. | `GitHub` | `GitHub` | `https://github.com/smaje99` | `https://github.com/smaje99` | `#contact` | Sergio valida vigencia; Codex mantiene enlace | Verificar perfil, repositorios y alcance de claims. |
+| `CTA-CONTACT-EMAIL` | Contextual | Escribir directamente después de conocer el contexto. | `Correo` | `Email` | `mailto:smajefranco@gmail.com` | `mailto:smajefranco@gmail.com` | `#contact` | Sergio valida canal; Codex mantiene enlace | Verificar canal vigente; no elevarlo a CTA primario del hero. |
+
+**Reglas de jerarquía:** el contacto es la acción visual y semánticamente principal; proyectos y CV son secundarios; LinkedIn, GitHub y correo son canales contextuales dentro de `#contact`. Blog y casos de estudio no aparecen en el catálogo ni en la navegación. El catálogo es documental: no se crea un tipo runtime ni una colección de datos nueva.
+
+**Implementación mínima aplicada:** `HeroActions` recibe `contactHref`; el botón de contacto usa la variante primaria y el destino localizado; proyectos usa la variante outline; CV conserva la descarga localizada en una pestaña nueva. `heroActions.contact` se etiqueta `Hablemos` / `Let’s talk`. La URL de LinkedIn del sitio y del CV se normaliza a `https://www.linkedin.com/in/smaje/`.
+
+**Gherkin ampliado:**
+
+* **Escenario: CTA principal a contacto**
+  **Dado** la home ES o EN
+  **Cuando** se inspecciona el primer botón del hero
+  **Entonces** su etiqueta es `Hablemos` o `Let’s talk`, su destino es `#contact` o `/en/#contact` y no es un enlace `mailto:`.
+* **Escenario: paridad ES/EN**
+  **Dado** el catálogo de seis CTAs
+  **Cuando** se comparan locales
+  **Entonces** se conserva la intención, jerarquía, ubicación y destino equivalente, aunque la etiqueta se adapte idiomáticamente.
+* **Escenario: rechazo de CTAs reservados**
+  **Dado** una propuesta de CTA hacia blog o casos de estudio
+  **Cuando** se valida contra el alcance del sprint
+  **Entonces** se rechaza porque no existe ruta ni contenido publicado para esas piezas.
+* **Escenario: destino de secundarios**
+  **Dado** los botones de proyectos y CV
+  **Cuando** se activan desde el hero
+  **Entonces** llevan a las rutas de proyectos o al PDF localizado y no desplazan la jerarquía del contacto.
+* **Escenario: canales contextuales**
+  **Dado** el bloque `#contact`
+  **Cuando** se revisan sus enlaces
+  **Entonces** LinkedIn, GitHub y correo aparecen como canales separados, con destinos verificables y sin afirmaciones nuevas.
+
+**Estado del WI:** `En ejecución — catálogo cerrado e implementación mínima aplicada; vigencia externa pendiente`.
+
+#### BLG-F2-S04-03 — Especificación funcional de la home v1
+
+**Objetivo:** cerrar el contrato funcional de la home bilingüe y dejar claro qué se implementa ahora y qué permanece reservado.
+
+**Contrato:** se conservan `/` y `/en/`, `#top`, `#contact`, `#focus`, `#projects` y `#experience`, además de las rutas `/about`, `/projects`, `/experience` y sus equivalentes `/en/...`. No se añade perfil duplicado, blog, casos de estudio, footer, analytics ni 404 como parte de esta home v1.
+
+| Orden | Sección | Propósito y contenido mínimo | Fuente principal | OKR relacionado | Estado |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Hero | Identidad, propuesta validada de Sprint 03, especialidades y tres acciones: contacto principal, proyectos y CV secundarios. | `copy.hero`, `copy.heroActions`, `HeroActions.tsx`; `VP-01` a `VP-03`. | Objetivo 1 KR1/KR4; Objetivo 4 KR4. | Implementado mínimamente; validar tono y destinos. |
+| 2 | Contacto `#contact` | Invitación a conversar y canales LinkedIn, GitHub y correo. | `copy.contactSection`, `copy.socials`, `PortfolioPage.astro`; `NAR-B06`. | Objetivo 4 KR3/KR4. | Implementado; verificar vigencia manual. |
+| 3 | `#focus` | Cuatro capacidades de Sprint 03, en el orden actual: Backend Engineering, Data Processing, Business Process Management e Information Systems. | `copy.focusSection.items`, `BLG-F2-S03-02`, `BLG-F2-S03-03`. | Objetivo 1 KR1/KR4. | Conservado sin cambio estructural. |
+| 4 | `#projects` | Proyectos destacados del inventario runtime y enlace al listado completo; no se redactan casos de estudio ni se elevan proyectos archivados a experiencia vigente. | `getFeaturedProjects(locale)`, `src/data/projects.ts`, `copy.projectsSection`. | Objetivo 2 KR3/KR4; Objetivo 4 KR1. | Conservado; realineación profunda queda en Fase 3. |
+| 5 | `#experience` | Dos experiencias recientes, contexto breve y enlace al historial completo. | `getCollection('experiences')`, `localizeExperiences`, `copy.experienceSection`. | Objetivo 1 KR3; Objetivo 4 KR1/KR4. | Conservado; vigencia y CV requieren revisión manual. |
+
+**Reglas funcionales y de contenido:**
+
+* El hero responde quién es Sergio, qué conecta y cuál es el siguiente paso; reutiliza `hero.role`, `hero.specialties` y `hero.summary` sin crear claves nuevas.
+* `#contact` permanece dentro de la home y su navegación localizada sigue funcionando desde la home y desde rutas secundarias según el helper de página.
+* `#focus` conserva cuatro fichas nominales; la matriz comparativa de Sprint 03 sigue siendo especificación editorial y no se implementa como tabla o radar en este sprint.
+* `#projects` y `#experience` usan fuentes runtime existentes; sus enlaces llevan a rutas reales y no prometen blog, casos ni resultados no documentados.
+* ES es la fuente semántica; EN es adaptación equivalente en alcance, madurez, responsabilidad y certeza. Si existe deriva, la sección permanece pendiente de cierre.
+
+**Gherkin ampliado:**
+
+* **Escenario: estructura nominal de la home**
+  **Dado** `/` o `/en/`
+  **Cuando** se recorre el documento en orden
+  **Entonces** aparecen Hero, `#contact`, `#focus`, `#projects` y `#experience`, con las fuentes y anchors definidos, sin secciones reservadas nuevas.
+* **Escenario: conservación de rutas y anchors**
+  **Dado** la navegación actual y los enlaces internos
+  **Cuando** se construyen ambas locales
+  **Entonces** `/`, `/en/`, sus rutas secundarias y los anchors `#contact`, `#focus`, `#projects` y `#experience` siguen resolviendo.
+* **Escenario: equivalencia ES/EN**
+  **Dado** una sección publicada en español
+  **Cuando** se consulta su contraparte inglesa
+  **Entonces** existe el mismo orden funcional, contenido mínimo, jerarquía de CTA y alcance de claims; no se agregan promesas en inglés.
+* **Escenario: claims trazables**
+  **Dado** cualquier frase sustantiva del hero, contacto, enfoque, proyectos o experiencia
+  **Cuando** se audita su procedencia
+  **Entonces** se puede rastrear a una clave de copy, fuente runtime o ficha editorial y a una fuente de evidencia del backlog.
+* **Escenario: funcionalidades reservadas**
+  **Dado** blog, casos de estudio, footer, analytics o 404
+  **Cuando** se revisa el contrato de la home
+  **Entonces** no se añaden ni se anuncian como capacidades disponibles del MVP.
+
+**Criterios de salida y evidencia de cierre:**
+
+* La matriz externa está completa por claim y diferencia claramente coincidencias, divergencias y pendientes, con acciones manuales y de repositorio separadas.
+* La propuesta académica tiene el mismo alcance entre portfolio, CV y LinkedIn: formación finalizada y grado en trámite; cualquier GitHub desactualizado queda como pendiente manual.
+* `CTA-HERO-CONTACT` es principal, apunta a `#contact` en ambas locales y no abre el correo directamente.
+* Las seis entradas del catálogo tienen intención, etiqueta ES/EN, destino, ubicación, responsable y verificación; no hay CTAs a blog o casos.
+* La home conserva rutas, anchors, datos de proyectos, experiencias, navegación y contrato bilingüe actuales.
+* Los dos PDFs publicados se regeneran desde las fuentes LaTeX y reflejan el estado académico corregido.
+* `pnpm build`, `pnpm lint`, `make cv`, smoke test de rutas ES/EN, comprobación de enlaces/PDFs/etiquetas y revisión manual de la matriz dejan evidencia registrable.
+* El sprint no se cierra mientras falte la comprobación manual de GitHub, LinkedIn, vigencia de canales, publicabilidad de proyectos o aprobación de paridad ES/EN.
+
+**Preguntas de cierre:**
+
+* **Resuelta:** el estado académico válido es `formación académica finalizada, grado en trámite`.
+* **Acción manual:** confirmar si Sergio aplicará las recomendaciones de titular/bio en GitHub.
+* **Acción manual:** confirmar si LinkedIn conservará su narrativa amplia de ingeniería de sistemas o adoptará el foco canónico del portfolio.
+* **Acción manual:** verificar que las URLs y canales de contacto continúen vigentes.
+* **Acción manual:** revisar que proyectos archivados/contextuales no se interpreten como experiencia actual ni como casos cerrados.
+
+**Evidencia técnica generada en esta ejecución:** cambio de contrato y jerarquía de `HeroActions`, etiquetas localizadas, normalización de LinkedIn, actualización de las dos fuentes LaTeX y regeneración pendiente de validar de PDFs mediante `make cv`. Esta evidencia no cambia el estado abierto del sprint.
+
+**Estado del WI:** `En ejecución — contrato y home mínima implementados; aceptación manual pendiente`.
 
 ---
 

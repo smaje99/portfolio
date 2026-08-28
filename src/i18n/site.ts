@@ -114,7 +114,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
     heroActions: {
       projects: 'Ver proyectos',
       resume: 'Descargar CV',
-      contact: 'Contactar',
+      contact: 'Hablemos',
     },
     socials: {
       linkedin: 'LinkedIn',
@@ -215,7 +215,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
     heroActions: {
       projects: 'View projects',
       resume: 'Download resume',
-      contact: 'Contact',
+      contact: 'Let’s talk',
     },
     socials: {
       linkedin: 'LinkedIn',

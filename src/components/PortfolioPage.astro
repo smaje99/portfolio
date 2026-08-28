@@ -29,6 +29,7 @@ const recentExperiences = experiences.slice(0, 2);
 const projectsPath = getRelativeLocaleUrl(locale, 'projects');
 const experiencePath = getRelativeLocaleUrl(locale, 'experience');
 const resumePath = `/docs/curriculum-vitae-sergio-maje.${locale}.pdf`;
+const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
 ---
 
 <BasePage
@@ -66,6 +67,7 @@ const resumePath = `/docs/curriculum-vitae-sergio-maje.${locale}.pdf`;
             resumeLabel={copy.heroActions.resume}
             resumeHref={resumePath}
             contactLabel={copy.heroActions.contact}
+            contactHref={contactPath}
           />
         </div>
 
@@ -105,7 +107,7 @@ const resumePath = `/docs/curriculum-vitae-sergio-maje.${locale}.pdf`;
         </div>
 
         <div class="hero-contact-links" aria-label={copy.socials.contact}>
-          <SocialPill href="http://linkedin.com/in/smaje">
+          <SocialPill href="https://www.linkedin.com/in/smaje/">
             <LinkedInIcon />
             {copy.socials.linkedin}
           </SocialPill>
