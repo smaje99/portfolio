@@ -1324,7 +1324,9 @@ La matriz canónica se define con las columnas `Capacidad`, `Problema abordable`
 * **Acción manual:** verificar que las URLs y canales de contacto continúen vigentes.
 * **Acción manual:** revisar que proyectos archivados/contextuales no se interpreten como experiencia actual ni como casos cerrados.
 
-**Evidencia técnica generada en esta ejecución:** cambio de contrato y jerarquía de `HeroActions`, etiquetas localizadas, normalización de LinkedIn, actualización de las dos fuentes LaTeX y regeneración pendiente de validar de PDFs mediante `make cv`. Esta evidencia no cambia el estado abierto del sprint.
+**Evidencia técnica generada en esta ejecución:** cambio de contrato y jerarquía de `HeroActions`, etiquetas localizadas, normalización de LinkedIn, actualización de las dos fuentes LaTeX y regeneración pendiente de validar de PDFs mediante `make cv`. Para el cierre de contacto se añadió `scroll-margin-block-start: clamp(7rem, 28vh, 16rem)` a `#contact` y un halo CSS interno activado por `#contact:target`; el halo solo anima `opacity` y `box-shadow`, queda recortado por la banda y mantiene una señal estática con `prefers-reduced-motion: reduce`.
+
+La verificación de esta ejecución cubre la inspección estática de los destinos `#contact` y `/en/#contact`, la presencia de los anchors de la home, el orden hero → contacto → enfoque → proyectos → experiencia y la existencia de las reglas de target, margen de scroll y movimiento reducido. La semántica del target nativo cubre click, URL directa, recarga y navegación atrás/adelante; un segundo click sobre el hash ya activo no reanima el halo ni modifica el layout. La comprobación visual en viewport desktop, móvil, teclado y zoom, junto con la vigencia manual de los canales externos, permanece pendiente. Esta evidencia no cambia el estado abierto del sprint.
 
 **Estado del WI:** `En ejecución — contrato y home mínima implementados; aceptación manual pendiente`.
 
