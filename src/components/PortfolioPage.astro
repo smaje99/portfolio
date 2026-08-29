@@ -366,11 +366,34 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
   .hero-contact-band {
     position: relative;
     z-index: 1;
+    isolation: isolate;
+    overflow: hidden;
     display: grid;
     gap: 1rem;
     align-items: center;
     padding-top: 1.35rem;
     border-top: 1px solid color-mix(in oklab, var(--border) 28%, transparent);
+    scroll-margin-block-start: clamp(7rem, 28vh, 16rem);
+  }
+
+  .hero-contact-band::after {
+    content: "";
+    position: absolute;
+    inset: 0.35rem;
+    z-index: 0;
+    border-radius: 1.25rem;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .hero-contact-copy,
+  .hero-contact-links {
+    position: relative;
+    z-index: 1;
+  }
+
+  #contact:target::after {
+    animation: contact-halo 2s ease-out both;
   }
 
   .hero-contact-label,
@@ -535,6 +558,27 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
     }
   }
 
+  @keyframes contact-halo {
+    0% {
+      opacity: 0;
+      box-shadow:
+        inset 0 0 0 0 color-mix(in oklab, var(--brand-aqua) 0%, transparent),
+        0 0 0 0 color-mix(in oklab, var(--brand-lime) 0%, transparent);
+    }
+    20% {
+      opacity: 0.9;
+      box-shadow:
+        inset 0 0 1.2rem 0.1rem color-mix(in oklab, var(--brand-aqua) 32%, transparent),
+        0 0 0 0.25rem color-mix(in oklab, var(--brand-lime) 18%, transparent);
+    }
+    100% {
+      opacity: 0;
+      box-shadow:
+        inset 0 0 1.8rem 0.2rem color-mix(in oklab, var(--brand-aqua) 0%, transparent),
+        0 0 0 0.8rem color-mix(in oklab, var(--brand-lime) 0%, transparent);
+    }
+  }
+
   @media (width >= 860px) {
     .hero-grid {
       grid-template-columns: minmax(0, 1.34fr) minmax(16rem, 0.66fr);
@@ -610,6 +654,14 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
     .hero-orbit-large,
     .hero-orbit-small {
       animation: none;
+    }
+
+    #contact:target::after {
+      animation: none;
+      opacity: 0.72;
+      box-shadow:
+        inset 0 0 1.1rem 0.1rem color-mix(in oklab, var(--brand-aqua) 24%, transparent),
+        0 0 0 0.2rem color-mix(in oklab, var(--brand-lime) 14%, transparent);
     }
   }
 </style>
