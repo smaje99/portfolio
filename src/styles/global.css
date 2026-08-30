@@ -67,7 +67,7 @@
   --popover: color-mix(in oklab, var(--brand-ink-800) 96%, transparent);
   --popover-foreground: var(--brand-mist-50);
   --primary: var(--brand-lime-500);
-  --primary-foreground: var(--brand-ink-950);
+  --primary-foreground: var(--brand-mist-50);
   --secondary: color-mix(in oklab, var(--brand-ink-800) 84%, var(--brand-ink-900));
   --secondary-foreground: var(--brand-mist-100);
   --muted: color-mix(in oklab, var(--brand-ink-900) 92%, transparent);
