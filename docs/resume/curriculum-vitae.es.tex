@@ -91,9 +91,17 @@
 \newcommand{\resumeSubheading}[4]{
   \vspace{-1pt}\item
     \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & {\color{dark-grey}\small #2}\vspace{1pt}\\ % top row of resume entry
+      \textbf{#1} & {\color{dark-grey}\small #2}\\ % top row of resume entry
       \textit{#3} & {\color{dark-grey} \small #4}\\ % second row of resume entry
     \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\resumeWrappedSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabularx}{\textwidth}[t]{@{}>{\raggedright\arraybackslash}Xr@{}}
+      \textbf{#1} & {\color{dark-grey}\small #2}\vspace{1pt}\\ % top row of resume entry
+      \textit{#3} & {\color{dark-grey} \small #4}\\ % second row of resume entry
+    \end{tabularx}\vspace{-4pt}
 }
 
 \newcommand{\resumeSubSubheading}[2]{
@@ -162,6 +170,10 @@
 \section{Experiencia}
   \resumeSubHeadingListStart
 
+    \resumeWrappedSubheading{Centro de Desarrollo Tecnológico para la Transformación Digital y la Industria 4.0}{Mar. 2026 -- Actualidad}
+      {Desarrollador de software (jornada parcial)}{Cali, Valle del Cauca, Colombia; En remoto}
+      \resumeSummary{Me desempeño como desarrollador de software en un proyecto de auditoría médica, donde traduzco los requerimientos levantados en reuniones con stakeholders en historias de usuario e implemento nuevas funcionalidades con apoyo de automatización y asistencia técnica. Además, desarrollo funcionalidades sobre una base de código existente, participo en despliegues ocasionales al servidor de pruebas y conduzco, cuando es necesario, la migración progresiva hacia una arquitectura hexagonal y estilos Atomic + ITCSS.}
+
     \resumeSubheading{Centro de Desarrollo Tecnológico para la Transformación Digital y la Industria 4.0}{Aug. 2025 -- Oct. 2025}
       {Practicante universitario}{En remoto}
       \resumeSummary{Me desempeñé como practicante universitario en desarrollo backend y análisis de datos, aportando a iniciativas de transformación digital mediante la creación de herramientas para la extracción y el procesamiento de información, la mejora de componentes internos de plataformas existentes y la integración de datos técnicos en sistemas basados en MongoDB; además, reforcé la seguridad, organización y calidad del software aplicando buenas prácticas, refactorización y una gestión cuidadosa de configuraciones, destacándome por la autonomía, la adaptación a cambios de alcance y la entrega de soluciones alineadas con las necesidades del centro.}
@@ -197,13 +209,18 @@
   }
 
 
-%-------COURSES-----------
-\section{Cursos en línea}
+%-------CERTIFICATIONS-----------
+\newpage
+\section{Certificaciones}
   \begin{itemize}[leftmargin=0in, label={}]
-    \item \small{Curso Estadística para Ciencia de Datos y Analítica de Datos {\color{dark-grey} -- Udemy (2025)}}
-    \item \small{Curso de next.js: seguridad web con OWASP {\color{dark-grey} -- Platzi (2025)}}
-    \item \small{Curso de Regresión Lineal con Python y scikit-learn {\color{dark-grey} -- Platzi (2024)}}
-    \item \small{Curso de FastAPI\: Modularización, datos avanzados y errores {\color{dark-grey} -- Platzi (2022)}}
+    \item \small{\textbf{Protección de Datos, Privacidad y Cumplimiento de GDPR} {\color{dark-grey} -- Udemy (2026)}}
+    \item \small{\textbf{Business Process Modeling A-Z\texttrademark: Domina BPMN 2.0 Desde Cero} {\color{dark-grey} -- Udemy (2025)}}
+    \item \small{\textbf{Continuing Education Certificate in Leadership} {\color{dark-grey} -- MIU City University Miami (2025)}}
+    \item \small{\textbf{I Encuentro Internacional Virtual: Diálogo entre Disciplinas - Impacto de la IA} {\color{dark-grey} -- UNIR (2025; participación académica)}}
+    \item \small{\textbf{Curso Estadística para Ciencia de Datos y Analítica de Datos} {\color{dark-grey} -- Udemy (2025)}}
+    \item \small{\textbf{Curso de Next.js: Seguridad web con OWASP} {\color{dark-grey} -- Platzi (2025)}}
+    \item \small{\textbf{Curso de Regresión Lineal con Python y scikit-learn} {\color{dark-grey} -- Platzi (2024)}}
+    \item \small{\textbf{Curso de FastAPI: Modularización, datos avanzados y errores} {\color{dark-grey} -- Platzi (2022)}}
   \end{itemize}
 
 

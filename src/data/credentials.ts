@@ -79,6 +79,22 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
     ],
     highlights: [
       {
+        title: 'Protección de Datos, Privacidad y Cumplimiento de GDPR',
+        issuer: 'Udemy',
+        date: '2026',
+        area: 'Protección de datos y GDPR',
+        meaning:
+          'Certificación de finalización que refuerza la comprensión de privacidad, protección de datos y cumplimiento de GDPR.',
+      },
+      {
+        title: 'Business Process Modeling A-Z™: Domina BPMN 2.0 Desde Cero',
+        issuer: 'Udemy',
+        date: '2025',
+        area: 'Modelado de procesos/BPMN',
+        meaning:
+          'Certificación de finalización que complementa la formación en modelado de procesos y notación BPMN 2.0.',
+      },
+      {
         title: 'Diplomado BPM para la Transformación Digital de Procesos',
         issuer: 'Pontificia Universidad Javeriana',
         date: '2026',
@@ -109,6 +125,14 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
         area: 'Liderazgo',
         meaning:
           'Complementa la ejecución técnica con comunicación, dirección y responsabilidad profesional.',
+      },
+      {
+        title: 'I Encuentro Internacional Virtual: Diálogo entre Disciplinas - Impacto de la IA',
+        issuer: 'UNIR',
+        date: '2025',
+        area: 'Participación académica',
+        meaning:
+          'Participación académica en un encuentro internacional sobre el impacto de la inteligencia artificial desde una perspectiva interdisciplinaria.',
       },
       {
         title: 'Python, FastAPI y bases de datos',
@@ -189,6 +213,22 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
     ],
     highlights: [
       {
+        title: 'Data Protection, Privacy, and GDPR Compliance',
+        issuer: 'Udemy',
+        date: '2026',
+        area: 'Data protection and GDPR',
+        meaning:
+          'Certificate of completion strengthening my understanding of privacy, data protection, and GDPR compliance.',
+      },
+      {
+        title: 'Business Process Modeling A-Z™: Master BPMN 2.0 from Scratch',
+        issuer: 'Udemy',
+        date: '2025',
+        area: 'Process modeling/BPMN',
+        meaning:
+          'Certificate of completion complementing my training in process modeling and BPMN 2.0 notation.',
+      },
+      {
         title: 'Diploma in BPM for Digital Process Transformation',
         issuer: 'Pontificia Universidad Javeriana',
         date: '2026',
@@ -219,6 +259,14 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
         area: 'Leadership',
         meaning:
           'Complements technical execution with communication, direction, and professional responsibility.',
+      },
+      {
+        title: '1st International Virtual Meeting: Dialogue between Disciplines - AI Impact',
+        issuer: 'UNIR',
+        date: '2025',
+        area: 'Academic participation',
+        meaning:
+          'Academic participation in an international meeting exploring the impact of artificial intelligence from an interdisciplinary perspective.',
       },
       {
         title: 'Python, FastAPI, and databases',
