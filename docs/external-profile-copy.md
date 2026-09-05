@@ -51,14 +51,32 @@ Currently, I work part-time as a Software Developer at Centro de Desarrollo Tecn
 
 ### Technical focus
 
-`Python` · `FastAPI` · `Django` · `React` · `Astro` · `TypeScript` · `Tailwind CSS` · `MongoDB` · `MySQL` · `PostgreSQL` · `Docker` · `Git`
+`Python` · `FastAPI` · `React` · `Next.js` ·`Astro` · `TypeScript` · `Tailwind CSS` · `MongoDB` · `MySQL` · `PostgreSQL` · `Docker` · `Git`
 
 ### Additional context
 
-My academic training in Computer Engineering is completed, with the degree pending. I also have complementary training in Business Process Management (BPM) and Data Analytics.
+My academic training in Computer Engineering is completed, with the degree pending. I also have complementary training in Business Process Management (BPM) for Digital Transformation and Data Analytics.
 
-I use GitHub to document experiments, learning, and software projects. Repository maturity and scope vary; not every public repository represents current professional experience or a completed case study.
+My public repositories span academic foundations, web applications, information systems, backend and data processing, architecture tooling, and local-first products. Taken together, they show an evolving path toward building maintainable solutions that connect processes, requirements, data, and operations. Each repository is presented according to its actual role and level of maturity.
 ```
+
+## Auditoría cualitativa de repositorios públicos
+
+**Corte de revisión:** 2026-09-05. **Fuente:** [perfil público de GitHub](https://github.com/smaje99?tab=repositories), que muestra 81 repositorios. La clasificación usa el nombre, descripción, lenguaje, estado visible y enlaces públicos de cada repositorio. No hay checkouts locales adicionales en este workspace; por tanto, los repositorios no disponibles localmente no se describen como inspeccionados en profundidad.
+
+La auditoría deduplica por propietario y slug de GitHub. Un repositorio se registra una sola vez aunque aparezca en distintas páginas, búsquedas, checkouts o URLs. La procedencia y el estado se mantienen separados de la alineación técnica: un proyecto puede ser técnicamente relevante y, a la vez, académico, fork, colaboración o histórico.
+
+| Grupo | Repositorios representativos | Evidencia observable | Alineación actual | Alineación objetivo | Recomendación pública |
+| --- | --- | --- | --- | --- | --- |
+| **Alineación alta** | [`portfolio`](https://github.com/smaje99/portfolio), [`soat-traffic-extractor-cidti`](https://github.com/smaje99/soat-traffic-extractor-cidti), [`medintegral-medical-system`](https://github.com/smaje99/medintegral-medical-system), [`fastapi-mysql-restapi`](https://github.com/smaje99/fastapi-mysql-restapi), [`express-mssql`](https://github.com/smaje99/express-mssql) | Portfolio Astro; extracción de datos para Cidti 4.0; plataforma médica; prácticas de APIs, backend y persistencia. | Alta para software, backend, datos y sistemas de información. | Alta para conectar procesos, requisitos, información, arquitectura y operación. | Priorizar como evidencia técnica; aclarar el rol del repositorio y no convertirlo automáticamente en experiencia laboral. |
+| **Alineación complementaria** | [`express-typescript-hexagonal-architecture`](https://github.com/smaje99/express-typescript-hexagonal-architecture), [`sorting-comparator`](https://github.com/smaje99/sorting-comparator), [`ds-tdd-uniamazonia`](https://github.com/smaje99/ds-tdd-uniamazonia), [`seros`](https://github.com/smaje99/seros), [`it-services-contents-unir`](https://github.com/smaje99/it-services-contents-unir), [`astrolab-html-ileph`](https://github.com/smaje99/astrolab-html-ileph) | Arquitectura hexagonal; aplicación Java con pruebas y métricas; estructuras de datos, simulación, testing y contenidos educativos. | Complementa el perfil con diseño modular, calidad, visualización y comunicación técnica. | Refuerza la capacidad de modelar soluciones y hacer explícitos procesos, reglas y decisiones. | Usar como apoyo selectivo, especialmente para arquitectura, testing, documentación y herramientas de aprendizaje. |
+| **Alineación contextual** | [`machine-learning-and-data-mining-unir`](https://github.com/smaje99/machine-learning-and-data-mining-unir), [`diploma-in-data-analytics-in-business-management-unir`](https://github.com/smaje99/diploma-in-data-analytics-in-business-management-unir), [`intelligence-systems-unir`](https://github.com/smaje99/intelligence-systems-unir), [`advanced-databases-unir`](https://github.com/smaje99/advanced-databases-unir), [`URI`](https://github.com/smaje99/URI), [`leetcode`](https://github.com/smaje99/leetcode), [`fabrica-memes`](https://github.com/smaje99/fabrica-memes) | Repositorios descritos como asignaturas de UNIR/Uniamazonia, diplomado, analítica, inteligencia artificial y programación competitiva. | Evidencian formación, práctica deliberada y amplitud técnica, no trayectoria laboral vigente. | Ayudan a explicar fundamentos para trabajar con datos, algoritmos y requisitos, sin sustituir evidencia de sistemas reales. | Etiquetar como académico, formativo o experimental; no presentarlos como proyectos profesionales actuales. |
+| **Alineación histórica o baja** | [`spotify-clone-midu`](https://github.com/smaje99/spotify-clone-midu), [`google-translate-clone`](https://github.com/smaje99/google-translate-clone), [`Agenda-de-Contactos-Flask`](https://github.com/smaje99/Agenda-de-Contactos-Flask), [`todo-react`](https://github.com/smaje99/todo-react), [`Swader`](https://github.com/smaje99/Swader), [`web-scrapper-extractor`](https://github.com/smaje99/web-scrapper-extractor) | Clones, demos, ejercicios iniciales, hardware y un extractor marcado como archivado; predominan fechas antiguas o alcance acotado. | Sirven para mostrar evolución y continuidad de aprendizaje, pero ofrecen poca evidencia del foco actual. | Documentan etapas previas y decisiones técnicas que pueden contextualizar la evolución, no el nivel de responsabilidad presente. | Mantener fuera de la selección principal; no eliminarlos de la narrativa histórica ni usarlos como experiencia laboral vigente. |
+| **Contribuciones externas o forks** | `PlantUML Interactive Editor`, `Writer`, [`black-friday-app-autocomplete`](https://github.com/smaje99/black-friday-app-autocomplete) y cualquier repositorio cuyo encabezado indique un upstream externo. | El perfil distingue repositorios fork; algunos nombres corresponden a herramientas o proyectos mantenidos fuera de la autoría individual. `sorting-comparator`, por su parte, aparece como repositorio propio con README, pruebas y release visibles, por lo que no debe etiquetarse como fork sin evidencia adicional. | La contribución, adaptación o aprendizaje sobre un proyecto externo es evidencia técnica distinta de la autoría de un producto. | Puede demostrar lectura de código, colaboración, adaptación y criterio de integración. | Conservar la atribución de upstream y describir la contribución concreta; no atribuir la totalidad del proyecto ni presentarlo como producto propio. |
+
+### Lectura resultante
+
+La diversidad no constituye por sí misma dispersión: el hilo conductor observable es el paso desde fundamentos, prácticas y experimentos hacia sistemas que procesan información, organizan operaciones y hacen explícitas sus decisiones técnicas. La selección pública debe concentrarse en los repositorios de alineación alta y complementaria, mientras que los grupos contextual, histórico y externo explican la trayectoria sin reclamar una madurez o autoría que la evidencia no sostiene.
 
 ### Publicación y verificación
 
@@ -74,6 +92,23 @@ I use GitHub to document experiments, learning, and software projects. Repositor
 Desarrollador de Software | Ingeniería Informática: formación finalizada, grado en trámite | Backend, datos y sistemas de información | BPM y transformación digital
 ```
 
+### Aptitudes principales
+
+Orden sugerido para LinkedIn, priorizando las capacidades que mejor conectan la experiencia aplicada con el perfil objetivo:
+
+1. Desarrollo de software ✅
+2. Desarrollo backend ✅
+3. Procesamiento de datos ✅
+4. Sistemas de información ✅
+5. Análisis de requisitos
+6. Arquitectura de software
+7. Gestión de procesos de negocio (BPM) ✅
+8. Python
+9. FastAPI
+10. MongoDB
+
+Como aptitudes técnicas complementarias pueden añadirse `TypeScript`, `React`, `Astro`, `PostgreSQL`, `MySQL`, `Docker` y `Git`, sin desplazar las capacidades principales ni presentarlas como especialización exclusiva.
+
 ### Acerca de
 
 ```text
@@ -83,7 +118,7 @@ Actualmente trabajo como desarrollador de software, en jornada parcial, en el Ce
 
 Me enfoco en desarrollo backend, procesamiento e integración de información, análisis de requisitos y arquitectura modular. También cuento con formación complementaria en Business Process Management (BPM) y Analítica de Datos, que refuerza mi forma de comprender procesos y trabajar con información.
 
-Comparto proyectos, aprendizajes y experiencias técnicas con atención a la trazabilidad, la documentación y la mejora continua. Los proyectos publicados deben interpretarse según su estado y contexto; no todos constituyen casos de estudio cerrados.
+Comparto un recorrido que va desde fundamentos académicos y aplicaciones web hasta sistemas de información, backend, procesamiento de datos, herramientas de arquitectura y productos local-first. En conjunto, estos proyectos reflejan una evolución hacia soluciones que conectan procesos, requisitos, información y operación, con cada repositorio presentado según su alcance y estado real.
 ```
 
 ### Experiencia que debe conservarse
