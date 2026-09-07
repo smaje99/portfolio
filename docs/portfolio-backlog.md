@@ -1168,14 +1168,42 @@ La matriz canónica se define con las columnas `Capacidad`, `Problema abordable`
 * LinkedIn canónico: `https://www.linkedin.com/in/smaje/`; GitHub canónico: `https://github.com/smaje99`; correo: `mailto:smajefranco@gmail.com`.
 * No se crean CTAs ni rutas para blog o casos de estudio.
 * La revisión externa cubre claims, experiencia, proyectos destacados, enlaces y acciones; no es una auditoría visual.
-* Los cambios de GitHub y LinkedIn son recomendaciones manuales. Las URLs y canales deben verificarse manualmente antes del cierre.
+* Los cambios de GitHub y LinkedIn se validaron manualmente junto con la publicación del copy uniforme, la auditoría de repositorios y la vigencia de los canales. La paridad semántica ES/EN y la aceptación manual de la home quedaron aprobadas.
 * Estado académico válido: `formación académica finalizada, grado en trámite`.
-* La evidencia externa recibida el 2026-08-31 confirma en LinkedIn el cargo actual de desarrollador de software en Cidti 4.0, jornada parcial, desde marzo de 2026, y el estado académico `formación académica finalizada, grado en trámite`. El copy uniforme listo para publicación manual en GitHub y LinkedIn queda en `docs/external-profile-copy.md`.
+* La evidencia externa recibida el 2026-08-31 confirma en LinkedIn el cargo actual de desarrollador de software en Cidti 4.0, jornada parcial, desde marzo de 2026, y el estado académico `formación académica finalizada, grado en trámite`. El copy uniforme de `docs/external-profile-copy.md`, incluidas las aptitudes principales de LinkedIn y la auditoría cualitativa de repositorios, fue publicado y validado manualmente.
 * La home conserva rutas, anchors, orden general y contrato bilingüe actuales. La implementación mínima puede modificar copy de etiquetas y el contrato interno de `HeroActions`, sin crear nuevas claves de copy.
 
 **Interfaces y tipos:** `HeroActions` añade la prop `contactHref: string`. El botón de contacto ocupa la variante primaria y se renderiza antes de proyectos y CV; las otras props existentes se mantienen. No se crea un tipo runtime para el catálogo de CTAs ni se altera el shape de `focusSection.items`, proyectos, experiencias o navegación.
 
-**Estado del sprint:** `Planificado — abierto hasta completar verificaciones manuales`. La implementación técnica y la regeneración de artefactos producen evidencia parcial, pero no constituyen cierre; el sprint permanece abierto si las fuentes externas, enlaces, paridad ES/EN o PDFs requieren revisión.
+**Estado del sprint:** `Cerrado — aceptación manual de la home validada` (2026-09-07). Los puntos de copy externo, actualización de perfiles, verificación de canales, auditoría de repositorios, paridad semántica ES/EN y aceptación manual funcional de la home están validados.
+
+### Resumen actualizado de cierre
+
+**Validado:**
+
+* Copy de GitHub y LinkedIn publicado y revisado, incluyendo titular, bio, sección “Acerca de” y aptitudes principales.
+* Estado académico y experiencia actual coherentes con el portfolio y el CV.
+* Auditoría cualitativa de repositorios públicos completada, distinguiendo evidencia técnica, formación, trayectoria histórica y procedencia externa.
+* URLs y canales de GitHub, LinkedIn y correo verificados.
+* Build, lint, generación/publicación de CV, smoke test estático, CTA, anchors y PDFs registrados como evidencia técnica.
+
+**Validado — paridad semántica ES/EN:**
+
+* Se compararon la versión española canónica y su adaptación inglesa en hero, contacto, capacidades, experiencia, proyectos, perfiles externos y CV.
+* Ambas versiones describen la misma identidad: desarrollador de software orientado a backend y datos, con foco en sistemas de información.
+* `processes`, `requirements`, `data`, `development decisions`, `operations`, `maintainable` y `useful` conservan el alcance de sus equivalentes en español.
+* No se detectaron aumentos en seniority, responsabilidad, disponibilidad, autoría de proyectos, resultados ni especialización técnica en la versión inglesa.
+* Se acepta como observación editorial que `An integral engineer` es menos idiomático que otras alternativas, pero no cambia el significado.
+* Se documenta como decisión de alcance que `technical leadership` aparece en ambas versiones del sitio, mientras que el copy externo evita `líder técnico` para no sobredimensionar el perfil; no es una divergencia ES/EN.
+
+**Pendiente 2 — cerrado: aceptación manual de la home:**
+
+* Se recorrieron `/` y `/en/` en desktop y móvil, comprobando el orden Hero → contacto → enfoque → proyectos → experiencia.
+* Se activaron los tres CTA del hero en ambas locales: contacto como acción principal hacia `#contact` o `/en/#contact`, proyectos hacia la ruta localizada y CV hacia el PDF localizado.
+* Se verificó con teclado que los CTA fueran alcanzables, tuvieran foco visible y conservaran la jerarquía funcional; también se comprobó zoom y lectura sin depender exclusivamente del estilo visual.
+* Se confirmó que `#contact`, `#focus`, `#projects` y `#experience` resolvieran desde la home y que la navegación localizada conservara sus destinos.
+* Se revisó que LinkedIn, GitHub, correo y los tres PDFs abrieran sus destinos válidos desde la home y las rutas relacionadas.
+* No se encontraron defectos bloqueantes; el pendiente quedó validado y los tres WIs y el sprint pasaron a `Cerrado`.
 
 #### BLG-F2-S04-01 — Matriz de coherencia externa
 
@@ -1185,12 +1213,12 @@ La matriz canónica se define con las columnas `Capacidad`, `Problema abordable`
 
 | Afirmación o elemento | Portfolio (canónico) | GitHub | LinkedIn | CV | Estado | Riesgo | Acción propuesta | Responsable |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Identidad y foco | Desarrollador de software orientado a backend y datos; ingeniería de soluciones para sistemas de información. | `Web developer`; README: `Freelance Full Stack Web Developer` y `Web Developer looking for new horizons`. | Perfil asociado a Cidti 4.0 y UNIR; el alcance profesional se revisa contra el portfolio. | Desarrollador de software orientado a backend y datos. | `diverge` | El lenguaje amplio de GitHub puede fragmentar el posicionamiento, sin ser necesariamente falso. | Revisar manualmente headline y README de GitHub; no ampliar el claim del portfolio. | Sergio (externo); Codex (portfolio). |
-| Experiencia Cidti 4.0 | La home y la colección de experiencias incluyen desarrollo de software actual y experiencia previa en Cidti 4.0. | El material de perfil revisado no sustituye la verificación completa del inventario de repositorios. | La captura de Experiencia confirma `Desarrollador de software`, Cidti 4.0, jornada parcial, `mar. 2026 - actualidad`, Cali y remoto. | Las fuentes ES/EN y los tres PDFs publicados incorporan ahora la experiencia actual como primera entrada profesional. | `coincide` | GitHub aún requiere publicación manual del copy y la auditoría completa del inventario de repositorios. | Mantener la experiencia sincronizada; publicar el copy externo y verificar manualmente repositorios y canales. | Sergio (perfiles externos y vigencia); Codex (fuentes LaTeX y PDFs). |
-| Formación e institución | El portfolio usa formación aplicada y credenciales sin afirmar un semestre vigente. | README y bio aún dicen `Computer Engineering Student`. | La captura de Educación confirma UNIR, Ingeniería Informática, formación académica finalizada y grado en trámite; el extracto del perfil aún dice `Soy estudiante`. | UNIR; estado actualizado a formación finalizada y grado en trámite en ES/EN. | `diverge` | GitHub y el extracto de LinkedIn conservan lenguaje académico desactualizado o contradictorio. | Publicar el copy de `docs/external-profile-copy.md` en GitHub y sustituir `Soy estudiante` en LinkedIn. | Sergio (perfiles externos); Codex (CV). |
-| Proyecto y estado | Los proyectos visibles se mantienen según `src/data/projects.ts`; los archivados/contextuales no son experiencia vigente ni casos de estudio. | Repositorios públicos mezclan proyectos académicos, archivados y actuales. | La lista de proyectos y su visibilidad completa requiere revisión manual. | El CV no presenta esos proyectos como experiencia vigente. | `pendiente de verificar` | Un lector puede confundir repositorio público con trabajo profesional actual. | Auditar manualmente los repositorios y etiquetas; reservar realineación profunda para Fase 3. | Sergio (verificación externa); Codex (cambios del sitio solo en WIs posteriores). |
-| Enlaces profesionales | LinkedIn `https://www.linkedin.com/in/smaje/`; GitHub `https://github.com/smaje99`; correo vigente en `#contact`. | Enlace a LinkedIn y perfil `smaje99`. | URL canónica `/in/smaje/`. | Incluye LinkedIn, GitHub y correo enlazados. | `coincide` | Variantes `http`, sin `www` o sin `/` pueden dificultar la comprobación; no cambian el destino semántico. | Normalizar URLs del repositorio; comprobar manualmente que los tres canales continúen vigentes. | Codex (repo); Sergio (vigencia). |
-| Alcance bilingüe | EN adapta la tesis ES sin ampliar seniority, responsabilidad, disponibilidad o resultados. | Perfil y README principalmente en inglés, con lenguaje más amplio. | Perfil público principalmente en español; contenido indexado confirma la formación. | Fuentes ES/EN deben mantener idéntico alcance académico y profesional. | `pendiente de verificar` | La traducción puede reforzar claims o desalinear responsabilidades. | Revisar equivalencia ES/EN claim por claim después de generar el contenido. | Sergio + Codex. |
+| Identidad y foco | Desarrollador de software orientado a backend y datos; ingeniería de soluciones para sistemas de información. | Bio y README actualizados con foco en software, backend, datos y sistemas de información. | Titular y sección “Acerca de” alineados con el foco canónico. | Desarrollador de software orientado a backend y datos. | `coincide` | Mantener el alcance sin volverlo una afirmación de especialización exclusiva. | Validación manual completada; conservar el copy como referencia externa. | Sergio (externo); Codex (portfolio). |
+| Experiencia Cidti 4.0 | La home y la colección de experiencias incluyen desarrollo de software actual y experiencia previa en Cidti 4.0. | El copy externo contextualiza el cargo sin atribuir proyectos públicos como experiencia laboral. | La experiencia publicada confirma `Desarrollador de software`, Cidti 4.0, jornada parcial, `mar. 2026 - actualidad`, Cali y remoto. | Las fuentes ES/EN y los tres PDFs publicados incorporan ahora la experiencia actual como primera entrada profesional. | `coincide` | Evitar ampliar la responsabilidad o presentar repositorios públicos como trabajo de Cidti sin evidencia específica. | Validación manual completada; mantener la experiencia sincronizada. | Sergio (perfiles externos y vigencia); Codex (fuentes LaTeX y PDFs). |
+| Formación e institución | El portfolio usa formación aplicada y credenciales sin afirmar un semestre vigente. | Bio y README ya no dicen `Computer Engineering Student`. | El perfil confirma UNIR, Ingeniería Informática, formación académica finalizada y grado en trámite. | UNIR; estado actualizado a formación finalizada y grado en trámite en ES/EN. | `coincide` | Conservar la diferencia entre formación finalizada y grado todavía en trámite. | Validación manual completada; conservar el estado académico canónico. | Sergio (perfiles externos); Codex (CV). |
+| Proyecto y estado | Los proyectos visibles se mantienen según `src/data/projects.ts`; los archivados/contextuales no son experiencia vigente ni casos de estudio. | La auditoría pública clasifica repositorios propios, académicos, archivados, históricos y externos. | El copy externo presenta los repositorios según rol y madurez, sin elevarlos a experiencia laboral vigente. | El CV no presenta esos proyectos como experiencia vigente. | `coincide` | La clasificación debe mantenerse si cambian el inventario o la visibilidad de repositorios. | Auditoría manual completada; reservar realineación profunda para Fase 3. | Sergio (verificación externa); Codex (cambios del sitio solo en WIs posteriores). |
+| Enlaces profesionales | LinkedIn `https://www.linkedin.com/in/smaje/`; GitHub `https://github.com/smaje99`; correo vigente en `#contact`. | Enlace a LinkedIn y perfil `smaje99`. | URL canónica `/in/smaje/`. | Incluye LinkedIn, GitHub y correo enlazados. | `coincide` | Revisar vigencia si cambia algún canal externo. | Verificación manual completada; conservar URLs normalizadas. | Codex (repo); Sergio (vigencia). |
+| Alcance bilingüe | EN adapta la tesis ES sin ampliar seniority, responsabilidad, disponibilidad o resultados. | Perfil y README principalmente en inglés, con foco validado en software, backend, datos y sistemas de información. | Perfil público principalmente en español, con foco y estado académico alineados. | Fuentes ES/EN mantienen idéntico alcance académico y profesional. | `coincide` | `An integral engineer` es una formulación menos idiomática, pero no cambia el significado; `technical leadership` se mantiene en ambas versiones del sitio y se acota en el copy externo. | Validación claim por claim completada; conservar la decisión de alcance documentada. | Sergio + Codex. |
 
 **Reglas de la matriz:** `coincide` significa equivalencia suficiente de hecho y alcance; `diverge` identifica una diferencia observable que puede ser de enfoque, actualidad o nivel de detalle y no implica por sí sola falsedad; `pendiente de verificar` requiere una comprobación manual de vigencia, alcance o publicabilidad. Cada fila distingue la acción externa de la acción materializable en el repositorio. Los nombres de proyectos archivados o contextuales no se promocionan como experiencia vigente.
 
@@ -1217,9 +1245,9 @@ La matriz canónica se define con las columnas `Capacidad`, `Problema abordable`
   **Cuando** se compara la lista pública con perfiles externos y CV
   **Entonces** no se presenta como experiencia laboral vigente ni como caso de estudio cerrado; su análisis profundo se difiere a Fase 3.
 
-**Estado del WI:** `En ejecución — matriz documentada; validación manual externa pendiente`.
+**Estado del WI:** `Cerrado — matriz, validación externa y paridad semántica ES/EN aprobadas`.
 
-**Actualización de evidencia (2026-08-31):** las capturas de Experiencia y Educación de LinkedIn confirman el cargo actual en Cidti 4.0 y el estado académico aprobado. La contradicción sobre el trabajo actual queda resuelta en la matriz y el cargo fue incorporado a las dos fuentes LaTeX y a los tres PDFs publicados; permanecen pendientes la publicación manual del copy uniforme y la verificación completa de proyectos y canales. El documento de publicación es `docs/external-profile-copy.md`.
+**Actualización de evidencia (2026-09-06):** las capturas de Experiencia y Educación de LinkedIn confirman el cargo actual en Cidti 4.0 y el estado académico aprobado. La contradicción sobre el trabajo actual queda resuelta en la matriz y el cargo fue incorporado a las dos fuentes LaTeX y a los tres PDFs publicados. La publicación del copy uniforme, las aptitudes principales, la verificación de proyectos, la auditoría de repositorios, la comprobación de canales y la paridad semántica ES/EN quedaron validadas manualmente. Se aceptaron las observaciones editoriales sobre `An integral engineer` y la diferencia de alcance entre el sitio y el copy externo respecto a `technical leadership` / `líder técnico`. El documento de publicación es `docs/external-profile-copy.md`.
 
 #### BLG-F2-S04-02 — Catálogo jerarquizado de CTAs del MVP
 
@@ -1261,7 +1289,7 @@ La matriz canónica se define con las columnas `Capacidad`, `Problema abordable`
   **Cuando** se revisan sus enlaces
   **Entonces** LinkedIn, GitHub y correo aparecen como canales separados, con destinos verificables y sin afirmaciones nuevas.
 
-**Estado del WI:** `En ejecución — catálogo cerrado e implementación mínima aplicada; vigencia externa pendiente`.
+**Estado del WI:** `Cerrado — catálogo, implementación mínima y aceptación manual de la home validados`.
 
 #### BLG-F2-S04-03 — Especificación funcional de la home v1
 
@@ -1271,11 +1299,11 @@ La matriz canónica se define con las columnas `Capacidad`, `Problema abordable`
 
 | Orden | Sección | Propósito y contenido mínimo | Fuente principal | OKR relacionado | Estado |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Hero | Identidad, propuesta validada de Sprint 03, especialidades y tres acciones: contacto principal, proyectos y CV secundarios. | `copy.hero`, `copy.heroActions`, `HeroActions.tsx`; `VP-01` a `VP-03`. | Objetivo 1 KR1/KR4; Objetivo 4 KR4. | Implementado mínimamente; validar tono y destinos. |
-| 2 | Contacto `#contact` | Invitación a conversar y canales LinkedIn, GitHub y correo. | `copy.contactSection`, `copy.socials`, `PortfolioPage.astro`; `NAR-B06`. | Objetivo 4 KR3/KR4. | Implementado; verificar vigencia manual. |
+| 1 | Hero | Identidad, propuesta validada de Sprint 03, especialidades y tres acciones: contacto principal, proyectos y CV secundarios. | `copy.hero`, `copy.heroActions`, `HeroActions.tsx`; `VP-01` a `VP-03`. | Objetivo 1 KR1/KR4; Objetivo 4 KR4. | Validado: implementación mínima, tono y destinos comprobados. |
+| 2 | Contacto `#contact` | Invitación a conversar y canales LinkedIn, GitHub y correo. | `copy.contactSection`, `copy.socials`, `PortfolioPage.astro`; `NAR-B06`. | Objetivo 4 KR3/KR4. | Validado: enlaces y vigencia comprobados. |
 | 3 | `#focus` | Cuatro capacidades de Sprint 03, en el orden actual: Backend Engineering, Data Processing, Business Process Management e Information Systems. | `copy.focusSection.items`, `BLG-F2-S03-02`, `BLG-F2-S03-03`. | Objetivo 1 KR1/KR4. | Conservado sin cambio estructural. |
-| 4 | `#projects` | Proyectos destacados del inventario runtime y enlace al listado completo; no se redactan casos de estudio ni se elevan proyectos archivados a experiencia vigente. | `getFeaturedProjects(locale)`, `src/data/projects.ts`, `copy.projectsSection`. | Objetivo 2 KR3/KR4; Objetivo 4 KR1. | Conservado; realineación profunda queda en Fase 3. |
-| 5 | `#experience` | Dos experiencias recientes, contexto breve y enlace al historial completo. | `getCollection('experiences')`, `localizeExperiences`, `copy.experienceSection`. | Objetivo 1 KR3; Objetivo 4 KR1/KR4. | Conservado; vigencia y CV requieren revisión manual. |
+| 4 | `#projects` | Proyectos destacados del inventario runtime y enlace al listado completo; no se redactan casos de estudio ni se elevan proyectos archivados a experiencia vigente. | `getFeaturedProjects(locale)`, `src/data/projects.ts`, `copy.projectsSection`. | Objetivo 2 KR3/KR4; Objetivo 4 KR1. | Conservado y validado; realineación profunda queda en Fase 3. |
+| 5 | `#experience` | Dos experiencias recientes, contexto breve y enlace al historial completo. | `getCollection('experiences')`, `localizeExperiences`, `copy.experienceSection`. | Objetivo 1 KR3; Objetivo 4 KR1/KR4. | Conservado y validado; vigencia y CV comprobados. |
 
 **Reglas funcionales y de contenido:**
 
@@ -1317,23 +1345,25 @@ La matriz canónica se define con las columnas `Capacidad`, `Problema abordable`
 * La home conserva rutas, anchors, datos de proyectos, experiencias, navegación y contrato bilingüe actuales.
 * Los dos PDFs publicados se regeneran desde las fuentes LaTeX y reflejan el estado académico corregido.
 * `pnpm build`, `pnpm lint`, `make cv`, smoke test de rutas ES/EN, comprobación de enlaces/PDFs/etiquetas y revisión manual de la matriz dejan evidencia registrable.
-* El sprint no se cierra mientras falte la comprobación manual de GitHub, LinkedIn, vigencia de canales, publicabilidad de proyectos o aprobación de paridad ES/EN.
+* La aceptación manual de la home quedó completada en ambas locales, incluyendo la comprobación funcional de CTA, anchors, rutas, enlaces y PDFs.
 
 **Preguntas de cierre:**
 
 * **Resuelta:** el estado académico válido es `formación académica finalizada, grado en trámite`.
-* **Acción manual:** confirmar si Sergio aplicará las recomendaciones de titular/bio en GitHub.
-* **Acción manual:** confirmar si LinkedIn conservará su narrativa amplia de ingeniería de sistemas o adoptará el foco canónico del portfolio.
-* **Preparada:** publicar el perfil uniforme propuesto en `docs/external-profile-copy.md`; GitHub queda adaptado a desarrolladores y LinkedIn al contexto profesional.
+* **Resuelta manualmente:** Sergio publicó y validó las recomendaciones de titular y bio en GitHub.
+* **Resuelta manualmente:** LinkedIn adoptó el foco canónico del portfolio, conservando el contexto profesional y las aptitudes principales.
+* **Resuelta:** el perfil uniforme de `docs/external-profile-copy.md` fue publicado y validado; GitHub queda adaptado a desarrolladores y LinkedIn al contexto profesional.
 * **Resuelta por evidencia externa y actualización de CV (2026-08-31):** la experiencia actual es desarrollador de software en Cidti 4.0, jornada parcial, desde marzo de 2026; las fuentes LaTeX y los PDFs ES/EN ya reflejan el cargo. La formación académica está finalizada y el grado está en trámite.
-* **Acción manual:** verificar que las URLs y canales de contacto continúen vigentes.
-* **Acción manual:** revisar que proyectos archivados/contextuales no se interpreten como experiencia actual ni como casos cerrados.
+* **Resuelta manualmente:** las URLs y canales de contacto continúan vigentes.
+* **Resuelta manualmente:** los proyectos archivados y contextuales no se interpretan como experiencia actual ni como casos cerrados; la auditoría queda documentada en `docs/external-profile-copy.md`.
+* **Resuelta:** la paridad semántica ES/EN fue aprobada claim por claim. Se aceptaron las observaciones editoriales sobre `An integral engineer` y la diferencia de alcance entre el sitio y el copy externo respecto a `technical leadership` / `líder técnico`.
+* **Resuelta:** se completó la aceptación manual de la home en desktop, móvil, teclado y zoom, incluyendo CTA, anchors, rutas, enlaces y PDFs.
 
 **Evidencia técnica generada en esta ejecución:** cambio de contrato y jerarquía de `HeroActions`, etiquetas localizadas, normalización de LinkedIn, actualización de las dos fuentes LaTeX con la experiencia actual y publicación de los tres PDFs mediante `make cv`. Para el cierre de contacto se añadió `scroll-margin-block-start: clamp(7rem, 28vh, 16rem)` a `#contact` y un halo CSS interno activado por `#contact:target`; el halo solo anima `opacity` y `box-shadow`, queda recortado por la banda y mantiene una señal estática con `prefers-reduced-motion: reduce`. El 2026-08-31 `pnpm build` terminó con 0 errores, 0 warnings y 0 hints, generó las ocho rutas, y el smoke test estático confirmó anchors, CTAs localizados, enlaces profesionales y PDFs válidos. El preview HTTP no pudo mantenerse disponible para `curl` en este entorno; la validación estática de los ocho HTML generados queda registrada como alternativa.
 
-La verificación de esta ejecución cubre la inspección estática de los destinos `#contact` y `/en/#contact`, la presencia de los anchors de la home, el orden hero → contacto → enfoque → proyectos → experiencia y la existencia de las reglas de target, margen de scroll y movimiento reducido. La semántica del target nativo cubre click, URL directa, recarga y navegación atrás/adelante; un segundo click sobre el hash ya activo no reanima el halo ni modifica el layout. La comprobación visual en viewport desktop, móvil, teclado y zoom, junto con la vigencia manual de los canales externos, permanece pendiente. Esta evidencia no cambia el estado abierto del sprint.
+La verificación de esta ejecución cubre la inspección estática de los destinos `#contact` y `/en/#contact`, la presencia de los anchors de la home, el orden hero → contacto → enfoque → proyectos → experiencia y la existencia de las reglas de target, margen de scroll y movimiento reducido. La semántica del target nativo cubre click, URL directa, recarga y navegación atrás/adelante; un segundo click sobre el hash ya activo no reanima el halo ni modifica el layout. La comprobación visual en viewport desktop, móvil, teclado y zoom, junto con la vigencia manual de los canales externos, quedó validada sin defectos bloqueantes.
 
-**Estado del WI:** `En ejecución — contrato y home mínima implementados; aceptación manual pendiente`.
+**Estado del WI:** `Cerrado — contrato, home mínima y aceptación manual detallada validados`.
 
 **Evidencia complementaria de formación (2026-08-31):** se incorporan al catálogo bilingüe de `src/data/credentials.ts` tres certificaciones de finalización y una participación académica: `Protección de Datos, Privacidad y Cumplimiento de GDPR` (Udemy, 2026), `Business Process Modeling A-Z™: Domina BPMN 2.0 Desde Cero` (Udemy, 2025), `Continuing Education Certificate in Leadership` (MIU City University Miami, 2025; ya existente, sin duplicar) e `I Encuentro Internacional Virtual: Diálogo entre Disciplinas - Impacto de la IA` (UNIR, 2025). Las fuentes LaTeX ES/EN agrupan estas entradas y los cursos previos bajo una única sección compacta (`Certificaciones` / `Certifications`); los PDFs se publican mediante `make cv`.
 
