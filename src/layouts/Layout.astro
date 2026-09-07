@@ -12,6 +12,8 @@ interface Props {
   brandName: string;
   homeHref: string;
   homeLinkLabel: string;
+  menuLabel: string;
+  closeMenuLabel: string;
   lang: Locale;
   canonicalPath: string;
   alternates: { hreflang: string; href: string }[];
@@ -28,6 +30,8 @@ const {
   brandName,
   homeHref,
   homeLinkLabel,
+  menuLabel,
+  closeMenuLabel,
   lang,
   canonicalPath,
   alternates,
@@ -78,6 +82,8 @@ const resolveHref = (href: string) => {
       brandName={brandName}
       homeHref={homeHref}
       homeLinkLabel={homeLinkLabel}
+      menuLabel={menuLabel}
+      closeMenuLabel={closeMenuLabel}
       navigation={navigation}
       languageSwitcherLabel={languageSwitcherLabel}
       languageLabel={languageLabel}

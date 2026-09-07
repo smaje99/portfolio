@@ -61,6 +61,8 @@ type HomeCopy = {
   description: string;
   brandName: string;
   homeLinkLabel: string;
+  menuLabel: string;
+  closeMenuLabel: string;
   hero: {
     name: string;
     nameLines: [string, string];
@@ -103,6 +105,8 @@ const homeCopy: Record<Locale, HomeCopy> = {
       'Portafolio de Sergio Andrés Majé Franco. Ingeniería de soluciones y sistemas de información: planificación, diseño, desarrollo, implementación y mejora continua.',
     brandName: 'Sergio Majé',
     homeLinkLabel: 'Volver al inicio',
+    menuLabel: 'Menú',
+    closeMenuLabel: 'Cerrar menú',
     hero: {
       name: 'Sergio Andrés Majé Franco',
       nameLines: ['Sergio Andrés', 'Majé Franco'],
@@ -204,6 +208,8 @@ const homeCopy: Record<Locale, HomeCopy> = {
       'Portfolio of Sergio Andrés Majé Franco. Solution engineering for information systems: planning, design, development, implementation, and continuous improvement.',
     brandName: 'Sergio Majé',
     homeLinkLabel: 'Back to home',
+    menuLabel: 'Menu',
+    closeMenuLabel: 'Close menu',
     hero: {
       name: 'Sergio Andrés Majé Franco',
       nameLines: ['Sergio Andrés', 'Majé Franco'],

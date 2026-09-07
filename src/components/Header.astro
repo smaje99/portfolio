@@ -1,9 +1,13 @@
 ---
+import MobileNavigation from '@/components/MobileNavigation';
+
 interface Props {
   brandName: string;
   homeHref: string;
   homeLinkLabel: string;
   navigation: { label: string; href: string }[];
+  menuLabel: string;
+  closeMenuLabel: string;
   languageSwitcherLabel: string;
   languageLabel: string;
   languageSwitcherHref: string;
@@ -15,6 +19,8 @@ const {
   homeHref,
   homeLinkLabel,
   navigation,
+  menuLabel,
+  closeMenuLabel,
   languageSwitcherLabel,
   languageLabel,
   languageSwitcherHref,
@@ -36,7 +42,7 @@ const {
     </span>
   </a>
 
-  <nav class="nav">
+  <nav class="nav desktop-nav" aria-label={menuLabel}>
     {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
     <a
       class="language-switcher"
@@ -48,10 +54,23 @@ const {
       {languageLabel}
     </a>
   </nav>
+
+  <MobileNavigation
+    client:load
+    navigation={navigation}
+    menuLabel={menuLabel}
+    closeMenuLabel={closeMenuLabel}
+    languageSwitcherLabel={languageSwitcherLabel}
+    languageLabel={languageLabel}
+    languageSwitcherHref={languageSwitcherHref}
+    languageSwitcherLocale={languageSwitcherLocale}
+  />
 </header>
 
 <style>
   .header {
+    position: relative;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -101,13 +120,15 @@ const {
     text-wrap: nowrap;
   }
 
-  .header > .nav {
+  .nav {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.75rem;
 
     & > a {
+      display: inline-flex;
+      align-items: center;
       color: var(--muted-foreground);
       padding: 0.55rem 0.95rem;
       border-radius: 999px;
@@ -135,11 +156,22 @@ const {
     }
   }
 
+  :global(.mobile-navigation) {
+    display: none;
+  }
+
   @media (width <= 720px) {
     .header {
       padding-inline: 1rem;
-      align-items: flex-start;
-      flex-direction: column;
+    }
+
+    .desktop-nav {
+      display: none;
+    }
+
+    :global(.mobile-navigation) {
+      display: block;
+      margin-left: auto;
     }
 
     .brand-name {
