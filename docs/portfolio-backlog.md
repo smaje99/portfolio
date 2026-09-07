@@ -29,11 +29,165 @@ Ejemplo:
 
 `BLG-F1-S01-01`
 
+Las capacidades transversales que habilitan más de una fase usan el formato:
+
+`BLG-CMS-{consecutivo}`
+
+Este formato se reserva para decisiones o entregables de plataforma editorial que no pertenecen exclusivamente a una fase narrativa.
+
 ### Criterio de priorización
 
 * Los ítems que corrigen desalineación estratégica tienen prioridad sobre los de pulido visual.
 * Los ítems que desbloquean otros entregables deben resolverse antes que los ítems dependientes.
 * Los ítems manuales que bloquean trabajo técnico deben resolverse lo antes posible para evitar cuellos de botella.
+
+---
+
+## Capacidad transversal — Gestión editorial con Keystatic
+
+### Evaluación y decisión
+
+**Decisión:** incorporar [Keystatic](https://keystatic.com/docs/introduction) como CMS Git-based para facilitar la edición de contenido y adquirir experiencia práctica con un flujo editorial basado en archivos, esquemas y control de versiones.
+
+La decisión es razonable para este portfolio aunque añada complejidad sobre Astro. El beneficio no es únicamente publicar contenido: permite practicar modelado de contenido, validación de esquemas, edición estructurada, trazabilidad Git y un flujo de publicación reproducible. Además, el repositorio ya usa Markdown y Astro Content Collections para las experiencias, por lo que existe una base natural para un piloto.
+
+La integración debe entenderse como una capa editorial sobre Astro, no como un reemplazo del framework ni como una justificación para convertir toda la interfaz en contenido dinámico. La documentación oficial de Astro describe Keystatic como un CMS headless que estructura contenido y puede sincronizarlo con GitHub; también indica que la integración Astro requiere React, Markdoc y una configuración de esquema. El modo local guarda los cambios en el sistema de archivos, mientras que GitHub mode requiere un repositorio existente, permisos de escritura, autenticación y un host capaz de ejecutar las rutas de API de Keystatic.
+
+**Conclusión de alcance:** se aprueba un piloto incremental en modo local. La publicación remota con GitHub mode no queda descartada, pero se mantiene como una decisión posterior porque el sitio actual es estático, no tiene adapter de servidor configurado y todavía no está cerrado el proveedor de despliegue.
+
+### Alcance inicial
+
+* Gestionar con Keystatic el contenido editorial que cambia con frecuencia: experiencias, proyectos/casos de estudio y artículos del blog cuando sus fases entren en implementación.
+* Mantener en código la navegación, las rutas, los componentes, los tokens visuales, la lógica de presentación, el contrato de locales y la configuración de build.
+* Mantener el CV en LaTeX y sus PDFs publicados fuera del CMS; Keystatic no será fuente de verdad para documentos generados.
+* Diseñar desde el principio un contrato bilingüe explícito para que una edición no deje español e inglés desalineados.
+* Migrar de forma incremental y reversible: primero una colección piloto, después las colecciones que demuestren valor real.
+
+### Fuera de alcance inicial
+
+* Reescribir Astro, convertir la aplicación en SSR o introducir una base de datos.
+* Migrar todo `src/i18n/site.ts`, la navegación o los textos de interfaz de bajo nivel al CMS.
+* Habilitar un panel público de producción sin resolver adapter, autenticación, variables de entorno, permisos y política de exposición de `/keystatic`.
+* Migrar los PDFs, fuentes LaTeX, secretos, configuración de despliegue o decisiones estratégicas del roadmap.
+* Crear un page builder libre que permita alterar la arquitectura visual sin pasar por los componentes existentes.
+
+### Riesgos y mitigaciones
+
+| Riesgo | Impacto | Mitigación |
+|---|---|---|
+| El admin de Keystatic introduce requisitos de servidor incompatibles con el hosting estático actual. | Alto | Validar primero el modo local; documentar el adapter y el proveedor antes de adoptar GitHub mode o exponer `/keystatic`. |
+| Se mantienen dos fuentes de verdad para el mismo contenido durante la migración. | Alto | Migrar por colección, declarar una fuente canónica por tipo de contenido y eliminar duplicados solo después de validar el build. |
+| El esquema CMS permite editar datos que deberían seguir siendo decisiones de producto o de código. | Medio | Limitar el primer esquema a campos editoriales y conservar rutas, navegación, tipos de UI y tokens en el repositorio. |
+| El contenido bilingüe queda incompleto o semánticamente asimétrico. | Alto | Hacer obligatorios los campos ES/EN del piloto y añadir una comprobación de paridad antes de publicar. |
+| La herramienta aumenta el tiempo de mantenimiento sin mejorar el flujo real. | Medio | Medir el piloto con una edición completa, rollback Git y rebuild; detener la migración si no reduce fricción o no aporta aprendizaje verificable. |
+
+### Sprints habilitadores
+
+#### BLG-CMS-01 — Cerrar arquitectura y límites del CMS
+
+**Objetivo:** convertir la decisión de usar Keystatic en un contrato técnico y editorial ejecutable.
+
+**Actividades:**
+
+* Confirmar la versión compatible de Astro, React, `@keystatic/core`, `@keystatic/astro` y Markdoc antes de fijar dependencias.
+* Inventariar las fuentes actuales: `src/content/experiences/`, `src/data/projects.ts`, `src/data/credentials.ts` y `src/i18n/site.ts`.
+* Decidir la primera colección piloto y su fuente canónica después de la migración.
+* Definir el contrato bilingüe, slug, estado editorial, campos obligatorios y reglas de publicación.
+* Registrar qué seguirá siendo código, qué será contenido y qué se dejará para una fase posterior.
+
+**Entregable esperado:** decisión técnica documentada, mapa de fuentes y contrato de contenido del piloto.
+
+**Dependencias:** Sprint 04 cerrado; estructura actual de Astro Content Collections; inventario de proyectos y taxonomía de estados de Fase 1.
+
+**Tipo de ejecución:** Mixto
+
+**Criterios de aceptación:**
+
+* Existe una única colección piloto, una fuente canónica y una regla explícita para no duplicar contenido.
+* El contrato distingue contenido editorial de navegación, presentación, configuración y documentos generados.
+* La estrategia ES/EN permite detectar entradas incompletas antes del build.
+* La decisión no exige modificar todavía el roadmap ni publicar el panel de administración.
+
+#### BLG-CMS-02 — Integrar Keystatic en modo local
+
+**Objetivo:** disponer de un panel local funcional para editar la colección piloto y comprobar su convivencia con Astro.
+
+**Actividades:**
+
+* Añadir las dependencias y la integración oficial de Keystatic junto con Markdoc, sin romper la integración React existente.
+* Crear `keystatic.config.ts` con almacenamiento local y el esquema mínimo aprobado en `BLG-CMS-01`.
+* Configurar el acceso local a `/keystatic` y documentar el comando de desarrollo y el flujo de guardado.
+* Mantener la ruta pública existente y el build de producción separado del panel durante el piloto.
+* Registrar cualquier cambio de formato, extensión o ubicación de los archivos generados por Keystatic.
+
+**Entregable esperado:** integración local reproducible, configuración versionada y guía breve de uso para el repositorio.
+
+**Dependencias:** `BLG-CMS-01`; disponibilidad de las versiones compatibles y revisión de la configuración actual de Astro.
+
+**Tipo de ejecución:** Codex con supervisión
+
+**Criterios de aceptación:**
+
+* El panel local abre sin errores y permite crear, editar y guardar una entrada piloto.
+* Los cambios quedan en archivos versionables dentro del repositorio, sin base de datos ni secretos en el código.
+* `pnpm build` y `pnpm lint` siguen pasando.
+* Las rutas ES/EN existentes no cambian de URL ni pierden contenido durante la integración.
+
+#### BLG-CMS-03 — Migrar y consumir la primera colección editorial
+
+**Objetivo:** probar el valor real del CMS con una colección pequeña antes de ampliar la migración.
+
+**Actividades:**
+
+* Migrar una colección de bajo riesgo y alto valor editorial; la recomendación inicial es `experiences`, por estar ya modelada como Markdown y Content Collection.
+* Adaptar el lector de Astro al formato de Keystatic solo donde sea necesario, conservando componentes y contratos de presentación.
+* Editar una entrada existente desde el panel y comprobar que la versión pública se actualiza en español e inglés según el contrato definido.
+* Ejecutar una prueba de rollback mediante Git y documentar cómo recuperar una edición inválida.
+* Registrar si el resultado justifica migrar proyectos, casos de estudio o artículos, sin asumir todavía esa migración.
+
+**Entregable esperado:** una colección migrada, visible en el sitio bilingüe y acompañada por evidencia de edición, build y rollback.
+
+**Dependencias:** `BLG-CMS-02`; contrato bilingüe; esquema de experiencias; validación de las rutas `/experience` y `/en/experience`.
+
+**Tipo de ejecución:** Mixto
+
+**Criterios de aceptación:**
+
+* Una persona puede editar una entrada sin tocar un componente Astro ni una interfaz TypeScript.
+* El contenido editado conserva estructura, accesibilidad, locale y estado narrativo.
+* No quedan dos archivos activos que representen la misma entrada sin una regla de precedencia documentada.
+* Un cambio inválido se puede revertir desde Git sin intervención en una base de datos.
+
+#### BLG-CMS-04 — Definir publicación remota y gobierno editorial
+
+**Objetivo:** decidir si el CMS se expondrá en un entorno desplegado y bajo qué controles.
+
+**Actividades:**
+
+* Identificar el proveedor de hosting y confirmar si soporta el runtime necesario para las rutas de API de Keystatic.
+* Evaluar GitHub mode, permisos de escritura, GitHub App/OAuth, variables de entorno, callback URLs y estrategia de ramas.
+* Definir si `/keystatic` permanecerá solo local o se habilitará en un entorno protegido; incluir una opción para desactivar las rutas en producción cuando no sean necesarias.
+* Documentar revisión de cambios, preview/build, rollback, protección de secretos y responsable de publicación.
+* Decidir si la migración de proyectos, casos de estudio y blog continúa o se detiene tras el piloto.
+
+**Entregable esperado:** decisión de publicación remota y política de operación editorial con criterios de continuidad o salida.
+
+**Dependencias:** `BLG-CMS-03`; proveedor de despliegue; acceso al repositorio; definición de dominio y autenticación.
+
+**Tipo de ejecución:** Mixto
+
+**Criterios de aceptación:**
+
+* La decisión identifica explícitamente si el CMS será local, remoto o híbrido.
+* No se publican credenciales ni secretos y el panel no queda abierto sin autenticación.
+* Existe un flujo verificable de edición → revisión → build/deploy → rollback.
+* Se decide qué colecciones adicionales se migran y cuáles permanecen en código, con una justificación de coste/beneficio.
+
+### Criterio de salida de la capacidad
+
+La capacidad se considera validada cuando el piloto local permita editar una colección bilingüe, produzca cambios versionables, conserve el build público y tenga un rollback documentado. La adopción de GitHub mode o la migración del resto del contenido queda condicionada a resolver hosting, autenticación, permisos y una mejora observable del flujo editorial. Si esas condiciones no se cumplen, el repositorio conserva el piloto local sin convertir Keystatic en una dependencia obligatoria de toda la aplicación.
+
+**Referencias técnicas:** [Keystatic — Introduction](https://keystatic.com/docs/introduction), [Keystatic & Astro](https://docs.astro.build/en/guides/cms/keystatic/), [Local mode](https://keystatic.com/docs/local-mode), [GitHub mode](https://keystatic.com/docs/github-mode), [desactivar rutas admin en producción](https://keystatic.com/docs/recipes/astro-disable-admin-ui-in-production).
 
 ---
 
@@ -1375,16 +1529,18 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 
 ### Sprint 05
 
+**Relación con la capacidad CMS:** el piloto de `BLG-CMS-01` debe orientar el modelado de los futuros casos de estudio, pero la definición narrativa y la plantilla no quedan bloqueadas por completar la migración técnica. Solo se migrarán a Keystatic los proyectos que tengan una fuente canónica y un esquema validado.
+
 #### BLG-F3-S05-01 — Realinear el inventario visible de proyectos del sitio
-**Objetivo:** sustituir o reorganizar los proyectos actuales para que el sitio refleje la estrategia definida.  
-**Descripción:** antes de escribir casos de estudio, el listado visible debe mostrar la selección correcta de proyectos.  
+**Objetivo:** sustituir o reorganizar los proyectos actuales para que el sitio refleje la estrategia definida.
+**Descripción:** antes de escribir casos de estudio, el listado visible debe mostrar la selección correcta de proyectos.
 **Actividades:**
 * Mapear proyectos actuales vs proyectos priorizados.
 * Definir qué proyectos salen, entran o cambian de prioridad.
 * Definir metadatos mínimos por proyecto para exposición pública.
-**Entregable esperado:** especificación del nuevo set de proyectos visibles.  
-**Dependencias:** inventario estratégico y taxonomía de estados.  
-**Tipo de ejecución:** Mixto  
+**Entregable esperado:** especificación del nuevo set de proyectos visibles.
+**Dependencias:** inventario estratégico y taxonomía de estados.
+**Tipo de ejecución:** Mixto
 **Notas de validación:** el set final debe apoyar el posicionamiento consultivo y no dispersarlo.
 
 #### BLG-F3-S05-02 — Diseñar plantilla base de caso de estudio
@@ -1451,25 +1607,26 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 
 ---
 
-## Fase 4 — Blog integrado con Medium
+## Fase 4 — Blog gestionado con Keystatic e integrado con Medium
 
 ### Sprint 07
 
 #### BLG-F4-S07-01 — Definir decisión técnica de integración con Medium
-**Objetivo:** cerrar la decisión entre enlace manual, RSS o estrategia híbrida.  
-**Descripción:** la fase de blog depende de elegir un mecanismo estable y proporcional al alcance del MVP.  
+**Objetivo:** cerrar la relación entre Keystatic como fuente editorial y Medium como canal externo de distribución o referencia.
+**Descripción:** la fase de blog depende de elegir un mecanismo estable y proporcional al alcance del MVP, sin duplicar innecesariamente el cuerpo de los artículos ni confundir autoría, publicación y sindicación.
 **Actividades:**
-* Revisar ventajas y costos de las alternativas planteadas en el roadmap.
-* Determinar qué datos necesita el sitio para mostrar publicaciones.
-* Decidir si la integración será manual, por feed o híbrida.
-**Entregable esperado:** decisión técnica documentada para integración con Medium.  
-**Dependencias:** backlog narrativo inicial y priorización de contenido.  
-**Tipo de ejecución:** Mixto  
-**Notas de validación:** la solución elegida debe ser mantenible y suficiente para el MVP.
+* Revisar las alternativas de enlace manual, RSS/feed, artículos nativos en Keystatic y estrategia híbrida.
+* Determinar si Keystatic será la fuente canónica de los artículos, si Medium será el canal canónico o si cada canal tendrá una responsabilidad distinta.
+* Determinar qué datos necesita el sitio para mostrar publicaciones y cómo se mantiene la paridad entre locales.
+* Decidir si la integración será manual, por feed o híbrida, documentando cómo evitar duplicados y divergencias.
+**Entregable esperado:** decisión técnica documentada para Keystatic + Medium, incluyendo fuente canónica, flujo de publicación y tratamiento de enlaces externos.
+**Dependencias:** `BLG-CMS-01` y, si el blog se edita desde el panel, `BLG-CMS-03`; backlog narrativo inicial y priorización de contenido.
+**Tipo de ejecución:** Mixto
+**Notas de validación:** la solución elegida debe ser mantenible, suficiente para el MVP y compatible con el aprendizaje buscado sobre CMS Git-based.
 
 #### BLG-F4-S07-02 — Definir arquitectura de información de la sección blog
-**Objetivo:** especificar cómo se organiza el blog dentro del portfolio.  
-**Descripción:** el blog no debe ser un añadido aislado; debe integrarse al posicionamiento general del sitio.  
+**Objetivo:** especificar cómo se organiza el blog dentro del portfolio.
+**Descripción:** el blog no debe ser un añadido aislado; debe integrarse al posicionamiento general del sitio.
 **Actividades:**
 * Definir si habrá página índice, bloque destacado en home o ambos.
 * Definir categorías, etiquetas y estructura visual mínima.
@@ -1701,9 +1858,11 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 * Refinar propuesta de valor y capacidades.
 * Realinear el inventario visible de proyectos.
 * Diseñar la plantilla base del primer caso de estudio.
+* Cerrar `BLG-CMS-01` y preparar el piloto local de Keystatic sin migrar todavía todas las fuentes.
 
 ### Prioridad siguiente
 
+* Completar `BLG-CMS-02` y `BLG-CMS-03` con una colección editorial bilingüe.
 * Definir decisión técnica de integración con Medium.
 * Especificar arquitectura de información del blog.
 * Preparar backlog editorial inicial.
@@ -1716,10 +1875,12 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 * Accesos o cuentas necesarias para Medium y analytics, si aplican.
 * Validación externa con revisores reales.
 * Ajustes de narrativa en GitHub y LinkedIn fuera del repositorio.
+* Proveedor de hosting, adapter de servidor y credenciales/permisos de GitHub si se decide publicar Keystatic de forma remota.
 
 ### Trabajo bloqueado por decisiones manuales
 
 * Integración final con Medium si depende de confirmar usuario, feed o estrategia editorial.
+* GitHub mode de Keystatic hasta resolver hosting, autenticación, permisos y variables de entorno.
 * Publicación con dominio propio.
 * Redacción final de artículos de voz personal.
 * Validación externa y registro de resultados.
