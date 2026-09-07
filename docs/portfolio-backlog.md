@@ -49,7 +49,7 @@ Este formato se reserva para decisiones o entregables de plataforma editorial qu
 
 **Decisión:** incorporar [Keystatic](https://keystatic.com/docs/introduction) como CMS Git-based para facilitar la edición de contenido y adquirir experiencia práctica con un flujo editorial basado en archivos, esquemas y control de versiones.
 
-La decisión es razonable para este portfolio aunque añada complejidad sobre Astro. El beneficio no es únicamente publicar contenido: permite practicar modelado de contenido, validación de esquemas, edición estructurada, trazabilidad Git y un flujo de publicación reproducible. Además, el repositorio ya usa Markdown y Astro Content Collections para las experiencias, por lo que existe una base natural para un piloto.
+La decisión es razonable para este portfolio aunque añada complejidad sobre Astro. El beneficio no es únicamente publicar contenido: permite practicar modelado de contenido, validación de esquemas, edición estructurada, trazabilidad Git y un flujo de publicación reproducible. Además, el repositorio ya usa Markdown y Astro Content Collections para las experiencias, mientras que el contenido localizado de proyectos puede formalizarse como archivos editoriales para el piloto.
 
 La integración debe entenderse como una capa editorial sobre Astro, no como un reemplazo del framework ni como una justificación para convertir toda la interfaz en contenido dinámico. La documentación oficial de Astro describe Keystatic como un CMS headless que estructura contenido y puede sincronizarlo con GitHub; también indica que la integración Astro requiere React, Markdoc y una configuración de esquema. El modo local guarda los cambios en el sistema de archivos, mientras que GitHub mode requiere un repositorio existente, permisos de escritura, autenticación y un host capaz de ejecutar las rutas de API de Keystatic.
 
@@ -57,7 +57,9 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 
 ### Alcance inicial
 
-* Gestionar con Keystatic el contenido editorial que cambia con frecuencia: experiencias, proyectos/casos de estudio y artículos del blog cuando sus fases entren en implementación.
+* Confirmar `projects` como única colección piloto para el primer ciclo de Keystatic.
+* Gestionar posteriormente con Keystatic el contenido editorial que cambie con frecuencia —experiencias, proyectos/casos de estudio y artículos del blog— solo cuando sus fases entren en implementación y exista un contrato específico.
+* Mantener `src/content/experiences/` fuera del piloto actual; no se migra como parte de `BLG-CMS-01`.
 * Mantener en código la navegación, las rutas, los componentes, los tokens visuales, la lógica de presentación, el contrato de locales y la configuración de build.
 * Mantener el CV en LaTeX y sus PDFs publicados fuera del CMS; Keystatic no será fuente de verdad para documentos generados.
 * Diseñar desde el principio un contrato bilingüe explícito para que una edición no deje español e inglés desalineados.
@@ -87,15 +89,19 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 
 **Objetivo:** convertir la decisión de usar Keystatic en un contrato técnico y editorial ejecutable.
 
+**Estado inicial:** `En curso`.
+
+**Estado de cierre previsto:** `Cerrado — contrato técnico y editorial validado`.
+
 **Actividades:**
 
-* Confirmar la versión compatible de Astro, React, `@keystatic/core`, `@keystatic/astro` y Markdoc antes de fijar dependencias.
-* Inventariar las fuentes actuales: `src/content/experiences/`, `src/data/projects.ts`, `src/data/credentials.ts` y `src/i18n/site.ts`.
-* Decidir la primera colección piloto y su fuente canónica después de la migración.
-* Definir el contrato bilingüe, slug, estado editorial, campos obligatorios y reglas de publicación.
-* Registrar qué seguirá siendo código, qué será contenido y qué se dejará para una fase posterior.
+* Confirmar `projects` como única colección piloto.
+* Inventariar las fuentes actuales y separar `src/data/projects.ts` como fuente combinada vigente de `src/i18n/site.ts`, `src/content/experiences/` y las fuentes fuera del CMS.
+* Definir como fuente canónica futura del contenido editorial los archivos ES/EN gestionados por Keystatic, manteniendo el registro TypeScript/backlog para la clasificación estratégica.
+* Definir la convención `<slug>.es.md` + `<slug>.en.md`, los campos editoriales mínimos, el campo `locale` y las reglas de paridad.
+* Registrar qué seguirá siendo código, qué será contenido editorial y qué se dejará para una fase posterior.
 
-**Entregable esperado:** decisión técnica documentada, mapa de fuentes y contrato de contenido del piloto.
+**Entregable esperado:** [contrato editorial de proyectos para Keystatic](./keystatic-content-contract.md), con mapa de fuentes, matriz de campos y límites de responsabilidad.
 
 **Dependencias:** Sprint 04 cerrado; estructura actual de Astro Content Collections; inventario de proyectos y taxonomía de estados de Fase 1.
 
@@ -103,10 +109,25 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 
 **Criterios de aceptación:**
 
-* Existe una única colección piloto, una fuente canónica y una regla explícita para no duplicar contenido.
+* La colección piloto confirmada es únicamente `projects`.
+* El modelo bilingüe confirmado usa archivos ES/EN vinculados por el mismo slug base.
+* El límite confirmado es contenido editorial; la clasificación estratégica permanece en TypeScript/backlog.
+* Existe una fuente canónica futura y una regla explícita para no duplicar contenido durante la transición.
 * El contrato distingue contenido editorial de navegación, presentación, configuración y documentos generados.
-* La estrategia ES/EN permite detectar entradas incompletas antes del build.
+* La estrategia ES/EN permite detectar entradas incompletas, huérfanas o duplicadas antes de publicar.
 * La decisión no exige modificar todavía el roadmap ni publicar el panel de administración.
+
+**Nota de alcance:** cerrar este WI no implica instalar dependencias, crear `keystatic.config.ts`, migrar proyectos, cambiar rutas públicas, habilitar `/keystatic` ni adoptar GitHub Mode. Esas decisiones e implementaciones pertenecen a `BLG-CMS-02`, `BLG-CMS-03` y `BLG-CMS-04` según corresponda.
+
+**Cierre de implementación:**
+
+* El contrato documental quedó creado en [`docs/keystatic-content-contract.md`](./keystatic-content-contract.md).
+* `projects` quedó confirmado como único piloto; `src/content/experiences/` permanece fuera del piloto.
+* Se confirmó el par obligatorio `<slug>.es.md` + `<slug>.en.md` y la separación entre contenido editorial y clasificación estratégica.
+* `src/data/projects.ts` se conserva como fuente actual hasta la migración posterior.
+* No hubo cambios de runtime, instalación de Keystatic, configuración local, migración, cambio de rutas ni habilitación de GitHub Mode.
+
+**Estado del WI:** `Cerrado — contrato técnico y editorial validado`.
 
 #### BLG-CMS-02 — Integrar Keystatic en modo local
 
@@ -139,15 +160,15 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 
 **Actividades:**
 
-* Migrar una colección de bajo riesgo y alto valor editorial; la recomendación inicial es `experiences`, por estar ya modelada como Markdown y Content Collection.
+* Migrar la colección piloto `projects` usando el contrato bilingüe aprobado en `BLG-CMS-01`.
 * Adaptar el lector de Astro al formato de Keystatic solo donde sea necesario, conservando componentes y contratos de presentación.
 * Editar una entrada existente desde el panel y comprobar que la versión pública se actualiza en español e inglés según el contrato definido.
 * Ejecutar una prueba de rollback mediante Git y documentar cómo recuperar una edición inválida.
-* Registrar si el resultado justifica migrar proyectos, casos de estudio o artículos, sin asumir todavía esa migración.
+* Registrar si el resultado justifica migrar experiencias, casos de estudio o artículos, sin asumir todavía esas migraciones adicionales.
 
 **Entregable esperado:** una colección migrada, visible en el sitio bilingüe y acompañada por evidencia de edición, build y rollback.
 
-**Dependencias:** `BLG-CMS-02`; contrato bilingüe; esquema de experiencias; validación de las rutas `/experience` y `/en/experience`.
+**Dependencias:** `BLG-CMS-02`; contrato bilingüe de proyectos; validación de las rutas `/projects` y `/en/projects`.
 
 **Tipo de ejecución:** Mixto
 
