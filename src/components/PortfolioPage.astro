@@ -152,7 +152,7 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
         </div>
       </header>
 
-      <ProjectsGrid projects={featuredProjects} />
+      <ProjectsGrid projects={featuredProjects} locale={locale} />
 
       <div class="panel-cta">
         <a href={projectsPath} class="panel-link">{copy.projectsSection.ctaLabel}</a>

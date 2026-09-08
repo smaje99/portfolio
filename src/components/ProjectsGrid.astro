@@ -1,11 +1,13 @@
 ---
+import type { Locale } from '@/i18n/site';
 import type { ProjectCardProject } from '@/data/projects';
 
 interface Props {
   projects: ProjectCardProject[];
+  locale: Locale;
 }
 
-const { projects } = Astro.props;
+const { projects, locale } = Astro.props;
 ---
 
 <div class="projects-grid">
@@ -14,11 +16,29 @@ const { projects } = Astro.props;
       <p>{project.focus}</p>
       <h3>{project.title}</h3>
       <p class="project-description">{project.description}</p>
+      <ul class="project-meta" aria-label={locale === 'es' ? 'Estado y visibilidad' : 'Status and visibility'}>
+        <li class={`project-status project-status-${project.projectStatus}`}>{project.statusLabel}</li>
+        {project.visibility === 'private' && <li class="project-visibility">{project.visibilityLabel}</li>}
+      </ul>
       <ul class="project-tags">
         {project.tags.map((tag) => (
           <li>{tag}</li>
         ))}
       </ul>
+      {(project.repository || project.demo) && (
+        <div class="project-actions">
+          {project.repository && (
+            <a href={project.repository} target="_blank" rel="noopener noreferrer">
+              {locale === 'es' ? 'Repositorio' : 'Repository'}
+            </a>
+          )}
+          {project.demo && (
+            <a href={project.demo} target="_blank" rel="noopener noreferrer">
+              {locale === 'es' ? 'Ver demo' : 'View demo'}
+            </a>
+          )}
+        </div>
+      )}
     </article>
   ))}
 </div>
@@ -73,6 +93,51 @@ const { projects } = Astro.props;
     margin: 0;
     padding: 0;
     list-style: none;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-meta > li {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    color: var(--secondary-foreground);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .project-status-in-development,
+  .project-visibility {
+    border-color: var(--border-primary) !important;
+    background: var(--surface-primary-soft);
+    color: var(--foreground) !important;
+  }
+
+  .project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 0.25rem;
+  }
+
+  .project-actions a {
+    color: var(--brand-lime-soft);
+    font-size: 0.86rem;
+    font-weight: 800;
+    text-underline-offset: 0.2em;
+  }
+
+  .project-actions a:hover {
+    color: var(--foreground);
   }
 
   .project-tags > li {

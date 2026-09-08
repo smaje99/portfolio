@@ -29,7 +29,7 @@ const projects = getProjects(locale);
       title={copy.projectsSection.pageTitle}
       intro={copy.projectsSection.intro}
     >
-      <ProjectsGrid projects={projects} />
+      <ProjectsGrid projects={projects} locale={locale} />
     </SectionPage>
   </SectionContainer>
 </BasePage>
