@@ -85,115 +85,6 @@ const projectVisibilityLabels: Record<Locale, Record<ProjectVisibility, string>>
 
 const portfolioProjects: PortfolioProject[] = [
   {
-    slug: 'simigs',
-    portfolioTier: 'featured',
-    mvpStatus: 'included',
-    projectType: 'information-system',
-    strategicPriority: 'high',
-    projectStatus: 'operational',
-    visibility: 'public',
-    repository: null,
-    demo: null,
-    demonstrates: [
-      'Sistemas de información',
-      'Operación interna',
-      'Backend mantenible',
-      'Centralización de datos',
-    ],
-    rationale:
-      'Permite mostrar diseño y soporte de sistemas orientados a operación real sin depender de narrativa académica.',
-    narrativeStatus: 'Sistema implementado para centralización operativa e información interna.',
-    content: {
-      es: {
-        title: 'SIMIGS',
-        description:
-          'Sistema orientado a centralizar información operativa y apoyar procesos internos con una base técnica mantenible.',
-        focus: 'Sistemas de información y operación interna',
-        tags: ['Backend', 'Procesos', 'Información operativa'],
-      },
-      en: {
-        title: 'SIMIGS',
-        description:
-          'A system designed to centralize operational information and support internal workflows with a maintainable technical base.',
-        focus: 'Information systems and internal operations',
-        tags: ['Backend', 'Processes', 'Operational information'],
-      },
-    },
-  },
-  {
-    slug: 'erp-turismo',
-    portfolioTier: 'featured',
-    mvpStatus: 'included',
-    projectType: 'erp-platform',
-    strategicPriority: 'high',
-    projectStatus: 'operational',
-    visibility: 'public',
-    repository: null,
-    demo: null,
-    demonstrates: [
-      'Organización operativa',
-      'Trazabilidad de procesos',
-      'Modelado de flujos de trabajo',
-      'Control de información',
-    ],
-    rationale:
-      'Aporta una línea clara de soluciones empresariales y refuerza el posicionamiento consultivo orientado a procesos.',
-    narrativeStatus: 'Solución ERP implementada para organización operativa y control sectorial.',
-    content: {
-      es: {
-        title: 'ERP Turismo',
-        description:
-          'Solución ERP enfocada en la organización de operaciones, flujos de trabajo y control de información en el sector turístico.',
-        focus: 'Operación, control y trazabilidad',
-        tags: ['ERP', 'Procesos', 'Turismo'],
-      },
-      en: {
-        title: 'Tourism ERP',
-        description:
-          'An ERP solution focused on organizing operations, workflows, and information control for the tourism sector.',
-        focus: 'Operations, control, and traceability',
-        tags: ['ERP', 'Processes', 'Tourism'],
-      },
-    },
-  },
-  {
-    slug: 'erp-agroinsumos',
-    portfolioTier: 'featured',
-    mvpStatus: 'included',
-    projectType: 'erp-platform',
-    strategicPriority: 'high',
-    projectStatus: 'operational',
-    visibility: 'public',
-    repository: null,
-    demo: null,
-    demonstrates: [
-      'Inventario',
-      'Procesos comerciales',
-      'Trazabilidad de datos',
-      'Operación sectorial',
-    ],
-    rationale:
-      'Refuerza capacidad para construir soluciones transversales a negocio, inventario y operación con foco en datos.',
-    narrativeStatus:
-      'Plataforma ERP implementada para inventario, procesos comerciales y trazabilidad.',
-    content: {
-      es: {
-        title: 'ERP Agroinsumos',
-        description:
-          'Plataforma para administrar inventario, procesos comerciales y trazabilidad de datos en distribución de agroinsumos.',
-        focus: 'Inventario, procesos comerciales y datos',
-        tags: ['ERP', 'Inventario', 'Trazabilidad'],
-      },
-      en: {
-        title: 'Agro-input ERP',
-        description:
-          'A platform built to manage inventory, commercial processes, and data traceability in agro-input distribution.',
-        focus: 'Inventory, commercial processes, and data',
-        tags: ['ERP', 'Inventory', 'Traceability'],
-      },
-    },
-  },
-  {
     slug: 'estructuras-de-datos',
     portfolioTier: 'secondary',
     mvpStatus: 'included',
@@ -255,16 +146,16 @@ const portfolioProjects: PortfolioProject[] = [
       es: {
         title: 'TrazalITA',
         description:
-          'Sistema en desarrollo para apoyar transparencia pública, cumplimiento, gestión documental y trazabilidad mediante una arquitectura de información clara.',
+          'Sistema en desarrollo con Astro y PayloadCMS para apoyar transparencia pública, cumplimiento, gestión documental y trazabilidad sobre una base PostgreSQL.',
         focus: 'Transparencia, cumplimiento y gestión documental',
-        tags: ['Python', 'FastAPI', 'PostgreSQL', 'Trazabilidad'],
+        tags: ['Astro', 'PayloadCMS', 'TypeScript', 'PostgreSQL', 'Trazabilidad'],
       },
       en: {
         title: 'TrazalITA',
         description:
-          'A system in development for public transparency, compliance, document management, and traceability through a clear information architecture.',
+          'A system in development with Astro and PayloadCMS for public transparency, compliance, document management, and traceability on a PostgreSQL foundation.',
         focus: 'Transparency, compliance, and document management',
-        tags: ['Python', 'FastAPI', 'PostgreSQL', 'Traceability'],
+        tags: ['Astro', 'PayloadCMS', 'TypeScript', 'PostgreSQL', 'Traceability'],
       },
     },
   },
@@ -334,7 +225,7 @@ export function getProjects(locale: Locale) {
   return portfolioProjects.map((project) => toProjectCardProject(project, locale));
 }
 
-export function getFeaturedProjects(locale: Locale, limit = 6) {
+export function getFeaturedProjects(locale: Locale, limit = 2) {
   return portfolioProjects
     .filter((project) => project.portfolioTier === 'featured')
     .slice(0, limit)
