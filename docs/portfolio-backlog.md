@@ -154,6 +154,19 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 * `pnpm build` y `pnpm lint` siguen pasando.
 * Las rutas ES/EN existentes no cambian de URL ni pierden contenido durante la integración.
 
+**Cierre de implementación:**
+
+* Se instalaron `@astrojs/markdoc@2.0.9`, `@keystatic/core@0.6.9` y `@keystatic/astro@6.0.0`, sin actualizar Astro 7.2.9 ni React 19.2.5.
+* Se creó `keystatic.config.ts` con almacenamiento `local` y únicamente la colección `projects` bajo `src/content/projects/*`.
+* El esquema gestiona `slug`, `locale`, `title`, `description`, `focus`, `tags` y un cuerpo Markdoc opcional con extensión `.md`; los campos estratégicos de `BLG-CMS-01` no se exponen.
+* Se añadió la colección Astro `projects` con esquema Zod equivalente al frontmatter. `src/content/experiences/` permanece sin cambios.
+* La integración Keystatic se carga en `astro dev` para disponer de `/keystatic`; el build público conserva salida estática y no añade adapter ni rutas server-rendered. La política de producción sigue pendiente de `BLG-CMS-04`.
+* Se añadió [`docs/keystatic-local-workflow.md`](./keystatic-local-workflow.md), con instalación, creación bilingüe, convención de slug, revisión Git y rollback.
+* La validación local creó, editó y guardó los fixtures `cms-smoke-test.es.md` y `cms-smoke-test.en.md` mediante el flujo de almacenamiento local; `astro check` confirmó ambas entradas en `projects` y los fixtures fueron eliminados antes del cierre.
+* El panel y las rutas `/projects` y `/en/projects` respondieron HTTP 200. `pnpm build`, `pnpm lint` y `git diff --check` pasaron; no se migraron proyectos reales desde `src/data/projects.ts`.
+
+**Estado del WI:** `Cerrado — integración local reproducible validada`.
+
 #### BLG-CMS-03 — Migrar y consumir la primera colección editorial
 
 **Objetivo:** probar el valor real del CMS con una colección pequeña antes de ampliar la migración.
