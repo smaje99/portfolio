@@ -8,6 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "cms:check": "node scripts/cms-check.mjs",
     "shadcn": "shadcn",
     "lint": "biome check .",
     "format": "biome check --write ."
