@@ -354,10 +354,10 @@ La capacidad se considera validada cuando el piloto local permita editar una col
 **Cierre de implementación:**
 
 * El inventario oficial del MVP quedó materializado en `src/data/projects.ts` como inventario público base canónico, bilingüe y reutilizable para el portfolio v1.
-* Los cuatro proyectos visibles actuales quedaron definidos con nombre público ES/EN, estado narrativo, tipo, capacidades demostradas, prioridad estratégica y visibilidad dentro del portfolio.
-* La visibilidad pública actual se conserva: tres proyectos `featured` y un proyecto `secondary`, sin alterar todavía rutas ni UI.
+* Los tres proyectos visibles actuales (`trazalita`, `epicrisisia` y `estructuras-de-datos`) quedaron definidos con nombre público ES/EN, estado narrativo, tipo, capacidades demostradas, prioridad estratégica y visibilidad dentro del portfolio.
+* La visibilidad pública actual conserva dos proyectos `featured` y un proyecto `secondary`, sin alterar las rutas públicas.
 * La correspondencia entre español e inglés quedó normalizada sobre slugs canónicos únicos por proyecto.
-* La divergencia con la selección estratégica del roadmap quedó resuelta a nivel de cierre: `SIMIGS`, `ERP Turismo`, `ERP Agroinsumos` y `Proyecto educativo de estructuras de datos` conforman el inventario público base del MVP; `ITA`, `Cognark`, `Media Report CLI` y el proyecto jurídico/documental quedan como pipeline priorizado para futuros casos de estudio y no como sustitución inmediata del inventario visible.
+* La divergencia con la selección estratégica del roadmap quedó resuelta a nivel de cierre: `TrazalITA`, `EpicrisisIA` y el proyecto educativo de estructuras de datos conforman el inventario público base actual; `ITA`, `Cognark`, `Media Report CLI` y el proyecto jurídico/documental quedan como pipeline priorizado para futuros casos de estudio y no como sustitución silenciosa del inventario visible.
 * Los proyectos fuera del inventario público base no se consideran descartados; quedan explícitamente diferidos a Fase 3 por madurez narrativa, profundidad de artefacto y necesidad de estructura de caso de estudio.
 * Validación técnica ejecutada: `./node_modules/.bin/astro check`, `./node_modules/.bin/astro build` y `./node_modules/.bin/biome check src/data/projects.ts src/components/ProjectsGrid.astro`.
 **Preguntas de definición y cierre:**
@@ -1025,7 +1025,7 @@ Esta redacción es la base semántica validada para una implementación posterio
 
 > I am a software developer focused on backend and data. I turn process and operational needs into clear, maintainable, useful information systems by connecting requirements, data, and development decisions. My experience in backend development, information extraction and processing, and training in business process management guides how I build and improve digital solutions.
 
-La adaptación conserva sujeto, alcance, madurez y grado de certeza de ES. `Focused on` no implica especialización exclusiva; `training` conserva el carácter formativo de BPM; `build and improve` no promete resultados ni responsabilidad integral. La versión EN queda aprobada como adaptación semántica equivalente para una implementación posterior; no es copy runtime publicado.
+La adaptación conserva sujeto, alcance, madurez y grado de certeza de ES. `Focused on` no implica especialización exclusiva; `training` conserva el carácter formativo de BPM; `build and improve` no promete resultados ni responsabilidad integral. La versión EN queda aprobada como adaptación semántica equivalente y se usa como base del copy runtime actualizado en la Prioridad inmediata.
 
 **Registro de validación y resolución de preguntas:**
 
@@ -1037,7 +1037,7 @@ La adaptación conserva sujeto, alcance, madurez y grado de certeza de ES. `Focu
 | Evidencia contextual y proyectos archivados | Los proyectos actuales en construcción se usan solo como evidencia contextual y de apoyo superficial; `SIMIGS`, `ERP Turismo` y `ERP Agroinsumos` se registran como archivados y no como evidencia vigente. | `IN-M03` queda validado únicamente para este alcance; las fichas detalladas se mantienen abiertas para Fase 3. | `validado IN-M03; alcance superficial` |
 | Límites de privacidad y publicación | No se publican datos clínicos, escolares, comerciales, identificadores de stakeholders, documentos internos ni resultados no verificados; los nombres de proyectos solo sirven para trazabilidad interna del backlog. | La restricción queda registrada como condición de cualquier implementación posterior de este WI. | `validado IN-M01/IN-M02/IN-M03` |
 
-**Estado del WI:** `Cerrado — especificación editorial validada`. La ficha editorial, la tesis ES, la adaptación EN, la matriz de evidencia, los límites y las validaciones manuales están documentados en el backlog. Este cierre solo cubre el alcance superficial de `IN-M03`; no cierra fichas detalladas ni casos de estudio de proyectos de Fase 3. No equivale a implementación runtime: no se modificó copy, rutas, anchors, contrato localizado, interfaces TypeScript ni fuentes runtime.
+**Estado del WI:** `Cerrado — especificación editorial validada`. La ficha editorial, la tesis ES, la adaptación EN, la matriz de evidencia, los límites y las validaciones manuales están documentados en el backlog. Este cierre solo cubre el alcance superficial de `IN-M03`; no cierra fichas detalladas ni casos de estudio de proyectos de Fase 3. La implementación runtime posterior actualizó el copy de home y perfil sin cambiar rutas, anchors, el contrato localizado ni las interfaces públicas.
 
 **Gherkin ampliado:**
 
@@ -1200,7 +1200,7 @@ Los nombres de los proyectos actuales y archivados se mantienen únicamente para
 * Las relaciones aprobadas son procesos que orientan datos y backend, con sistemas de información como eje integrador; no se repite la tesis del hero ni se calcula un nivel de dominio.
 * La equivalencia ES/EN queda resuelta por etiquetas y significado, con el mismo alcance, madurez, responsabilidad y límites.
 
-**Estado del WI:** `Cerrado — especificación editorial validada`. El catálogo de cuatro capacidades, sus fichas conceptuales, relaciones, evidencia, límites, equivalencia ES/EN y registro de validación quedan definidos para una implementación posterior. Este cierre no crea una ruta, no modifica el contrato localizado, no cambia interfaces TypeScript ni declara copy runtime implementado. Las fichas detalladas y los casos de estudio de proyectos siguen abiertos en Fase 3.
+**Estado del WI:** `Cerrado — especificación editorial validada`. El catálogo de cuatro capacidades, sus fichas conceptuales, relaciones, evidencia, límites, equivalencia ES/EN y registro de validación quedan definidos. La implementación runtime de la Prioridad inmediata actualizó sus etiquetas bilingües y mantuvo el bloque dentro de `#focus`; no crea una ruta ni una matriz de puntuación. Las fichas detalladas y los casos de estudio de proyectos siguen abiertos en Fase 3.
 
 **Dependencias:** `NAR-B03`, `NAR-M03`, `NAR-M04`, `IN-M02`, `IN-M03`, `src/i18n/site.ts`, `src/data/projects.ts`, `src/data/credentials.ts`, experiencias, CV y taxonomía de estados.
 **Tipo de ejecución:** Mixto
@@ -1593,28 +1593,47 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 **Tipo de ejecución:** Mixto
 **Notas de validación:** el set final debe apoyar el posicionamiento consultivo y no dispersarlo.
 
+**Estado del WI:** `Cerrado — inventario runtime realineado` (2026-09-09).
+
+**Cierre de implementación:**
+
+* `src/data/projects.ts` conserva como inventario público base `trazalita`, `epicrisisia` y `estructuras-de-datos`.
+* `trazalita` y `epicrisisia` son proyectos destacados en desarrollo; `estructuras-de-datos` permanece como evidencia secundaria académica.
+* El contenido editorial de los tres proyectos está disponible en pares ES/EN bajo `src/content/projects/` y el pipeline futuro no aparece en listados públicos.
+* `astro check`, `astro build` y `pnpm lint` deben permanecer como validación de regresión para este inventario.
+
 #### BLG-F3-S05-02 — Diseñar plantilla base de caso de estudio
-**Objetivo:** crear una estructura estándar reutilizable para documentar proyectos con profundidad técnica.  
-**Descripción:** sin una plantilla unificada, cada caso de estudio tenderá a quedar incompleto o inconsistente.  
+**Objetivo:** crear una estructura estándar reutilizable para documentar proyectos con profundidad técnica.
+**Descripción:** sin una plantilla unificada, cada caso de estudio tenderá a quedar incompleto o inconsistente.
 **Actividades:**
 * Definir secciones obligatorias del caso de estudio.
 * Definir qué información es pública, qué es resumida y qué debe omitirse por sensibilidad o madurez.
 * Definir longitud esperada por sección.
-**Entregable esperado:** plantilla funcional de caso de estudio.  
-**Dependencias:** especificación del nuevo set de proyectos.  
-**Tipo de ejecución:** Codex con supervisión  
+**Entregable esperado:** plantilla funcional de caso de estudio.
+**Dependencias:** especificación del nuevo set de proyectos.
+**Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** la plantilla debe permitir comparar proyectos distintos sin perder profundidad.
 
+**Estado del WI:** `Cerrado — plantilla editorial versionada` (2026-09-09).
+
+**Cierre de implementación:**
+
+* La plantilla quedó documentada en [`docs/case-study-template.md`](./case-study-template.md).
+* Define resumen, contexto, problema, alcance, contribución, decisiones, arquitectura, evidencia, estado, aprendizajes y límites de publicación.
+* Diferencia información pública, resumida y no publicable; mantiene la taxonomía de estados y la paridad ES/EN.
+* Incluye extensiones orientativas, checklist de publicación y relación explícita con la captura manual de insumos.
+* No crea rutas, páginas, una colección CMS ni un caso de estudio ficticio.
+
 #### BLG-F3-S05-03 — Levantar información fuente para los primeros casos
-**Objetivo:** reunir los insumos necesarios para completar los primeros casos de estudio.  
-**Descripción:** este ítem organiza la captura de información faltante antes de redactar páginas finales.  
+**Objetivo:** reunir los insumos necesarios para completar los primeros casos de estudio.
+**Descripción:** este ítem organiza la captura de información faltante antes de redactar páginas finales.
 **Actividades:**
 * Identificar por proyecto qué información ya existe y cuál falta.
 * Definir preguntas de levantamiento para cada proyecto.
 * Clasificar vacíos críticos vs vacíos tolerables para una primera publicación.
-**Entregable esperado:** matriz de insumos por caso de estudio.  
-**Dependencias:** plantilla base de caso de estudio.  
-**Tipo de ejecución:** Mixto  
+**Entregable esperado:** matriz de insumos por caso de estudio.
+**Dependencias:** plantilla base de caso de estudio.
+**Tipo de ejecución:** Mixto
 **Notas de validación:** cada proyecto prioritario debe tener claro su nivel de completitud documental.
 
 ### Sprint 06
@@ -1905,13 +1924,17 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 
 ### Prioridad inmediata
 
-* Consolidar inventario estratégico de proyectos.
-* Definir taxonomía de estados.
-* Formalizar mapa del sitio objetivo del MVP.
-* Refinar propuesta de valor y capacidades.
-* Realinear el inventario visible de proyectos.
-* Diseñar la plantilla base del primer caso de estudio.
-* Cerrar `BLG-CMS-01` y preparar el piloto local de Keystatic sin migrar todavía todas las fuentes.
+Los puntos de esta cola quedaron implementados o cerrados como contrato/documentación. La única continuidad que permanece abierta es la captura manual de fuentes para seleccionar y redactar el primer caso de estudio.
+
+* Consolidar inventario estratégico de proyectos — `cerrado`.
+* Definir taxonomía de estados — `cerrado`.
+* Formalizar mapa del sitio objetivo del MVP — `cerrado`.
+* Refinar propuesta de valor y capacidades — `cerrado como especificación editorial validada`; la implementación runtime mantiene el mismo alcance semántico.
+* Realinear el inventario visible de proyectos — `cerrado` en `BLG-F3-S05-01`.
+* Diseñar la plantilla base del primer caso de estudio — `cerrado` en `BLG-F3-S05-02`.
+* Cerrar `BLG-CMS-01` y preparar el piloto local de Keystatic — `cerrado` en `BLG-CMS-01` y `BLG-CMS-02`.
+
+**Siguiente acción habilitada:** ejecutar `BLG-F3-S05-03` para levantar información fuente de los proyectos prioritarios; esa tarea requiere validación manual y no debe rellenarse con supuestos.
 
 ### Prioridad siguiente
 

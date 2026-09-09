@@ -161,10 +161,9 @@ Los tags no deben usarse para inferir estado narrativo.
 
 | Proyecto | Estado asignado | Justificación resumida |
 | --- | --- | --- |
-| SIMIGS | `operational` | En `src/data/projects.ts` se narra como sistema implementado para centralización operativa e información interna. |
-| ERP Turismo | `operational` | Se describe como solución ERP implementada para organización operativa y control sectorial. |
-| ERP Agroinsumos | `operational` | Se presenta como plataforma ERP implementada para inventario, procesos comerciales y trazabilidad. |
 | Proyecto educativo de estructuras de datos | `prototype` | Aunque es académico en tipo, su narrativa actual funciona mejor como evidencia técnica aplicada y acotada, no como solución operativa ni MVP. |
+| TrazalITA | `in-development` | `src/data/projects.ts` lo presenta como sistema en desarrollo para transparencia pública, cumplimiento, gestión documental y trazabilidad. |
+| EpicrisisIA | `in-development` | `src/data/projects.ts` lo presenta como trabajo en construcción sobre procesamiento y estructuración de documentos clínicos, sin publicar datos reales ni reglas propietarias. |
 
 ## Distinciones críticas para evitar solapamientos
 
@@ -193,7 +192,7 @@ Esta taxonomía es normativa y, tras el cierre regularizado de `BLG-F1-S01-01`, 
 
 Quedan definidos dos conjuntos con funciones distintas:
 
-* El inventario público base del MVP usa los proyectos hoy visibles en el sitio: `SIMIGS`, `ERP Turismo`, `ERP Agroinsumos` y `Proyecto educativo de estructuras de datos`.
+* El inventario público base del MVP usa los tres proyectos actualmente visibles en `src/data/projects.ts`: `estructuras-de-datos` como evidencia secundaria, `trazalita` y `epicrisisia` como proyectos destacados en desarrollo.
 * El roadmap conserva `ITA`, `Cognark`, `Media Report CLI` y el proyecto jurídico/documental como pipeline priorizado para futuros casos de estudio.
 
 Reglas para manejar esa divergencia:
@@ -201,7 +200,7 @@ Reglas para manejar esa divergencia:
 * Este documento sigue definiendo cómo clasificar proyectos, no el orden exacto en que se publicarán como casos de estudio.
 * Cualquier proyecto que migre del pipeline de casos de estudio al inventario público o a una ruta de detalle debe reutilizar este catálogo sin agregar estados nuevos.
 * La separación entre `inventario público base` y `pipeline de casos de estudio` evita confundir evidencia ya publicada con narrativa futura todavía no materializada.
-* La decisión de si el pipeline complementa, reordena o sustituye parcialmente el inventario público base pertenece a Sprint 02 y Fase 3, no a la taxonomía.
+* El inventario runtime actual ya fue realineado; cualquier incorporación del pipeline debe pasar por una nueva decisión editorial y no desplazar silenciosamente los proyectos publicados.
 
 ## Impacto futuro esperado en datos e interfaces
 
