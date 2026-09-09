@@ -1,8 +1,8 @@
 # Contrato editorial de proyectos para Keystatic
 
 **Work item:** `BLG-CMS-01`
-**Estado del contrato:** validado para el piloto documental
-**Colección piloto:** `projects`
+**Estado del contrato:** base de la migración editorial vigente
+**Colecciones CMS:** `projects`, `experiences` y `blog`
 
 ## 1. Objetivo y alcance
 
@@ -10,7 +10,9 @@ Este documento define el contrato técnico y editorial que debe respetarse antes
 
 Keystatic se incorporará como una capa editorial sobre Astro. En el piloto, su responsabilidad será gestionar archivos de contenido versionables; no reemplazará las rutas, los componentes, la lógica de presentación ni la clasificación estratégica del portfolio.
 
-El único piloto de esta decisión es la colección `projects`. Las experiencias, el blog, los casos de estudio y cualquier otra colección quedan fuera del piloto y podrán evaluarse en work items posteriores.
+El piloto inicial fue la colección `projects`; `BLG-CMS-04` amplía el mismo
+contrato a `experiences` y `blog`. Los casos de estudio y cualquier otra
+colección siguen fuera del alcance.
 
 ## 2. Fronteras de responsabilidad
 
@@ -31,7 +33,7 @@ Esta separación evita que una edición editorial pueda alterar la arquitectura 
 | --- | --- | --- |
 | `src/data/projects.ts` | Fuente combinada actual: contenido localizado de cada proyecto y metadatos de clasificación, prioridad y narrativa. | Sigue siendo la fuente efectiva del sitio hasta que una migración posterior y el lector nuevo hayan sido validados. No se modifica en `BLG-CMS-01`. |
 | `src/i18n/site.ts` | Copy de interfaz, navegación, labels, CTAs, metadata y traducciones generales del sitio. | Queda fuera del CMS. No se convierte en una colección de textos de interfaz. |
-| `src/content/experiences/` | Colección Markdown existente para experiencias profesionales. | Queda fuera de la colección piloto `projects`; cualquier migración será una decisión posterior. |
+| `src/content/experiences/` | Colección Markdown de experiencias profesionales. | Se gestiona como pares localizados mediante `BLG-CMS-04`. |
 | `src/data/credentials.ts` | Credenciales y evidencias de formación usadas por la presentación del portfolio. | Queda fuera del piloto y del contrato editorial de proyectos. |
 | `docs/resume/` y `public/docs/` | Fuentes LaTeX y PDFs publicados del CV. | Quedan fuera del CMS y conservan su flujo de build/publicación. |
 | `src/pages/`, `src/components/` y `src/styles/` | Rutas, presentación, comportamiento, layout y tokens visuales. | Permanecen en código. Keystatic no será un page builder. |
@@ -46,13 +48,14 @@ Cuando se complete la migración, la fuente canónica se dividirá por responsab
 
 Durante la transición, `src/data/projects.ts` continúa siendo la fuente actual. No habrá una migración parcial implícita ni una regla de precedencia inventada en este WI: hasta `BLG-CMS-03`, los archivos futuros del CMS no sustituyen al registro activo.
 
-## 5. Modelo de la colección piloto
+## 5. Modelo de la colección `projects`
 
 ### 5.1 Colección y formato
 
 La colección única del piloto se llamará `projects`. Su organización futura se expresará con una ruta wildcard de Keystatic para almacenar entradas dentro de `src/content/projects/`. Las entradas usarán archivos Markdown/Markdoc versionables.
 
-La sintaxis exacta de `keystatic.config.ts`, las dependencias y la configuración del modo local pertenecen a `BLG-CMS-02`; este contrato fija el modelo, no instala ni configura la aplicación.
+La sintaxis vigente está implementada en `keystatic.config.ts` y usa modo local.
+No se habilita GitHub Mode ni se publica `/keystatic`.
 
 ### 5.2 Convención de archivos
 
@@ -118,20 +121,17 @@ Estos valores podrán permanecer en `src/data/projects.ts`, en otro registro Typ
 * Una omisión editorial solo es válida si mantiene el significado y la honestidad del original; no puede ocultar una limitación relevante en un locale.
 * Los títulos, descripciones, focos y tags deben poder compararse semánticamente entre locales. No se exige igualdad literal.
 * Un archivo huérfano, un par duplicado o una discrepancia de `locale` es un error de contrato y debe bloquear la publicación.
-* La validación de estos pares pertenece al lector/migración de `BLG-CMS-03`; no se implementa como runtime en este WI.
+* La validación de estos pares pertenece al lector editorial y a `pnpm cms:check`; un incumplimiento bloquea el build.
 
 ## 7. Política de migración
 
-`BLG-CMS-01` es una decisión documental. Por tanto:
+`BLG-CMS-01` fue una decisión documental. La implementación posterior conserva:
 
-* No se migran todavía los archivos ni los registros actuales de `src/data/projects.ts`.
-* No se modifica todavía `src/data/projects.ts` ni el lector que consume sus datos.
-* No se instalan `@keystatic/core`, `@keystatic/astro`, Markdoc ni otras dependencias.
-* No se crea `keystatic.config.ts`.
-* No se habilita `/keystatic`, GitHub Mode, autenticación, hosting ni despliegue remoto.
-* No se cambian las rutas públicas, los slugs públicos ni los componentes Astro.
-* `BLG-CMS-02` implementará el panel local y el esquema aprobado.
-* `BLG-CMS-03` definirá la migración efectiva y adaptará el lector solo después de validar la integración.
+* `projects` ya es la fuente editorial canónica y conserva el registro estratégico en TypeScript.
+* `experiences` se migró a pares ES/EN y `blog` se añadió como colección independiente por locale.
+* El lector filtra estados y valida pares, slugs y `draftSlug` antes de publicar.
+* Keystatic, Markdoc y el panel local ya están instalados; el panel se excluye del build público.
+* GitHub Mode, autenticación, hosting y despliegue remoto no se habilitan desde este repositorio.
 
 La migración debe ser incremental y reversible. Mientras no exista una migración validada por colección, el sitio seguirá leyendo la fuente actual y no se crearán dos fuentes activas para el mismo proyecto.
 
@@ -149,4 +149,8 @@ El work item puede cerrarse documentalmente cuando:
 
 ## 9. Referencias técnicas
 
-La forma futura de la colección se basa en las capacidades documentadas por Keystatic para [colecciones](https://keystatic.com/docs/collections), [organización de contenido](https://keystatic.com/docs/content-organisation) y [opciones de formato](https://keystatic.com/docs/format-options). La configuración concreta queda deliberadamente diferida a `BLG-CMS-02`.
+La forma de las colecciones se basa en las capacidades documentadas por Keystatic
+para [colecciones](https://keystatic.com/docs/collections),
+[organización de contenido](https://keystatic.com/docs/content-organisation) y
+[opciones de formato](https://keystatic.com/docs/format-options). La política
+operativa vigente está en `docs/cms-editorial-policy.md`.

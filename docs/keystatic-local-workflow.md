@@ -1,8 +1,8 @@
 # Flujo local de Keystatic
 
 Este repositorio usa Keystatic en modo local como piloto para la colección
-`projects`. El panel edita archivos del repositorio; no usa una base de datos,
-GitHub Mode ni secretos.
+`projects`, `experiences` y `blog`. El panel edita archivos del repositorio; no
+usa una base de datos, GitHub Mode ni secretos.
 
 La colección `projects` es ahora la fuente editorial canónica del sitio. Cada
 proyecto tiene un par obligatorio de archivos Markdown, uno por locale. El
@@ -21,8 +21,8 @@ pnpm dev
 El panel está disponible en <http://127.0.0.1:4321/keystatic> durante `pnpm dev`.
 La integración se carga únicamente en el servidor de desarrollo local: el
 build público sigue siendo estático y no incorpora las rutas server-rendered
-del panel. La decisión de publicación remota queda pendiente de
-`BLG-CMS-04`.
+del panel. `/keystatic` no se publica; GitHub Mode queda como opción futura no
+activada.
 
 ## Crear una entrada bilingüe
 
@@ -51,18 +51,20 @@ genera un único archivo Markdown con frontmatter y cuerpo Markdoc dentro de
 `src/content/projects/`. El sitio consume estos archivos mediante la colección
 `projects` de Astro; no mantiene una copia editorial activa en TypeScript.
 
-El build valida que cada proyecto estratégico tenga exactamente su par ES/EN,
-que el sufijo del slug coincida con `locale` y que no existan archivos CMS sin
-registro estratégico. Cualquier incumplimiento bloquea el build con un error;
-no hay fallback silencioso.
+El build valida que cada proyecto estratégico y cada experiencia tenga
+exactamente su par ES/EN, que el sufijo del slug coincida con `locale`, que los
+estados sean válidos y que los `draftSlug` sean únicos. Las entradas del blog
+no necesitan par; una referencia Medium publicada sí necesita `externalUrl`.
+Cualquier incumplimiento bloquea el build con un error; no hay fallback
+silencioso.
 
 ## Revisar, guardar y revertir
 
 Después de guardar, revisa el diff y valida el build antes de publicar:
 
 ```bash
-git diff -- src/content/projects
-pnpm build
+git diff -- src/content
+pnpm cms:check
 ```
 
 Una edición incorrecta se revierte con Git, por ejemplo restaurando los archivos
@@ -75,9 +77,7 @@ pnpm build
 
 No existe una base de datos que requiera una migración o rollback separado. Las
 rutas `/projects` y `/en/projects` consumen el mismo inventario estratégico y
-su contenido editorial localizado desde Astro. Las experiencias, los casos de
-estudio y el blog permanecen fuera de esta migración y quedan diferidos a
-`BLG-CMS-04`.
-La política definitiva de `/keystatic` en producción queda pendiente de
-`BLG-CMS-04`, que deberá decidir hosting, autenticación y si el panel será solo
-local o también remoto.
+su contenido editorial localizado desde Astro. Las experiencias y el blog forman
+parte de `BLG-CMS-04`. Los estados no publicados permanecen fuera de rutas y
+listados; una previsualización draft usa `/draft/<draftSlug>/<locale>` con
+`noindex,nofollow,noarchive`, pero no ofrece confidencialidad.
