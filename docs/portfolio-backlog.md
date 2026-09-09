@@ -53,7 +53,7 @@ La decisión es razonable para este portfolio aunque añada complejidad sobre As
 
 La integración debe entenderse como una capa editorial sobre Astro, no como un reemplazo del framework ni como una justificación para convertir toda la interfaz en contenido dinámico. La documentación oficial de Astro describe Keystatic como un CMS headless que estructura contenido y puede sincronizarlo con GitHub; también indica que la integración Astro requiere React, Markdoc y una configuración de esquema. El modo local guarda los cambios en el sistema de archivos, mientras que GitHub mode requiere un repositorio existente, permisos de escritura, autenticación y un host capaz de ejecutar las rutas de API de Keystatic.
 
-**Conclusión de alcance:** se aprueba un piloto incremental en modo local. La publicación remota con GitHub mode no queda descartada, pero se mantiene como una decisión posterior porque el sitio actual es estático, no tiene adapter de servidor configurado y todavía no está cerrado el proveedor de despliegue.
+**Conclusión de alcance:** se aprueba un piloto incremental en modo local. La publicación remota con GitHub mode no se activa: `/keystatic` permanecerá fuera del build de producción y GitHub mode queda como opción futura. La infraestructura de publicación queda fijada en un VPS Hostinger KVM 2 en Brasil, con Docker y Caddy; el dominio `smaje.com.co`, DNS, proxy, CDN y SSL se gestionarán con Cloudflare Registrar. La compra, provisión y configuración inicial siguen siendo tareas manuales.
 
 ### Alcance inicial
 
@@ -160,7 +160,7 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 * Se creó `keystatic.config.ts` con almacenamiento `local` y únicamente la colección `projects` bajo `src/content/projects/*`.
 * El esquema gestiona `slug`, `locale`, `title`, `description`, `focus`, `tags` y un cuerpo Markdoc opcional con extensión `.md`; los campos estratégicos de `BLG-CMS-01` no se exponen.
 * Se añadió la colección Astro `projects` con esquema Zod equivalente al frontmatter. `src/content/experiences/` permanece sin cambios.
-* La integración Keystatic se carga en `astro dev` para disponer de `/keystatic`; el build público conserva salida estática y no añade adapter ni rutas server-rendered. La política de producción sigue pendiente de `BLG-CMS-04`.
+* La integración Keystatic se carga en `astro dev` para disponer de `/keystatic`; el build público conserva salida estática y no añade adapter ni rutas server-rendered. La exclusión de `/keystatic` en producción queda formalizada en `BLG-CMS-04`.
 * Se añadió [`docs/keystatic-local-workflow.md`](./keystatic-local-workflow.md), con instalación, creación bilingüe, convención de slug, revisión Git y rollback.
 * La validación local creó, editó y guardó los fixtures `cms-smoke-test.es.md` y `cms-smoke-test.en.md` mediante el flujo de almacenamiento local; `astro check` confirmó ambas entradas en `projects` y los fixtures fueron eliminados antes del cierre.
 * El panel y las rutas `/projects` y `/en/projects` respondieron HTTP 200. `pnpm build`, `pnpm lint` y `git diff --check` pasaron; no se migraron proyectos reales desde `src/data/projects.ts`.
@@ -203,34 +203,39 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 
 **Estado del WI:** `Cerrado — colección projects migrada, validada y consumida desde Astro Content Collections`.
 
-#### BLG-CMS-04 — Definir publicación remota y gobierno editorial
+#### BLG-CMS-04 — Cerrar publicación y gobierno editorial
 
-**Objetivo:** decidir si el CMS se expondrá en un entorno desplegado y bajo qué controles.
+**Objetivo:** cerrar el modelo de publicación, gobierno editorial e infraestructura pública del portfolio.
+
+**Estado:** `Decisiones fijadas; provisión externa pendiente`.
 
 **Actividades:**
 
-* Identificar el proveedor de hosting y confirmar si soporta el runtime necesario para las rutas de API de Keystatic.
-* Evaluar GitHub mode, permisos de escritura, GitHub App/OAuth, variables de entorno, callback URLs y estrategia de ramas.
-* Definir si `/keystatic` permanecerá solo local o se habilitará en un entorno protegido; incluir una opción para desactivar las rutas en producción cuando no sean necesarias.
-* Documentar revisión de cambios, preview/build, rollback, protección de secretos y responsable de publicación.
-* Decidir si la migración de proyectos, casos de estudio y blog continúa o se detiene tras el piloto.
+* Usar un VPS Hostinger KVM 2 en Brasil como destino de despliegue, con Docker, Caddy, firewall y contenedores separados para el portfolio y futuros proyectos.
+* Registrar `smaje.com.co` en Cloudflare Registrar y centralizar allí DNS, proxy, CDN, SSL y DNSSEC cuando corresponda.
+* Mantener Keystatic en modo local; `/keystatic` no se publica y no se crea GitHub App, OAuth ni secretos para GitHub mode.
+* Mantener el sitio Astro como build estático; no añadir un adapter de servidor solo para habilitar la administración remota.
+* Ejecutar el flujo `edición local → revisión del diff → pnpm cms:check → git push origin main → build/deploy → verificación pública`.
+* Documentar que el editor y revisor son la misma persona, que el rollback consiste en revertir el commit y reconstruir, y que las credenciales solo viven en el entorno de despliegue.
+* Continuar la migración de `experiences` y `blog` conforme al contrato editorial de BLG-CMS-04; las referencias Medium no se sincronizan automáticamente.
 
-**Entregable esperado:** decisión de publicación remota y política de operación editorial con criterios de continuidad o salida.
+**Entregable esperado:** política de publicación y operación editorial, decisión de infraestructura y lista de pasos manuales para comprar, provisionar y verificar el entorno público.
 
-**Dependencias:** `BLG-CMS-03`; proveedor de despliegue; acceso al repositorio; definición de dominio y autenticación.
+**Dependencias:** `BLG-CMS-03`; compra del dominio; cuentas de Cloudflare y Hostinger; acceso al repositorio; configuración del mecanismo de despliegue desde `main`.
 
 **Tipo de ejecución:** Mixto
 
 **Criterios de aceptación:**
 
 * La decisión identifica explícitamente si el CMS será local, remoto o híbrido.
-* No se publican credenciales ni secretos y el panel no queda abierto sin autenticación.
-* Existe un flujo verificable de edición → revisión → build/deploy → rollback.
+* `/keystatic` no aparece en el build de producción y no se publican credenciales ni secretos.
+* El dominio `smaje.com.co` y el VPS Hostinger KVM 2 en Brasil quedan documentados como decisiones de infraestructura, sin automatizar compras ni provisión desde el repositorio.
+* Existe un flujo verificable de edición → revisión → `pnpm cms:check` → build/deploy → rollback.
 * Se decide qué colecciones adicionales se migran y cuáles permanecen en código, con una justificación de coste/beneficio.
 
 ### Criterio de salida de la capacidad
 
-La capacidad se considera validada cuando el piloto local permita editar una colección bilingüe, produzca cambios versionables, conserve el build público y tenga un rollback documentado. La adopción de GitHub mode o la migración del resto del contenido queda condicionada a resolver hosting, autenticación, permisos y una mejora observable del flujo editorial. Si esas condiciones no se cumplen, el repositorio conserva el piloto local sin convertir Keystatic en una dependencia obligatoria de toda la aplicación.
+La capacidad se considera validada cuando el piloto local permita editar una colección bilingüe, produzca cambios versionables, conserve el build público y tenga un rollback documentado. La infraestructura pública queda resuelta con Cloudflare y Hostinger, mientras que GitHub mode permanece fuera del lanzamiento hasta que exista una necesidad explícita de edición remota, autenticación y permisos adecuados. La migración de `experiences` y `blog` continúa mediante archivos locales versionados y el contrato editorial aprobado; si una futura ampliación no aporta valor observable, el repositorio conserva el flujo local sin convertir Keystatic en una dependencia obligatoria de toda la aplicación.
 
 **Referencias técnicas:** [Keystatic — Introduction](https://keystatic.com/docs/introduction), [Keystatic & Astro](https://docs.astro.build/en/guides/cms/keystatic/), [Local mode](https://keystatic.com/docs/local-mode), [GitHub mode](https://keystatic.com/docs/github-mode), [desactivar rutas admin en producción](https://keystatic.com/docs/recipes/astro-disable-admin-ui-in-production).
 
@@ -1818,27 +1823,30 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 ### Sprint 11
 
 #### BLG-F6-S11-01 — Definir requerimientos de publicación y dominio
-**Objetivo:** aterrizar qué falta para considerar el portfolio verdaderamente publicado y presentable.  
-**Descripción:** el sitio compila y puede desplegarse, pero deben aclararse las tareas manuales y mixtas ligadas a dominio, entorno público y presentación final.  
+**Objetivo:** aterrizar qué falta para considerar el portfolio verdaderamente publicado y presentable.
+**Descripción:** el sitio compila y puede desplegarse, y ya están fijados el dominio y el proveedor de VPS; deben ejecutarse y verificarse las tareas manuales y mixtas ligadas al entorno público y la presentación final.
 **Actividades:**
-* Definir si habrá dominio propio o subdominio.
-* Identificar proveedor, costos y pasos manuales de compra/configuración.
+* Comprar `smaje.com.co` en Cloudflare Registrar y confirmar el precio de renovación.
+* Contratar y provisionar un Hostinger KVM 2 en Brasil; confirmar tarifa promocional, renovación, impuestos y disponibilidad de la ubicación.
+* Configurar Docker, Caddy, firewall, backups y subdominios en el VPS.
+* Apuntar DNS de Cloudflare al VPS y verificar HTTPS, redirecciones y dominio canónico.
+* Identificar los pasos manuales de compra/configuración y conservar las credenciales fuera del repositorio.
 * Diferenciar tareas de despliegue técnico vs tareas de contratación o acceso.
-**Entregable esperado:** plan de publicación y dominio del MVP.  
-**Dependencias:** backlog de confianza técnica y checklist pre-lanzamiento.  
-**Tipo de ejecución:** Mixto  
-**Notas de validación:** debe quedar explícito qué parte depende enteramente de ti.
+**Entregable esperado:** entorno público provisionado, plan de publicación y dominio del MVP.
+**Dependencias:** backlog de confianza técnica y checklist pre-lanzamiento.
+**Tipo de ejecución:** Mixto
+**Notas de validación:** debe quedar explícito qué parte depende enteramente de ti; la compra de cuentas, dominio y VPS no se automatiza desde el repositorio.
 
 #### BLG-F6-S11-02 — Definir protocolo de revisión externa
-**Objetivo:** estructurar la validación con terceros como actividad de ingeniería y no como retroalimentación informal aislada.  
-**Descripción:** el roadmap pide validación con distintos perfiles; aquí se formaliza esa actividad.  
+**Objetivo:** estructurar la validación con terceros como actividad de ingeniería y no como retroalimentación informal aislada.
+**Descripción:** el roadmap pide validación con distintos perfiles; aquí se formaliza esa actividad.
 **Actividades:**
 * Seleccionar perfiles de revisión.
 * Definir preguntas o guion de evaluación.
 * Definir cómo registrar hallazgos y decisiones derivadas.
-**Entregable esperado:** protocolo de validación externa del portfolio.  
-**Dependencias:** checklist pre-lanzamiento y home consolidada.  
-**Tipo de ejecución:** Mixto  
+**Entregable esperado:** protocolo de validación externa del portfolio.
+**Dependencias:** checklist pre-lanzamiento y home consolidada.
+**Tipo de ejecución:** Mixto
 **Notas de validación:** el protocolo debe producir hallazgos accionables, no opiniones dispersas.
 
 #### BLG-F6-S11-03 — Definir backlog de ajustes post-validación
@@ -1908,6 +1916,7 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 ### Prioridad siguiente
 
 * Completar `BLG-CMS-02` y `BLG-CMS-03` con una colección editorial bilingüe.
+* Ejecutar `BLG-F6-S11-01`: comprar el dominio en Cloudflare y provisionar el Hostinger KVM 2 en Brasil.
 * Definir decisión técnica de integración con Medium.
 * Especificar arquitectura de información del blog.
 * Preparar backlog editorial inicial.
@@ -1916,16 +1925,17 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 
 ### Dependencias externas
 
-* Compra y configuración de dominio o subdominio.
+* Compra y configuración de `smaje.com.co` en Cloudflare Registrar.
+* Contratación y provisión del Hostinger KVM 2 en Brasil, incluyendo Docker, Caddy, firewall, backups y subdominios.
 * Accesos o cuentas necesarias para Medium y analytics, si aplican.
 * Validación externa con revisores reales.
 * Ajustes de narrativa en GitHub y LinkedIn fuera del repositorio.
-* Proveedor de hosting, adapter de servidor y credenciales/permisos de GitHub si se decide publicar Keystatic de forma remota.
+* Definición del mecanismo de despliegue desde `main` y configuración de sus credenciales como variables protegidas del entorno.
 
 ### Trabajo bloqueado por decisiones manuales
 
 * Integración final con Medium si depende de confirmar usuario, feed o estrategia editorial.
-* GitHub mode de Keystatic hasta resolver hosting, autenticación, permisos y variables de entorno.
+* GitHub mode de Keystatic queda fuera del lanzamiento actual y solo se reabrirá como decisión futura.
 * Publicación con dominio propio.
 * Redacción final de artículos de voz personal.
 * Validación externa y registro de resultados.

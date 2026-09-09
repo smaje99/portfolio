@@ -4,19 +4,29 @@ La decisión de compra y provisión es manual y queda fuera del repositorio.
 
 ## Opción recomendada
 
-Un VPS de Hetzner Cloud con Docker y Caddy permite servir este portfolio y
-futuros proyectos en contenedores separados, manteniendo una sola máquina
-operativa. El sitio Astro puede publicarse como artefacto estático detrás de
-Caddy; otros proyectos pueden usar sus propios servicios y redes internas.
+Se utilizará un VPS Hostinger KVM 2 en Brasil con Docker y Caddy. Este plan
+ofrece 2 vCPU, 8 GB de RAM, 100 GB NVMe y 8 TB de transferencia según la
+[página de VPS de Hostinger](https://www.hostinger.com/vps-hosting). La ubicación
+en Brasil prioriza la latencia para visitantes de Colombia y permite alojar el
+portfolio y futuros proyectos en contenedores separados.
 
-La referencia inicial es un modelo pequeño como CX23. Verifica la tarifa vigente
-antes de contratar en la [documentación de precios de Hetzner](https://docs.hetzner.com/general/infrastructure-and-availability/price-adjustment/).
+El sitio Astro se publicará como artefacto estático detrás de Caddy; otros
+proyectos pueden usar sus propios servicios y redes internas. La tarifa
+promocional, el plazo de contratación, la renovación y los impuestos deben
+confirmarse en el checkout antes de comprar. El VPS seguirá siendo
+administrado por nosotros: sistema operativo, Docker, Caddy, actualizaciones,
+firewall y secretos.
+
+Hetzner queda como alternativa futura si aparece capacidad cost-optimized
+disponible o si cambian las necesidades de infraestructura.
 
 ## Dominio y DNS
 
-Se recomienda revisar primero Cloudflare Registrar para un `.com.co` disponible:
-centraliza registrador, DNS, HTTPS, proxy y protección básica sin margen de
-registro según su [FAQ de Registrar](https://developers.cloudflare.com/registrar/faq/).
+El dominio `smaje.com.co` se comprará en Cloudflare Registrar por el precio
+confirmado manualmente de aproximadamente USD 15, sujeto a disponibilidad,
+renovación e impuestos. Cloudflare centraliza registrador, DNS, HTTPS, proxy y
+protección básica sin margen de registro según su
+[FAQ de Registrar](https://developers.cloudflare.com/registrar/faq/).
 Porkbun queda como alternativa si el TLD deseado no está disponible; consulta
 su [catálogo de precios](https://porkbun.com/products/domains/) antes de comprar.
 
