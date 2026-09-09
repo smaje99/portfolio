@@ -13,7 +13,7 @@ interface Props {
 const { locale } = Astro.props;
 
 const copy = getHomeCopy(locale);
-const projects = getProjects(locale);
+const projects = await getProjects(locale);
 ---
 
 <BasePage

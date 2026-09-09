@@ -192,6 +192,17 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 * No quedan dos archivos activos que representen la misma entrada sin una regla de precedencia documentada.
 * Un cambio inválido se puede revertir desde Git sin intervención en una base de datos.
 
+**Cierre de implementación:**
+
+* Los tres proyectos estratégicos (`estructuras-de-datos`, `trazalita` y `epicrisisia`) fueron migrados a seis archivos Markdown bilingües bajo `src/content/projects/`.
+* `src/data/projects.ts` conserva únicamente el inventario y la clasificación estratégica; `getProjects()` y `getFeaturedProjects()` combinan ese registro con `getCollection('projects')` de Astro.
+* El build bloquea entradas huérfanas, pares ES/EN incompletos, locales duplicados, slugs con sufijo inconsistente y proyectos estratégicos sin contenido editorial; no existe fallback silencioso.
+* Se comprobó la instalación con lockfile congelado (`CI=true pnpm install --frozen-lockfile --store-dir=/tmp/portfolio-pnpm-store`), además de `pnpm build`, `pnpm lint` y `git diff --check`. El build genera `/projects` y `/en/projects` sin cambiar sus URLs.
+* El flujo local de Keystatic en `/keystatic` y la revisión del diff Git quedan documentados en [`docs/keystatic-local-workflow.md`](./keystatic-local-workflow.md), incluido el rollback mediante `git restore` y rebuild.
+* La migración no incluye experiencias, casos de estudio ni blog; se mantienen explícitamente diferidos a `BLG-CMS-04`.
+
+**Estado del WI:** `Cerrado — colección projects migrada, validada y consumida desde Astro Content Collections`.
+
 #### BLG-CMS-04 — Definir publicación remota y gobierno editorial
 
 **Objetivo:** decidir si el CMS se expondrá en un entorno desplegado y bajo qué controles.

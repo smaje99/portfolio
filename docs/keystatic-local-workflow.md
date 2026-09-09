@@ -4,6 +4,12 @@ Este repositorio usa Keystatic en modo local como piloto para la colección
 `projects`. El panel edita archivos del repositorio; no usa una base de datos,
 GitHub Mode ni secretos.
 
+La colección `projects` es ahora la fuente editorial canónica del sitio. Cada
+proyecto tiene un par obligatorio de archivos Markdown, uno por locale. El
+registro estratégico de `src/data/projects.ts` conserva la clasificación,
+prioridad, estado, visibilidad, enlaces, orden y demás decisiones de portfolio;
+esos campos no se editan desde Keystatic.
+
 ## Iniciar el panel
 
 Instala las dependencias con `pnpm install` y arranca Astro:
@@ -42,7 +48,13 @@ siendo una revisión editorial manual durante este piloto.
 Los campos editoriales obligatorios son `title`, `description`, `focus`, `tags`
 y `locale`. El cuerpo `Content` es Markdoc opcional. Al guardar, Keystatic
 genera un único archivo Markdown con frontmatter y cuerpo Markdoc dentro de
-`src/content/projects/`.
+`src/content/projects/`. El sitio consume estos archivos mediante la colección
+`projects` de Astro; no mantiene una copia editorial activa en TypeScript.
+
+El build valida que cada proyecto estratégico tenga exactamente su par ES/EN,
+que el sufijo del slug coincida con `locale` y que no existan archivos CMS sin
+registro estratégico. Cualquier incumplimiento bloquea el build con un error;
+no hay fallback silencioso.
 
 ## Revisar, guardar y revertir
 
@@ -53,12 +65,19 @@ git diff -- src/content/projects
 pnpm build
 ```
 
-Una edición incorrecta se revierte con Git, por ejemplo restaurando el archivo
-concreto desde el commit anterior o descartando el cambio antes de confirmarlo.
-No existe una base de datos que requiera una migración o rollback separado.
+Una edición incorrecta se revierte con Git, por ejemplo restaurando los archivos
+concretos desde el commit anterior y ejecutando de nuevo `pnpm build`:
 
-El piloto no migra los proyectos reales de `src/data/projects.ts`; las rutas
-`/projects` y `/en/projects` continúan usando esa fuente hasta `BLG-CMS-03`.
+```bash
+git restore --source=<commit-conocido> -- src/content/projects/<slug>.es.md src/content/projects/<slug>.en.md
+pnpm build
+```
+
+No existe una base de datos que requiera una migración o rollback separado. Las
+rutas `/projects` y `/en/projects` consumen el mismo inventario estratégico y
+su contenido editorial localizado desde Astro. Las experiencias, los casos de
+estudio y el blog permanecen fuera de esta migración y quedan diferidos a
+`BLG-CMS-04`.
 La política definitiva de `/keystatic` en producción queda pendiente de
 `BLG-CMS-04`, que deberá decidir hosting, autenticación y si el panel será solo
 local o también remoto.
