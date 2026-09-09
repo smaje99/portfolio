@@ -120,7 +120,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       role: 'Ingeniería de soluciones para sistemas de información',
       specialties: 'Procesos · Datos · Desarrollo · Arquitectura · Transformación digital',
       summary:
-        'Diseño y desarrollo sistemas de información que conectan procesos, datos y operación, transformando necesidades reales en soluciones digitales claras, mantenibles y útiles.',
+        'Trabajo en soluciones digitales que conectan procesos, información y decisiones de desarrollo, transformando necesidades reales en soluciones digitales claras, útiles y mantenibles.',
     },
     heroActions: {
       projects: 'Ver proyectos',
@@ -148,10 +148,10 @@ const homeCopy: Record<Locale, HomeCopy> = {
     languageSwitcherLabel: 'Cambiar idioma',
     languageLabel: 'EN',
     aboutSection: {
-      title: 'Ingeniero integral con foco en sistemas útiles',
+      title: 'Construcción de soluciones con sentido práctico',
       eyebrow: 'Perfil',
       intro:
-        'Soy un desarrollador orientado a construir sistemas de información con sentido práctico. Me enfoco en comprender procesos, estructurar datos y diseñar soluciones que no solo funcionen técnicamente, sino que también sean claras, mantenibles y útiles para las personas que las usan. Mi formación combina backend, analítica de datos, BPM para transformación digital de procesos, arquitectura de software, UX/frontend y liderazgo técnico, lo que me permite conectar la visión del negocio con decisiones técnicas concretas y aplicables en contextos reales.',
+        'Soy desarrollador de software y trabajo en la construcción de soluciones digitales donde se conectan procesos, información, desarrollo y arquitectura. Mi experiencia incluye desarrollo backend, extracción y procesamiento de datos, y formación en gestión de procesos de negocio; estas áreas se complementan para construir y mejorar sistemas claros, útiles y mantenibles.',
       principles: [
         {
           label: 'Pienso en procesos',
@@ -181,10 +181,10 @@ const homeCopy: Record<Locale, HomeCopy> = {
     focusSection: {
       title: 'Áreas de enfoque',
       items: [
-        { title: 'Backend Engineering' },
-        { title: 'Data Processing' },
-        { title: 'Business Process Management' },
-        { title: 'Sistemas de Información' },
+        { title: 'Desarrollo de software' },
+        { title: 'Datos e información' },
+        { title: 'Procesos de negocio' },
+        { title: 'Sistemas de información' },
       ],
     },
     projectsSection: {
@@ -194,7 +194,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       ctaLabel: 'Ver todos los proyectos',
       pageTitle: 'Proyectos',
       pageDescription:
-        'Selección de proyectos de Sergio Andrés Majé Franco en sistemas de información, procesos, backend y organización operativa.',
+        'Selección de proyectos de Sergio Andrés Majé Franco en desarrollo de software, sistemas de información, procesos, datos y organización operativa.',
     },
     experienceSection: {
       title: 'Experiencia',
@@ -203,7 +203,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       ctaLabel: 'Ver experiencia completa',
       pageTitle: 'Experiencia',
       pageDescription:
-        'Experiencia profesional de Sergio Andrés Majé Franco en desarrollo de software, backend, análisis de datos y soporte técnico.',
+        'Experiencia profesional de Sergio Andrés Majé Franco en desarrollo de software, sistemas de información, procesos, datos y soporte técnico.',
     },
     blogSection: {
       title: 'Blog',
@@ -221,7 +221,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
   en: {
     title: 'Sergio Andrés Majé Franco | Software Developer',
     description:
-      'Portfolio of Sergio Andrés Majé Franco. Solution engineering for information systems: planning, design, development, implementation, and continuous improvement.',
+      'Portfolio of Sergio Andrés Majé Franco. Solution engineering and information systems: planning, design, development, implementation, and continuous improvement.',
     brandName: 'Sergio Majé',
     homeLinkLabel: 'Back to home',
     menuLabel: 'Menu',
@@ -232,7 +232,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       role: 'Solution engineering for information systems',
       specialties: 'Processes · Data · Development · Architecture · Digital transformation',
       summary:
-        'I design and build information systems that connect processes, data, and operations, turning real needs into digital solutions that are clear, maintainable, and useful.',
+        'I work on digital solutions that connect processes, information, and development decisions, transforming real needs into clear, useful, maintainable digital solutions.',
     },
     heroActions: {
       projects: 'View projects',
@@ -261,10 +261,10 @@ const homeCopy: Record<Locale, HomeCopy> = {
     languageSwitcherLabel: 'Change language',
     languageLabel: 'ES',
     aboutSection: {
-      title: 'An integral engineer focused on useful systems',
+      title: 'Building practical digital solutions',
       eyebrow: 'About',
       intro:
-        'I am a developer focused on building information systems with practical purpose. I work to understand processes, structure data, and design solutions that not only work technically, but are also clear, maintainable, and useful for the people who use them. My background combines backend, data analytics, BPM for digital process transformation, software architecture, UX/frontend, and technical leadership, which allows me to connect business vision with concrete technical decisions that can be applied in real contexts.',
+        'I am a software developer working on digital solutions where processes, information, development, and architecture come together. My experience includes backend development, information extraction and processing, and training in business process management; these areas complement one another when building and improving clear, useful, maintainable systems.',
       principles: [
         {
           label: 'I think in processes',
@@ -294,10 +294,10 @@ const homeCopy: Record<Locale, HomeCopy> = {
     focusSection: {
       title: 'Focus areas',
       items: [
-        { title: 'Backend Engineering' },
-        { title: 'Data Processing' },
-        { title: 'Business Process Management' },
-        { title: 'Information Systems' },
+        { title: 'Software development' },
+        { title: 'Data and information' },
+        { title: 'Business processes' },
+        { title: 'Information systems' },
       ],
     },
     projectsSection: {
@@ -307,7 +307,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       ctaLabel: 'View all projects',
       pageTitle: 'Projects',
       pageDescription:
-        'Selected projects by Sergio Andrés Majé Franco across information systems, processes, backend, and operational organization.',
+        'Selected projects by Sergio Andrés Majé Franco across software development, information systems, processes, data, and operational organization.',
     },
     experienceSection: {
       title: 'Experience',
@@ -316,7 +316,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       ctaLabel: 'View full experience',
       pageTitle: 'Experience',
       pageDescription:
-        'Professional experience of Sergio Andrés Majé Franco in software development, backend work, data analysis, and technical support.',
+        'Professional experience of Sergio Andrés Majé Franco across software development, information systems, processes, data, and technical support.',
     },
     blogSection: {
       title: 'Blog',
