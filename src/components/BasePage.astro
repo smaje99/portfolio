@@ -11,6 +11,8 @@ interface Props {
   description: string;
   mainId?: string;
   mainClass?: string;
+  canonicalPathOverride?: string;
+  robots?: string;
 }
 
 const {
@@ -20,6 +22,8 @@ const {
   description,
   mainId,
   mainClass = '',
+  canonicalPathOverride,
+  robots,
 } = Astro.props;
 
 const {
@@ -33,6 +37,10 @@ const {
 } = getPageContext(locale, slug);
 const defaultAlternate =
   alternates.find((alternate) => alternate.hreflang === 'es') ?? alternates[0];
+const resolvedCanonicalPath = canonicalPathOverride ?? canonicalPath;
+const resolvedAlternates = canonicalPathOverride
+  ? [{ hreflang: locale, href: canonicalPathOverride }]
+  : [...alternates, { hreflang: 'x-default', href: defaultAlternate.href }];
 ---
 
 <Layout
@@ -44,13 +52,14 @@ const defaultAlternate =
   menuLabel={copy.menuLabel}
   closeMenuLabel={copy.closeMenuLabel}
   lang={locale}
-  canonicalPath={canonicalPath}
-  alternates={[...alternates, { hreflang: 'x-default', href: defaultAlternate.href }]}
+  canonicalPath={resolvedCanonicalPath}
+  alternates={resolvedAlternates}
   navigation={navigation}
   languageSwitcherLabel={copy.languageSwitcherLabel}
   languageLabel={copy.languageLabel}
   languageSwitcherHref={alternatePath}
   languageSwitcherLocale={alternateLocale}
+  robots={robots}
 >
   <PageMain id={mainId} class={mainClass}>
     <slot />

@@ -1,0 +1,114 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+
+import BasePage from '@/components/BasePage.astro';
+import ExperienceContainer from '@/components/Experience.astro';
+import SectionContainer from '@/components/SectionContainer.astro';
+import SectionPage from '@/components/SectionPage.astro';
+import { getHomeCopy, type Locale } from '@/i18n/site';
+
+type DraftEntry =
+  | CollectionEntry<'projects'>
+  | CollectionEntry<'experiences'>
+  | CollectionEntry<'blog'>;
+
+interface Props {
+  entry: DraftEntry;
+  locale: Locale;
+}
+
+const { entry, locale } = Astro.props;
+const copy = getHomeCopy(locale);
+const draftSlug = entry.data.draftSlug ?? 'invalid-draft';
+const canonicalPath = `/draft/${draftSlug}/${locale}`;
+const Content = entry.collection === 'blog' ? (await render(entry)).Content : null;
+const entryTitle = entry.collection === 'experiences' ? entry.data.position : entry.data.title;
+---
+
+<BasePage
+  locale={locale}
+  title={`${entryTitle} | ${copy.title}`}
+  description={entry.data.description}
+  canonicalPathOverride={canonicalPath}
+  robots="noindex,nofollow,noarchive"
+>
+  <SectionContainer>
+    <SectionPage
+      headingId="draft-title"
+      number="DRAFT"
+      title={entryTitle}
+      intro={entry.data.description}
+    >
+      <div class="draft-notice" role="note">
+        {locale === 'es'
+          ? 'Vista editorial no pública. Cualquiera que tenga este enlace puede verla; no es un mecanismo de confidencialidad.'
+          : 'Non-public editorial preview. Anyone with this link can view it; this is not a confidentiality mechanism.'}
+      </div>
+
+      {entry.collection === 'experiences' ? (
+        <ExperienceContainer
+          experiences={[entry.data]}
+          locale={locale}
+          labels={copy.experienceLabels}
+        />
+      ) : entry.collection === 'projects' ? (
+        <article class="draft-project">
+          <p class="draft-focus">{entry.data.focus}</p>
+          <ul class="draft-tags">
+            {entry.data.tags.map((tag) => <li>{tag}</li>)}
+          </ul>
+        </article>
+      ) : Content ? (
+        <article class="draft-blog-content"><Content /></article>
+      ) : null}
+    </SectionPage>
+  </SectionContainer>
+</BasePage>
+
+<style>
+  .draft-notice,
+  .draft-project,
+  .draft-blog-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .draft-notice {
+    margin-bottom: 1.5rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    background: var(--surface-primary-soft);
+    color: var(--secondary-foreground);
+  }
+
+  .draft-focus {
+    margin: 0 0 1rem;
+    color: var(--brand-aqua);
+    font-weight: 800;
+  }
+
+  .draft-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .draft-tags li {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--border-accent);
+    border-radius: 999px;
+    background: var(--surface-accent);
+    color: var(--foreground);
+    font-size: 0.85rem;
+  }
+
+  .draft-blog-content {
+    color: var(--secondary-foreground);
+    line-height: 1.75;
+  }
+</style>

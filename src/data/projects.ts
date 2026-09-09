@@ -1,5 +1,6 @@
-import { type CollectionEntry, getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
+import { getEditorialCatalog, isDraftPreview } from '@/data/editorial';
 import type { Locale } from '@/i18n/site';
 
 type ProjectEntry = CollectionEntry<'projects'>;
@@ -250,17 +251,17 @@ export function getPortfolioProjects() {
 }
 
 export async function getProjects(locale: Locale) {
-  const entries = await getCollection('projects');
-  const entriesBySlug = validateProjectEntries(entries);
+  const catalog = await getEditorialCatalog();
+  const entriesBySlug = validateProjectEntries(catalog.projects);
 
-  return getPortfolioProjects().map((project) => {
+  return getPortfolioProjects().flatMap((project) => {
     const editorial = entriesBySlug.get(project.slug)?.get(locale)?.data;
 
-    if (!editorial) {
-      throw new Error(`Missing ${locale.toUpperCase()} CMS content for "${project.slug}".`);
+    if (editorial?.status !== 'published') {
+      return [];
     }
 
-    return toProjectCardProject(project, editorial, locale);
+    return [toProjectCardProject(project, editorial, locale)];
   });
 }
 
@@ -268,4 +269,10 @@ export async function getFeaturedProjects(locale: Locale, limit = 2) {
   const projects = await getProjects(locale);
 
   return projects.filter((project) => project.featured).slice(0, limit);
+}
+
+export async function getProjectDrafts() {
+  const catalog = await getEditorialCatalog();
+
+  return catalog.projects.filter(isDraftPreview);
 }

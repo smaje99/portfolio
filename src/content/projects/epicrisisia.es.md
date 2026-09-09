@@ -1,6 +1,7 @@
 ---
 slug: epicrisisia.es
 locale: es
+status: published
 title: EpicrisisIA
 description: Sistema en desarrollo para procesar y estructurar información de documentos clínicos, con foco en interoperabilidad y validación.
 focus: Documentos clínicos, interoperabilidad y validación

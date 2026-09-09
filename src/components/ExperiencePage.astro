@@ -1,11 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
-
 import BasePage from '@/components/BasePage.astro';
 import ExperienceContainer from '@/components/Experience.astro';
 import SectionContainer from '@/components/SectionContainer.astro';
 import SectionPage from '@/components/SectionPage.astro';
-import { getHomeCopy, localizeExperiences, type Locale } from '@/i18n/site';
+import { getExperiences } from '@/data/experiences';
+import { getHomeCopy, type Locale } from '@/i18n/site';
 
 interface Props {
   locale: Locale;
@@ -14,8 +13,7 @@ interface Props {
 const { locale } = Astro.props;
 
 const copy = getHomeCopy(locale);
-const entries = await getCollection('experiences');
-const experiences = localizeExperiences(entries, locale);
+const experiences = await getExperiences(locale);
 ---
 
 <BasePage

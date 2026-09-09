@@ -1,5 +1,3 @@
-import type { CollectionEntry } from 'astro:content';
-
 export const defaultLocale = 'es' as const;
 export const locales = ['es', 'en'] as const;
 
@@ -56,6 +54,14 @@ type ExperienceSection = {
   pageDescription: string;
 };
 
+type BlogSection = {
+  title: string;
+  intro: string;
+  empty: string;
+  readLabel: string;
+  mediumLabel: string;
+};
+
 type HomeCopy = {
   title: string;
   description: string;
@@ -95,6 +101,7 @@ type HomeCopy = {
   };
   projectsSection: ProjectsSection;
   experienceSection: ExperienceSection;
+  blogSection: BlogSection;
   experienceLabels: ExperienceLabels;
 };
 
@@ -135,6 +142,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       { label: 'Enfoque', href: '#focus' },
       { label: 'Proyectos', href: '/projects' },
       { label: 'Experiencia', href: '/experience' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Contacto', href: '#contact' },
     ],
     languageSwitcherLabel: 'Cambiar idioma',
@@ -197,6 +205,14 @@ const homeCopy: Record<Locale, HomeCopy> = {
       pageDescription:
         'Experiencia profesional de Sergio Andrés Majé Franco en desarrollo de software, backend, análisis de datos y soporte técnico.',
     },
+    blogSection: {
+      title: 'Blog',
+      intro:
+        'Notas sobre sistemas, procesos, datos y las decisiones que convierten ideas en soluciones útiles.',
+      empty: 'Todavía no hay publicaciones disponibles.',
+      readLabel: 'Leer artículo',
+      mediumLabel: 'Leer en Medium',
+    },
     experienceLabels: {
       current: 'Actual',
       present: 'Actualidad',
@@ -239,6 +255,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       { label: 'Focus', href: '/en/#focus' },
       { label: 'Projects', href: '/en/projects' },
       { label: 'Experience', href: '/en/experience' },
+      { label: 'Blog', href: '/en/blog' },
       { label: 'Contact', href: '/en/#contact' },
     ],
     languageSwitcherLabel: 'Change language',
@@ -301,64 +318,17 @@ const homeCopy: Record<Locale, HomeCopy> = {
       pageDescription:
         'Professional experience of Sergio Andrés Majé Franco in software development, backend work, data analysis, and technical support.',
     },
+    blogSection: {
+      title: 'Blog',
+      intro:
+        'Notes on systems, processes, data, and the decisions that turn ideas into useful solutions.',
+      empty: 'There are no published posts yet.',
+      readLabel: 'Read article',
+      mediumLabel: 'Read on Medium',
+    },
     experienceLabels: {
       current: 'Current',
       present: 'Present',
-    },
-  },
-};
-
-const experienceTranslations: Partial<
-  Record<
-    Locale,
-    Record<
-      string,
-      {
-        position?: string;
-        company?: string;
-        description?: string;
-        typeOfEmployment?: string;
-        skills?: string[];
-      }
-    >
-  >
-> = {
-  en: {
-    'software-developer-cidti-2026': {
-      position: 'Software Developer',
-      company:
-        'Centro de Desarrollo Tecnológico para la Transformación Digital y la Industria 4.0 - Cidti 4.0',
-      description:
-        'I work as a software developer on a medical auditing project, turning requirements gathered in stakeholder meetings into user stories and implementing new features with support from automation and technical assistance. Alongside feature development on the existing codebase, I occasionally handle deployments to the testing server connected through Cloudflare Tunnel and, when needed, drive the gradual migration toward a hexagonal architecture and an Atomic + ITCSS styling approach.',
-      typeOfEmployment: 'Service contractor',
-      skills: [
-        'Python',
-        'FastAPI',
-        'MongoDB',
-        'Redis',
-        'Celery',
-        'Jinja2',
-        'CSS',
-        'Cloudflare Tunnel',
-        'Requirements management',
-      ],
-    },
-    'university-intern-cidti-2025': {
-      position: 'University Intern',
-      company:
-        'Centro de Desarrollo Tecnológico para la Transformación Digital y la Industria 4.0 - Cidti 4.0',
-      description:
-        'I worked as a university intern in backend development and data analysis, contributing to digital transformation initiatives through tools for information extraction and processing, improvements to internal platform components, and the integration of technical data into MongoDB-based systems. I also strengthened software security, organization, and quality by applying good practices, refactoring, and careful configuration management, standing out for autonomy, adaptability to scope changes, and the delivery of solutions aligned with the center’s needs.',
-      typeOfEmployment: 'Internship contract',
-      skills: ['Python', 'FastAPI', 'MongoDB', 'Backend', 'Data analysis'],
-    },
-    'internship-2015': {
-      position: 'Intern',
-      company: 'Fotocopiadora del Lector',
-      description:
-        'As a technical intern, I was responsible for both preventive and corrective maintenance of computer equipment, ensuring stable day-to-day operation. I also acted as a mentor for less experienced interns, helping them grow professionally in a technical environment.',
-      typeOfEmployment: 'Internship contract',
-      skills: ['Computer equipment maintenance', 'Teamwork', 'Mentoring and guidance'],
     },
   },
 };
@@ -369,21 +339,4 @@ export function getHomeCopy(locale: Locale) {
 
 export function getAlternateLocale(locale: Locale): Locale {
   return locale === 'es' ? 'en' : 'es';
-}
-
-export function localizeExperiences(entries: CollectionEntry<'experiences'>[], locale: Locale) {
-  const localizedEntries = entries.map((entry) => {
-    const overrides = experienceTranslations[locale]?.[entry.id];
-
-    return {
-      ...entry.data,
-      position: overrides?.position ?? entry.data.position,
-      company: overrides?.company ?? entry.data.company,
-      description: overrides?.description ?? entry.data.description,
-      typeOfEmployment: overrides?.typeOfEmployment ?? entry.data.typeOfEmployment,
-      skills: overrides?.skills ?? entry.data.skills,
-    };
-  });
-
-  return localizedEntries.sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
 }

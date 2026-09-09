@@ -1,0 +1,25 @@
+---
+import DraftPage from '@/components/DraftPage.astro';
+import { getEditorialCatalog, isDraftPreview } from '@/data/editorial';
+import type { Locale } from '@/i18n/site';
+
+export async function getStaticPaths() {
+  const catalog = await getEditorialCatalog();
+  const entries = [...catalog.projects, ...catalog.experiences, ...catalog.blog].filter(isDraftPreview);
+
+  return entries.map((entry) => ({
+    params: {
+      draftSlug: entry.data.draftSlug,
+      locale: entry.data.locale,
+    },
+    props: {
+      entry,
+      locale: entry.data.locale as Locale,
+    },
+  }));
+}
+
+const { entry, locale } = Astro.props;
+---
+
+<DraftPage entry={entry} locale={locale} />

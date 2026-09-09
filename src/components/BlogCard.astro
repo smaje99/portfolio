@@ -1,0 +1,94 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+import type { Locale } from '@/i18n/site';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+  locale: Locale;
+  readLabel: string;
+  mediumLabel: string;
+}
+
+const { entry, locale, readLabel, mediumLabel } = Astro.props;
+const { title, description, tags, channel, externalUrl, slug } = entry.data;
+const articleSlug = slug.replace(/\.(?:es|en)$/, '');
+const href = channel === 'medium' ? externalUrl : `/${locale === 'en' ? 'en/' : ''}blog/${articleSlug}`;
+const label = channel === 'medium' ? mediumLabel : readLabel;
+---
+
+<article class="blog-card">
+  <div>
+    <p class="blog-channel">{channel === 'medium' ? 'Medium' : 'On this site'}</p>
+    <h2>{title}</h2>
+    <p class="blog-description">{description}</p>
+  </div>
+  <ul class="blog-tags">
+    {tags.map((tag) => <li>{tag}</li>)}
+  </ul>
+  {href ? (
+    <a href={href} target={channel === 'medium' ? '_blank' : undefined} rel={channel === 'medium' ? 'noopener noreferrer' : undefined}>
+      {label}
+    </a>
+  ) : null}
+</article>
+
+<style>
+  .blog-card {
+    display: grid;
+    gap: 1rem;
+    min-height: 100%;
+    padding: 1.35rem;
+    border: 1px solid var(--border-faint);
+    border-radius: 1.5rem;
+    background: var(--surface-1);
+    box-shadow: var(--shadow-inset-soft);
+  }
+
+  .blog-channel {
+    margin: 0 0 0.5rem;
+    color: var(--brand-aqua);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .blog-card h2 {
+    margin: 0;
+    color: var(--foreground);
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+
+  .blog-description {
+    margin: 0.75rem 0 0;
+    color: var(--muted-foreground);
+    line-height: 1.65;
+  }
+
+  .blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .blog-tags li {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--border-accent);
+    border-radius: 999px;
+    background: var(--surface-accent);
+    color: var(--foreground);
+    font-size: 0.85rem;
+  }
+
+  .blog-card > a {
+    align-self: end;
+    color: var(--brand-lime-soft);
+    font-weight: 800;
+    text-underline-offset: 0.2em;
+  }
+</style>

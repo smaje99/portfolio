@@ -1,0 +1,17 @@
+---
+import BlogPostPage from '@/components/BlogPostPage.astro';
+import { getPublishedLocalBlogEntries } from '@/data/blog';
+
+export async function getStaticPaths() {
+  const entries = await getPublishedLocalBlogEntries('es');
+
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug.replace(/\.es$/, '') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<BlogPostPage entry={entry} locale="es" />

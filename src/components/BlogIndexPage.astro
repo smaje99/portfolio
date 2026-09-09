@@ -1,0 +1,70 @@
+---
+import BasePage from '@/components/BasePage.astro';
+import BlogCard from '@/components/BlogCard.astro';
+import SectionContainer from '@/components/SectionContainer.astro';
+import SectionPage from '@/components/SectionPage.astro';
+import { getPublishedBlogEntries } from '@/data/blog';
+import { getHomeCopy, type Locale } from '@/i18n/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getHomeCopy(locale);
+const entries = await getPublishedBlogEntries(locale);
+---
+
+<BasePage
+  locale={locale}
+  slug="blog"
+  title={`${copy.blogSection.title} | ${copy.title}`}
+  description={copy.blogSection.intro}
+>
+  <SectionContainer>
+    <SectionPage
+      headingId="blog-title"
+      number="04"
+      title={copy.blogSection.title}
+      intro={copy.blogSection.intro}
+    >
+      {entries.length ? (
+        <div class="blog-grid">
+          {entries.map((entry) => (
+            <BlogCard
+              entry={entry}
+              locale={locale}
+              readLabel={copy.blogSection.readLabel}
+              mediumLabel={copy.blogSection.mediumLabel}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="blog-empty">{copy.blogSection.empty}</p>
+      )}
+    </SectionPage>
+  </SectionContainer>
+</BasePage>
+
+<style>
+  .blog-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .blog-empty {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: var(--muted-foreground);
+  }
+
+  @media (width <= 720px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
