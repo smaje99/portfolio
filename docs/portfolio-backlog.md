@@ -1636,6 +1636,30 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 **Tipo de ejecución:** Mixto
 **Notas de validación:** cada proyecto prioritario debe tener claro su nivel de completitud documental.
 
+**Avance de levantamiento:** se creó [`docs/case-study-input-matrix.md`](./case-study-input-matrix.md).
+`TrazalITA` quedó seleccionado como primer caso; `EpicrisisIA` queda como segundo
+candidato principal; el proyecto educativo de estructuras de datos permanece como
+evidencia secundaria; y `it-services-contents-unir` se añadió como candidato
+educativo adicional sin modificar todavía el inventario runtime. El levantamiento
+queda documentado con los datos disponibles; los detalles no respondidos se
+difieren explícitamente a futuras fichas o ampliaciones.
+
+**Estado del WI:** `Cerrado — matriz de insumos completada` (2026-09-10).
+
+**Cierre de implementación:**
+
+* `TrazalITA` quedó seleccionado como primer caso, con contexto, alcance
+  normativo, contribución, decisión de CMS y límites de publicación registrados.
+* `EpicrisisIA` quedó documentado con su flujo completo, atribución de trabajo,
+  rediseño, integración de LLM/RAG, herramientas deterministas y medición interna
+  de coste; los detalles sensibles se difieren.
+* `ds-tdd-uniamazonia` se toma como repositorio representativo del conjunto
+  educativo agrupado.
+* `it-services-contents-unir` quedó clasificado como proyecto independiente y
+  operativo, sin modificar aún el inventario runtime.
+* Los datos no respondidos no quedan abiertos: se registran como diferidos para
+  `BLG-F3-S06-01` o futuras ampliaciones.
+
 ### Sprint 06
 
 #### BLG-F3-S06-01 — Documentar el primer caso de estudio completo
@@ -1924,7 +1948,7 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 
 ### Prioridad inmediata
 
-Los puntos de esta cola quedaron implementados o cerrados como contrato/documentación. La única continuidad que permanece abierta es la captura manual de fuentes para seleccionar y redactar el primer caso de estudio.
+Los puntos de esta cola quedaron implementados o cerrados como contrato/documentación. La continuidad abierta es la redacción e implementación posterior del primer caso de estudio.
 
 * Consolidar inventario estratégico de proyectos — `cerrado`.
 * Definir taxonomía de estados — `cerrado`.
@@ -1932,9 +1956,12 @@ Los puntos de esta cola quedaron implementados o cerrados como contrato/document
 * Refinar propuesta de valor y capacidades — `cerrado como especificación editorial validada`; la implementación runtime mantiene el mismo alcance semántico.
 * Realinear el inventario visible de proyectos — `cerrado` en `BLG-F3-S05-01`.
 * Diseñar la plantilla base del primer caso de estudio — `cerrado` en `BLG-F3-S05-02`.
+* Levantar información fuente para los primeros casos — `cerrado` en `BLG-F3-S05-03`.
 * Cerrar `BLG-CMS-01` y preparar el piloto local de Keystatic — `cerrado` en `BLG-CMS-01` y `BLG-CMS-02`.
 
-**Siguiente acción habilitada:** ejecutar `BLG-F3-S05-03` para levantar información fuente de los proyectos prioritarios; esa tarea requiere validación manual y no debe rellenarse con supuestos.
+**Siguiente acción habilitada:** ejecutar `BLG-F3-S06-01` para redactar el primer
+caso de estudio de `TrazalITA` usando la matriz cerrada y la plantilla aprobada.
+Los detalles no capturados quedan diferidos y no deben rellenarse con supuestos.
 
 ### Prioridad siguiente
 
