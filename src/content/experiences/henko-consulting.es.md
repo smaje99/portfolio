@@ -4,7 +4,10 @@ status: published
 slug: henko-consulting.es
 position: "Founder & Solutions Engineer"
 company: "Henko Consulting and Technology Services"
-description: "En Henko Consulting and Technology Services trabajo como profesional independiente, en modalidad híbrida desde Florencia, Caquetá, Colombia, conectando ingeniería de soluciones, sistemas de información, transformación digital y mejora de procesos para convertir necesidades operativas en soluciones claras, útiles y mantenibles."
+description: >-
+  Consultoría e ingeniería de soluciones orientada al diseño, desarrollo e integración de sistemas de información, transformación digital y mejora de procesos.
+
+  Desarrollo de productos y soluciones para sectores como educación, salud y servicios profesionales.
 startDate: "2026-09-09"
 typeOfEmployment: "Profesional independiente · Híbrido"
 current: true
