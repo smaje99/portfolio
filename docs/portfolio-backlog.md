@@ -1576,6 +1576,28 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 
 **Alcance y privacidad de la evidencia:** los títulos, entidades y años se toman de las capturas revisadas. No se publican IDs, enlaces de validación ni imágenes de las credenciales; el encuentro de UNIR se presenta como participación académica, no como certificación profesional. El área visual distingue protección de datos/GDPR, modelado de procesos/BPMN, liderazgo y participación académica. No se modifica `LearningEvidence.astro` porque el componente ya presenta `area`, entidad y fecha sin requerir una adaptación estructural.
 
+### Incremento transversal — Incorporación de Henko (2026-09-10)
+
+**Objetivo:** registrar Henko como vehículo profesional vigente, integrarlo en la experiencia pública y darle un bloque destacado en la home sin convertir el portfolio personal en un catálogo comercial.
+
+**Fuente pública validada:** `Henko Consulting`; razón social `Henko Consulting and Technology Services`; cargo `Founder & Solutions Engineer`; inicio `2026-09-09`; modalidad profesional independiente e híbrida; ubicación `Florencia, Caquetá, Colombia`; lema `Transformamos complejidad en soluciones.`
+
+**Alcance implementado:**
+
+* Se añadieron los pares bilingües `henko-consulting.es.md` y `henko-consulting.en.md` en `src/content/experiences/`, ambos con `status: published` y `current: true`; la fecha de inicio hace que Henko aparezca primero en `/experience`, `/en/experience` y el resumen de la home.
+* Se creó `src/components/HenkoSection.astro` y se insertó antes de `#projects` en `/` y `/en/`, con ancla `#henko`, razón social, lema, descripción, metadatos de inicio/modalidad/ubicación y áreas de trabajo localizadas.
+* `HomeCopy` incorpora `henkoSection`; la navegación ES/EN incorpora el enlace a `#henko`; los números visuales posteriores pasan a `03` para proyectos y `04` para experiencia.
+* Las fuentes `docs/resume/curriculum-vitae.es.tex` y `docs/resume/curriculum-vitae.en.tex` incluyen Henko como experiencia más reciente. Los tres PDFs publicados se regeneran mediante `make cv`.
+* No se añade URL, correo, dominio, logo rasterizado ni página independiente de servicios para Henko. El correo del portfolio continúa siendo `mailto:smajefranco@gmail.com`.
+
+**Decisiones de contenido:** las áreas se presentan como áreas de trabajo públicas y no como catálogo contractual cerrado. La razón social se muestra como texto; la captura de referencia no se usa como logo. La experiencia se mantiene separada de los proyectos personales y no atribuye esos proyectos a Henko sin evidencia específica.
+
+**Verificación requerida y realizada:** comprobar el par ES/EN, `current: true`, orden por fecha, `#henko` en `/` y `/en/`, enlace localizado de navegación, presencia de Henko en ambos CV y PDFs publicados, `git diff --check`, `pnpm lint`, `pnpm build` y `make cv`.
+
+**Estado del incremento:** `Cerrado — implementación y validación técnica completadas` (2026-09-10).
+
+**Evidencia de cierre:** `pnpm lint` terminó correctamente con un aviso informativo preexistente de configuración de Biome; `pnpm build` terminó con 0 errores, warnings ni hints y generó `/`, `/en/`, `/experience` y `/en/experience`; `make cv` compiló y publicó los tres PDFs; `git diff --check` no reportó errores. La inspección estática de las páginas generadas confirmó `#henko`, el orden Henko → proyectos → experiencia y la navegación ES/EN. `pdftotext` confirmó Henko y `smajefranco@gmail.com` en los PDFs ES, EN y predeterminado; la primera página de los CV se revisó visualmente tras la incorporación.
+
 ---
 
 ## Fase 3 — Casos de estudio iniciales

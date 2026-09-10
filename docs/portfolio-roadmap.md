@@ -21,6 +21,17 @@ Pero siguen abiertas varias brechas estratégicas:
 * Los proyectos visibles actualmente en el sitio no están totalmente alineados con la selección priorizada por este roadmap.
 * No hay evidencia en el repositorio de analytics, página 404 dedicada, footer profesional o validación externa documentada.
 
+### Actualización de estado real al 10 de septiembre de 2026
+
+Henko Consulting queda incorporado como vehículo profesional vigente de Sergio, sin reemplazar la identidad ni el alcance del portfolio personal:
+
+* Henko Consulting — razón social: `Henko Consulting and Technology Services` — se publica como actividad profesional independiente, híbrida y con base en Florencia, Caquetá, Colombia, desde el 9 de septiembre de 2026.
+* La home bilingüe incorpora el bloque destacado `#henko` antes de proyectos, con lema, descripción, razón social y áreas de trabajo; no se crea todavía una página independiente de servicios ni un catálogo comercial.
+* La colección bilingüe de experiencias y los CV fuente ES/EN registran `Founder & Solutions Engineer` como experiencia actual y más reciente, sin URL comercial hasta contar con un sitio público verificado.
+* El portfolio conserva `smajefranco@gmail.com` como correo de contacto. Los canales, dominio y correo de Henko permanecen separados y fuera de esta implementación.
+
+El alcance actual presenta Henko como contexto profesional y evidencia de trayectoria; las áreas publicadas no constituyen un catálogo contractual cerrado ni implican disponibilidad, resultados o casos de estudio aún no documentados.
+
 Este proyecto debe funcionar como la cara pública de tu perfil, pero no como una simple hoja de vida. Debe presentar tu posicionamiento como:
 
 > Ingeniería de soluciones para sistemas de información.

@@ -54,6 +54,22 @@ type ExperienceSection = {
   pageDescription: string;
 };
 
+type HenkoSection = {
+  eyebrow: string;
+  title: string;
+  legalName: string;
+  tagline: string;
+  intro: string;
+  areasLabel: string;
+  areas: string[];
+  sinceLabel: string;
+  since: string;
+  modeLabel: string;
+  mode: string;
+  locationLabel: string;
+  location: string;
+};
+
 type BlogSection = {
   title: string;
   intro: string;
@@ -101,6 +117,7 @@ type HomeCopy = {
   };
   projectsSection: ProjectsSection;
   experienceSection: ExperienceSection;
+  henkoSection: HenkoSection;
   blogSection: BlogSection;
   experienceLabels: ExperienceLabels;
 };
@@ -140,6 +157,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       { label: 'Inicio', href: '#top' },
       { label: 'Perfil', href: '/about' },
       { label: 'Enfoque', href: '#focus' },
+      { label: 'Henko', href: '#henko' },
       { label: 'Proyectos', href: '/projects' },
       { label: 'Experiencia', href: '/experience' },
       { label: 'Blog', href: '/blog' },
@@ -205,6 +223,30 @@ const homeCopy: Record<Locale, HomeCopy> = {
       pageDescription:
         'Experiencia profesional de Sergio Andrés Majé Franco en desarrollo de software, sistemas de información, procesos, datos y soporte técnico.',
     },
+    henkoSection: {
+      eyebrow: 'Práctica profesional vigente',
+      title: 'Henko Consulting',
+      legalName: 'Henko Consulting and Technology Services',
+      tagline: 'Transformamos complejidad en soluciones.',
+      intro:
+        'Henko es el vehículo profesional independiente desde el que diseño y construyo soluciones para convertir necesidades operativas, información dispersa y procesos complejos en sistemas digitales claros, útiles y mantenibles. Su trabajo conecta ingeniería de soluciones, sistemas de información, transformación digital y mejora de procesos.',
+      areasLabel: 'Áreas de trabajo',
+      areas: [
+        'Arquitectura de soluciones',
+        'BPM',
+        'Desarrollo de software',
+        'Automatización',
+        'Gestión de datos',
+        'Sistemas empresariales',
+        'Consultoría tecnológica',
+      ],
+      sinceLabel: 'Inicio',
+      since: 'Desde el 9 de septiembre de 2026',
+      modeLabel: 'Modalidad',
+      mode: 'Profesional independiente · Híbrido',
+      locationLabel: 'Ubicación',
+      location: 'Florencia, Caquetá, Colombia',
+    },
     blogSection: {
       title: 'Blog',
       intro:
@@ -253,6 +295,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       { label: 'Home', href: '/en/' },
       { label: 'About', href: '/en/about' },
       { label: 'Focus', href: '/en/#focus' },
+      { label: 'Henko', href: '/en/#henko' },
       { label: 'Projects', href: '/en/projects' },
       { label: 'Experience', href: '/en/experience' },
       { label: 'Blog', href: '/en/blog' },
@@ -317,6 +360,30 @@ const homeCopy: Record<Locale, HomeCopy> = {
       pageTitle: 'Experience',
       pageDescription:
         'Professional experience of Sergio Andrés Majé Franco across software development, information systems, processes, data, and technical support.',
+    },
+    henkoSection: {
+      eyebrow: 'Current professional practice',
+      title: 'Henko Consulting',
+      legalName: 'Henko Consulting and Technology Services',
+      tagline: 'We turn complexity into solutions.',
+      intro:
+        'Henko is the independent professional practice through which I design and build solutions that turn operational needs, scattered information, and complex processes into clear, useful, maintainable digital systems. Its work connects solution engineering, information systems, digital transformation, and process improvement.',
+      areasLabel: 'Areas of work',
+      areas: [
+        'Solution architecture',
+        'BPM',
+        'Software development',
+        'Automation',
+        'Data management',
+        'Business systems',
+        'Technology consulting',
+      ],
+      sinceLabel: 'Start date',
+      since: 'Since September 9, 2026',
+      modeLabel: 'Setup',
+      mode: 'Independent professional · Hybrid',
+      locationLabel: 'Location',
+      location: 'Florencia, Caquetá, Colombia',
     },
     blogSection: {
       title: 'Blog',

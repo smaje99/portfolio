@@ -4,6 +4,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import BasePage from '@/components/BasePage.astro';
 import ExperienceContainer from '@/components/Experience.astro';
 import HeroActions from '@/components/HeroActions';
+import HenkoSection from '@/components/HenkoSection.astro';
 import ProjectsGrid from '@/components/ProjectsGrid.astro';
 import SectionContainer from '@/components/SectionContainer.astro';
 import SocialPill from '@/components/SocialPill.astro';
@@ -142,9 +143,13 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
   </SectionContainer>
 
   <SectionContainer>
+    <HenkoSection copy={copy.henkoSection} />
+  </SectionContainer>
+
+  <SectionContainer>
     <section id="projects" class="content-panel" aria-labelledby="projects-title">
       <header class="panel-header">
-        <p>02</p>
+        <p>03</p>
         <div class="panel-heading-copy">
           <h2 id="projects-title">{copy.projectsSection.title}</h2>
           <p>{copy.projectsSection.intro}</p>
@@ -166,7 +171,7 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
       aria-labelledby="experience-title"
     >
       <header class="panel-header">
-        <p>03</p>
+        <p>04</p>
         <div class="panel-heading-copy">
           <h2 id="experience-title">{copy.experienceSection.title}</h2>
           <p>{copy.experienceSection.intro}</p>
