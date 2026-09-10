@@ -53,7 +53,7 @@ La decisión es razonable para este portfolio aunque añada complejidad sobre As
 
 La integración debe entenderse como una capa editorial sobre Astro, no como un reemplazo del framework ni como una justificación para convertir toda la interfaz en contenido dinámico. La documentación oficial de Astro describe Keystatic como un CMS headless que estructura contenido y puede sincronizarlo con GitHub; también indica que la integración Astro requiere React, Markdoc y una configuración de esquema. El modo local guarda los cambios en el sistema de archivos, mientras que GitHub mode requiere un repositorio existente, permisos de escritura, autenticación y un host capaz de ejecutar las rutas de API de Keystatic.
 
-**Conclusión de alcance:** se aprueba un piloto incremental en modo local. La publicación remota con GitHub mode no se activa: `/keystatic` permanecerá fuera del build de producción y GitHub mode queda como opción futura. La infraestructura de publicación queda fijada en un VPS Hostinger KVM 2 en Brasil, con Docker y Caddy; el dominio `smaje.com.co`, DNS, proxy, CDN y SSL se gestionarán con Cloudflare Registrar. La compra, provisión y configuración inicial siguen siendo tareas manuales.
+**Conclusión de alcance:** se aprueba un piloto incremental en modo local. La publicación remota con GitHub mode no se activa: `/keystatic` permanecerá fuera del build de producción y GitHub mode queda como opción futura. La infraestructura de publicación queda fijada en un Contabo Cloud VPS 4 Core en USA-East, con Ubuntu LTS, Docker y Caddy; `smaje.com.co` se mantiene como dominio personal del portfolio y `henkoconsulting.com.co` como dominio de Henko, con DNS gestionado por Cloudflare. El portfolio conserva `smajefranco@gmail.com`; el correo de Henko se gestionará de forma separada con Zoho Mail. La compra, provisión y configuración inicial siguen siendo tareas manuales.
 
 ### Alcance inicial
 
@@ -211,8 +211,10 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 
 **Actividades:**
 
-* Usar un VPS Hostinger KVM 2 en Brasil como destino de despliegue, con Docker, Caddy, firewall y contenedores separados para el portfolio y futuros proyectos.
-* Registrar `smaje.com.co` en Cloudflare Registrar y centralizar allí DNS, proxy, CDN, SSL y DNSSEC cuando corresponda.
+* Usar un Contabo Cloud VPS 4 Core en USA-East como destino de despliegue, con Ubuntu 24.04 LTS, Docker, Caddy, firewall y contenedores separados para el portfolio, servicios Henko y bases de datos.
+* Registrar `henkoconsulting.com.co` como dominio principal de Henko y mantener `smaje.com.co` como dominio personal del portfolio; centralizar en Cloudflare el DNS, proxy, CDN, SSL y DNSSEC cuando corresponda.
+* Contratar Auto Backup de Contabo, verificar el recargo en checkout y mantener además un backup externo independiente; documentar el uso limitado del único snapshot del plan como rollback previo a cambios.
+* Mantener `smajefranco@gmail.com` como correo del portfolio. Gestionar el correo de Henko en Zoho Mail con MX, SPF, DKIM y DMARC, usando un buzón principal y alias separados del portfolio.
 * Mantener Keystatic en modo local; `/keystatic` no se publica y no se crea GitHub App, OAuth ni secretos para GitHub mode.
 * Mantener el sitio Astro como build estático; no añadir un adapter de servidor solo para habilitar la administración remota.
 * Ejecutar el flujo `edición local → revisión del diff → pnpm cms:check → git push origin main → build/deploy → verificación pública`.
@@ -221,7 +223,7 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 
 **Entregable esperado:** política de publicación y operación editorial, decisión de infraestructura y lista de pasos manuales para comprar, provisionar y verificar el entorno público.
 
-**Dependencias:** `BLG-CMS-03`; compra del dominio; cuentas de Cloudflare y Hostinger; acceso al repositorio; configuración del mecanismo de despliegue desde `main`.
+**Dependencias:** `BLG-CMS-03`; compra de los dominios; cuentas de Cloudflare, Contabo y Zoho; acceso al repositorio; configuración del mecanismo de despliegue desde `main`.
 
 **Tipo de ejecución:** Mixto
 
@@ -229,13 +231,14 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 
 * La decisión identifica explícitamente si el CMS será local, remoto o híbrido.
 * `/keystatic` no aparece en el build de producción y no se publican credenciales ni secretos.
-* El dominio `smaje.com.co` y el VPS Hostinger KVM 2 en Brasil quedan documentados como decisiones de infraestructura, sin automatizar compras ni provisión desde el repositorio.
+* `smaje.com.co`, `henkoconsulting.com.co` y el Contabo Cloud VPS 4 Core en USA-East quedan documentados como decisiones de infraestructura, sin automatizar compras ni provisión desde el repositorio.
+* El portfolio conserva `smajefranco@gmail.com` y el correo de Henko queda fuera del VPS, bajo Zoho Mail con autenticación DNS documentada.
 * Existe un flujo verificable de edición → revisión → `pnpm cms:check` → build/deploy → rollback.
 * Se decide qué colecciones adicionales se migran y cuáles permanecen en código, con una justificación de coste/beneficio.
 
 ### Criterio de salida de la capacidad
 
-La capacidad se considera validada cuando el piloto local permita editar una colección bilingüe, produzca cambios versionables, conserve el build público y tenga un rollback documentado. La infraestructura pública queda resuelta con Cloudflare y Hostinger, mientras que GitHub mode permanece fuera del lanzamiento hasta que exista una necesidad explícita de edición remota, autenticación y permisos adecuados. La migración de `experiences` y `blog` continúa mediante archivos locales versionados y el contrato editorial aprobado; si una futura ampliación no aporta valor observable, el repositorio conserva el flujo local sin convertir Keystatic en una dependencia obligatoria de toda la aplicación.
+La capacidad se considera validada cuando el piloto local permita editar una colección bilingüe, produzca cambios versionables, conserve el build público y tenga un rollback documentado. La infraestructura pública queda resuelta con Cloudflare y Contabo; el portfolio conserva su correo personal y Henko usa Zoho Mail, mientras que GitHub mode permanece fuera del lanzamiento hasta que exista una necesidad explícita de edición remota, autenticación y permisos adecuados. La migración de `experiences` y `blog` continúa mediante archivos locales versionados y el contrato editorial aprobado; si una futura ampliación no aporta valor observable, el repositorio conserva el flujo local sin convertir Keystatic en una dependencia obligatoria de toda la aplicación.
 
 **Referencias técnicas:** [Keystatic — Introduction](https://keystatic.com/docs/introduction), [Keystatic & Astro](https://docs.astro.build/en/guides/cms/keystatic/), [Local mode](https://keystatic.com/docs/local-mode), [GitHub mode](https://keystatic.com/docs/github-mode), [desactivar rutas admin en producción](https://keystatic.com/docs/recipes/astro-disable-admin-ui-in-production).
 
@@ -1869,10 +1872,11 @@ difieren explícitamente a futuras fichas o ampliaciones.
 **Objetivo:** aterrizar qué falta para considerar el portfolio verdaderamente publicado y presentable.
 **Descripción:** el sitio compila y puede desplegarse, y ya están fijados el dominio y el proveedor de VPS; deben ejecutarse y verificarse las tareas manuales y mixtas ligadas al entorno público y la presentación final.
 **Actividades:**
-* Comprar `smaje.com.co` en Cloudflare Registrar y confirmar el precio de renovación.
-* Contratar y provisionar un Hostinger KVM 2 en Brasil; confirmar tarifa promocional, renovación, impuestos y disponibilidad de la ubicación.
-* Configurar Docker, Caddy, firewall, backups y subdominios en el VPS.
-* Apuntar DNS de Cloudflare al VPS y verificar HTTPS, redirecciones y dominio canónico.
+* Comprar `henkoconsulting.com.co` y confirmar disponibilidad, renovación e impuestos; mantener `smaje.com.co` bajo la cuenta personal/profesional definida.
+* Contratar y provisionar un Contabo Cloud VPS 4 Core en USA-East; confirmar variante Core frente a Plus 4, SSD/NVMe, recargo de ubicación, renovación, impuestos y Auto Backup.
+* Instalar Ubuntu 24.04 LTS y configurar Docker, Caddy, firewall, backups, snapshot y subdominios en el VPS.
+* Apuntar los DNS de Cloudflare al VPS y verificar HTTPS, redirecciones y dominios canónicos para el portfolio y Henko.
+* Configurar Zoho Mail para Henko con MX, SPF, DKIM y DMARC, sin sustituir `smajefranco@gmail.com` en el portfolio.
 * Identificar los pasos manuales de compra/configuración y conservar las credenciales fuera del repositorio.
 * Diferenciar tareas de despliegue técnico vs tareas de contratación o acceso.
 **Entregable esperado:** entorno público provisionado, plan de publicación y dominio del MVP.
@@ -1966,7 +1970,7 @@ Los detalles no capturados quedan diferidos y no deben rellenarse con supuestos.
 ### Prioridad siguiente
 
 * Completar `BLG-CMS-02` y `BLG-CMS-03` con una colección editorial bilingüe.
-* Ejecutar `BLG-F6-S11-01`: comprar el dominio en Cloudflare y provisionar el Hostinger KVM 2 en Brasil.
+* Ejecutar `BLG-F6-S11-01`: registrar el dominio de Henko, confirmar el dominio personal del portfolio y provisionar el Contabo Cloud VPS 4 Core en USA-East.
 * Definir decisión técnica de integración con Medium.
 * Especificar arquitectura de información del blog.
 * Preparar backlog editorial inicial.
@@ -1975,8 +1979,9 @@ Los detalles no capturados quedan diferidos y no deben rellenarse con supuestos.
 
 ### Dependencias externas
 
-* Compra y configuración de `smaje.com.co` en Cloudflare Registrar.
-* Contratación y provisión del Hostinger KVM 2 en Brasil, incluyendo Docker, Caddy, firewall, backups y subdominios.
+* Compra y configuración de `henkoconsulting.com.co` en Cloudflare, manteniendo `smaje.com.co` como dominio independiente del portfolio.
+* Contratación y provisión del Contabo Cloud VPS 4 Core en USA-East, incluyendo Ubuntu LTS, Docker, Caddy, firewall, Auto Backup, snapshot y subdominios.
+* Configuración de Zoho Mail para Henko; el portfolio continúa usando `smajefranco@gmail.com`.
 * Accesos o cuentas necesarias para Medium y analytics, si aplican.
 * Validación externa con revisores reales.
 * Ajustes de narrativa en GitHub y LinkedIn fuera del repositorio.
