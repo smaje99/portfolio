@@ -1,5 +1,6 @@
 ---
 import type { getHomeCopy } from '@/i18n/site';
+import LinkedInIcon from '@/icons/LinkedInIcon.astro';
 
 interface Props {
   copy: ReturnType<typeof getHomeCopy>['henkoSection'];
@@ -10,43 +11,81 @@ const { copy } = Astro.props;
 
 <section id="henko" class="henko-panel" aria-labelledby="henko-title">
   <div class="henko-frame">
+    <div class="henko-visually-hidden">
+      <h2 id="henko-title">{copy.title}</h2>
+      <p>{copy.legalName}</p>
+    </div>
+
     <header class="henko-header">
-      <p class="henko-eyebrow"><span>02</span>{copy.eyebrow}</p>
-      <div class="henko-heading">
-        <div>
-          <h2 id="henko-title">{copy.title}</h2>
-          <p class="henko-legal-name">{copy.legalName}</p>
+      <span class="henko-index" aria-hidden="true">02</span>
+      <div class="henko-lockup">
+        <div class="henko-logo-stack">
+          <img
+            src="/henko.svg"
+            alt={copy.logoAlt}
+            width="930"
+            height="340"
+            class="henko-logo"
+          />
+          <p class="henko-tagline">{copy.tagline}</p>
         </div>
-        <p class="henko-tagline">{copy.tagline}</p>
+        <div class="henko-cta">
+          <a
+            class="henko-cta-link"
+            href="https://www.linkedin.com/company/henko-consulting-and-technology-services/home"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={copy.linkedinLabel}
+          >
+            <LinkedInIcon aria-hidden="true" width="18" height="18" />
+            <span>{copy.ctaLabel}</span>
+          </a>
+          <a
+            class="henko-cta-link"
+            href="https://henkoconsulting.com.co/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={copy.websiteLabel}
+          >
+            <img
+              src="/henko-mark.svg"
+              alt=""
+              width="18"
+              height="18"
+              class="henko-cta-mark"
+            />
+            <span>{copy.websiteLabel}</span>
+          </a>
+        </div>
       </div>
     </header>
 
-    <div class="henko-body">
-      <div class="henko-overview">
-        <p class="henko-intro">{copy.intro}</p>
-        <dl class="henko-meta">
-          <div>
-            <dt>{copy.sinceLabel}</dt>
-            <dd>{copy.since}</dd>
-          </div>
-          <div>
-            <dt>{copy.modeLabel}</dt>
-            <dd>{copy.mode}</dd>
-          </div>
-          <div>
-            <dt>{copy.locationLabel}</dt>
-            <dd>{copy.location}</dd>
-          </div>
-        </dl>
+    <main class="henko-body">
+      <div class="henko-intro">
+        {copy.intro.map((paragraph) => (
+          <p>
+            {paragraph.map((part) =>
+              part.emphasis === 'strong' ? (
+                <strong>{part.text}</strong>
+              ) : part.emphasis === 'em' ? (
+                <em>{part.text}</em>
+              ) : (
+                part.text
+              ),
+            )}
+          </p>
+        ))}
       </div>
+    </main>
 
+    <footer class="henko-footer">
       <div class="henko-areas">
         <h3>{copy.areasLabel}</h3>
         <ul>
           {copy.areas.map((area) => <li>{area}</li>)}
         </ul>
       </div>
-    </div>
+    </footer>
   </div>
 </section>
 
@@ -77,129 +116,161 @@ const { copy } = Astro.props;
     position: relative;
     z-index: 1;
     display: grid;
-    gap: 1.75rem;
+    gap: 2rem;
     padding: 1.75rem;
   }
 
-  .henko-header,
-  .henko-body {
+  .henko-header {
+    position: relative;
     display: grid;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
-  .henko-eyebrow,
-  .henko-areas > h3 {
-    margin: 0;
-    color: var(--brand-aqua);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+  .henko-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
-  .henko-eyebrow {
-    display: flex;
-    gap: 1rem;
+  .henko-body {
+    display: block;
+  }
+
+  .henko-footer {
+    display: grid;
+    gap: 0.65rem;
+    padding-block-start: 1.25rem;
+    border-block-start: 1px solid var(--border-faint);
+  }
+
+  .henko-lockup {
+    display: grid;
+    gap: 1.5rem;
     align-items: center;
   }
 
-  .henko-eyebrow > span {
-    color: var(--text-highlight);
-  }
-
-  .henko-eyebrow > span::after {
-    content: "";
-    display: inline-block;
-    width: 1px;
-    height: 0.82em;
-    margin-left: 1rem;
-    background: color-mix(in oklab, var(--brand-aqua-400) 34%, transparent);
-    vertical-align: -0.08em;
-  }
-
-  .henko-heading {
+  .henko-logo-stack {
     display: grid;
     gap: 1rem;
   }
 
-  .henko-heading h2 {
-    margin: 0;
-    font-size: clamp(2.1rem, 5vw, 4.2rem);
-    line-height: 0.94;
-    letter-spacing: -0.06em;
+  .henko-logo {
+    display: block;
+    width: min(100%, 34rem);
+    height: auto;
+    filter: var(--shadow-brand);
   }
 
-  .henko-legal-name {
-    margin: 0.55rem 0 0;
-    color: var(--muted-foreground);
-    font-size: 0.9rem;
-    letter-spacing: 0.02em;
+  .henko-index {
+    width: 4rem;
+    margin: 0;
+    color: var(--text-highlight);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    line-height: 1;
   }
 
   .henko-tagline {
-    max-width: 18ch;
+    max-width: 36ch;
     margin: 0;
     color: var(--text-highlight);
-    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
     font-weight: 700;
-    line-height: 1.08;
-    letter-spacing: -0.04em;
+    line-height: 1.14;
+    letter-spacing: -0.035em;
     text-wrap: balance;
   }
 
+  .henko-cta {
+    display: grid;
+    gap: 0.85rem;
+    justify-items: start;
+    align-self: end;
+  }
+
+  .henko-cta-link {
+    display: inline-flex;
+    gap: 0.45rem;
+    align-items: center;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--border-accent);
+    border-radius: 999px;
+    color: var(--text-highlight);
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none;
+    transition:
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .henko-cta-link:hover {
+    color: var(--foreground);
+    transform: translateX(2px);
+  }
+
+  .henko-cta-link :global(svg) {
+    display: block;
+    flex: 0 0 1.1rem;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .henko-cta-mark {
+    display: block;
+    flex: 0 0 1.1rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    object-fit: contain;
+  }
+
   .henko-intro {
-    max-width: 54rem;
+    display: grid;
+    gap: 1rem;
+    max-width: 62rem;
     margin: 0;
     color: var(--text-soft);
-    font-size: 1.02rem;
-    line-height: 1.75;
+    font-size: clamp(1rem, 1.6vw, 1.12rem);
+    line-height: 1.78;
     text-wrap: pretty;
   }
 
-  .henko-meta {
-    display: grid;
-    gap: 0.7rem;
+  .henko-intro p {
     margin: 0;
   }
 
-  .henko-meta > div {
-    padding: 0.85rem 1rem;
-    border-inline-start: 2px solid var(--border-primary);
-    background: var(--surface-primary-soft);
-  }
-
-  .henko-meta dt,
-  .henko-meta dd {
-    margin: 0;
-  }
-
-  .henko-meta dt {
+  .henko-intro strong {
     color: var(--foreground);
-    font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 750;
   }
 
-  .henko-meta dd {
-    margin-top: 0.2rem;
-    color: var(--muted-foreground);
-    font-size: 0.85rem;
-    line-height: 1.45;
+  .henko-intro em {
+    color: var(--text-highlight);
   }
 
   .henko-areas {
     display: grid;
-    gap: 0.8rem;
+    min-width: 0;
+    gap: 0.65rem;
     align-content: start;
-    padding: 1.1rem;
-    border: 1px solid var(--border-faint);
-    border-radius: 1.35rem;
-    background: var(--surface-1);
-    box-shadow: var(--shadow-inset-soft);
   }
 
   .henko-areas > h3 {
-    color: var(--text-accent-soft);
-    letter-spacing: 0.12em;
+    margin: 0;
+    color: var(--brand-aqua);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
 
   .henko-areas ul {
@@ -212,25 +283,35 @@ const { copy } = Astro.props;
   }
 
   .henko-areas li {
-    padding: 0.45rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.42rem 0.72rem;
     border: 1px solid var(--border-accent);
     border-radius: 999px;
-    background: var(--surface-accent);
+    background: transparent;
     color: var(--foreground);
-    font-size: 0.85rem;
-    line-height: 1.2;
+    font-size: 0.95rem;
+    line-height: 1.65;
   }
 
   @media (width >= 860px) {
-    .henko-heading {
-      grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.38fr);
-      align-items: end;
+    .henko-header {
+      grid-template-columns: 4rem minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .henko-lockup {
+      grid-column: 2;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(1.5rem, 3vw, 3rem);
+    }
+
+    .henko-cta-link {
+      white-space: nowrap;
     }
 
     .henko-body {
-      grid-template-columns: minmax(0, 1.05fr) minmax(15rem, 0.95fr);
-      align-items: start;
-      gap: 1.5rem;
+      grid-column: 1 / -1;
     }
   }
 
@@ -243,9 +324,21 @@ const { copy } = Astro.props;
       padding: 1.25rem;
     }
 
-    .henko-eyebrow,
     .henko-areas > h3 {
       letter-spacing: 0.12em;
     }
+
+    .henko-header {
+      gap: 0.9rem;
+    }
+
+    .henko-index {
+      width: auto;
+    }
+
+    .henko-cta-link {
+      white-space: normal;
+    }
+
   }
 </style>

@@ -55,19 +55,19 @@ type ExperienceSection = {
 };
 
 type HenkoSection = {
-  eyebrow: string;
   title: string;
   legalName: string;
+  logoAlt: string;
   tagline: string;
-  intro: string;
+  ctaLabel: string;
+  intro: {
+    text: string;
+    emphasis?: 'strong' | 'em';
+  }[][];
   areasLabel: string;
   areas: string[];
-  sinceLabel: string;
-  since: string;
-  modeLabel: string;
-  mode: string;
-  locationLabel: string;
-  location: string;
+  linkedinLabel: string;
+  websiteLabel: string;
 };
 
 type BlogSection = {
@@ -224,12 +224,54 @@ const homeCopy: Record<Locale, HomeCopy> = {
         'Experiencia profesional de Sergio Andrés Majé Franco en desarrollo de software, sistemas de información, procesos, datos y soporte técnico.',
     },
     henkoSection: {
-      eyebrow: 'Práctica profesional vigente',
       title: 'Henko Consulting',
       legalName: 'Henko Consulting and Technology Services',
+      logoAlt: 'Logotipo de Henko Consulting and Technology Services',
       tagline: 'Transformamos complejidad en soluciones.',
-      intro:
-        'Henko es el vehículo profesional independiente desde el que diseño y construyo soluciones para convertir necesidades operativas, información dispersa y procesos complejos en sistemas digitales claros, útiles y mantenibles. Su trabajo conecta ingeniería de soluciones, sistemas de información, transformación digital y mejora de procesos.',
+      intro: [
+        [
+          { text: 'Henko Consulting and Technology Services', emphasis: 'strong' },
+          {
+            text: ' es una consultoría tecnológica enfocada en el diseño, desarrollo e implementación de soluciones informáticas para organizaciones que buscan mejorar sus procesos, sistemas y capacidad de transformación digital.',
+          },
+        ],
+        [
+          { text: 'Trabajamos en áreas como ' },
+          {
+            text: 'arquitectura de soluciones, desarrollo de software, automatización de procesos, BPM, integración de sistemas, gestión de datos y modernización tecnológica',
+            emphasis: 'strong',
+          },
+          {
+            text: ', combinando ingeniería, análisis de procesos y buenas prácticas de arquitectura.',
+          },
+        ],
+        [
+          { text: 'Desarrollamos ' },
+          {
+            text: 'soluciones adaptadas a las necesidades reales de cada organización',
+            emphasis: 'strong',
+          },
+          {
+            text: ', desde aplicaciones empresariales y plataformas web hasta sistemas de información especializados, automatización y herramientas para la toma de decisiones.',
+          },
+        ],
+        [
+          {
+            text: 'Tenemos especial interés en sectores como educación, salud, servicios profesionales, gestión documental y administración empresarial, con un enfoque en ',
+          },
+          {
+            text: 'calidad, seguridad, trazabilidad, cumplimiento normativo y sostenibilidad tecnológica',
+            emphasis: 'strong',
+          },
+          { text: '.' },
+        ],
+        [
+          {
+            text: 'En Henko creemos que la tecnología debe resolver problemas reales, simplificar la complejidad y generar valor para las organizaciones.',
+            emphasis: 'em',
+          },
+        ],
+      ],
       areasLabel: 'Áreas de trabajo',
       areas: [
         'Arquitectura de soluciones',
@@ -240,12 +282,9 @@ const homeCopy: Record<Locale, HomeCopy> = {
         'Sistemas empresariales',
         'Consultoría tecnológica',
       ],
-      sinceLabel: 'Inicio',
-      since: 'Desde el 9 de septiembre de 2026',
-      modeLabel: 'Modalidad',
-      mode: 'Profesional independiente · Híbrido',
-      locationLabel: 'Ubicación',
-      location: 'Florencia, Caquetá, Colombia',
+      ctaLabel: 'Conoce a Henko en LinkedIn',
+      linkedinLabel: 'Visitar la página de Henko en LinkedIn',
+      websiteLabel: 'Conoce el sitio web de Henko',
     },
     blogSection: {
       title: 'Blog',
@@ -362,12 +401,54 @@ const homeCopy: Record<Locale, HomeCopy> = {
         'Professional experience of Sergio Andrés Majé Franco across software development, information systems, processes, data, and technical support.',
     },
     henkoSection: {
-      eyebrow: 'Current professional practice',
       title: 'Henko Consulting',
       legalName: 'Henko Consulting and Technology Services',
+      logoAlt: 'Henko Consulting and Technology Services logo',
       tagline: 'We turn complexity into solutions.',
-      intro:
-        'Henko is the independent professional practice through which I design and build solutions that turn operational needs, scattered information, and complex processes into clear, useful, maintainable digital systems. Its work connects solution engineering, information systems, digital transformation, and process improvement.',
+      intro: [
+        [
+          { text: 'Henko Consulting and Technology Services', emphasis: 'strong' },
+          {
+            text: ' is a technology consultancy focused on the design, development, and implementation of IT solutions for organizations seeking to improve their processes, systems, and digital transformation capacity.',
+          },
+        ],
+        [
+          { text: 'We work across areas such as ' },
+          {
+            text: 'solution architecture, software development, process automation, BPM, systems integration, data management, and technology modernization',
+            emphasis: 'strong',
+          },
+          {
+            text: ', combining engineering, process analysis, and sound architectural practices.',
+          },
+        ],
+        [
+          { text: 'We develop ' },
+          {
+            text: 'solutions adapted to each organization’s real needs',
+            emphasis: 'strong',
+          },
+          {
+            text: ', from business applications and web platforms to specialized information systems, automation, and decision-support tools.',
+          },
+        ],
+        [
+          {
+            text: 'We have a particular interest in sectors such as education, healthcare, professional services, document management, and business administration, with a focus on ',
+          },
+          {
+            text: 'quality, security, traceability, regulatory compliance, and technology sustainability',
+            emphasis: 'strong',
+          },
+          { text: '.' },
+        ],
+        [
+          {
+            text: 'At Henko, we believe technology should solve real problems, simplify complexity, and create value for organizations.',
+            emphasis: 'em',
+          },
+        ],
+      ],
       areasLabel: 'Areas of work',
       areas: [
         'Solution architecture',
@@ -378,12 +459,9 @@ const homeCopy: Record<Locale, HomeCopy> = {
         'Business systems',
         'Technology consulting',
       ],
-      sinceLabel: 'Start date',
-      since: 'Since September 9, 2026',
-      modeLabel: 'Setup',
-      mode: 'Independent professional · Hybrid',
-      locationLabel: 'Location',
-      location: 'Florencia, Caquetá, Colombia',
+      ctaLabel: 'Meet Henko on LinkedIn',
+      linkedinLabel: 'Visit Henko on LinkedIn',
+      websiteLabel: 'Visit Henko’s website',
     },
     blogSection: {
       title: 'Blog',
