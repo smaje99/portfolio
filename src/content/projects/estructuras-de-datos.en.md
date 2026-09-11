@@ -23,5 +23,5 @@ The set includes abstract data types, recursion, sorting simulators, and a calcu
 
 ## Status and learning
 
-The project retains its **prototype** status. The repositories were developed by Sergio and are linked as public evidence of implementation, testing, and deliberate practice, without adding dates, academic context, or usage outcomes that are not documented.
+The project retains its **prototype** status. I developed the repositories and link them as public evidence of implementation, testing, and deliberate practice, without adding dates, academic context, or usage outcomes that are not documented.
 ---

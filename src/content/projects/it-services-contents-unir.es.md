@@ -18,7 +18,7 @@ tags:
 
 ## Qué construí
 
-Sergio desarrolló la arquitectura Astro, los componentes, las colecciones de contenido y el despliegue. La creación de contenidos educativos y las integraciones con otros sistemas no forman parte de la contribución declarada.
+Desarrollé la arquitectura Astro, los componentes, las colecciones de contenido y el despliegue. La creación de contenidos educativos y las integraciones con otros sistemas no forman parte de la contribución declarada.
 
 El repositorio público documenta una composición con Astro, React, MDX y colecciones de contenido. La [demo pública](https://it-services-contents-unir.vercel.app) permite revisar la evidencia disponible y el [repositorio](https://github.com/smaje99/it-services-contents-unir) conserva la implementación.
 

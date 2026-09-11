@@ -20,7 +20,7 @@ El problema confirmado es el trabajo de leer informe por informe y cruzar manual
 
 ## Contribución técnica
 
-Sergio realizó la refactorización y el rediseño integral de la aplicación, definió la arquitectura, integró LLMs y RAG, mejoró el flujo, añadió herramientas deterministas y alineó la experiencia con el sistema de diseño de la empresa, incluyendo accesibilidad y flujos UX integrados. El núcleo inicial y el flujo base fueron construidos por otro desarrollador contratado, con participación del líder técnico en el diseño original.
+Realicé la refactorización y el rediseño integral de la aplicación, definí la arquitectura, integré LLMs y RAG, mejoré el flujo, añadí herramientas deterministas y alineé la experiencia con el sistema de diseño de la empresa, incluyendo accesibilidad y flujos UX integrados. El núcleo inicial y el flujo base fueron construidos por otro desarrollador contratado, con participación del líder técnico en el diseño original.
 
 El stack documentado incluye Python, Docker, MongoDB, Celery, Redis, FastAPI y PydanticAI. La ficha no desglosa el papel interno de cada componente ni las fuentes del RAG porque esa evidencia permanece restringida.
 

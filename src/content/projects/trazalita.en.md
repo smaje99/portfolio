@@ -21,7 +21,7 @@ The case keeps the institutional context at a general level. It does not expose 
 
 ## Confirmed scope
 
-The work uses Resolution 1519 of 2020 and its annexes as its regulatory basis. Sergio directs the scope, requirements, and solution decisions; he also documents architecture, operations, data dictionaries, sequence diagrams, and project governance.
+The work uses Resolution 1519 of 2020 and its annexes as its regulatory basis. I direct the scope, requirements, and solution decisions; I also document architecture, operations, data dictionaries, sequence diagrams, and project governance.
 
 The main decision is to focus an existing CMS on ITA regulations instead of building an integral educational management application from scratch. The documented technology composition combines PayloadCMS with Next.js and PostgreSQL, Astro for static page generation, Docker and Nginx for infrastructure, and TypeScript for development.
 

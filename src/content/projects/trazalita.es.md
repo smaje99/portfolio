@@ -21,7 +21,7 @@ La ficha mantiene el contexto institucional en un nivel general. No expone docum
 
 ## Alcance confirmado
 
-El trabajo parte de la Resolución 1519 de 2020 y sus anexos como base normativa. Sergio dirige el alcance, la definición de requisitos y las decisiones de solución; también documenta arquitectura, operaciones, diccionarios de datos, diagramas de secuencia y gobierno del proyecto.
+El trabajo parte de la Resolución 1519 de 2020 y sus anexos como base normativa. Dirijo el alcance, la definición de requisitos y las decisiones de solución; también documento arquitectura, operaciones, diccionarios de datos, diagramas de secuencia y gobierno del proyecto.
 
 La decisión principal es enfocar un CMS existente en la normativa ITA, en lugar de construir desde cero una aplicación integral de gestión educativa. El alcance tecnológico documentado combina PayloadCMS con Next.js y PostgreSQL, Astro para generar páginas estáticas, Docker y Nginx para infraestructura, y TypeScript como lenguaje de desarrollo.
 

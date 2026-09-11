@@ -20,7 +20,7 @@ The confirmed problem is the need to read reports one by one and manually cross-
 
 ## Technical contribution
 
-Sergio refactored and redesigned the application, defined its architecture, integrated LLMs and RAG, improved the workflow, added deterministic tools, and aligned the experience with the company design system, including accessibility and integrated UX flows. The initial core and base flow were built by another contracted developer, with the technical lead participating in the original design.
+I refactored and redesigned the application, defined its architecture, integrated LLMs and RAG, improved the workflow, added deterministic tools, and aligned the experience with the company design system, including accessibility and integrated UX flows. The initial core and base flow were built by another contracted developer, with the technical lead participating in the original design.
 
 The documented stack includes Python, Docker, MongoDB, Celery, Redis, FastAPI, and PydanticAI. This page does not assign an internal role to every component or describe RAG sources because that evidence remains restricted.
 

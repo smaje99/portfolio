@@ -18,7 +18,7 @@ tags:
 
 ## What I built
 
-Sergio developed the Astro architecture, components, content collections, and deployment. Educational content creation and integrations with other systems are outside the documented contribution.
+I developed the Astro architecture, components, content collections, and deployment. Educational content creation and integrations with other systems are outside the documented contribution.
 
 The public repository documents a composition using Astro, React, MDX, and content collections. The [public demo](https://it-services-contents-unir.vercel.app) provides inspectable evidence, while the [repository](https://github.com/smaje99/it-services-contents-unir) contains the implementation.
 

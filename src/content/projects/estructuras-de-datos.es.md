@@ -23,5 +23,5 @@ El conjunto incluye tipos de datos abstractos, recursividad, simuladores de orde
 
 ## Estado y aprendizaje
 
-El proyecto conserva el estado **prototipo**. Los repositorios fueron desarrollados por Sergio y se enlazan como evidencia pública de implementación, pruebas y práctica deliberada, sin añadir fechas, contexto académico o resultados de uso que no estén documentados.
+El proyecto conserva el estado **prototipo**. Desarrollé los repositorios y los enlazo como evidencia pública de implementación, pruebas y práctica deliberada, sin añadir fechas, contexto académico o resultados de uso que no estén documentados.
 ---
