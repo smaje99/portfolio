@@ -5,8 +5,9 @@ fuera del repositorio.
 
 ## Opción recomendada
 
-Se utilizará un **Contabo Cloud VPS 4 Core en USA-East**, con Ubuntu 24.04 LTS,
-Docker Compose y Caddy. La ficha del portafolio oficial de Contabo identifica
+Se utilizará un **Contabo Cloud VPS 4 Core en USA-East**, con Ubuntu 24.04 LTS y
+Caddy en el host. Docker Compose queda reservado para servicios de Henko,
+bases de datos y automatizaciones futuras. La ficha del portafolio oficial de Contabo identifica
 para este producto:
 
 - 4 vCPU.
@@ -74,23 +75,28 @@ La arquitectura de aplicaciones será:
 
 ```text
 Contabo Cloud VPS 4 — USA-East
-├── Caddy
-├── portfolio.smaje.com.co / smaje.com.co
-├── henkoconsulting.com.co
-├── servicios Henko
-├── bases de datos
-└── automatizaciones Docker
+├── Caddy (host)
+├── /srv/portfolio → smaje.com.co (artefacto Astro estático)
+└── Docker Compose
+    ├── henkoconsulting.com.co y servicios Henko
+    ├── bases de datos
+    └── automatizaciones
 ```
 
-Caddy enruta por hostname y termina TLS automáticamente. Cada aplicación
-permanece en su propio contenedor y red interna; las bases de datos y sus
-credenciales no se comparten sin una decisión explícita.
+Caddy sirve `/srv/portfolio` directamente desde el host y termina TLS
+automáticamente. Los servicios Henko, las bases de datos y las automatizaciones
+pueden permanecer en sus propios contenedores y redes internas; sus credenciales
+no se comparten sin una decisión explícita.
 
 La configuración mínima es:
 
-- Docker Compose para separar el portfolio, servicios Henko, bases de datos y
-  automatizaciones.
-- Caddy como reverse proxy y terminación TLS con Let’s Encrypt.
+- [`deploy/Caddyfile`](../deploy/Caddyfile) como configuración reproducible de
+  Caddy para el dominio canónico, la redirección opcional de `www`, compresión,
+  HTTPS automático y `file_server`.
+- Docker Compose solo para servicios Henko, bases de datos y automatizaciones;
+  el portfolio estático no requiere contenedor.
+- Caddy como terminación TLS y, para futuros servicios, reverse proxy con
+  Let’s Encrypt.
 - Firewall de Contabo activado y firewall del sistema configurado con SSH
   restringido y solo HTTP/HTTPS públicos.
 - Variables y secretos únicamente en el entorno de despliegue, nunca en Git.
@@ -128,26 +134,30 @@ cuenta o incidentes del proveedor.
 2. Contratar Contabo Cloud VPS 4 Core en USA-East y añadir Auto Backup.
 3. Confirmar en el checkout que el almacenamiento es SSD o reevaluar Plus 4 si
    se necesita NVMe.
-4. Instalar Ubuntu 24.04 LTS, configurar claves SSH, usuario administrativo y
-   firewalls.
-5. Instalar Docker Compose y Caddy.
-6. Configurar `smaje.com.co` y `henkoconsulting.com.co` en Caddy, con
-   contenedores y redes separadas.
-7. Configurar Zoho Mail para Henko con MX, SPF, DKIM y DMARC; crear el buzón y
+4. Instalar Ubuntu 24.04 LTS, configurar claves SSH, usuario de despliegue no
+   root y firewalls.
+5. Instalar Caddy y, solo si se habilitan servicios Henko, Docker Compose.
+6. Crear `/srv/portfolio`, asignar permisos de lectura a Caddy y validar el
+   [`deploy/Caddyfile`](../deploy/Caddyfile) con `caddy validate`.
+7. Configurar `smaje.com.co` y la redirección opcional de `www` en Caddy; los
+   servicios Henko tendrán sus propios bloques, contenedores y redes.
+8. Configurar Zoho Mail para Henko con MX, SPF, DKIM y DMARC; crear el buzón y
    los alias.
-8. Verificar que el portfolio continúe usando `smajefranco@gmail.com` y probar
+9. Verificar que el portfolio continúe usando `smajefranco@gmail.com` y probar
    envío y recepción del correo de Henko desde web, móvil y cliente compatible.
-9. Crear un snapshot antes de cambios importantes.
-10. Ejecutar una restauración de prueba desde Auto Backup.
-11. Configurar y probar el backup externo independiente.
+10. Crear un snapshot antes de cambios importantes.
+11. Ejecutar una restauración de prueba desde Auto Backup.
+12. Configurar y probar el backup externo independiente.
 
 ## Despliegue
 
-El contrato de publicación del portfolio continúa siendo
-`main → build/deploy → verificación pública`. El sitio Astro se publica como
-artefacto estático detrás de Caddy; los servicios Henko pueden usar sus propios
-contenedores y redes internas. La automatización futura puede usar GitHub
-Actions para construir y desplegar al VPS.
+El contrato de publicación del portfolio es
+`main → pnpm cms:check → pnpm build → rsync por SSH → verificación pública`.
+Astro genera el artefacto estático y Caddy lo sirve directamente desde
+`/srv/portfolio`; no se crea un contenedor Docker para el portfolio. Los
+servicios Henko pueden usar sus propios contenedores y redes internas. La
+automatización futura puede usar GitHub Actions para construir y desplegar al
+VPS, pero no forma parte del lanzamiento actual.
 
 Keystatic seguirá en modo local: `/keystatic` no se publica y el servidor solo
 recibe el artefacto desplegado. El despliegue no convierte al VPS en fuente de

@@ -79,5 +79,6 @@ No existe una base de datos que requiera una migración o rollback separado. Las
 rutas `/projects` y `/en/projects` consumen el mismo inventario estratégico y
 su contenido editorial localizado desde Astro. Las experiencias y el blog forman
 parte de `BLG-CMS-04`. Los estados no publicados permanecen fuera de rutas y
-listados; una previsualización draft usa `/draft/<draftSlug>/<locale>` con
-`noindex,nofollow,noarchive`, pero no ofrece confidencialidad.
+listados públicos. Durante `pnpm dev`, una previsualización draft usa
+`/draft/<draftSlug>/<locale>` con `noindex,nofollow,noarchive`; el build de
+producción no genera esa ruta y la preview local no ofrece confidencialidad.

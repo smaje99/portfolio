@@ -17,8 +17,8 @@ el resultado del build.
 
 | Estado | Sitio público | Ruta draft | Regla |
 | --- | --- | --- | --- |
-| `draft` | No | Sí, si tiene `draftSlug` | Trabajo editorial todavía no aprobado. |
-| `scheduled` | No | Sí, si tiene `draftSlug` | Reservado para una publicación futura; no hay publicación automática. |
+| `draft` | No | Sí, solo en `pnpm dev`, si tiene `draftSlug` | Trabajo editorial todavía no aprobado. |
+| `scheduled` | No | Sí, solo en `pnpm dev`, si tiene `draftSlug` | Reservado para una publicación futura; no hay publicación automática. |
 | `published` | Sí, según el canal | No requerida | Único estado que entra en rutas, listados y enlaces públicos. |
 | `archived` | No | No | Se conserva en Git/CMS como historial, sin página pública. |
 
@@ -66,7 +66,7 @@ publicada.
 
 ## Previsualizaciones draft
 
-Una entrada `draft` o `scheduled` puede verse en:
+Durante `pnpm dev`, una entrada `draft` o `scheduled` puede verse en:
 
 ```text
 /draft/<draftSlug>/<locale>
@@ -74,9 +74,10 @@ Una entrada `draft` o `scheduled` puede verse en:
 
 Estas páginas incluyen `noindex, nofollow, noarchive`, no se generan para
 estados archivados, no se incluyen en navegación, listados ni sitemap, y no
-exponen el `draftSlug` como enlace. La URL no es secreta: cualquier persona que
-la conozca puede verla. No debe usarse para información confidencial ni como
-control de acceso criptográfico.
+exponen el `draftSlug` como enlace. El build de producción no genera rutas
+`/draft/`, por lo que las previews no se publican en el artefacto estático. La
+URL local no es un mecanismo de confidencialidad ni un control de acceso
+criptográfico; el contenido tampoco debe contener información sensible.
 
 ## Reglas de publicación
 

@@ -1,0 +1,13 @@
+# Caddy sirve el artefacto estático que se publica en el host.
+# Los registros DNS de ambos nombres deben apuntar al VPS para que Caddy pueda
+# emitir y renovar los certificados HTTPS automáticamente.
+
+www.smaje.com.co {
+	redir https://smaje.com.co{uri} permanent
+}
+
+smaje.com.co {
+	root * /srv/portfolio
+	encode zstd gzip
+	file_server
+}

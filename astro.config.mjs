@@ -8,6 +8,7 @@ const includeLocalKeystatic = process.argv.includes('dev');
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://smaje.com.co',
   i18n: {
     locales: ['es', 'en'],
     defaultLocale: 'es',

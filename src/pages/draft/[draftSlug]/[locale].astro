@@ -4,6 +4,8 @@ import { getEditorialCatalog, isDraftPreview } from '@/data/editorial';
 import type { Locale } from '@/i18n/site';
 
 export async function getStaticPaths() {
+  if (!import.meta.env.DEV) return [];
+
   const catalog = await getEditorialCatalog();
   const entries = [...catalog.projects, ...catalog.experiences, ...catalog.blog].filter(isDraftPreview);
 

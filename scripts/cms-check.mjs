@@ -1,12 +1,13 @@
 import { execFileSync } from 'node:child_process';
-import { readdirSync, readFileSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { basename, join, relative, sep } from 'node:path';
 
 const root = process.cwd();
 const contentRoot = join(root, 'src', 'content');
 const collections = ['projects', 'experiences', 'blog'];
 const statuses = new Set(['draft', 'scheduled', 'published', 'archived']);
 const locales = new Set(['es', 'en']);
+const channels = new Set(['site', 'medium']);
 const entries = [];
 
 function filesIn(directory) {
@@ -14,6 +15,17 @@ function filesIn(directory) {
     return readdirSync(directory, { withFileTypes: true }).flatMap((item) => {
       const path = join(directory, item.name);
       return item.isDirectory() ? filesIn(path) : item.name.endsWith('.md') ? [path] : [];
+    });
+  } catch {
+    return [];
+  }
+}
+
+function allFilesIn(directory) {
+  try {
+    return readdirSync(directory, { withFileTypes: true }).flatMap((item) => {
+      const path = join(directory, item.name);
+      return item.isDirectory() ? allFilesIn(path) : [path];
     });
   } catch {
     return [];
@@ -51,6 +63,52 @@ function fail(message) {
   throw new Error(`[cms-check] ${message}`);
 }
 
+function assertNoSecrets(file, source) {
+  const patterns = [
+    /\b(?:api[_-]?key|secret|token|password|private[_-]?key)\b\s*:/i,
+    /\bsk-[A-Za-z0-9]{16,}\b/,
+    /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/,
+  ];
+
+  if (patterns.some((pattern) => pattern.test(source))) {
+    fail(`${file} appears to contain a secret.`);
+  }
+}
+
+function assertStaticArtifact() {
+  const distRoot = join(root, 'dist');
+  const distFiles = allFilesIn(distRoot);
+  const relativeDistFiles = distFiles.map((path) => relative(distRoot, path));
+  const htmlFiles = distFiles.filter((path) => path.endsWith('.html'));
+
+  if (!existsSync(distRoot) || !htmlFiles.length) {
+    fail('the static build must produce dist/ with at least one HTML page.');
+  }
+
+  const keystaticArtifacts = relativeDistFiles.filter((path) =>
+    path.toLowerCase().split(sep).includes('keystatic'),
+  );
+  if (keystaticArtifacts.length) {
+    fail(`production build contains Keystatic routes or artifacts: ${keystaticArtifacts.join(', ')}.`);
+  }
+
+  const draftArtifacts = relativeDistFiles.filter((path) =>
+    path.toLowerCase().split(sep).includes('draft'),
+  );
+  if (draftArtifacts.length) {
+    fail(`production build contains draft preview artifacts: ${draftArtifacts.join(', ')}.`);
+  }
+
+  for (const path of htmlFiles) {
+    const file = relative(root, path);
+    const source = readFileSync(path, 'utf8');
+    if (!source.includes('<link rel="canonical" href="https://smaje.com.co')) {
+      fail(`${file} is missing the smaje.com.co canonical URL.`);
+    }
+    assertNoSecrets(file, source);
+  }
+}
+
 for (const collection of collections) {
   for (const path of filesIn(join(contentRoot, collection))) {
     const { data, source } = readFrontmatter(path);
@@ -60,7 +118,7 @@ for (const collection of collections) {
     if (!data.slug || !match) fail(`${file} must define slug as <slug>.es or <slug>.en.`);
     if (!locales.has(data.locale)) fail(`${file} has unsupported locale "${data.locale}".`);
     if (!statuses.has(data.status)) fail(`${file} has unsupported status "${data.status}".`);
-    if (data.slug !== path.split('/').pop().replace(/\.md$/, '')) {
+    if (data.slug !== basename(path, '.md')) {
       fail(`${file} filename and frontmatter slug must match.`);
     }
     if (match[2] !== data.locale) fail(`${file} slug locale and locale field do not match.`);
@@ -70,12 +128,24 @@ for (const collection of collections) {
     if (data.draftSlug && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(data.draftSlug)) {
       fail(`${file} has an invalid draftSlug.`);
     }
+    if (collection === 'blog' && !channels.has(data.channel)) {
+      fail(`${file} has unsupported channel "${data.channel}".`);
+    }
+    if (collection === 'blog' && data.externalUrl) {
+      let externalUrl;
+      try {
+        externalUrl = new URL(data.externalUrl);
+      } catch {
+        fail(`${file} has an invalid externalUrl.`);
+      }
+      if (!['http:', 'https:'].includes(externalUrl.protocol)) {
+        fail(`${file} externalUrl must use http or https.`);
+      }
+    }
     if (collection === 'blog' && data.channel === 'medium' && data.status === 'published' && !data.externalUrl) {
       fail(`${file} is a published Medium reference without externalUrl.`);
     }
-    if (/\b(?:api[_-]?key|secret|token|password|private[_-]?key)\b\s*:/i.test(source) || /sk-[A-Za-z0-9]/.test(source)) {
-      fail(`${file} appears to contain a secret.`);
-    }
+    assertNoSecrets(file, source);
 
     entries.push({ collection, file, data });
   }
@@ -95,6 +165,9 @@ for (const collection of ['projects', 'experiences']) {
   for (const entry of entries.filter((item) => item.collection === collection)) {
     const base = entry.data.slug.replace(/\.(?:es|en)$/, '');
     const localesForSlug = grouped.get(base) ?? new Set();
+    if (localesForSlug.has(entry.data.locale)) {
+      fail(`${collection} entry "${base}.${entry.data.locale}" is duplicated.`);
+    }
     localesForSlug.add(entry.data.locale);
     grouped.set(base, localesForSlug);
   }
@@ -107,4 +180,5 @@ for (const collection of ['projects', 'experiences']) {
 
 execFileSync('git', ['diff', '--check'], { cwd: root, stdio: 'inherit' });
 execFileSync('pnpm', ['build'], { cwd: root, stdio: 'inherit' });
+assertStaticArtifact();
 console.log(`[cms-check] Validated ${entries.length} editorial files.`);

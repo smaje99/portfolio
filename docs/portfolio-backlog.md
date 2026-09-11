@@ -207,19 +207,19 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 
 **Objetivo:** cerrar el modelo de publicación, gobierno editorial e infraestructura pública del portfolio.
 
-**Estado:** `Decisiones fijadas; provisión externa pendiente`.
+**Estado:** `Cerrado — gobierno editorial y despliegue estático definidos; provisión externa pendiente` (2026-09-11).
 
 **Actividades:**
 
-* Usar un Contabo Cloud VPS 4 Core en USA-East como destino de despliegue, con Ubuntu 24.04 LTS, Docker, Caddy, firewall y contenedores separados para el portfolio, servicios Henko y bases de datos.
+* Usar un Contabo Cloud VPS 4 Core en USA-East como destino de despliegue, con Ubuntu 24.04 LTS, Caddy en el host, firewall y Docker reservado para servicios Henko, bases de datos y automatizaciones.
 * Registrar `henkoconsulting.com.co` como dominio principal de Henko y mantener `smaje.com.co` como dominio personal del portfolio; centralizar en Cloudflare el DNS, proxy, CDN, SSL y DNSSEC cuando corresponda.
 * Contratar Auto Backup de Contabo, verificar el recargo en checkout y mantener además un backup externo independiente; documentar el uso limitado del único snapshot del plan como rollback previo a cambios.
 * Mantener `smajefranco@gmail.com` como correo del portfolio. Gestionar el correo de Henko en Zoho Mail con MX, SPF, DKIM y DMARC, usando un buzón principal y alias separados del portfolio.
 * Mantener Keystatic en modo local; `/keystatic` no se publica y no se crea GitHub App, OAuth ni secretos para GitHub mode.
 * Mantener el sitio Astro como build estático; no añadir un adapter de servidor solo para habilitar la administración remota.
-* Ejecutar el flujo `edición local → revisión del diff → pnpm cms:check → git push origin main → build/deploy → verificación pública`.
-* Documentar que el editor y revisor son la misma persona, que el rollback consiste en revertir el commit y reconstruir, y que las credenciales solo viven en el entorno de despliegue.
-* Continuar la migración de `experiences` y `blog` conforme al contrato editorial de BLG-CMS-04; las referencias Medium no se sincronizan automáticamente.
+* Ejecutar el flujo `edición local → revisión del diff → pnpm cms:check → pnpm build → rsync por SSH → verificación pública`.
+* Documentar que el editor y revisor son la misma persona, que el rollback consiste en reconstruir una versión Git anterior, y que las credenciales solo viven en el entorno de despliegue.
+* Mantener `projects` como colección editorial canónica, `experiences` como pares ES/EN y `blog` como entradas independientes por locale; las referencias Medium no se sincronizan automáticamente.
 
 **Entregable esperado:** política de publicación y operación editorial, decisión de infraestructura y lista de pasos manuales para comprar, provisionar y verificar el entorno público.
 
@@ -233,12 +233,25 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 * `/keystatic` no aparece en el build de producción y no se publican credenciales ni secretos.
 * `smaje.com.co`, `henkoconsulting.com.co` y el Contabo Cloud VPS 4 Core en USA-East quedan documentados como decisiones de infraestructura, sin automatizar compras ni provisión desde el repositorio.
 * El portfolio conserva `smajefranco@gmail.com` y el correo de Henko queda fuera del VPS, bajo Zoho Mail con autenticación DNS documentada.
-* Existe un flujo verificable de edición → revisión → `pnpm cms:check` → build/deploy → rollback.
-* Se decide qué colecciones adicionales se migran y cuáles permanecen en código, con una justificación de coste/beneficio.
+* Existe un flujo verificable de edición → revisión → `pnpm cms:check` → `pnpm build` → rsync/SSH → verificación pública → rollback.
+* `pnpm cms:check` bloquea estados, locales, pares bilingües, `draftSlug`, referencias Medium, secretos, rutas Keystatic, previews draft y builds estáticos sin canonical `https://smaje.com.co`.
+* `projects` es la colección editorial canónica; `experiences` y `blog` permanecen como Markdown versionado por su coste/beneficio proporcional, sin ampliar el runtime ni duplicar fuentes estratégicas.
+
+**Cierre de implementación:**
+
+* Astro usa `https://smaje.com.co` como sitio canónico y conserva `output: 'static'`.
+* Keystatic se carga únicamente con el comando `dev`; el build de producción no contiene `/keystatic`.
+* Las previews draft se conservan para el trabajo local, pero no se generan en el artefacto público.
+* `scripts/cms-check.mjs` valida el contrato editorial y, después del build, inspecciona `dist/` para canonical, secretos, rutas Keystatic, previews draft y presencia de HTML estático.
+* [`docs/cms-publishing-workflow.md`](./cms-publishing-workflow.md) documenta publicación manual mediante rsync/SSH, cuenta no root, claves fuera del repositorio, permisos, validación de Caddy y rollback por versiones Git.
+* [`deploy/Caddyfile`](../deploy/Caddyfile) deja reproducible el servicio directo de `/srv/portfolio`, la compresión, HTTPS automático y la redirección opcional de `www`.
+* [`docs/hosting-architecture.md`](./hosting-architecture.md) separa el portfolio estático de Docker; Docker queda reservado para servicios futuros de Henko, bases de datos y automatizaciones.
+
+**Pendientes externos:** compras y provisión de dominios, Cloudflare, Contabo, Auto Backup, DNS, Caddy en el VPS, Zoho Mail y la publicación pública efectiva. No se ejecutan desde este repositorio.
 
 ### Criterio de salida de la capacidad
 
-La capacidad se considera validada cuando el piloto local permita editar una colección bilingüe, produzca cambios versionables, conserve el build público y tenga un rollback documentado. La infraestructura pública queda resuelta con Cloudflare y Contabo; el portfolio conserva su correo personal y Henko usa Zoho Mail, mientras que GitHub mode permanece fuera del lanzamiento hasta que exista una necesidad explícita de edición remota, autenticación y permisos adecuados. La migración de `experiences` y `blog` continúa mediante archivos locales versionados y el contrato editorial aprobado; si una futura ampliación no aporta valor observable, el repositorio conserva el flujo local sin convertir Keystatic en una dependencia obligatoria de toda la aplicación.
+La capacidad se considera validada cuando el piloto local permita editar una colección bilingüe, produzca cambios versionables, conserve el build público y tenga un rollback documentado. La infraestructura pública queda resuelta con Cloudflare y Contabo; el portfolio conserva su correo personal y Henko usa Zoho Mail, mientras que GitHub mode permanece fuera del lanzamiento hasta que exista una necesidad explícita de edición remota, autenticación y permisos adecuados. `experiences` y `blog` se mantienen mediante archivos locales versionados y el contrato editorial aprobado; si una futura ampliación no aporta valor observable, el repositorio conserva el flujo local sin convertir Keystatic en una dependencia obligatoria de toda la aplicación.
 
 **Referencias técnicas:** [Keystatic — Introduction](https://keystatic.com/docs/introduction), [Keystatic & Astro](https://docs.astro.build/en/guides/cms/keystatic/), [Local mode](https://keystatic.com/docs/local-mode), [GitHub mode](https://keystatic.com/docs/github-mode), [desactivar rutas admin en producción](https://keystatic.com/docs/recipes/astro-disable-admin-ui-in-production).
 
@@ -1927,7 +1940,7 @@ Las dimensiones se registran y revisan por separado. Un valor de una columna no 
 Reglas de combinación:
 
 * Un proyecto tiene un único estado de proyecto canónico; prioridad estratégica, `portfolioTier`, tipo y tags permanecen separados.
-* Un contenido `draft` o `scheduled` no aparece en rutas públicas, listados, navegación ni sitemap. Puede existir una preview técnica conforme a `docs/cms-editorial-policy.md`, con `noindex, nofollow, noarchive`; esa URL no es secreta ni debe contener información confidencial.
+* Un contenido `draft` o `scheduled` no aparece en rutas públicas, listados, navegación ni sitemap. Puede existir una preview técnica solo durante `pnpm dev`, conforme a `docs/cms-editorial-policy.md`, con `noindex, nofollow, noarchive`; esa URL no es secreta ni debe contener información confidencial.
 * `archived` se conserva como historial editorial, pero no genera exposición pública.
 * Solo una entrada `published` con visibilidad `summary-only` o `public` puede considerarse publicada en el sitio. `private` requiere mantener el contenido fuera de la exposición pública, aunque el proyecto pueda conservar una clasificación interna.
 * La visibilidad `public` no autoriza datos sensibles, métricas sin fuente, resultados no verificados ni afirmaciones que excedan el estado de proyecto.
@@ -2035,7 +2048,7 @@ La combinación de estas tres dimensiones no permite publicar automáticamente n
 * **Arquitectura**
   * Reutilizar la taxonomía cerrada, la política CMS y la plantilla de caso como fuentes normativas.
   * Mantener estado de proyecto, estado editorial y visibilidad narrativa como dimensiones independientes, sin fijar nuevos campos ni contratos TypeScript/CMS en este WI.
-  * Documentar que `draft` y `scheduled` solo pueden tener preview técnica conforme a la política CMS y nunca exposición pública.
+  * Documentar que `draft` y `scheduled` solo pueden tener preview técnica local conforme a la política CMS y nunca exposición pública.
 * **Negocio/valor**
   * Proteger credibilidad mediante lenguaje proporcional a evidencia, contribución y madurez.
   * Permitir que el portfolio muestre aprendizaje y dirección de proyectos en evolución sin venderlos como productos terminados.
@@ -2066,7 +2079,7 @@ La combinación de estas tres dimensiones no permite publicar automáticamente n
 * [ ] No se publican datos sensibles, documentos internos, diseños, prompts, reglas propietarias, secretos, URLs privadas, métricas no autorizadas ni resultados no verificados.
 * [ ] La contribución parcial no se convierte en autoría integral, liderazgo o responsabilidad total.
 * [ ] EN no aumenta madurez, alcance, resultados, impacto ni responsabilidad frente a ES.
-* [ ] `draft` y `scheduled` no entran en rutas públicas, listados, navegación ni sitemap; las previews tienen `noindex, nofollow, noarchive` y no se consideran confidenciales.
+* [ ] `draft` y `scheduled` no entran en rutas públicas, listados, navegación ni sitemap; las previews locales de `pnpm dev` tienen `noindex, nofollow, noarchive` y no se consideran confidenciales.
 * [ ] `archived` no se expone públicamente y `published` no se interpreta como autorización para ignorar los límites de visibilidad o evidencia.
 * [ ] `EpicrisisIA` conserva `in-development` + `private`; estructuras de datos, `prototype` + `public`; e `it-services-contents-unir`, `operational` + candidato `public` fuera del inventario runtime.
 * [ ] No se crean rutas, fichas, CTAs, cambios bajo `src/`, interfaces TypeScript, esquemas CMS, colecciones ni datos runtime como parte de este WI.
@@ -2078,7 +2091,7 @@ La combinación de estas tres dimensiones no permite publicar automáticamente n
 * **¿Qué estados se pueden usar?** Resuelto: únicamente `analysis`, `prototype`, `in-development`, `mvp`, `operational` y `architectural-documentation`; no se crean variantes para análisis, prototipos o desarrollos parciales.
 * **¿Cuándo puede publicarse un proyecto en evolución?** Resuelto: solo con problema/objetivo, alcance/límites, contribución, fuente/evidencia, estado, visibilidad, estado editorial, disclaimer localizado, paridad ES/EN y revisión de privacidad/atribución.
 * **¿Qué diferencia `summary-only` de `public`?** Resuelto: `summary-only` permite únicamente una exposición resumida y limitada; `public` permite una ficha con mayor profundidad, siempre dentro de la evidencia y los límites autorizados. Ninguno reemplaza `published`.
-* **¿Qué ocurre con `draft` y `scheduled`?** Resuelto por [`docs/cms-editorial-policy.md`](./cms-editorial-policy.md): no son publicación pública, no entran en listados, navegación ni sitemap, y sus previews no son mecanismos de confidencialidad.
+* **¿Qué ocurre con `draft` y `scheduled`?** Resuelto por [`docs/cms-editorial-policy.md`](./cms-editorial-policy.md): no son publicación pública, no entran en listados, navegación ni sitemap, y sus previews locales no son mecanismos de confidencialidad.
 * **¿Qué debe bloquearse aunque el proyecto sea `public`?** Resuelto: datos sensibles, documentos o diseños restringidos, prompts, reglas propietarias, secretos, métricas sin fuente, resultados no verificados y atribuciones que excedan la contribución real.
 * **¿Qué evidencia permite cerrar el WI?** Resuelto: la política queda alineada con la taxonomía, la política CMS, la plantilla y el [cierre de S06-02](#blg-f3-s06-02--definir-backlog-de-los-tres-casos-siguientes), incluye reglas ejecutables y confirma que no requiere cambios runtime.
 
@@ -2355,7 +2368,7 @@ La combinación de estas tres dimensiones no permite publicar automáticamente n
 
 ### Prioridad inmediata
 
-Los puntos de esta cola quedaron implementados o cerrados como contrato/documentación. Con `BLG-F3-S06-03` cerrado, la continuidad abierta pasa al gobierno editorial y la publicación de Keystatic.
+Los puntos de esta cola quedaron implementados o cerrados como contrato/documentación. Con `BLG-CMS-04` cerrado, la continuidad abierta pasa a la provisión manual del entorno público y a la validación de lanzamiento.
 
 * Consolidar inventario estratégico de proyectos — `cerrado`.
 * Definir taxonomía de estados — `cerrado`.
@@ -2368,15 +2381,16 @@ Los puntos de esta cola quedaron implementados o cerrados como contrato/document
 * Migrar y consumir la primera colección editorial — `cerrado` en `BLG-CMS-03`.
 * Definir el backlog de los tres casos siguientes — `cerrado` en `BLG-F3-S06-02`.
 * Definir criterios de publicación de proyectos en evolución — `cerrado` en `BLG-F3-S06-03`.
+* Cerrar la publicación y el gobierno editorial de Keystatic — `cerrado` en `BLG-CMS-04`; la provisión externa queda pendiente.
 
-**Siguiente acción habilitada:** ejecutar `BLG-CMS-04` para cerrar la publicación
-y el gobierno editorial de Keystatic. La política de publicación de proyectos en
-evolución ya quedó cerrada en `BLG-F3-S06-03`; los detalles no capturados de cada
-caso permanecen diferidos y no deben rellenarse con supuestos.
+**Siguiente acción habilitada:** ejecutar `BLG-F6-S11-01` para registrar y
+confirmar los dominios, provisionar el VPS y activar manualmente el entorno
+público. La política de publicación de proyectos en evolución ya quedó cerrada
+en `BLG-F3-S06-03`; los detalles no capturados de cada caso permanecen
+diferidos y no deben rellenarse con supuestos.
 
 ### Prioridad siguiente
 
-* Cerrar la publicación y el gobierno editorial de Keystatic mediante `BLG-CMS-04`; `BLG-CMS-02` y `BLG-CMS-03` ya están cerrados.
 * Ejecutar `BLG-F6-S11-01`: registrar el dominio de Henko, confirmar el dominio personal del portfolio y provisionar el Contabo Cloud VPS 4 Core en USA-East.
 * Definir decisión técnica de integración con Medium.
 * Especificar arquitectura de información del blog.
@@ -2392,7 +2406,7 @@ caso permanecen diferidos y no deben rellenarse con supuestos.
 * Accesos o cuentas necesarias para Medium y analytics, si aplican.
 * Validación externa con revisores reales.
 * Ajustes de narrativa en GitHub y LinkedIn fuera del repositorio.
-* Definición del mecanismo de despliegue desde `main` y configuración de sus credenciales como variables protegidas del entorno.
+* Activación del despliegue manual desde `main` mediante rsync/SSH y configuración de sus credenciales fuera del repositorio.
 
 ### Trabajo bloqueado por decisiones manuales
 
