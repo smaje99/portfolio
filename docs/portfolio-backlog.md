@@ -1698,6 +1698,17 @@ difieren explícitamente a futuras fichas o ampliaciones.
 * Los datos no respondidos no quedan abiertos: se registran como diferidos para
   `BLG-F3-S06-01` o futuras ampliaciones.
 
+**Cierre del Sprint 05:**
+
+* `BLG-F3-S05-01` deja realineado el inventario runtime con los tres proyectos públicos definidos: `trazalita`, `epicrisisia` y `estructuras-de-datos`.
+* `BLG-F3-S05-02` deja una plantilla de caso de estudio versionada, reutilizable y con límites explícitos de evidencia, privacidad, madurez y paridad ES/EN.
+* `BLG-F3-S05-03` deja la matriz de insumos de los primeros casos, con fuentes, faltantes, riesgos, dependencias y siguientes acciones; los datos no confirmados no se completan por inferencia.
+* El sprint no crea rutas nuevas ni publica casos de estudio; deja habilitado el Sprint 06 para documentar el primer caso y secuenciar la continuidad.
+
+**Evidencia de cierre del sprint:** [`docs/case-study-template.md`](./case-study-template.md), [`docs/case-study-input-matrix.md`](./case-study-input-matrix.md), el inventario de [`src/data/projects.ts`](../src/data/projects.ts), los pares editoriales de [`src/content/projects/`](../src/content/projects/) y los cierres de `BLG-F3-S05-01`, `BLG-F3-S05-02` y `BLG-F3-S05-03`.
+
+**Estado del Sprint 05:** `Cerrado — inventario, plantilla y matriz de insumos definidos` (2026-09-11). El cierre confirma el alcance documental y de realineación del inventario; no equivale a publicar nuevas fichas de caso.
+
 ### Sprint 06
 
 #### BLG-F3-S06-01 — Documentar el primer caso de estudio completo
