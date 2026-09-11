@@ -1688,16 +1688,25 @@ difieren explícitamente a futuras fichas o ampliaciones.
 ### Sprint 06
 
 #### BLG-F3-S06-01 — Documentar el primer caso de estudio completo
-**Objetivo:** producir una primera pieza de referencia que marque el estándar del resto.  
-**Descripción:** el primer caso de estudio debe servir como patrón de calidad narrativa y técnica para los siguientes.  
+**Objetivo:** producir una primera pieza de referencia que marque el estándar del resto.
+**Descripción:** el primer caso de estudio debe servir como patrón de calidad narrativa y técnica para los siguientes.
 **Actividades:**
 * Seleccionar el proyecto más adecuado para el primer caso.
 * Redactar el caso usando la plantilla base.
 * Revisar consistencia entre narrativa, tecnologías, estado y próximos pasos.
-**Entregable esperado:** primer caso de estudio completo y listo para implementación.  
-**Dependencias:** matriz de insumos por caso.  
-**Tipo de ejecución:** Mixto  
+**Entregable esperado:** primer caso de estudio completo y listo para implementación.
+**Dependencias:** matriz de insumos por caso.
+**Tipo de ejecución:** Mixto
 **Notas de validación:** el caso debe mostrar claramente tu forma de pensar, no solo describir tecnología.
+
+**Estado del WI:** `Cerrado — ficha editorial bilingüe lista para implementación futura` (2026-09-10).
+
+**Cierre de implementación:**
+
+* Se redactaron las fichas [`docs/case-studies/trazalita.es.md`](./case-studies/trazalita.es.md) y [`docs/case-studies/trazalita.en.md`](./case-studies/trazalita.en.md) a partir de la plantilla y la matriz de insumos cerradas.
+* Ambas fichas conservan el estado `in-development`, la visibilidad `private` y el mismo alcance, responsabilidad y nivel de madurez.
+* Las funcionalidades concretas, el flujo completo, los resultados verificables, la evidencia técnica detallada y el contexto institucional sensible quedaron diferidos explícitamente.
+* No se crearon rutas Astro, enlaces públicos, CTAs ni cambios en `src/`; el caso permanece únicamente como documentación editorial.
 
 #### BLG-F3-S06-02 — Definir backlog de los tres casos siguientes
 **Objetivo:** preparar la continuidad de la fase sin depender de improvisación posterior.  
@@ -1974,7 +1983,7 @@ difieren explícitamente a futuras fichas o ampliaciones.
 
 ### Prioridad inmediata
 
-Los puntos de esta cola quedaron implementados o cerrados como contrato/documentación. La continuidad abierta es la redacción e implementación posterior del primer caso de estudio.
+Los puntos de esta cola quedaron implementados o cerrados como contrato/documentación. La continuidad abierta es definir y secuenciar los siguientes casos de estudio.
 
 * Consolidar inventario estratégico de proyectos — `cerrado`.
 * Definir taxonomía de estados — `cerrado`.
@@ -1985,13 +1994,15 @@ Los puntos de esta cola quedaron implementados o cerrados como contrato/document
 * Levantar información fuente para los primeros casos — `cerrado` en `BLG-F3-S05-03`.
 * Cerrar `BLG-CMS-01` y preparar el piloto local de Keystatic — `cerrado` en `BLG-CMS-01` y `BLG-CMS-02`.
 
-**Siguiente acción habilitada:** ejecutar `BLG-F3-S06-01` para redactar el primer
-caso de estudio de `TrazalITA` usando la matriz cerrada y la plantilla aprobada.
-Los detalles no capturados quedan diferidos y no deben rellenarse con supuestos.
+**Siguiente acción habilitada:** ejecutar `BLG-F3-S06-02` para definir el backlog
+de los tres casos de estudio siguientes, tomando como referencia el cierre
+documental de `TrazalITA`. Los detalles no capturados de ese caso permanecen
+diferidos y no deben rellenarse con supuestos.
 
 ### Prioridad siguiente
 
-* Completar `BLG-CMS-02` y `BLG-CMS-03` con una colección editorial bilingüe.
+* Ejecutar `BLG-F3-S06-02`: definir el backlog de los tres casos de estudio siguientes.
+* Cerrar la publicación y el gobierno editorial de Keystatic mediante `BLG-CMS-04`; `BLG-CMS-02` y `BLG-CMS-03` ya están cerrados.
 * Ejecutar `BLG-F6-S11-01`: registrar el dominio de Henko, confirmar el dominio personal del portfolio y provisionar el Contabo Cloud VPS 4 Core en USA-East.
 * Definir decisión técnica de integración con Medium.
 * Especificar arquitectura de información del blog.
