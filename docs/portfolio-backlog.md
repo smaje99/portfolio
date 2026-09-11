@@ -1881,16 +1881,228 @@ La ausencia de un dato debe quedar marcada como faltante o diferida. Ninguna fic
 * No se crearon rutas, CTAs, enlaces públicos, colecciones ni cambios bajo `src/`; tampoco se modificaron interfaces TypeScript, esquemas CMS o datos runtime.
 
 #### BLG-F3-S06-03 — Definir criterios de publicación de proyectos en análisis
-**Objetivo:** establecer cómo mostrar proyectos no terminados sin debilitar credibilidad.  
-**Descripción:** el roadmap permite mostrar proyectos en evolución, pero exige honestidad sobre su estado real.  
-**Actividades:**
-* Definir criterios para publicar proyectos en análisis, desarrollo o prototipo.
-* Definir disclaimers o etiquetas necesarias.
-* Definir qué no debe mostrarse aún.
-**Entregable esperado:** política editorial para proyectos en evolución.  
-**Dependencias:** taxonomía de estados y backlog de continuidad de casos.  
-**Tipo de ejecución:** Mixto  
-**Notas de validación:** el resultado debe proteger credibilidad y claridad al mismo tiempo.
+**Objetivo:** establecer cómo mostrar proyectos no terminados sin debilitar credibilidad, confundiendo madurez, publicación editorial y visibilidad narrativa.
+
+**Descripción:** el roadmap permite mostrar proyectos en evolución, pero exige honestidad sobre su estado real. Este WI convierte esa regla en una política editorial ejecutable para futuros resúmenes, fichas de caso y migraciones CMS. La política es normativa para la redacción y revisión; no publica ningún caso por sí misma.
+
+**Contexto técnico:** el repositorio ya cuenta con la taxonomía canónica de estados, la política de gobierno editorial de CMS y una plantilla de caso de estudio. El estado de proyecto describe madurez; el estado editorial controla si una pieza está aprobada para el sitio; la visibilidad narrativa define cuánto puede contarse. Ninguna de estas dimensiones sustituye a la prioridad estratégica, el tipo de proyecto, el portfolio tier o los tags técnicos.
+
+**Alcance funcional:**
+
+* Definir reglas para presentar proyectos en `analysis`, `prototype`, `in-development`, `mvp` y `operational`, manteniendo también compatible el estado canónico `architectural-documentation` cuando el activo público principal sea un blueprint.
+* Separar explícitamente las tres dimensiones siguientes:
+  * **Estado de proyecto:** `analysis`, `prototype`, `in-development`, `mvp`, `operational` y, cuando corresponda, `architectural-documentation`. Expresa madurez o naturaleza principal de la entrega.
+  * **Estado editorial:** `draft`, `scheduled`, `published` y `archived`. Expresa si el contenido fue aprobado y cuál es su ciclo de publicación.
+  * **Visibilidad narrativa:** `private`, `summary-only` y `public`. Expresa la profundidad y el contexto que pueden mostrarse; no convierte por sí sola una pieza en publicada.
+* Establecer los datos mínimos que deben existir antes de publicar un resumen o una ficha.
+* Definir advertencias localizadas para `analysis`, `prototype` e `in-development` sin crear estados, subestados o etiquetas de madurez ad hoc.
+* Mantener la compatibilidad editorial con los tres casos priorizados en `BLG-F3-S06-02`.
+
+**No alcance:**
+
+* Crear rutas Astro, fichas, CTAs, enlaces de navegación, entradas CMS o cambios en el sitemap.
+* Cambiar `src/data/projects.ts`, interfaces TypeScript, esquemas CMS, colecciones, componentes, datos runtime o contratos de presentación.
+* Publicar cualquiera de los casos de `BLG-F3-S06-02` o decidir por sí solo su incorporación al inventario runtime.
+* Crear nuevos estados como `idea`, `scaffold`, `development-initial`, `partial-mvp`, `private-prototype` o equivalentes.
+* Usar una preview `draft` como control de acceso, confidencialidad o sustituto de una revisión de privacidad.
+
+**Entregable esperado:** política editorial ejecutable para proyectos en evolución, incorporada en este backlog, con criterios de madurez, separación de estados, disclaimers ES/EN, límites de publicación, trazabilidad y evidencia de cierre.
+
+**Dependencias:** [`docs/project-status-taxonomy.md`](./project-status-taxonomy.md), [`docs/cms-editorial-policy.md`](./cms-editorial-policy.md), [`docs/case-study-template.md`](./case-study-template.md) y el [cierre de `BLG-F3-S06-02`](#blg-f3-s06-02--definir-backlog-de-los-tres-casos-siguientes).
+
+**Tipo de ejecución:** Mixto
+
+**Notas de validación:** el resultado debe proteger credibilidad y claridad al mismo tiempo. Toda afirmación sustantiva debe poder rastrearse a una fuente pública, un repositorio, un documento autorizado o una validación manual registrada.
+
+### Matriz de dimensiones editoriales
+
+Las dimensiones se registran y revisan por separado. Un valor de una columna no implica ni permite inferir automáticamente los valores de las otras dos.
+
+| Dimensión | Valores canónicos | Regla de uso |
+| --- | --- | --- |
+| Estado de proyecto | `analysis`, `prototype`, `in-development`, `mvp`, `operational`, `architectural-documentation` | Describe la madurez o naturaleza principal del artefacto. Se reutiliza exactamente el catálogo de la taxonomía. |
+| Estado editorial | `draft`, `scheduled`, `published`, `archived` | Describe aprobación y ciclo editorial. Solo `published` puede entrar en exposición pública, sujeto a visibilidad y validaciones. |
+| Visibilidad narrativa | `private`, `summary-only`, `public` | Describe la profundidad autorizada. `private` no es publicación pública; `summary-only` limita la pieza a un resumen; `public` permite una ficha dentro de sus límites de evidencia y privacidad. |
+
+Reglas de combinación:
+
+* Un proyecto tiene un único estado de proyecto canónico; prioridad estratégica, `portfolioTier`, tipo y tags permanecen separados.
+* Un contenido `draft` o `scheduled` no aparece en rutas públicas, listados, navegación ni sitemap. Puede existir una preview técnica conforme a `docs/cms-editorial-policy.md`, con `noindex, nofollow, noarchive`; esa URL no es secreta ni debe contener información confidencial.
+* `archived` se conserva como historial editorial, pero no genera exposición pública.
+* Solo una entrada `published` con visibilidad `summary-only` o `public` puede considerarse publicada en el sitio. `private` requiere mantener el contenido fuera de la exposición pública, aunque el proyecto pueda conservar una clasificación interna.
+* La visibilidad `public` no autoriza datos sensibles, métricas sin fuente, resultados no verificados ni afirmaciones que excedan el estado de proyecto.
+
+### Criterios de publicación por madurez
+
+| Estado de proyecto | Se puede publicar | Límite obligatorio |
+| --- | --- | --- |
+| `analysis` | Contexto, problema, hipótesis, objetivo, alcance exploratorio y un resumen limitado de la dirección del trabajo. | No presentarlo como solución construida, flujo usable, MVP, producto o sistema operativo. Si solo existe exploración, la publicación debe quedarse en `summary-only` o permanecer privada. |
+| `prototype` | Evidencia técnica acotada, capacidad demostrada, decisiones de viabilidad y aprendizajes verificables. | Etiquetarlo explícitamente como prototipo. No llamarlo MVP, producto listo, solución completa ni evidencia de uso real si no existe pilotaje autorizado. |
+| `in-development` | Proyecto en construcción con objetivo, alcance y contribución personal verificables; pueden describirse módulos o avances con fuente. | No presentarlo como operativo, MVP, producto terminado, validado por usuarios o implantado. Debe decir qué está en desarrollo y qué queda pendiente. |
+| `mvp` | Flujo usable de extremo a extremo y evidencia de uso real o controlado en contexto de piloto. | Conservar el lenguaje de piloto y aprendizaje temprano. No elevarlo a operación formal, producto consolidado o plataforma madura sin evidencia adicional. |
+| `operational` | Implementación real, uso sostenido o soporte vigente a una operación, con alcance y fuente identificables. | No generalizar a plataforma enterprise, producción masiva o solución universal si la evidencia solo cubre un contexto concreto. |
+| `architectural-documentation` | Blueprint, decisiones estructurales, modelo o documentación reutilizable como artefacto principal. | No describirlo como software implementado, flujo usable, MVP o producto operativo; si aparece implementación, debe reclasificarse según la madurez del software. |
+
+La diferencia entre `prototype` e `in-development` es la continuidad del trabajo hacia el flujo principal: el prototipo demuestra una capacidad parcial o experimental; el desarrollo construye sostenidamente la solución principal. La diferencia entre `mvp` y `operational` es el uso piloto frente a la adopción sostenida o implantación formal. Si la evidencia no permite distinguir dos estados, el caso queda pendiente de validación manual y no se resuelve con una etiqueta nueva.
+
+### Requisitos mínimos antes de publicar
+
+Una publicación debe contar, como mínimo, con:
+
+* **Problema y objetivo:** necesidad concreta y objetivo verificable, sin contexto restringido ni promesas no respaldadas.
+* **Alcance y límites:** incluidos, fuera de alcance, supuestos y pendientes; el resumen no puede ocultar que el proyecto está en evolución.
+* **Contribución personal:** acciones y responsabilidad propias separadas de las del equipo, de terceros y de herramientas asistidas.
+* **Fuente o evidencia verificable:** repositorio, documento público, fuente autorizada o validación manual identificable para cada afirmación sustantiva.
+* **Estado canónico:** exactamente uno de los estados definidos en la taxonomía, con redacción acorde a su significado.
+* **Visibilidad y estado editorial:** `private`/`summary-only`/`public` y `draft`/`scheduled`/`published`/`archived` registrados por separado.
+* **Advertencia o etiqueta localizada:** ES y EN deben comunicar la madurez y sus límites en el mismo sentido.
+* **Paridad ES/EN:** mismo estado, visibilidad, alcance, contribución, evidencia, resultados y restricciones; el inglés no puede elevar madurez, impacto o responsabilidad.
+* **Revisión de privacidad y atribución:** confirmación de que no se exponen datos sensibles, secretos, información propietaria ni atribuciones integrales cuando la contribución fue parcial.
+
+La ausencia de un dato se marca como faltante, diferida o no publicable. No se completa por plausibilidad técnica, por el nombre del proyecto ni por una demo.
+
+### Disclaimers localizados
+
+Las siguientes formulaciones son etiquetas mínimas reutilizables. Pueden adaptarse al contexto, pero no deben eliminar la advertencia ni cambiar su significado.
+
+| Estado | ES | EN |
+| --- | --- | --- |
+| `analysis` | **En análisis.** El proyecto se encuentra en fase de exploración y definición; este resumen describe el problema y la dirección de trabajo, no una solución construida u operativa. | **Concept validation.** This project is in exploration and definition; this summary describes the problem and direction of work, not a built or operational solution. |
+| `prototype` | **Prototipo.** Existe evidencia técnica parcial o experimental para validar una dirección; no representa un MVP ni una solución lista para uso. | **Prototype.** The project contains partial or experimental technical evidence to validate a direction; it is not an MVP or a ready-to-use solution. |
+| `in-development` | **En desarrollo.** La construcción del proyecto continúa; el alcance y la contribución descritos son verificables, pero todavía no debe interpretarse como una solución operativa o validada en producción. | **In development.** The project is still being built; the described scope and contribution are verifiable, but it should not yet be understood as an operational or production-validated solution. |
+
+Las etiquetas de `mvp`, `operational` y `architectural-documentation` deben conservar las etiquetas públicas de la taxonomía (`MVP en piloto`/`Pilot MVP`, `Operativo`/`Operational solution`, `Documentación arquitectónica`/`Architecture blueprint`) y sus límites narrativos; no se crean disclaimers que funcionen como estados alternativos.
+
+### Contenido que no debe mostrarse
+
+Queda bloqueada la publicación de:
+
+* Datos clínicos, personales, comerciales o institucionales, incluidos documentos reales, identificadores, capturas y ejemplos que permitan reidentificación.
+* Documentos internos, diseños sensibles, prompts, reglas propietarias, secretos, tokens, credenciales o URLs privadas.
+* Métricas, ahorros, costes, adopción o resultados sin una fuente autorizada y un significado verificable.
+* Resultados no verificados, afirmaciones de uso, validación, impacto o rendimiento basadas únicamente en expectativas, demos o inferencias.
+* Atribuciones integrales, liderazgo, autoría o responsabilidad sobre un sistema cuando la contribución fue parcial, colaborativa o de apoyo.
+* Lenguaje que eleve artificialmente la madurez en inglés, aunque la traducción parezca más comercial o natural.
+* Detalles técnicos cuya publicación revele controles, reglas o arquitectura restringida, incluso si el proyecto tiene visibilidad `public`.
+
+### Compatibilidad con `BLG-F3-S06-02`
+
+| Caso | Estado de proyecto | Visibilidad | Tratamiento bajo esta política |
+| --- | --- | --- | --- |
+| `EpicrisisIA` | `in-development` | `private` | Puede mantenerse como referencia editorial interna con problema y alcance genéricos; no se publica una ficha ni evidencia clínica, diseños, reglas, datos o métricas reservadas. |
+| Proyecto educativo de estructuras de datos | `prototype` | `public` | Puede publicarse como evidencia técnica educativa acotada y etiquetada como prototipo; no se presenta como producto, MVP ni solución para usuarios finales. |
+| `it-services-contents-unir` | `operational` | Candidato `public` | Su uso operativo puede describirse con la fuente autorizada y sin sobregeneralizar; permanece fuera de `src/data/projects.ts` y del inventario runtime hasta una decisión editorial posterior. |
+
+La combinación de estas tres dimensiones no permite publicar automáticamente ninguno de los casos: cada uno debe cumplir los requisitos mínimos, tener `status: published` cuando aplique el CMS y superar revisión de privacidad, atribución, evidencia y paridad.
+
+**Gherkin ampliado:**
+
+* **Escenario: publicación de un resumen acorde con `analysis`**
+  **Dado** un proyecto con estado `analysis`, una fuente verificable del problema y sin flujo usable demostrado
+  **Cuando** se prepara una pieza con estado editorial `published`
+  **Entonces** la pieza solo comunica contexto, objetivo, alcance exploratorio y dirección de trabajo, incluye el disclaimer de análisis y no usa términos como MVP, producto construido, solución operativa o flujo validado.
+* **Escenario: publicación de evidencia técnica de un `prototype`**
+  **Dado** un proyecto con evidencia parcial o experimental y estado `prototype`
+  **Cuando** se revisa su resumen o ficha para visibilidad `public`
+  **Entonces** la pieza identifica la capacidad demostrada, enlaza su fuente, conserva la etiqueta de prototipo y bloquea cualquier redacción que lo presente como MVP, solución completa o resultado de uso real.
+* **Escenario: publicación de un proyecto `in-development`**
+  **Dado** un proyecto con objetivo, alcance y contribución verificables, pero sin piloto usable validado
+  **Cuando** se redacta una pieza `published`
+  **Entonces** se describen únicamente los avances respaldados, se declara qué continúa en construcción, se incluye el disclaimer localizado y se bloquea la presentación como operativo, MVP o producto terminado.
+* **Escenario: frontera entre `mvp` y `operational`**
+  **Dado** un proyecto con un flujo principal usable y evidencia de contexto de uso
+  **Cuando** se decide si el resumen puede usar `mvp` u `operational`
+  **Entonces** se usa `mvp` si la evidencia corresponde a un piloto real o controlado, `operational` solo si existe uso sostenido o implantación formal, y ninguno se presenta como plataforma generalizada sin evidencia de ese alcance.
+* **Escenario: separación entre estado de proyecto y estado editorial**
+  **Dado** un proyecto `in-development` con contenido `draft` o `scheduled`
+  **Cuando** se calcula la exposición pública
+  **Entonces** el estado de madurez permanece `in-development`, pero el contenido no entra en rutas públicas, listados, navegación ni sitemap; cualquier preview técnica mantiene `noindex, nofollow, noarchive` y no se trata como mecanismo de confidencialidad.
+* **Escenario: bloqueo de contenido privado o sin evidencia**
+  **Dado** una ficha con visibilidad `private`, datos sensibles, una fuente restringida o una afirmación sin evidencia verificable
+  **Cuando** se ejecuta la revisión editorial
+  **Entonces** la pieza no se publica; el dato queda marcado como no publicable, resumible o diferido y no se sustituye por una inferencia, una demo o una métrica no autorizada.
+* **Escenario: paridad ES/EN**
+  **Dado** un resumen ES validado para un proyecto en evolución y una versión EN propuesta
+  **Cuando** se comparan ambos locales antes de publicar
+  **Entonces** conservan el mismo estado de proyecto, estado editorial, visibilidad, alcance, contribución, fuentes, resultados y disclaimers semánticamente equivalentes, y EN no aumenta madurez, impacto o responsabilidad.
+* **Escenario: compatibilidad con los tres casos priorizados**
+  **Dado** el cierre de `BLG-F3-S06-02`
+  **Cuando** se aplica esta política al inventario de continuidad
+  **Entonces** `EpicrisisIA` conserva `in-development` + `private`, estructuras de datos conserva `prototype` + `public` e `it-services-contents-unir` conserva `operational` + candidato `public`, sin crear rutas ni incorporar el tercer caso al runtime.
+
+**Desglose de tareas:**
+
+* **Arquitectura**
+  * Reutilizar la taxonomía cerrada, la política CMS y la plantilla de caso como fuentes normativas.
+  * Mantener estado de proyecto, estado editorial y visibilidad narrativa como dimensiones independientes, sin fijar nuevos campos ni contratos TypeScript/CMS en este WI.
+  * Documentar que `draft` y `scheduled` solo pueden tener preview técnica conforme a la política CMS y nunca exposición pública.
+* **Negocio/valor**
+  * Proteger credibilidad mediante lenguaje proporcional a evidencia, contribución y madurez.
+  * Permitir que el portfolio muestre aprendizaje y dirección de proyectos en evolución sin venderlos como productos terminados.
+  * Mantener la posición narrativa de `EpicrisisIA`, estructuras de datos e `it-services-contents-unir` definida en S06-02.
+* **Funcional**
+  * Aplicar la matriz de publicación y los requisitos mínimos a resúmenes, fichas y futuras entradas CMS.
+  * Incorporar disclaimers localizados para `analysis`, `prototype` e `in-development`.
+  * Bloquear contenido sensible, sin fuente, no verificado, mal atribuido o divergente entre ES y EN.
+* **No funcional**
+  * Preservar privacidad, confidencialidad, secreto profesional y redacción no inflada.
+  * Mantener trazabilidad desde la afirmación hasta su evidencia y hacer explícitos faltantes, límites y decisiones manuales.
+  * Evitar que una URL de preview se interprete como control de acceso o canal seguro.
+* **Pruebas**
+  * Revisar los escenarios de publicación por madurez, separación de dimensiones, privacidad, evidencia, paridad y exclusión de estados editoriales no publicados.
+  * Confirmar que los tres casos de S06-02 conservan sus estados y visibilidades sin cambios runtime.
+  * Ejecutar `git diff --check` y verificar que el cambio se limita al backlog.
+* **Documentación/aceptación**
+  * Enlazar la taxonomía, la política CMS, la plantilla y el cierre de S06-02 como evidencia normativa.
+  * Dejar resueltas las preguntas de definición y cierre y registrar el estado final del WI.
+
+**Checklist de implementación:**
+
+* [ ] Cada pieza distingue estado de proyecto, estado editorial y visibilidad narrativa; no usa una dimensión como sustituto de otra.
+* [ ] Solo se utilizan estados canónicos; no aparecen variantes ad hoc ni estados editoriales mezclados con madurez.
+* [ ] `analysis` se limita a contexto o resumen; `prototype` está etiquetado y no se llama MVP; `in-development` no se llama operativo; `mvp` conserva el límite de piloto; `operational` no se generaliza sin evidencia; `architectural-documentation` no se presenta como software usable.
+* [ ] Cada publicación tiene problema/objetivo, alcance/límites, contribución personal, fuente o evidencia, estado canónico, visibilidad, estado editorial y revisión de privacidad/atribución.
+* [ ] Las advertencias ES/EN están presentes para `analysis`, `prototype` e `in-development` y son semánticamente equivalentes.
+* [ ] No se publican datos sensibles, documentos internos, diseños, prompts, reglas propietarias, secretos, URLs privadas, métricas no autorizadas ni resultados no verificados.
+* [ ] La contribución parcial no se convierte en autoría integral, liderazgo o responsabilidad total.
+* [ ] EN no aumenta madurez, alcance, resultados, impacto ni responsabilidad frente a ES.
+* [ ] `draft` y `scheduled` no entran en rutas públicas, listados, navegación ni sitemap; las previews tienen `noindex, nofollow, noarchive` y no se consideran confidenciales.
+* [ ] `archived` no se expone públicamente y `published` no se interpreta como autorización para ignorar los límites de visibilidad o evidencia.
+* [ ] `EpicrisisIA` conserva `in-development` + `private`; estructuras de datos, `prototype` + `public`; e `it-services-contents-unir`, `operational` + candidato `public` fuera del inventario runtime.
+* [ ] No se crean rutas, fichas, CTAs, cambios bajo `src/`, interfaces TypeScript, esquemas CMS, colecciones ni datos runtime como parte de este WI.
+* [ ] El diff solo modifica `docs/portfolio-backlog.md` y pasa `git diff --check`.
+
+**Preguntas de definición y cierre:**
+
+* **¿Qué dimensión define la madurez?** Resuelto: el estado de proyecto canónico de [`docs/project-status-taxonomy.md`](./project-status-taxonomy.md); prioridad, tipo, `portfolioTier`, tags, estado editorial y visibilidad permanecen separados.
+* **¿Qué estados se pueden usar?** Resuelto: únicamente `analysis`, `prototype`, `in-development`, `mvp`, `operational` y `architectural-documentation`; no se crean variantes para análisis, prototipos o desarrollos parciales.
+* **¿Cuándo puede publicarse un proyecto en evolución?** Resuelto: solo con problema/objetivo, alcance/límites, contribución, fuente/evidencia, estado, visibilidad, estado editorial, disclaimer localizado, paridad ES/EN y revisión de privacidad/atribución.
+* **¿Qué diferencia `summary-only` de `public`?** Resuelto: `summary-only` permite únicamente una exposición resumida y limitada; `public` permite una ficha con mayor profundidad, siempre dentro de la evidencia y los límites autorizados. Ninguno reemplaza `published`.
+* **¿Qué ocurre con `draft` y `scheduled`?** Resuelto por [`docs/cms-editorial-policy.md`](./cms-editorial-policy.md): no son publicación pública, no entran en listados, navegación ni sitemap, y sus previews no son mecanismos de confidencialidad.
+* **¿Qué debe bloquearse aunque el proyecto sea `public`?** Resuelto: datos sensibles, documentos o diseños restringidos, prompts, reglas propietarias, secretos, métricas sin fuente, resultados no verificados y atribuciones que excedan la contribución real.
+* **¿Qué evidencia permite cerrar el WI?** Resuelto: la política queda alineada con la taxonomía, la política CMS, la plantilla y el [cierre de S06-02](#blg-f3-s06-02--definir-backlog-de-los-tres-casos-siguientes), incluye reglas ejecutables y confirma que no requiere cambios runtime.
+
+**Estado del WI:** `Cerrado — política editorial para proyectos en evolución definida` (2026-09-11).
+
+**Cierre de implementación:**
+
+* Se definieron separadamente estado de proyecto, estado editorial y visibilidad narrativa, con reglas de combinación y límites de exposición pública.
+* Se establecieron criterios de publicación para `analysis`, `prototype`, `in-development`, `mvp`, `operational` y `architectural-documentation`, incluyendo límites explícitos contra la sobreventa de madurez.
+* Se fijaron requisitos mínimos de evidencia, alcance, contribución, privacidad, atribución y paridad ES/EN, junto con disclaimers localizados para los estados en evolución.
+* Se bloquearon datos sensibles, secretos, documentos internos, métricas sin fuente, resultados no verificados, atribuciones infladas y lenguaje EN que aumente artificialmente la madurez.
+* Se conservaron los casos de S06-02: `EpicrisisIA` como `in-development` + `private`, estructuras de datos como `prototype` + `public` e `it-services-contents-unir` como `operational` + candidato `public` fuera del inventario runtime.
+* No se crearon rutas, fichas, CTAs, cambios bajo `src/`, interfaces TypeScript, esquemas CMS, colecciones ni datos runtime; el entregable queda limitado a este backlog.
+
+**Cierre del Sprint 06:**
+
+* `BLG-F3-S06-01` deja una ficha editorial bilingüe de referencia para `TrazalITA`, con estado `in-development`, visibilidad `private` y límites de publicación explícitos.
+* `BLG-F3-S06-02` deja definidos y secuenciados los tres casos siguientes, con prioridades, estados, visibilidades, fuentes, faltantes, riesgos, dependencias y requisitos mínimos de ficha.
+* `BLG-F3-S06-03` deja definida la política para publicar proyectos en evolución sin inflar su madurez, separando estado de proyecto, estado editorial y visibilidad narrativa.
+* El Sprint 06 queda cerrado como trabajo documental: no incorpora nuevas rutas, fichas públicas, CTAs, contratos TypeScript/CMS ni datos runtime.
+
+**Evidencia de cierre del sprint:** [`docs/project-status-taxonomy.md`](./project-status-taxonomy.md), [`docs/cms-editorial-policy.md`](./cms-editorial-policy.md), [`docs/case-study-template.md`](./case-study-template.md), las fichas ES/EN de [`TrazalITA`](./case-studies/trazalita.es.md) ([EN](./case-studies/trazalita.en.md)) y los cierres de `BLG-F3-S06-01`, `BLG-F3-S06-02` y `BLG-F3-S06-03` en este backlog.
+
+**Estado del Sprint 06:** `Cerrado — casos de estudio y política editorial definidos` (2026-09-11). El cierre confirma el alcance documental del sprint y no equivale a publicar nuevas rutas ni a completar la implementación runtime de los casos.
 
 ---
 
@@ -2143,7 +2355,7 @@ La ausencia de un dato debe quedar marcada como faltante o diferida. Ninguna fic
 
 ### Prioridad inmediata
 
-Los puntos de esta cola quedaron implementados o cerrados como contrato/documentación. La continuidad abierta es definir y secuenciar los siguientes casos de estudio.
+Los puntos de esta cola quedaron implementados o cerrados como contrato/documentación. Con `BLG-F3-S06-03` cerrado, la continuidad abierta pasa al gobierno editorial y la publicación de Keystatic.
 
 * Consolidar inventario estratégico de proyectos — `cerrado`.
 * Definir taxonomía de estados — `cerrado`.
@@ -2153,17 +2365,17 @@ Los puntos de esta cola quedaron implementados o cerrados como contrato/document
 * Diseñar la plantilla base del primer caso de estudio — `cerrado` en `BLG-F3-S05-02`.
 * Levantar información fuente para los primeros casos — `cerrado` en `BLG-F3-S05-03`.
 * Cerrar `BLG-CMS-01` y preparar el piloto local de Keystatic — `cerrado` en `BLG-CMS-01` y `BLG-CMS-02`.
+* Migrar y consumir la primera colección editorial — `cerrado` en `BLG-CMS-03`.
 * Definir el backlog de los tres casos siguientes — `cerrado` en `BLG-F3-S06-02`.
+* Definir criterios de publicación de proyectos en evolución — `cerrado` en `BLG-F3-S06-03`.
 
-**Siguiente acción habilitada:** ejecutar `BLG-F3-S06-03` para definir los criterios
-de publicación de proyectos en análisis, desarrollo o prototipo. El backlog de
-continuidad de los tres casos ya quedó cerrado en `BLG-F3-S06-02`; los detalles
-no capturados de cada caso permanecen diferidos y no deben rellenarse con
-supuestos.
+**Siguiente acción habilitada:** ejecutar `BLG-CMS-04` para cerrar la publicación
+y el gobierno editorial de Keystatic. La política de publicación de proyectos en
+evolución ya quedó cerrada en `BLG-F3-S06-03`; los detalles no capturados de cada
+caso permanecen diferidos y no deben rellenarse con supuestos.
 
 ### Prioridad siguiente
 
-* Ejecutar `BLG-F3-S06-03`: definir criterios de publicación de proyectos en análisis, desarrollo o prototipo.
 * Cerrar la publicación y el gobierno editorial de Keystatic mediante `BLG-CMS-04`; `BLG-CMS-02` y `BLG-CMS-03` ya están cerrados.
 * Ejecutar `BLG-F6-S11-01`: registrar el dominio de Henko, confirmar el dominio personal del portfolio y provisionar el Contabo Cloud VPS 4 Core en USA-East.
 * Definir decisión técnica de integración con Medium.
