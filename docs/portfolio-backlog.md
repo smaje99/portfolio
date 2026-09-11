@@ -1709,16 +1709,176 @@ difieren explícitamente a futuras fichas o ampliaciones.
 * No se crearon rutas Astro, enlaces públicos, CTAs ni cambios en `src/`; el caso permanece únicamente como documentación editorial.
 
 #### BLG-F3-S06-02 — Definir backlog de los tres casos siguientes
-**Objetivo:** preparar la continuidad de la fase sin depender de improvisación posterior.  
-**Descripción:** tras el primer caso, los siguientes deben quedar secuenciados y con requisitos mínimos identificados.  
-**Actividades:**
-* Priorizar los siguientes tres casos de estudio.
-* Definir nivel de madurez de cada uno.
-* Marcar riesgos, faltantes y dependencias narrativas.
-**Entregable esperado:** backlog de continuidad de casos de estudio.  
-**Dependencias:** primer caso documentado.  
-**Tipo de ejecución:** Codex con supervisión  
-**Notas de validación:** los próximos casos deben cubrir diversidad de capacidades, no repetirse entre sí.
+**Objetivo:** preparar la continuidad de la fase sin depender de improvisación posterior, dejando tres casos secuenciados, trazables y con requisitos mínimos para una futura ficha bilingüe.
+
+**Descripción:** este WI convierte la matriz de insumos de `BLG-F3-S05-03` y el cierre documental de `TrazalITA` en un backlog ejecutable para los tres casos posteriores seleccionados por la matriz vigente. El resultado es documental: no redacta todavía las tres fichas, no publica nuevas rutas y no modifica el inventario runtime.
+
+**Contexto técnico:** el repositorio ya dispone de una taxonomía cerrada de estados, una plantilla de caso de estudio, una matriz de fuentes y una ficha editorial bilingüe de referencia para `TrazalITA`. El inventario público base actual contiene `trazalita`, `epicrisisia` y `estructuras-de-datos`; `it-services-contents-unir` está documentado como candidato independiente y operativo, pero permanece fuera de `src/data/projects.ts` hasta una decisión editorial posterior. La matriz establece que los campos pendientes no deben completarse por inferencia.
+
+**Alcance funcional:**
+
+* Secuenciar con prioridad única `EpicrisisIA`, el proyecto educativo agrupado de estructuras de datos e `it-services-contents-unir`.
+* Asignar a cada caso su estado canónico, visibilidad narrativa, rol dentro de la secuencia y límite de publicación.
+* Registrar objetivo, usuarios o beneficiarios, fuentes, evidencia disponible, faltantes, riesgos, dependencias y requisitos mínimos de una futura ficha.
+* Definir requisitos comunes de redacción y revisión: contexto y problema, objetivo y alcance, contribución personal, decisiones, arquitectura y flujo, implementación y evidencia, estado, aprendizajes, límites de publicación y paridad ES/EN.
+* Mantener la trazabilidad entre cada afirmación futura, la matriz de insumos, la taxonomía de estados y la evidencia pública o validación manual correspondiente.
+
+**No alcance:**
+
+* Redactar las tres fichas de caso de estudio o traducirlas al inglés.
+* Crear rutas Astro, páginas, enlaces públicos, CTAs, navegación, colecciones CMS o entradas nuevas en `src/content/`.
+* Añadir `it-services-contents-unir` a `src/data/projects.ts` o decidir su publicación runtime.
+* Modificar interfaces TypeScript, esquemas CMS, contratos de datos, taxonomía de estados o componentes existentes.
+* Completar vacíos mediante inferencias, convertir declaraciones internas en evidencia pública o presentar una demo como prueba de resultados no registrados.
+
+**Entregable esperado:** backlog de continuidad de tres casos con prioridad, madurez, visibilidad, fuentes, faltantes, riesgos, dependencias, requisitos mínimos de ficha y siguiente acción por caso.
+
+**Dependencias:** [`docs/case-study-input-matrix.md`](./case-study-input-matrix.md), [`docs/case-study-template.md`](./case-study-template.md), [`docs/project-status-taxonomy.md`](./project-status-taxonomy.md) y fichas ES/EN de [`TrazalITA`](./case-studies/trazalita.es.md) ([EN](./case-studies/trazalita.en.md)).
+
+**Tipo de ejecución:** Codex con supervisión
+
+**Decisión de selección:** se adopta el conjunto de la matriz vigente y no el pipeline histórico recomendado por el roadmap. `EpicrisisIA` aporta el caso principal de procesamiento documental, arquitectura y refactorización; el proyecto educativo aporta evidencia secundaria de fundamentos, pruebas y aprendizaje técnico; `it-services-contents-unir` aporta un caso independiente de plantilla educativa, Astro y reutilización.
+
+### Secuencia y ficha mínima por caso
+
+#### Prioridad 1 — `EpicrisisIA`
+
+| Campo | Definición de backlog |
+| --- | --- |
+| Estado canónico | `in-development` — el flujo completo se declara implementado, pero el proyecto se mantiene como desarrollo según el inventario y no debe presentarse como operación pública ni producto validado. |
+| Visibilidad narrativa | `private` — se puede mencionar el nombre y describir el problema de forma genérica; casos médicos, documentos, diseños, reglas y datos permanecen reservados. |
+| Rol narrativo | Caso principal de procesamiento documental, arquitectura, refactorización, integración de LLM/RAG, herramientas deterministas y mejora de UX/accesibilidad. |
+| Objetivo | Explicar cómo se automatiza la auditoría de un caso médico hasta la generación de la epicrisis, sin convertir asistencia documental en decisión médica. |
+| Usuarios o beneficiarios | Auditores médicos. |
+| Evidencia disponible | Matriz de insumos; `src/data/projects.ts`; stack declarado de Python, Docker, MongoDB, Celery, Redis, FastAPI y PydanticAI; contribución declarada de Sergio; medición interna reportada de aproximadamente 5.000 COP a 800 COP por caso. |
+| Faltantes | Distribución precisa de componentes; fuentes autorizadas y significado operativo del RAG; validaciones y revisión humana; evidencia revisable sin datos clínicos; fuente de cálculo del coste; desglose verificable de contribución, colaboración, UX y accesibilidad. Los faltantes no se completan por inferencia. |
+| Riesgos | Confidencialidad y secreto profesional; atribución incorrecta frente al desarrollador inicial y al líder técnico; sobreventa de una medición interna; presentar LLM/RAG como decisión médica o el flujo como operación formal. |
+| Dependencias | Validación manual de límites de publicación y atribución; evidencia técnica interna autorizada; plantilla de caso; taxonomía de estados; decisión de si la métrica puede aparecer resumida. |
+| Requisitos mínimos para futura ficha | Resumen con objetivo, estado y límites; contexto genérico; alcance del flujo; contribución separada por persona; arquitectura publicable; flujo de entrada, procesamiento, validación y salida; evidencia resumida y autorizada; estado `in-development`; aprendizajes; límites de confidencialidad; versiones ES/EN semánticamente equivalentes. |
+| Siguiente acción recomendada | Preparar una ampliación manual de evidencia técnica y autorización de publicación antes de redactar la ficha ES; no publicar la ficha ni la métrica mientras esos límites no estén revisados. |
+
+#### Prioridad 2 — Proyecto educativo de estructuras de datos
+
+| Campo | Definición de backlog |
+| --- | --- |
+| Estado canónico | `prototype` — evidencia técnica educativa acotada, no solución operativa ni MVP. |
+| Visibilidad narrativa | `public` — debe conservar carácter educativo y posición secundaria. |
+| Rol narrativo | Evidencia secundaria de fundamentos, modelado, implementación desde cero, pruebas, resolución de problemas y aprendizaje técnico. |
+| Objetivo | Mostrar aprendizaje aplicado de estructuras de datos mediante ejercicios, API de Java, simuladores, tipos abstractos, recursividad y calculadora de expresiones. |
+| Usuarios o beneficiarios | No definidos de forma específica en la matriz; el contexto beneficiario es educativo y debe conservarse como tal, sin atribuir un producto para usuarios finales. |
+| Evidencia disponible | Repositorios [`ds-tdd-uniamazonia`](https://github.com/smaje99/ds-tdd-uniamazonia), [`sorting-comparator`](https://github.com/smaje99/sorting-comparator), [`SimuladorTDA`](https://github.com/smaje99/SimuladorTDA) y [`Calc2`](https://github.com/smaje99/Calc2); `ds-tdd-uniamazonia` queda como repositorio representativo por sus ejercicios guiados, pruebas de contrato y estructura pedagógica. |
+| Faltantes | Selección explícita de aprendizajes y decisiones que se quieren demostrar; fechas, curso o contexto académico publicable; alcance exacto de la agrupación. La matriz confirma que todos los repositorios fueron desarrollados por Sergio sin colaboración externa, pero no autoriza inventar contexto académico adicional. |
+| Riesgos | Profundidad narrativa limitada; carácter agrupado que puede ocultar diferencias entre repositorios; inflar ejercicios educativos como producto; repetir la narrativa de `EpicrisisIA` o competir con los casos principales. |
+| Dependencias | Revisión pública de los repositorios; plantilla de caso; definición manual de la tesis de aprendizaje; consistencia con el inventario `estructuras-de-datos` y con el estado `prototype`. |
+| Requisitos mínimos para futura ficha | Declarar que es un conjunto educativo agrupado; elegir evidencia representativa; explicar problema pedagógico y alcance; separar ejercicios y simuladores; atribuir implementación a Sergio sin convertirla en producto operativo; enlazar repositorios; conservar `prototype`, `public` y posición secundaria en ES/EN. |
+| Siguiente acción recomendada | Definir la tesis editorial y los 2–4 aprendizajes verificables a partir de `ds-tdd-uniamazonia`; después redactar una ficha breve agrupada, sin inventar fechas ni resultados de uso. |
+
+#### Prioridad 3 — `it-services-contents-unir`
+
+| Campo | Definición de backlog |
+| --- | --- |
+| Estado canónico | `operational` — el docente lo utiliza actualmente como apoyo para sus cursos. |
+| Visibilidad narrativa | `public` como candidato publicable según la matriz, pero sin incorporación runtime ni promesa de ruta pública en este WI. |
+| Rol narrativo | Caso independiente de mejora de una plantilla educativa, arquitectura Astro, componentes, colecciones de contenido y despliegue reutilizable. |
+| Objetivo | Explicar cómo una plantilla usada por un docente se convirtió en una base más mantenible y reutilizable para temas, recursos, actividades, autoevaluaciones y casos de estudio. |
+| Usuarios o beneficiarios | Docentes y estudiantes de los cursos que reciben el apoyo de la plantilla. |
+| Evidencia disponible | Repositorio [`it-services-contents-unir`](https://github.com/smaje99/it-services-contents-unir), [demo pública](https://it-services-contents-unir.vercel.app), README y configuración pública con Astro, React, MDX, colecciones de contenido y destinos de despliegue documentados. |
+| Faltantes | Revisión futura de que la demo siga disponible y corresponda al repositorio; ficha ES/EN; decisión explícita sobre incorporación al inventario runtime; evidencia adicional de uso que no exceda la declaración de uso actual. La creación de contenidos y las integraciones con otros sistemas permanecen fuera de la contribución declarada. |
+| Riesgos | Disponibilidad o divergencia de la demo; confusión con el conjunto de estructuras de datos pese a su carácter educativo; atribuir creación de contenidos o integraciones no realizadas; publicar un caso independiente sin resolver su exclusión actual del runtime. |
+| Dependencias | Verificación manual de demo y repositorio; decisión editorial posterior sobre `src/data/projects.ts`; plantilla de caso; revisión de la afirmación de uso operativo; paridad ES/EN antes de cualquier publicación. |
+| Requisitos mínimos para futura ficha | Explicar el contexto de plantilla no reutilizable; detallar contribución en arquitectura, componentes, colecciones y despliegue; declarar que no se crearon contenidos ni integraciones; enlazar repo y demo; explicar el uso operativo sin sobregeneralizar; conservar `operational` y `public`; documentar su independencia del grupo educativo. |
+| Siguiente acción recomendada | Verificar demo, README y estado del repositorio en una revisión editorial; luego decidir si el caso merece entrada independiente en el inventario antes de redactar o publicar una ficha. |
+
+### Requisitos comunes de futuras fichas
+
+Cada caso deberá cumplir, como mínimo, con los siguientes requisitos antes de pasar de backlog a redacción:
+
+* **Contexto y problema:** explicar la necesidad sin revelar información restringida ni atribuir usuarios, instituciones o resultados no respaldados.
+* **Objetivo y alcance:** separar objetivo del proyecto, contribución personal, incluidos y fuera de alcance.
+* **Contribución personal:** usar verbos precisos y distinguir trabajo propio, colaboración, asistencia de herramientas y decisiones de terceros.
+* **Decisiones:** registrar criterio, alternativa o restricción cuando sea publicable, sin inventar decisiones no documentadas.
+* **Arquitectura y flujo:** describir solo componentes, entradas, salidas, persistencia, validaciones y dependencias que tengan fuente.
+* **Implementación y evidencia:** vincular cada afirmación sustantiva con la matriz, un repositorio, una fuente pública o una validación manual autorizada.
+* **Estado:** reutilizar exactamente el estado canónico y explicar su significado; prioridad, visibilidad y estado no se sustituyen entre sí.
+* **Aprendizajes:** seleccionar aprendizajes transferibles y verificables, no listas de tecnologías ni promesas de especialización.
+* **Límites de publicación:** registrar datos, documentos, diseños, métricas, atribuciones o integraciones que no pueden publicarse.
+* **Paridad ES/EN:** validar primero español y adaptar después inglés sin aumentar responsabilidad, alcance, resultados o madurez.
+
+La ausencia de un dato debe quedar marcada como faltante o diferida. Ninguna ficha puede convertir un campo pendiente de la matriz en una afirmación narrativa por plausibilidad técnica.
+
+**Gherkin ampliado:**
+
+* **Escenario: selección única y secuenciada de los tres casos**
+  **Dado** el cierre de `BLG-F3-S06-01`, la matriz de `BLG-F3-S05-03` y el inventario vigente
+  **Cuando** se define la continuidad de casos
+  **Entonces** aparecen exactamente tres casos con prioridad única 1, 2 y 3: `EpicrisisIA`, el proyecto educativo agrupado e `it-services-contents-unir`, sin sustituirlos por el pipeline histórico del roadmap.
+* **Escenario: clasificación de madurez compatible con la taxonomía**
+  **Dado** un caso seleccionado y su evidencia disponible
+  **Cuando** se asigna el estado de proyecto
+  **Entonces** `EpicrisisIA` queda como `in-development`, el proyecto educativo como `prototype` e `it-services-contents-unir` como `operational`, y ninguna descripción los presenta respectivamente como solución operativa, producto final o plataforma generalizada sin evidencia adicional.
+* **Escenario: requisito de fuente y trazabilidad**
+  **Dado** cualquier afirmación que pueda aparecer en una futura ficha
+  **Cuando** se revisa el backlog del caso
+  **Entonces** la afirmación tiene fuente, evidencia disponible y tratamiento de publicación; si la fuente falta o está restringida, el dato queda como faltante, diferido o no publicable y no se completa por inferencia.
+* **Escenario: paridad bilingüe y límites de publicación**
+  **Dado** una ficha ES validada y una adaptación EN propuesta
+  **Cuando** se compara el par de locales
+  **Entonces** ambos conservan el mismo estado, visibilidad, prioridad narrativa, alcance, contribución, resultados y límites, y la versión EN no eleva la madurez ni oculta restricciones.
+
+**Desglose de tareas:**
+
+* **Arquitectura**
+  * Reutilizar la taxonomía de estados, la plantilla de caso y el patrón documental de `TrazalITA`.
+  * Mantener `it-services-contents-unir` fuera del inventario runtime y registrar la decisión futura como dependencia editorial, no como cambio de interfaz.
+* **Negocio/valor**
+  * Ordenar la secuencia para combinar procesamiento documental, fundamentos educativos y reutilización de una plantilla sin repetir la misma historia.
+  * Mantener `EpicrisisIA` como caso principal, el conjunto educativo como evidencia secundaria y el tercer caso como independiente.
+* **Funcional**
+  * Completar para cada caso la tabla de objetivo, usuarios, evidencia, faltantes, riesgos, dependencias, requisitos mínimos y siguiente acción.
+  * Definir estado, visibilidad, alcance y límites antes de redactar cualquier ficha.
+* **No funcional**
+  * Preservar confidencialidad, secreto profesional, atribución correcta y redacción no inflada.
+  * Asegurar trazabilidad, paridad ES/EN y ausencia de promesas runtime no implementadas.
+* **Pruebas**
+  * Comprobar prioridad única, estado canónico, fuente, faltantes, riesgos y dependencias para los tres casos.
+  * Comprobar que no se introducen rutas, CTAs, enlaces públicos nuevos ni modificaciones bajo `src/`.
+* **Documentación/aceptación**
+  * Enlazar la matriz de insumos y la ficha cerrada de `TrazalITA` como evidencia de continuidad.
+  * Dejar las preguntas de definición y cierre resueltas o explícitamente diferidas por caso.
+
+**Checklist de implementación:**
+
+* [ ] Los tres casos seleccionados son exactamente los de la matriz vigente y tienen prioridades únicas `1`, `2` y `3`.
+* [ ] Cada caso tiene estado canónico, visibilidad narrativa y rol explicados sin contradicción con la taxonomía.
+* [ ] Cada caso tiene al menos una fuente identificable; las declaraciones restringidas están marcadas y no se presentan como evidencia pública.
+* [ ] Cada caso registra faltantes; no hay campos vacíos ocultos detrás de lenguaje genérico ni inferencias técnicas.
+* [ ] Cada caso registra riesgos y dependencias concretas, incluyendo confidencialidad/atribución, profundidad/agrupación o demo/independencia/runtime según corresponda.
+* [ ] Cada caso tiene requisitos mínimos de futura ficha y siguiente acción verificable.
+* [ ] El alcance no se infla: `EpicrisisIA` no se presenta como operativo, el conjunto educativo no como producto y `it-services-contents-unir` no como proyecto ya incorporado al runtime.
+* [ ] La ficha futura deberá cubrir contexto, objetivo, contribución, decisiones, arquitectura/flujo, evidencia, estado, aprendizajes y límites.
+* [ ] La paridad ES/EN está definida como equivalencia semántica y no como traducción que aumente madurez o responsabilidad.
+* [ ] No se modifican interfaces TypeScript, esquemas CMS, rutas, navegación, colecciones, `src/data/projects.ts` ni datos runtime en este WI.
+* [ ] La matriz de insumos y el caso de `TrazalITA` quedan enlazados como evidencia de cierre.
+
+**Preguntas de definición y cierre:**
+
+* **¿Cuál es el conjunto definitivo de casos?** Resuelto: `EpicrisisIA`, el proyecto educativo agrupado de estructuras de datos e `it-services-contents-unir`, según la matriz vigente; no se sustituye por ITA, Cognark, Media Report CLI ni el proyecto jurídico/documental del pipeline histórico.
+* **¿Cuál es la prioridad relativa?** Resuelto: 1 `EpicrisisIA`, 2 estructuras de datos, 3 `it-services-contents-unir`; no hay empates.
+* **¿Cuál es el estado canónico de cada caso?** Resuelto: `in-development`, `prototype` y `operational`, respectivamente, conforme a `docs/project-status-taxonomy.md`.
+* **¿Qué visibilidad puede sostenerse?** Resuelto: `private` para `EpicrisisIA`, `public` para los dos casos educativos; `it-services-contents-unir` sigue fuera del inventario runtime y no recibe una ruta por este cierre.
+* **¿Qué información falta?** Resuelto por caso en las tablas; la regla común es diferirla y no completarla por inferencia.
+* **¿Qué decisión técnica o de interfaz queda abierta?** Ninguna para este WI: no se modifican interfaces, tipos, esquemas, rutas, navegación, colecciones ni datos runtime. La eventual incorporación de `it-services-contents-unir` pertenece a una decisión editorial posterior.
+* **¿Qué evidencia permite cerrar el WI?** Resuelto: esta especificación enlaza la matriz de insumos y el caso bilingüe ya documentado de `TrazalITA`, y deja trazabilidad, límites y siguientes acciones para los tres casos.
+
+**Estado del WI:** `Cerrado — backlog de continuidad de tres casos definido` (2026-09-11).
+
+**Cierre de implementación:**
+
+* `EpicrisisIA` quedó como prioridad 1, caso principal, `in-development` y `private`, con riesgos de confidencialidad y atribución explícitos.
+* El proyecto educativo agrupado quedó como prioridad 2, `prototype` y `public`, con `ds-tdd-uniamazonia` como evidencia representativa y con profundidad limitada reconocida.
+* `it-services-contents-unir` quedó como prioridad 3, `operational` y candidato `public` independiente, con demo y repositorio como fuentes, sin incorporación al inventario runtime.
+* Los tres casos tienen requisitos comunes, fuentes, faltantes, riesgos, dependencias, criterios mínimos de ficha y siguiente acción; los vacíos no se completan por inferencia.
+* No se crearon rutas, CTAs, enlaces públicos, colecciones ni cambios bajo `src/`; tampoco se modificaron interfaces TypeScript, esquemas CMS o datos runtime.
 
 #### BLG-F3-S06-03 — Definir criterios de publicación de proyectos en análisis
 **Objetivo:** establecer cómo mostrar proyectos no terminados sin debilitar credibilidad.  
@@ -1993,15 +2153,17 @@ Los puntos de esta cola quedaron implementados o cerrados como contrato/document
 * Diseñar la plantilla base del primer caso de estudio — `cerrado` en `BLG-F3-S05-02`.
 * Levantar información fuente para los primeros casos — `cerrado` en `BLG-F3-S05-03`.
 * Cerrar `BLG-CMS-01` y preparar el piloto local de Keystatic — `cerrado` en `BLG-CMS-01` y `BLG-CMS-02`.
+* Definir el backlog de los tres casos siguientes — `cerrado` en `BLG-F3-S06-02`.
 
-**Siguiente acción habilitada:** ejecutar `BLG-F3-S06-02` para definir el backlog
-de los tres casos de estudio siguientes, tomando como referencia el cierre
-documental de `TrazalITA`. Los detalles no capturados de ese caso permanecen
-diferidos y no deben rellenarse con supuestos.
+**Siguiente acción habilitada:** ejecutar `BLG-F3-S06-03` para definir los criterios
+de publicación de proyectos en análisis, desarrollo o prototipo. El backlog de
+continuidad de los tres casos ya quedó cerrado en `BLG-F3-S06-02`; los detalles
+no capturados de cada caso permanecen diferidos y no deben rellenarse con
+supuestos.
 
 ### Prioridad siguiente
 
-* Ejecutar `BLG-F3-S06-02`: definir el backlog de los tres casos de estudio siguientes.
+* Ejecutar `BLG-F3-S06-03`: definir criterios de publicación de proyectos en análisis, desarrollo o prototipo.
 * Cerrar la publicación y el gobierno editorial de Keystatic mediante `BLG-CMS-04`; `BLG-CMS-02` y `BLG-CMS-03` ya están cerrados.
 * Ejecutar `BLG-F6-S11-01`: registrar el dominio de Henko, confirmar el dominio personal del portfolio y provisionar el Contabo Cloud VPS 4 Core en USA-East.
 * Definir decisión técnica de integración con Medium.
