@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-El portfolio ya empezó. La base narrativa y estructural de la Fase 1 quedó cerrada: el MVP ya tiene sitemap, inventario y taxonomía de proyectos, prioridad de contenido y backlog narrativo canónicos. El siguiente frente es la Fase 2, dedicada a refinar el mensaje profesional, las capacidades, la coherencia externa y la jerarquía de CTAs. Blog y casos de estudio conservan sus fases posteriores y no forman parte de la cobertura pública actual.
+El portfolio ya empezó. La base narrativa y estructural de la Fase 1 quedó cerrada: el MVP ya tiene sitemap, inventario y taxonomía de proyectos, prioridad de contenido y backlog narrativo canónicos. La Fase 2 refinó el mensaje profesional y la Fase 3 ya conectó el catálogo de proyectos con cuatro fichas bilingües públicas. El blog y su integración con Medium conservan su fase posterior.
 
 ### Actualización de estado real al 14 de junio de 2026
 
@@ -17,7 +17,7 @@ Con base en la revisión del repositorio y de la implementación actual del siti
 Pero siguen abiertas varias brechas estratégicas:
 
 * No existe todavía sección de blog ni integración con Medium.
-* No existen casos de estudio reales con profundidad técnica.
+* Las fichas públicas de proyectos ya existen; su ampliación futura dependerá de nueva evidencia revisada.
 * Los proyectos visibles actualmente en el sitio no están totalmente alineados con la selección priorizada por este roadmap.
 * No hay evidencia en el repositorio de analytics, página 404 dedicada, footer profesional o validación externa documentada.
 
@@ -157,14 +157,14 @@ El portfolio **sí avanzó técnicamente**, pero todavía **no cumple por comple
 
 ### Evaluación actual
 
-**Cumplimiento estimado:** 15%
+**Cumplimiento estimado:** 85%
 
 * Ya existe una sección de proyectos.
-* No existen todavía casos de estudio completos.
-* El inventario público base del MVP ya quedó delimitado en Sprint 01, pero los casos de estudio prioritarios de esta estrategia siguen pendientes de maduración y publicación.
+* Las cuatro fichas iniciales ya están publicadas como rutas estáticas bilingües; la ampliación de profundidad sigue condicionada por nueva evidencia revisada.
+* El inventario público runtime contiene `trazalita`, `epicrisisia`, `estructuras-de-datos` e `it-services-contents-unir`, con dos destacados en la landing.
 * La profundidad actual de presentación aún no demuestra criterio técnico al nivel esperado.
 
-Casos iniciales recomendados:
+Pipeline histórico conservado como referencia, no como inventario runtime actual:
 
 1. **ITA**
 2. **Cognark**
@@ -284,7 +284,7 @@ Al final de esta fase debes tener claridad absoluta sobre qué va en el portfoli
 
 **Avance estimado:** 100% en su base de planificación narrativa y estructural.
 
-La fase queda cerrada con el inventario público base y su taxonomía, la auditoría de arquitectura de información, el sitemap objetivo, la priorización de contenido y el backlog narrativo inicial. Blog y casos de estudio permanecen como nodos reservados para Fases 4 y 3 respectivamente; su ausencia pública no reabre esta fase ni anticipa su implementación.
+La fase queda cerrada con el inventario público base y su taxonomía, la auditoría de arquitectura de información, el sitemap objetivo, la priorización de contenido y el backlog narrativo inicial. El blog permanece reservado para Fase 4; las fichas de proyectos se publicaron posteriormente mediante la continuidad `BLG-F3-CONT-01`.
 
 **Siguiente frente:** Fase 2 — refinar propuesta de valor, capacidades, coherencia entre portfolio/GitHub/LinkedIn y jerarquía de CTAs a partir de `docs/portfolio-narrative-backlog.md`.
 
@@ -374,9 +374,9 @@ El visitante debe poder ver tu forma de pensar, no solo una captura o un enlace 
 
 ### Estado actual de la fase
 
-**Avance estimado:** 20%
+**Avance estimado:** 90%
 
-La sección de proyectos existe, pero todavía no alcanza el nivel de profundidad necesario para llamarse “casos de estudio” en el sentido de este roadmap.
+La sección de proyectos conserva un catálogo breve y ahora enlaza fichas de detalle bilingües. La profundidad de cada ficha es proporcional a la evidencia disponible y no equivale a afirmar que todos los proyectos estén terminados u operativos.
 
 ---
 
@@ -516,8 +516,7 @@ No hay evidencia documentada en el repositorio de una ronda formal de validació
 
 * Diseñar sección de blog.
 * Integrar Medium.
-* Conectar el inventario público base ya definido con el pipeline de casos de estudio priorizados por este roadmap.
-* Convertir los proyectos prioritarios en casos de estudio reales.
+* Ampliar las fichas publicadas solo cuando exista evidencia adicional autorizada.
 * Revisar coherencia narrativa entre portfolio, GitHub y LinkedIn.
 * Refinar el copy principal desde una óptica más consultiva.
 
@@ -650,7 +649,7 @@ Refinar la propuesta de valor, convertir el bloque de enfoque en capacidades def
 4. Catálogo jerarquizado de CTAs.
 5. Especificación funcional cerrada de la home v1.
 
-La entrada operativa es `docs/portfolio-narrative-backlog.md`. Casos de estudio y blog continúan reservados para Fases 3 y 4; no se incluyen en estos sprints.
+La entrada operativa es `docs/portfolio-narrative-backlog.md`. El blog continúa reservado para Fase 4; las fichas de proyectos ya están cubiertas por `BLG-F3-CONT-01`.
 
 ---
 

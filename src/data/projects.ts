@@ -16,7 +16,13 @@ export type ProjectStatus =
   | 'mvp'
   | 'operational'
   | 'architectural-documentation';
-export type ProjectVisibility = 'private' | 'public';
+export type ProjectPageVisibility = 'public';
+export type RepositoryAvailability = 'none' | 'private' | 'public';
+
+export type ProjectRepository = {
+  label: string;
+  url: string;
+};
 
 export type PortfolioProject = {
   slug: string;
@@ -26,8 +32,9 @@ export type PortfolioProject = {
   projectType: ProjectType;
   strategicPriority: StrategicPriority;
   projectStatus: ProjectStatus;
-  visibility: ProjectVisibility;
-  repository: string | null;
+  pageVisibility: ProjectPageVisibility;
+  repositoryAvailability: RepositoryAvailability;
+  repositories: ProjectRepository[];
   demo: string | null;
   demonstrates: string[];
   rationale: string;
@@ -43,8 +50,8 @@ export type ProjectCardProject = {
   featured: boolean;
   projectStatus: ProjectStatus;
   statusLabel: string;
-  visibility: ProjectVisibility;
-  visibilityLabel: string;
+  repositoryAvailability: RepositoryAvailability;
+  repositoryAvailabilityLabel: string;
   repository: string | null;
   demo: string | null;
 };
@@ -68,14 +75,20 @@ const projectStatusLabels: Record<Locale, Record<ProjectStatus, string>> = {
   },
 };
 
-const projectVisibilityLabels: Record<Locale, Record<ProjectVisibility, string>> = {
+export function getProjectStatusLabel(locale: Locale, status: ProjectStatus) {
+  return projectStatusLabels[locale][status];
+}
+
+const repositoryAvailabilityLabels: Record<Locale, Record<RepositoryAvailability, string>> = {
   es: {
-    private: 'Proyecto privado',
-    public: 'Proyecto público',
+    none: 'Sin repositorio público',
+    private: 'Repositorio privado',
+    public: 'Repositorios públicos',
   },
   en: {
-    private: 'Private project',
-    public: 'Public project',
+    none: 'No public repository',
+    private: 'Private repository',
+    public: 'Public repositories',
   },
 };
 
@@ -88,8 +101,14 @@ const portfolioProjects: PortfolioProject[] = [
     projectType: 'educational-project',
     strategicPriority: 'medium',
     projectStatus: 'prototype',
-    visibility: 'public',
-    repository: null,
+    pageVisibility: 'public',
+    repositoryAvailability: 'public',
+    repositories: [
+      { label: 'ds-tdd-uniamazonia', url: 'https://github.com/smaje99/ds-tdd-uniamazonia' },
+      { label: 'sorting-comparator', url: 'https://github.com/smaje99/sorting-comparator' },
+      { label: 'SimuladorTDA', url: 'https://github.com/smaje99/SimuladorTDA' },
+      { label: 'Calc2', url: 'https://github.com/smaje99/Calc2' },
+    ],
     demo: null,
     demonstrates: [
       'Fundamentos de programación',
@@ -110,8 +129,9 @@ const portfolioProjects: PortfolioProject[] = [
     projectType: 'information-system',
     strategicPriority: 'high',
     projectStatus: 'in-development',
-    visibility: 'private',
-    repository: null,
+    pageVisibility: 'public',
+    repositoryAvailability: 'private',
+    repositories: [],
     demo: null,
     demonstrates: [
       'Transparencia pública',
@@ -133,8 +153,9 @@ const portfolioProjects: PortfolioProject[] = [
     projectType: 'information-system',
     strategicPriority: 'high',
     projectStatus: 'in-development',
-    visibility: 'private',
-    repository: null,
+    pageVisibility: 'public',
+    repositoryAvailability: 'private',
+    repositories: [],
     demo: null,
     demonstrates: [
       'Procesamiento documental',
@@ -146,6 +167,34 @@ const portfolioProjects: PortfolioProject[] = [
       'Representa trabajo en construcción sobre procesamiento documental y estructuración de información, manteniendo fuera datos clínicos, documentos reales y reglas propietarias.',
     narrativeStatus:
       'Sistema en desarrollo para procesamiento y estructuración de documentos clínicos.',
+  },
+  {
+    slug: 'it-services-contents-unir',
+    order: 4,
+    portfolioTier: 'secondary',
+    mvpStatus: 'included',
+    projectType: 'educational-project',
+    strategicPriority: 'medium',
+    projectStatus: 'operational',
+    pageVisibility: 'public',
+    repositoryAvailability: 'public',
+    repositories: [
+      {
+        label: 'it-services-contents-unir',
+        url: 'https://github.com/smaje99/it-services-contents-unir',
+      },
+    ],
+    demo: 'https://it-services-contents-unir.vercel.app',
+    demonstrates: [
+      'Arquitectura Astro',
+      'Componentes reutilizables',
+      'Colecciones de contenido',
+      'Despliegue web',
+    ],
+    rationale:
+      'Aporta una evidencia educativa independiente sobre cómo convertir una plantilla usada por un docente en una base web más mantenible y reutilizable.',
+    narrativeStatus:
+      'Proyecto educativo operativo para organizar contenidos y actividades de cursos.',
   },
 ];
 
@@ -239,9 +288,10 @@ function toProjectCardProject(
     featured: project.portfolioTier === 'featured',
     projectStatus: project.projectStatus,
     statusLabel: projectStatusLabels[locale][project.projectStatus],
-    visibility: project.visibility,
-    visibilityLabel: projectVisibilityLabels[locale][project.visibility],
-    repository: project.repository,
+    repositoryAvailability: project.repositoryAvailability,
+    repositoryAvailabilityLabel:
+      repositoryAvailabilityLabels[locale][project.repositoryAvailability],
+    repository: project.repositories[0]?.url ?? null,
     demo: project.demo,
   };
 }
@@ -269,6 +319,19 @@ export async function getFeaturedProjects(locale: Locale, limit = 2) {
   const projects = await getProjects(locale);
 
   return projects.filter((project) => project.featured).slice(0, limit);
+}
+
+export async function getProject(locale: Locale, slug: string) {
+  const catalog = await getEditorialCatalog();
+  const entriesBySlug = validateProjectEntries(catalog.projects);
+  const project = portfolioProjects.find((candidate) => candidate.slug === slug);
+  const editorial = entriesBySlug.get(slug)?.get(locale);
+
+  if (!project || !editorial || editorial.data.status !== 'published') {
+    throw new Error(`Published project "${slug}" is not available for locale "${locale}".`);
+  }
+
+  return { project, editorial };
 }
 
 export async function getProjectDrafts() {

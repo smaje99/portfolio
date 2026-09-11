@@ -192,14 +192,14 @@ Esta taxonomía es normativa y, tras el cierre regularizado de `BLG-F1-S01-01`, 
 
 Quedan definidos dos conjuntos con funciones distintas:
 
-* El inventario público base del MVP usa los tres proyectos actualmente visibles en `src/data/projects.ts`: `estructuras-de-datos` como evidencia secundaria, `trazalita` y `epicrisisia` como proyectos destacados en desarrollo.
+* El inventario público base del MVP usa cuatro proyectos en `src/data/projects.ts`: `estructuras-de-datos` e `it-services-contents-unir` como evidencias educativas secundarias, y `trazalita` y `epicrisisia` como proyectos destacados en desarrollo.
 * El roadmap conserva `ITA`, `Cognark`, `Media Report CLI` y el proyecto jurídico/documental como pipeline priorizado para futuros casos de estudio.
 
 Reglas para manejar esa divergencia:
 
 * Este documento sigue definiendo cómo clasificar proyectos, no el orden exacto en que se publicarán como casos de estudio.
 * Cualquier proyecto que migre del pipeline de casos de estudio al inventario público o a una ruta de detalle debe reutilizar este catálogo sin agregar estados nuevos.
-* La separación entre `inventario público base` y `pipeline de casos de estudio` evita confundir evidencia ya publicada con narrativa futura todavía no materializada.
+* La separación entre inventario, estado de madurez y disponibilidad del repositorio evita confundir una ficha pública con un producto terminado o con un repositorio necesariamente público.
 * El inventario runtime actual ya fue realineado; cualquier incorporación del pipeline debe pasar por una nueva decisión editorial y no desplazar silenciosamente los proyectos publicados.
 
 ## Impacto futuro esperado en datos e interfaces

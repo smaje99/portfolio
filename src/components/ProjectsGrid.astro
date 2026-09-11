@@ -1,6 +1,7 @@
 ---
 import type { Locale } from '@/i18n/site';
 import type { ProjectCardProject } from '@/data/projects';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
 interface Props {
   projects: ProjectCardProject[];
@@ -16,29 +17,34 @@ const { projects, locale } = Astro.props;
       <p>{project.focus}</p>
       <h3>{project.title}</h3>
       <p class="project-description">{project.description}</p>
-      <ul class="project-meta" aria-label={locale === 'es' ? 'Estado y visibilidad' : 'Status and visibility'}>
+      <ul class="project-meta" aria-label={locale === 'es' ? 'Estado y repositorio' : 'Status and repository'}>
         <li class={`project-status project-status-${project.projectStatus}`}>{project.statusLabel}</li>
-        {project.visibility === 'private' && <li class="project-visibility">{project.visibilityLabel}</li>}
+        {project.repositoryAvailability !== 'none' && (
+          <li class:list={{ 'project-repository-private': project.repositoryAvailability === 'private' }}>
+            {project.repositoryAvailabilityLabel}
+          </li>
+        )}
       </ul>
       <ul class="project-tags">
         {project.tags.map((tag) => (
           <li>{tag}</li>
         ))}
       </ul>
-      {(project.repository || project.demo) && (
-        <div class="project-actions">
-          {project.repository && (
-            <a href={project.repository} target="_blank" rel="noopener noreferrer">
-              {locale === 'es' ? 'Repositorio' : 'Repository'}
-            </a>
-          )}
-          {project.demo && (
-            <a href={project.demo} target="_blank" rel="noopener noreferrer">
-              {locale === 'es' ? 'Ver demo' : 'View demo'}
-            </a>
-          )}
-        </div>
-      )}
+      <div class="project-actions">
+        <a href={getRelativeLocaleUrl(locale, `projects/${project.slug}`)}>
+          {locale === 'es' ? 'Ver caso de estudio' : 'View case study'}
+        </a>
+        {project.repository && (
+          <a href={project.repository} target="_blank" rel="noopener noreferrer">
+            {locale === 'es' ? 'Repositorio' : 'Repository'}
+          </a>
+        )}
+        {project.demo && (
+          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+            {locale === 'es' ? 'Ver demo' : 'View demo'}
+          </a>
+        )}
+      </div>
     </article>
   ))}
 </div>
@@ -118,7 +124,7 @@ const { projects, locale } = Astro.props;
   }
 
   .project-status-in-development,
-  .project-visibility {
+  .project-repository-private {
     border-color: var(--border-primary) !important;
     background: var(--surface-primary-soft);
     color: var(--foreground) !important;

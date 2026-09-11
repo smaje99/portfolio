@@ -2128,6 +2128,22 @@ La combinación de estas tres dimensiones no permite publicar automáticamente n
 
 **Estado del Sprint 06:** `Cerrado — casos de estudio y política editorial definidos` (2026-09-11). El cierre confirma el alcance documental del sprint y no equivale a publicar nuevas rutas ni a completar la implementación runtime de los casos.
 
+### Continuidad posterior al Sprint 06
+
+#### BLG-F3-CONT-01 — Publicar fichas de proyectos y conectarlas con la landing
+
+**Objetivo:** convertir el contenido editorial bilingüe de los proyectos en fichas públicas indexables, conectadas con las tarjetas de la landing y con el catálogo completo de `/projects`.
+
+**Alcance:** integrar los cuerpos Markdown de `src/content/projects/` como fuente runtime canónica para `trazalita`, `epicrisisia`, `estructuras-de-datos` e `it-services-contents-unir`; crear rutas estáticas ES/EN `/projects/<slug>` y `/en/projects/<slug>`; mantener dos destacados en la landing y cuatro proyectos en el catálogo; separar visibilidad pública, estado de madurez y disponibilidad del repositorio; publicar solo repositorios/demos públicos; y validar paridad ES/EN, estado `published`, cuerpos no vacíos, coincidencia de catálogos, URLs públicas, ausencia de secretos y slugs coherentes.
+
+**Fuentes y límites:** la matriz de insumos, las fichas documentales y la evidencia pública de repositorios/demos. `docs/case-studies/` se conserva como soporte histórico y no como fuente runtime. El blog continúa reservado para Fase 4.
+
+**Criterios de aceptación:** los cuatro proyectos tienen fichas ES/EN visibles; la landing enlaza los dos destacados y `/projects` enlaza los cuatro; TrazalITA y EpicrisisIA conservan `in-development`, estructuras de datos conserva `prototype` e `it-services-contents-unir` conserva `operational`; las fichas son indexables y no contienen URLs privadas, previews, drafts ni rutas Keystatic; pasan `pnpm cms:check`, `pnpm lint`, `pnpm build` y `git diff --check`.
+
+**Tipo de ejecución:** Codex con supervisión.
+
+**Estado del WI:** `Implementado — fichas públicas bilingües integradas` (2026-09-11).
+
 ---
 
 ## Fase 4 — Blog gestionado con Keystatic e integrado con Medium

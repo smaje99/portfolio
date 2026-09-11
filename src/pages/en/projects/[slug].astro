@@ -1,0 +1,20 @@
+---
+import ProjectDetailPage from '@/components/ProjectDetailPage.astro';
+import { getPortfolioProjects, getProject } from '@/data/projects';
+
+export function getStaticPaths() {
+  return getPortfolioProjects().map((project) => ({
+    params: { slug: project.slug },
+  }));
+}
+
+const slug = Astro.params.slug;
+
+if (!slug) {
+  throw new Error('Project slug is required.');
+}
+
+const { project, editorial } = await getProject('en', slug);
+---
+
+<ProjectDetailPage locale="en" project={project} editorial={editorial} />

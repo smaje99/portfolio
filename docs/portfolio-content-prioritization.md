@@ -10,7 +10,7 @@
 
 Esta matriz define qué contenido público sostiene el MVP del portfolio, qué contenido puede esperar sin debilitar su propósito consultivo y qué piezas no deben promocionarse hasta contar con evidencia, decisión o insumos suficientes.
 
-No redacta copy final, no modifica rutas ni componentes y no convierte nodos reservados en cobertura pública. Su función es alimentar `BLG-F1-S02-03`, la implementación narrativa de Fase 2 y la preparación de Fases 3 a 6.
+La matriz se conserva como documento de priorización histórica y se complementa con la continuidad `BLG-F3-CONT-01`, que convirtió las fichas de proyectos en cobertura pública. El blog permanece reservado.
 
 ## Reglas de priorización
 
@@ -25,7 +25,7 @@ Reglas complementarias:
 
 1. Una afirmación visible sobre proyectos, experiencia, CV o perfiles externos puede seguir siendo `critico` cuando solo necesite confirmar exactitud, vigencia o coherencia. Esa validación se registra como dependencia manual, no como bloqueo.
 2. Ninguna pieza puede clasificarse como `critico` si no tiene una sección pública concreta, propósito, fuente/evidencia y relación con el roadmap.
-3. Los nodos reservados del sitemap —blog y casos de estudio— no se incluyen en navegación ni se describen como funcionalidad publicada hasta que su fase entregue contenido y soporte técnico.
+3. El blog continúa reservado; las fichas de proyectos dejaron de ser un nodo reservado al cerrar `BLG-F3-CONT-01` y se describen únicamente con el contenido publicado y verificable de cada proyecto.
 4. Toda pieza pública `critico` o `importante` debe preservar equivalencia semántica entre español e inglés. La traducción puede adaptarse editorialmente, pero no exagerar madurez ni alcance.
 
 ## Estados de madurez usados
@@ -50,7 +50,7 @@ Reglas complementarias:
 | Perfil profundo y principios de trabajo | Explicar criterio profesional en `/about` y `/en/about` sin depender solo del hero. | `importante` / `parcial` | `aboutSection` en `src/i18n/site.ts` y `AboutPage.astro`; **ampliar** después de cerrar mensaje y coherencia externa. | Requiere voz personal y consistencia con propuesta de valor, experiencia y perfiles. | `Mixto` | O1-KR2, O1-KR3; `BLG-F2-S04-01`. |
 | Formación aplicada y credenciales | Aportar sustento de aprendizaje y capacidades en perfil, sin sustituir evidencia de proyectos. | `importante` / `parcial` | `learningSection`, `LearningEvidence.astro` y `src/data/credentials.ts`; **conservar** y afinar su relación con capacidades. | Validar que cada credencial sea vigente y que no infle capacidad sin evidencia aplicada. | `Mixto` | O1-KR2, O1-KR4; `BLG-F2-S03-02`, `BLG-F2-S04-01`. |
 | Proyecto educativo de estructuras de datos | Mantener evidencia secundaria de fundamentos dentro de `/projects` y `/en/projects`. | `importante` / `existente con validación` | Registro `estructuras-de-datos` en `src/data/projects.ts`; **conservar** en segundo plano. | Confirmar que su presentación académica no compita con los sistemas principales ni se presente como producto operativo. | `Mixto` | O2-KR3, O2-KR4; `BLG-F3-S05-01`, `BLG-F3-S06-03`. |
-| Capacidad de casos de estudio | Reservar profundidad técnica futura asociada a proyectos, sin ruta ni enlace público en v1. | `posterior` / `reservado` | Nodo reservado en `docs/portfolio-mvp-sitemap.md` y plantilla en `docs/case-study-template.md`; **diferir** la publicación. | Requiere captura de fuentes, selección de casos y artefacto estructurado distinto de la tarjeta actual. | `Codex con supervisión` | O2-KR1, O2-KR2; `BLG-F3-S05-03`, `BLG-F3-S06-01`. |
+| Capacidad de casos de estudio | Dar profundidad técnica pública asociada a proyectos en cuatro fichas bilingües. | `critico` / `implementado` | Cuerpos Markdown en `src/content/projects/`, rutas dinámicas y `ProjectDetailPage.astro`; **publicar** con límites proporcionales a la evidencia. | Paridad ES/EN, estado `published`, rutas estáticas, metadata indexable y ausencia de URLs privadas. | `Codex con supervisión` | O2-KR1, O2-KR2; `BLG-F3-CONT-01`. |
 | Blog y autoridad técnica | Reservar una superficie editorial futura que refuerce arquitectura, procesos, datos, desarrollo e IA aplicada. | `posterior` / `reservado` | No hay rutas, colección, tarjetas ni integración; **diferir**. | Debe cerrar primero la integración, arquitectura de información y backlog editorial. | `Codex con supervisión` | O3-KR1 a KR4; `BLG-F4-S07-01`, `BLG-F4-S07-02`, `BLG-F4-S07-03`. |
 | Footer profesional | Completar navegación secundaria, identidad y contacto global. | `posterior` / `reservado` | No existe componente global; **diferir**. | Su función y contenido se definen en Fase 5, sin duplicar el contacto del MVP. | `Codex con supervisión` | O4-KR1, O4-KR4; `BLG-F5-S09-03`. |
 | Analytics e instrumentación | Medir visitas o conversiones mínimas tras definir la señal de valor. | `posterior` / `reservado` | No hay instrumentación observable; **diferir**. | Requiere decisión proporcional de métricas, privacidad e integración. | `Mixto` | O4-KR5; `BLG-F5-S09-02`. |

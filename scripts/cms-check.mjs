@@ -75,6 +75,71 @@ function assertNoSecrets(file, source) {
   }
 }
 
+function assertPublicUrl(file, value) {
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    fail(`${file} contains an invalid URL: ${value}`);
+  }
+
+  if (!['http:', 'https:'].includes(url.protocol)) {
+    fail(`${file} contains a URL that does not use http or https: ${value}`);
+  }
+
+  const hostname = url.hostname.toLowerCase();
+  const isPrivateIp =
+    hostname === 'localhost' ||
+    hostname === '127.0.0.1' ||
+    hostname === '0.0.0.0' ||
+    hostname.endsWith('.local') ||
+    /^10\./.test(hostname) ||
+    /^192\.168\./.test(hostname) ||
+    /^172\.(1[6-9]|2\d|3[0-1])\./.test(hostname);
+
+  if (isPrivateIp || /private|internal|secret/i.test(url.href)) {
+    fail(`${file} contains a private or internal URL: ${value}`);
+  }
+}
+
+function assertPublicUrls(file, source) {
+  for (const value of source.match(/https?:\/\/[^\s)\]}>'"]+/g) ?? []) {
+    assertPublicUrl(file, value.replace(/[.,;:]+$/, ''));
+  }
+}
+
+function strategicProjectSlugs() {
+  const source = readFileSync(join(root, 'src', 'data', 'projects.ts'), 'utf8');
+  return [...source.matchAll(/^\s+slug:\s+'([^']+)'/gm)].map((match) => match[1]);
+}
+
+function assertStrategicCatalog(projectEntries) {
+  const strategicSlugs = strategicProjectSlugs();
+  const editorialSlugs = [...new Set(
+    projectEntries.map((entry) => entry.data.slug.replace(/\.(?:es|en)$/, '')),
+  )];
+
+  if (strategicSlugs.length !== new Set(strategicSlugs).size) {
+    fail('src/data/projects.ts contains duplicate strategic project slugs.');
+  }
+
+  if (
+    strategicSlugs.length !== editorialSlugs.length ||
+    strategicSlugs.some((slug) => !editorialSlugs.includes(slug))
+  ) {
+    fail(`strategic project catalog does not match CMS projects: strategic=${strategicSlugs.join(',')}; editorial=${editorialSlugs.join(',')}.`);
+  }
+
+  for (const slug of strategicSlugs) {
+    if (!existsSync(join(root, 'src', 'pages', 'projects', '[slug].astro'))) {
+      fail(`missing Spanish project detail route for "${slug}".`);
+    }
+    if (!existsSync(join(root, 'src', 'pages', 'en', 'projects', '[slug].astro'))) {
+      fail(`missing English project detail route for "${slug}".`);
+    }
+  }
+}
+
 function assertStaticArtifact() {
   const distRoot = join(root, 'dist');
   const distFiles = allFilesIn(distRoot);
@@ -106,6 +171,41 @@ function assertStaticArtifact() {
       fail(`${file} is missing the smaje.com.co canonical URL.`);
     }
     assertNoSecrets(file, source);
+    assertPublicUrls(file, source);
+  }
+
+  const expectedPages = [
+    'projects/estructuras-de-datos/index.html',
+    'projects/trazalita/index.html',
+    'projects/epicrisisia/index.html',
+    'projects/it-services-contents-unir/index.html',
+    'en/projects/estructuras-de-datos/index.html',
+    'en/projects/trazalita/index.html',
+    'en/projects/epicrisisia/index.html',
+    'en/projects/it-services-contents-unir/index.html',
+  ];
+
+  for (const expectedPage of expectedPages) {
+    if (!existsSync(join(distRoot, expectedPage))) {
+      fail(`static build is missing expected project page: ${expectedPage}.`);
+    }
+  }
+
+  const structuresPage = readFileSync(join(distRoot, 'projects', 'estructuras-de-datos', 'index.html'), 'utf8');
+  const unirPage = readFileSync(join(distRoot, 'projects', 'it-services-contents-unir', 'index.html'), 'utf8');
+  for (const url of [
+    'https://github.com/smaje99/ds-tdd-uniamazonia',
+    'https://github.com/smaje99/sorting-comparator',
+    'https://github.com/smaje99/SimuladorTDA',
+    'https://github.com/smaje99/Calc2',
+  ]) {
+    if (!structuresPage.includes(url)) fail(`structures detail page is missing public repository ${url}.`);
+  }
+  for (const url of [
+    'https://github.com/smaje99/it-services-contents-unir',
+    'https://it-services-contents-unir.vercel.app',
+  ]) {
+    if (!unirPage.includes(url)) fail(`UNIR detail page is missing public evidence URL ${url}.`);
   }
 }
 
@@ -146,10 +246,14 @@ for (const collection of collections) {
       fail(`${file} is a published Medium reference without externalUrl.`);
     }
     assertNoSecrets(file, source);
+    assertPublicUrls(file, source);
 
-    entries.push({ collection, file, data });
+    entries.push({ collection, file, data, source });
   }
 }
+
+const projectEntries = entries.filter((entry) => entry.collection === 'projects');
+assertStrategicCatalog(projectEntries);
 
 const draftSlugs = new Map();
 for (const entry of entries) {
@@ -176,6 +280,15 @@ for (const collection of ['projects', 'experiences']) {
       if (!localesForSlug.has(locale)) fail(`${collection} entry "${slug}" is missing ${locale}.`);
     }
   }
+}
+
+for (const entry of projectEntries) {
+  if (entry.data.status !== 'published') {
+    fail(`${entry.file} must be published to be part of the public project catalog.`);
+  }
+
+  const body = entry.source.replace(/^---\n[\s\S]*?\n---\s*/, '').trim();
+  if (!body) fail(`${entry.file} must contain a non-empty editorial body.`);
 }
 
 execFileSync('git', ['diff', '--check'], { cwd: root, stdio: 'inherit' });
