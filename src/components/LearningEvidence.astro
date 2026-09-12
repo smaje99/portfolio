@@ -1,6 +1,7 @@
 ---
 import type { credentialsByLocale } from '@/data/credentials';
 import type { getHomeCopy } from '@/i18n/site';
+import { personalLinks } from '@/i18n/site';
 
 type Credentials = (typeof credentialsByLocale)[keyof typeof credentialsByLocale];
 
@@ -73,7 +74,7 @@ const [thesisStart, thesisEnd] = credentials.thesis.split(credentials.thesisEmph
         </div>
       </div>
 
-      <a href="https://www.linkedin.com/in/smaje/" class="linkedin-link">
+      <a href={personalLinks.linkedin} class="linkedin-link">
         {copy.linkedinLabel}
       </a>
     </aside>

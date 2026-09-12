@@ -13,7 +13,7 @@ import { getExperiences } from '@/data/experiences';
 import GitHubIcon from '@/icons/GitHubIcon.astro';
 import LinkedInIcon from '@/icons/LinkedInIcon.astro';
 import MailIcon from '@/icons/MailIcon.astro';
-import type { Locale } from '@/i18n/site';
+import { getResumePath, personalLinks, type Locale } from '@/i18n/site';
 import { getPageContext } from '@/utils/page';
 
 interface Props {
@@ -28,7 +28,7 @@ const featuredProjects = await getFeaturedProjects(locale);
 const recentExperiences = experiences.slice(0, 2);
 const projectsPath = getRelativeLocaleUrl(locale, 'projects');
 const experiencePath = getRelativeLocaleUrl(locale, 'experience');
-const resumePath = `/docs/curriculum-vitae-sergio-maje.${locale}.pdf`;
+const resumePath = getResumePath(locale);
 const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
 ---
 
@@ -107,15 +107,15 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
         </div>
 
         <div class="hero-contact-links" aria-label={copy.socials.contact}>
-          <SocialPill href="https://www.linkedin.com/in/smaje/">
+          <SocialPill href={personalLinks.linkedin}>
             <LinkedInIcon />
             {copy.socials.linkedin}
           </SocialPill>
-          <SocialPill href="https://github.com/smaje99">
+          <SocialPill href={personalLinks.github}>
             <GitHubIcon />
             {copy.socials.github}
           </SocialPill>
-          <SocialPill href="mailto:smajefranco@gmail.com">
+          <SocialPill href={`mailto:${personalLinks.email}`}>
             <MailIcon />
             {copy.socials.contact}
           </SocialPill>

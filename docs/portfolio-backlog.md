@@ -2232,40 +2232,50 @@ La combinación de estas tres dimensiones no permite publicar automáticamente n
 ### Sprint 09
 
 #### BLG-F5-S09-01 — Definir backlog de confianza técnica del MVP
-**Objetivo:** consolidar todos los pendientes técnicos de cierre que afectan percepción profesional.  
-**Descripción:** esta fase agrupa piezas que no son el núcleo narrativo, pero sí son necesarias para un producto serio y enviable.  
+**Objetivo:** consolidar todos los pendientes técnicos de cierre que afectan percepción profesional.
+**Descripción:** esta fase agrupa piezas que no son el núcleo narrativo, pero sí son necesarias para un producto serio y enviable.
 **Actividades:**
 * Consolidar pendientes: analytics, 404, footer, enlaces, SEO complementario, revisión de accesibilidad.
 * Priorizar por impacto y dependencia.
 * Señalar cuáles pueden resolverse solo con código y cuáles requieren acciones externas.
-**Entregable esperado:** backlog priorizado de confianza técnica.  
-**Dependencias:** estado real del proyecto y roadmap.  
-**Tipo de ejecución:** Codex con supervisión  
+**Entregable esperado:** backlog priorizado de confianza técnica.
+**Dependencias:** estado real del proyecto y roadmap.
+**Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** la lista debe cubrir todo lo necesario para que el sitio se perciba como producto cuidado.
 
 #### BLG-F5-S09-02 — Definir requerimientos de analytics e instrumentación mínima
-**Objetivo:** establecer qué medir y con qué nivel de complejidad.  
-**Descripción:** no basta con “tener analytics”; debe quedar definido qué señales importan para este portfolio.  
+**Objetivo:** establecer qué medir y con qué nivel de complejidad.
+**Descripción:** no basta con “tener analytics”; debe quedar definido qué señales importan para este portfolio.
 **Actividades:**
 * Definir eventos o métricas mínimas: visitas, clics en CV, clics de contacto, clics a proyectos.
 * Evaluar si la implementación depende de una cuenta externa.
 * Definir criterio de privacidad y simplicidad para el MVP.
-**Entregable esperado:** especificación mínima de analytics del portfolio.  
-**Dependencias:** backlog de confianza técnica.  
-**Tipo de ejecución:** Mixto  
+**Entregable esperado:** especificación mínima de analytics del portfolio.
+**Dependencias:** backlog de confianza técnica.
+**Tipo de ejecución:** Mixto
 **Notas de validación:** la medición debe responder al objetivo consultivo del sitio y no ser una integración arbitraria.
 
 #### BLG-F5-S09-03 — Definir contenido y función del footer profesional
-**Objetivo:** especificar el footer como pieza de cierre informativo y de confianza.  
-**Descripción:** el footer debe apoyar navegación, identidad y contacto sin redundancia.  
+**Objetivo:** especificar el footer como pieza de cierre informativo y de confianza.
+**Descripción:** el footer debe apoyar navegación, identidad y contacto sin redundancia.
 **Actividades:**
 * Definir elementos mínimos del footer.
 * Determinar si incluirá navegación secundaria, datos de contacto, derechos, o enlaces estratégicos.
 * Relacionar el footer con accesibilidad y cierre visual.
-**Entregable esperado:** especificación funcional del footer.  
-**Dependencias:** sitemap funcional del MVP.  
-**Tipo de ejecución:** Codex con supervisión  
+**Entregable esperado:** especificación funcional del footer.
+**Dependencias:** sitemap funcional del MVP.
+**Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** el footer no debe ser un relleno decorativo; debe tener una función real.
+
+### Cierre del Sprint 09
+
+Los tres WI del sprint quedaron cerrados con documentación y cambios verificables:
+
+* `BLG-F5-S09-01` — `Cerrado`: se creó [`docs/portfolio-technical-trust-backlog.md`](./portfolio-technical-trust-backlog.md) con prioridades, dependencias, responsables y separación entre código y acciones externas. La 404 y el SEO complementario quedan diferidos al Sprint 10.
+* `BLG-F5-S09-02` — `Cerrado`: se creó [`docs/portfolio-analytics-requirements.md`](./portfolio-analytics-requirements.md). La decisión explícita es no implementar analytics en este sprint; se documentaron métricas futuras y condiciones de privacidad para una eventual reapertura.
+* `BLG-F5-S09-03` — `Cerrado`: se creó [`docs/professional-footer-spec.md`](./professional-footer-spec.md) y se implementó `src/components/Footer.astro` desde `src/layouts/Layout.astro`, con paridad ES/EN, navegación reutilizada, contacto, CV localizado y criterios de accesibilidad.
+
+La implementación centraliza las URLs personales y la ruta del CV en `src/i18n/site.ts`. No se modificaron las páginas, el contenido ni la integración del blog; tampoco se añadieron scripts, cookies, variables de entorno o llamadas de analytics.
 
 ### Sprint 10
 
@@ -2422,15 +2432,15 @@ diferidos y no deben rellenarse con supuestos.
 * Definir decisión técnica de integración con Medium.
 * Especificar arquitectura de información del blog.
 * Preparar backlog editorial inicial.
-* Definir backlog de confianza técnica del MVP.
-* Especificar analytics, footer y 404.
+* Resolver la 404 y el SEO complementario en Sprint 10.
+* Ejecutar la revisión externa y el checklist pre-lanzamiento en los sprints de lanzamiento.
 
 ### Dependencias externas
 
 * Compra y configuración de `henkoconsulting.com.co` en Cloudflare, manteniendo `smaje.com.co` como dominio independiente del portfolio.
 * Contratación y provisión del Contabo Cloud VPS 4 Core en USA-East, incluyendo Ubuntu LTS, Docker, Caddy, firewall, Auto Backup, snapshot y subdominios.
 * Configuración de Zoho Mail para Henko; el portfolio continúa usando `smajefranco@gmail.com`.
-* Accesos o cuentas necesarias para Medium y analytics, si aplican.
+* Accesos o cuentas necesarias para Medium; analytics no se activa en Sprint 09 y solo se reabre mediante una decisión futura documentada.
 * Validación externa con revisores reales.
 * Ajustes de narrativa en GitHub y LinkedIn fuera del repositorio.
 * Activación del despliegue manual desde `main` mediante rsync/SSH y configuración de sus credenciales fuera del repositorio.

@@ -4,6 +4,7 @@ import "normalize.css";
 import "@/styles/global.css";
 
 import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
 import type { Locale } from "@/i18n/site";
 
 interface Props {
@@ -93,6 +94,13 @@ const resolveHref = (href: string) => {
       languageSwitcherLocale={languageSwitcherLocale}
     />
     <slot />
+    <Footer
+      locale={lang}
+      brandName={brandName}
+      homeHref={homeHref}
+      homeLinkLabel={homeLinkLabel}
+      navigation={navigation}
+    />
   </body>
 </html>
 

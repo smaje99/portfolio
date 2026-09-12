@@ -78,6 +78,14 @@ type BlogSection = {
   mediumLabel: string;
 };
 
+export type FooterCopy = {
+  navigationLabel: string;
+  contactLabel: string;
+  resumeLabel: string;
+  resumeDescription: string;
+  copyright: string;
+};
+
 type HomeCopy = {
   title: string;
   description: string;
@@ -120,7 +128,18 @@ type HomeCopy = {
   henkoSection: HenkoSection;
   blogSection: BlogSection;
   experienceLabels: ExperienceLabels;
+  footer: FooterCopy;
 };
+
+export const personalLinks = {
+  linkedin: 'https://www.linkedin.com/in/smaje/',
+  github: 'https://github.com/smaje99',
+  email: 'smajefranco@gmail.com',
+} as const;
+
+export function getResumePath(locale: Locale) {
+  return `/docs/curriculum-vitae-sergio-maje.${locale}.pdf`;
+}
 
 const homeCopy: Record<Locale, HomeCopy> = {
   es: {
@@ -298,6 +317,13 @@ const homeCopy: Record<Locale, HomeCopy> = {
       current: 'Actual',
       present: 'Actualidad',
     },
+    footer: {
+      navigationLabel: 'Navegación',
+      contactLabel: 'Contacto',
+      resumeLabel: 'Descargar CV',
+      resumeDescription: 'Perfil profesional en PDF',
+      copyright: 'Todos los derechos reservados.',
+    },
   },
   en: {
     title: 'Sergio Andrés Majé Franco | Software Developer',
@@ -474,6 +500,13 @@ const homeCopy: Record<Locale, HomeCopy> = {
     experienceLabels: {
       current: 'Current',
       present: 'Present',
+    },
+    footer: {
+      navigationLabel: 'Navigation',
+      contactLabel: 'Contact',
+      resumeLabel: 'Download resume',
+      resumeDescription: 'Professional profile in PDF',
+      copyright: 'All rights reserved.',
     },
   },
 };

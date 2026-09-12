@@ -1,0 +1,251 @@
+---
+import type { Locale } from '@/i18n/site';
+import { getHomeCopy, getResumePath, personalLinks } from '@/i18n/site';
+
+interface Props {
+  locale: Locale;
+  brandName: string;
+  homeHref: string;
+  homeLinkLabel: string;
+  navigation: { label: string; href: string }[];
+}
+
+const { locale, brandName, homeHref, homeLinkLabel, navigation } = Astro.props;
+const copy = getHomeCopy(locale);
+const resumeHref = getResumePath(locale);
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-identity">
+      <a class="footer-brand" href={homeHref} aria-label={`${brandName} · ${homeLinkLabel}`}>
+        <img src="/brand.svg" alt="" aria-hidden="true" width="40" height="40" />
+        <span>{brandName}</span>
+      </a>
+      <p>{copy.description}</p>
+    </div>
+
+    <nav class="footer-navigation" aria-labelledby="footer-navigation-title">
+      <h2 id="footer-navigation-title">{copy.footer.navigationLabel}</h2>
+      <ul>
+        {navigation.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer-contact">
+      <h2>{copy.footer.contactLabel}</h2>
+      <ul class="footer-links">
+        <li>
+          <a href={personalLinks.linkedin} target="_blank" rel="noopener noreferrer">
+            {copy.socials.linkedin}
+          </a>
+        </li>
+        <li>
+          <a href={personalLinks.github} target="_blank" rel="noopener noreferrer">
+            {copy.socials.github}
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${personalLinks.email}`}>{personalLinks.email}</a>
+        </li>
+      </ul>
+      <a class="footer-resume" href={resumeHref} download>
+        <span>{copy.footer.resumeLabel}</span>
+        <small>{copy.footer.resumeDescription}</small>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {currentYear} {brandName}. {copy.footer.copyright}</p>
+    <span aria-hidden="true">ES · EN</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    width: min(1100px, calc(100% - 2rem));
+    margin: auto;
+    padding: 2rem 0 2.5rem;
+    color: var(--secondary-foreground);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(8rem, 0.8fr) minmax(12rem, 1fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .footer-identity,
+  .footer-navigation,
+  .footer-contact {
+    display: grid;
+    align-content: start;
+    gap: 0.85rem;
+  }
+
+  .footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: fit-content;
+    color: var(--foreground);
+    font-size: 1.08rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    transition: color 180ms ease, transform 180ms ease;
+  }
+
+  .footer-brand img {
+    width: 2.5rem;
+    height: 2.5rem;
+    filter: drop-shadow(0 0 1rem var(--glow-primary-soft));
+  }
+
+  .footer-brand:hover,
+  .footer-brand:focus-visible {
+    color: var(--brand-lime-soft);
+    transform: translateY(-1px);
+  }
+
+  .footer-brand:focus-visible,
+  .footer-navigation a:focus-visible,
+  .footer-contact a:focus-visible {
+    outline: 2px solid var(--focus-outline);
+    outline-offset: 4px;
+    border-radius: 0.35rem;
+  }
+
+  .footer-identity p {
+    max-width: 28rem;
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .footer-navigation h2,
+  .footer-contact h2 {
+    margin: 0;
+    color: var(--brand-aqua);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .footer-navigation ul,
+  .footer-links {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer-navigation a,
+  .footer-links a {
+    display: inline-flex;
+    min-height: 1.75rem;
+    align-items: center;
+    width: fit-content;
+    color: var(--secondary-foreground);
+    font-size: 0.92rem;
+    text-underline-offset: 0.2em;
+    transition: color 180ms ease, transform 180ms ease;
+  }
+
+  .footer-navigation a:hover,
+  .footer-navigation a:focus-visible,
+  .footer-links a:hover,
+  .footer-links a:focus-visible {
+    color: var(--brand-lime-soft);
+    transform: translateX(0.15rem);
+  }
+
+  .footer-resume {
+    display: grid;
+    gap: 0.15rem;
+    width: fit-content;
+    margin-top: 0.35rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.8rem;
+    background: var(--surface-primary-soft);
+    color: var(--primary);
+    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+  }
+
+  .footer-resume:hover,
+  .footer-resume:focus-visible {
+    border-color: var(--border-primary-strong);
+    background: var(--surface-primary);
+    color: var(--foreground);
+    transform: translateY(-1px);
+  }
+
+  .footer-resume span {
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+
+  .footer-resume small {
+    color: var(--muted-foreground);
+    font-size: 0.76rem;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-faint);
+    color: var(--muted-foreground);
+    font-size: 0.78rem;
+  }
+
+  .footer-bottom p {
+    margin: 0;
+  }
+
+  .footer-bottom span {
+    color: var(--brand-aqua);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  @media (width <= 720px) {
+    .site-footer {
+      width: min(100%, calc(100% - 1rem));
+      padding-bottom: 1.5rem;
+    }
+
+    .footer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem 1.25rem;
+    }
+
+    .footer-identity {
+      grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-brand,
+    .footer-navigation a,
+    .footer-contact a,
+    .footer-resume {
+      transition: none;
+    }
+  }
+</style>
