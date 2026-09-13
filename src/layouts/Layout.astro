@@ -49,6 +49,8 @@ const resolveHref = (href: string) => {
   if (!Astro.site) return href;
   return new URL(href, Astro.site).toString();
 };
+
+const rssHref = Astro.site ? new URL('rss.xml', Astro.site).toString() : '/rss.xml';
 ---
 
 <!doctype html>
@@ -61,6 +63,12 @@ const resolveHref = (href: string) => {
     <meta name="generator" content={Astro.generator} />
     <meta name="robots" content={robots} />
     <link rel="canonical" href={resolveHref(canonicalPath)} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={lang === 'es' ? 'RSS del blog de Sergio Majé' : 'Sergio Majé blog RSS'}
+      href={rssHref}
+    />
     {alternates.map((alternate) => (
       <link
         rel="alternate"

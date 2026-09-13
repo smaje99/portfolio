@@ -289,10 +289,18 @@ function assertStaticArtifact() {
     fail('the static build must produce dist/ with at least one HTML page.');
   }
 
-  for (const artifact of ['404.html', 'robots.txt', 'sitemap.xml']) {
+  for (const artifact of ['404.html', 'robots.txt', 'sitemap.xml', 'rss.xml']) {
     if (!existsSync(join(distRoot, artifact))) {
       fail(`static build is missing required artifact: dist/${artifact}.`);
     }
+  }
+
+  const rss = readFileSync(join(distRoot, 'rss.xml'), 'utf8');
+  if (!/^<\?xml version="1\.0" encoding="UTF-8"\?>\s*<rss version="2\.0">[\s\S]*<\/rss>\s*$/.test(rss)) {
+    fail('dist/rss.xml is not a well-formed RSS 2.0 document.');
+  }
+  if (/\/draft\/|\/keystatic\//i.test(rss)) {
+    fail('dist/rss.xml exposes a private or preview route.');
   }
 
   const robots = readFileSync(join(distRoot, 'robots.txt'), 'utf8');
@@ -331,7 +339,7 @@ function assertStaticArtifact() {
       if (!/<meta\s+name="robots"\s+content="noindex,nofollow,noarchive"/i.test(source)) {
         fail(`${file} must use noindex,nofollow,noarchive.`);
       }
-      if (source.match(/<link\s+rel="alternate"/g)?.length) {
+      if (source.match(/<link\s+rel="alternate"\s+hreflang=/g)?.length) {
         fail(`${file} must not expose hreflang alternates.`);
       }
     } else if (!/<meta\s+name="robots"\s+content="index,follow"/i.test(source)) {

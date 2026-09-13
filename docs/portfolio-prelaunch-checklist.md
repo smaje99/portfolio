@@ -5,7 +5,7 @@ Usar esta lista antes de publicar cambios relevantes. Cada bloque distingue entr
 | Bloque | Verificación | Responsable |
 | --- | --- | --- |
 | Build y código | Ejecutar `pnpm cms:check`, `pnpm lint`, `pnpm build` y `git diff --check`; confirmar que no hay secretos ni errores de formato. | Técnico |
-| SEO y rastreo | Revisar title, description, canonical, alternates, Open Graph y Twitter en las páginas públicas; confirmar `robots.txt`, sitemap y exclusión de drafts, Keystatic y 404. | Técnico |
+| SEO y rastreo | Revisar title, description, canonical, alternates, Open Graph y Twitter en las páginas públicas; confirmar `robots.txt`, sitemap, RSS y exclusión de drafts, Keystatic y 404. | Técnico |
 | Rutas públicas | Abrir `/`, `/about`, `/projects`, `/experience`, `/blog` y sus equivalentes `/en/...`; abrir las ocho fichas de proyectos y confirmar que responden. | Técnico + manual |
 | Navegación bilingüe | Recorrer header, footer, selector ES/EN, enlaces de inicio, proyectos, experiencia, blog y contacto; confirmar que no haya enlaces rotos ni cambios de idioma incorrectos. | Manual |
 | 404 | En `pnpm preview`, visitar una ruta inexistente; comprobar copy bilingüe, único `h1`, recuperación a home/proyectos/contacto, foco visible y ausencia de indexación. | Técnico + manual |

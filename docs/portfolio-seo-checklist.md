@@ -8,8 +8,9 @@ Sprint 10 añade los artefactos de rastreo y cierre técnico:
 
 - `GET /robots.txt` permite el sitio público, bloquea `/draft/` y `/keystatic/`, y declara el sitemap.
 - `GET /sitemap.xml` incluye páginas principales, fichas de proyectos publicadas, índices `/blog` y `/en/blog`, y artículos locales con estado `published`.
+- `GET /rss.xml` publica únicamente artículos locales con estado `published` y se anuncia mediante autodetección RSS en el `<head>`.
 - `GET /404.html` es una salida global bilingüe con `noindex,nofollow,noarchive`; no es una página localizada ni aparece en el sitemap.
-- No se añadieron JSON-LD, una imagen social nueva, cookies, analytics ni dependencias.
+- No se añadieron JSON-LD, una imagen social nueva, cookies ni analytics.
 
 ## Reglas de metadata
 
@@ -47,7 +48,7 @@ pnpm build
 git diff --check
 ```
 
-`pnpm cms:check` construye el sitio y verifica `dist/404.html`, `dist/robots.txt`, `dist/sitemap.xml`, la forma básica del XML, rutas públicas, exclusiones, metadata obligatoria, la directiva de la 404 y la referencia al sitemap.
+`pnpm cms:check` construye el sitio y verifica `dist/404.html`, `dist/robots.txt`, `dist/sitemap.xml`, `dist/rss.xml`, la forma básica de los documentos XML, rutas públicas, exclusiones, metadata obligatoria, la directiva de la 404 y la referencia al sitemap.
 
 Para una revisión manual, ejecutar `pnpm preview` y comprobar una ruta inexistente, navegación ES/EN, foco visible, enlaces sociales, correo y descarga del CV. Revisar el XML con un validador externo antes de una publicación real si el proveedor lo requiere.
 
