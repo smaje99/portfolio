@@ -299,7 +299,7 @@ function assertStaticArtifact() {
   for (const directive of ['User-agent: *', 'Allow: /', 'Disallow: /draft/', 'Disallow: /keystatic/']) {
     if (!robots.includes(directive)) fail(`dist/robots.txt is missing directive: ${directive}.`);
   }
-  if (!robots.includes('Sitemap: https://smaje.com.co/sitemap.xml')) {
+  if (!/^Sitemap:\s+https:\/\/smaje\.com\.co\/sitemap\.xml\s*$/m.test(robots)) {
     fail('dist/robots.txt does not reference the canonical sitemap.');
   }
 
