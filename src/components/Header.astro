@@ -1,11 +1,13 @@
 ---
 import MobileNavigation from '@/components/MobileNavigation';
 
+type NavigationItem = { label: string; href: string };
+
 interface Props {
   brandName: string;
   homeHref: string;
   homeLinkLabel: string;
-  navigation: { label: string; href: string }[];
+  navigation: NavigationItem[];
   menuLabel: string;
   closeMenuLabel: string;
   languageSwitcherLabel: string;
@@ -43,7 +45,7 @@ const {
   </a>
 
   <nav class="nav desktop-nav" aria-label={menuLabel}>
-    {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    {navigation.map((item: NavigationItem) => <a href={item.href}>{item.label}</a>)}
     <a
       class="language-switcher"
       href={languageSwitcherHref}
