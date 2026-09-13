@@ -1,0 +1,230 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import BasePage from '@/components/BasePage.astro';
+import SectionContainer from '@/components/SectionContainer.astro';
+import { getHomeCopy } from '@/i18n/site';
+
+const spanishCopy = getHomeCopy('es');
+const englishCopy = getHomeCopy('en');
+const spanishRoutes = {
+  home: getRelativeLocaleUrl('es', ''),
+  projects: getRelativeLocaleUrl('es', 'projects'),
+  contact: `${getRelativeLocaleUrl('es', '')}#contact`,
+};
+const englishRoutes = {
+  home: getRelativeLocaleUrl('en', ''),
+  projects: getRelativeLocaleUrl('en', 'projects'),
+  contact: `${getRelativeLocaleUrl('en', '')}#contact`,
+};
+---
+
+<BasePage
+  locale="es"
+  title={`${spanishCopy.notFound.title} | ${spanishCopy.brandName}`}
+  description={spanishCopy.notFound.description}
+  canonicalPathOverride="/404"
+  alternatesOverride={[]}
+  robots="noindex,nofollow,noarchive"
+  mainId="not-found"
+  mainClass="not-found-page"
+>
+  <SectionContainer>
+    <section class="not-found-panel" aria-labelledby="not-found-title">
+      <div class="not-found-signal" aria-hidden="true">
+        <span>404</span>
+        <i></i>
+      </div>
+
+      <div class="not-found-copy">
+        <p class="not-found-eyebrow">{spanishCopy.notFound.title} · {englishCopy.notFound.title}</p>
+        <h1 id="not-found-title">
+          <span>{spanishCopy.notFound.heading}</span>
+          <span>{englishCopy.notFound.heading}</span>
+        </h1>
+        <p class="not-found-intro">
+          {spanishCopy.notFound.intro} {englishCopy.notFound.intro}
+        </p>
+      </div>
+
+      <div class="not-found-language" aria-label={spanishCopy.notFound.navigationLabel}>
+        <div>
+          <p class="not-found-language-label">{spanishCopy.notFound.languageCodes.spanish}</p>
+          <nav aria-label={spanishCopy.notFound.spanishNavigationLabel}>
+            <a href={spanishRoutes.home}>{spanishCopy.notFound.links.home}</a>
+            <a href={spanishRoutes.projects}>{spanishCopy.notFound.links.projects}</a>
+            <a href={spanishRoutes.contact}>{spanishCopy.notFound.links.contact}</a>
+          </nav>
+        </div>
+        <div>
+          <p class="not-found-language-label">{spanishCopy.notFound.languageCodes.english}</p>
+          <nav aria-label={spanishCopy.notFound.englishNavigationLabel}>
+            <a href={englishRoutes.home}>{englishCopy.notFound.links.home}</a>
+            <a href={englishRoutes.projects}>{englishCopy.notFound.links.projects}</a>
+            <a href={englishRoutes.contact}>{englishCopy.notFound.links.contact}</a>
+          </nav>
+        </div>
+      </div>
+    </section>
+  </SectionContainer>
+</BasePage>
+
+<style>
+  .not-found-panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.45fr) minmax(0, 1.4fr) minmax(12rem, 0.8fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+    min-height: min(34rem, 62vh);
+    overflow: hidden;
+    padding: clamp(1.5rem, 5vw, 4rem);
+    border: 1px solid var(--border-subtle);
+    border-radius: 2rem;
+    background: var(--gradient-panel);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .not-found-panel::before {
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-panel-overlay-aqua);
+    content: "";
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .not-found-signal,
+  .not-found-copy,
+  .not-found-language {
+    position: relative;
+    z-index: 1;
+  }
+
+  .not-found-signal {
+    display: grid;
+    gap: 0.8rem;
+    justify-items: start;
+    color: var(--brand-lime);
+  }
+
+  .not-found-signal span {
+    font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 800;
+    letter-spacing: -0.12em;
+    line-height: 0.75;
+    text-shadow: 0 0 2rem var(--glow-primary);
+  }
+
+  .not-found-signal i {
+    display: block;
+    width: 4rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: var(--brand-aqua);
+    box-shadow: 0 0 1.5rem var(--glow-accent);
+  }
+
+  .not-found-copy {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .not-found-eyebrow,
+  .not-found-language-label {
+    margin: 0;
+    color: var(--brand-aqua);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .not-found-copy h1 {
+    display: grid;
+    gap: 0.2rem;
+    margin: 0;
+    max-width: 11ch;
+    font-size: clamp(2.4rem, 6vw, 5.75rem);
+    letter-spacing: -0.075em;
+    line-height: 0.92;
+  }
+
+  .not-found-copy h1 span:last-child {
+    color: var(--brand-aqua);
+    font-size: 0.5em;
+    letter-spacing: -0.045em;
+    line-height: 1.1;
+  }
+
+  .not-found-intro {
+    max-width: 38rem;
+    margin: 0;
+    color: var(--secondary-foreground);
+    line-height: 1.7;
+  }
+
+  .not-found-language {
+    display: grid;
+    gap: 1.5rem;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--border-accent);
+  }
+
+  .not-found-language nav {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: 0.7rem;
+  }
+
+  .not-found-language a {
+    width: fit-content;
+    color: var(--foreground);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-underline-offset: 0.2em;
+    transition: color 180ms ease, transform 180ms ease;
+  }
+
+  .not-found-language a:hover,
+  .not-found-language a:focus-visible {
+    color: var(--brand-lime-soft);
+    transform: translateX(0.15rem);
+  }
+
+  .not-found-language a:focus-visible {
+    outline: 2px solid var(--focus-outline);
+    outline-offset: 4px;
+    border-radius: 0.35rem;
+  }
+
+  @media (width <= 860px) {
+    .not-found-panel {
+      grid-template-columns: minmax(6rem, 0.35fr) minmax(0, 1fr);
+    }
+
+    .not-found-language {
+      grid-column: 2;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-top: 1.5rem;
+      padding-left: 0;
+      border-top: 1px solid var(--border-accent);
+      border-left: 0;
+    }
+  }
+
+  @media (width <= 560px) {
+    .not-found-panel {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .not-found-signal span {
+      font-size: clamp(4rem, 24vw, 7rem);
+    }
+
+    .not-found-language {
+      grid-column: auto;
+    }
+  }
+</style>

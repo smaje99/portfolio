@@ -12,6 +12,7 @@ interface Props {
   mainId?: string;
   mainClass?: string;
   canonicalPathOverride?: string;
+  alternatesOverride?: { hreflang: string; href: string }[];
   robots?: string;
 }
 
@@ -23,6 +24,7 @@ const {
   mainId,
   mainClass = '',
   canonicalPathOverride,
+  alternatesOverride,
   robots,
 } = Astro.props;
 
@@ -38,9 +40,9 @@ const {
 const defaultAlternate =
   alternates.find((alternate) => alternate.hreflang === 'es') ?? alternates[0];
 const resolvedCanonicalPath = canonicalPathOverride ?? canonicalPath;
-const resolvedAlternates = canonicalPathOverride
+const resolvedAlternates = alternatesOverride ?? (canonicalPathOverride
   ? [{ hreflang: locale, href: canonicalPathOverride }]
-  : [...alternates, { hreflang: 'x-default', href: defaultAlternate.href }];
+  : [...alternates, { hreflang: 'x-default', href: defaultAlternate.href }]);
 ---
 
 <Layout

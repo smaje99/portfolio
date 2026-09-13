@@ -5,6 +5,8 @@ import { render } from 'astro:content';
 import BasePage from '@/components/BasePage.astro';
 import SectionContainer from '@/components/SectionContainer.astro';
 import SectionPage from '@/components/SectionPage.astro';
+import { getPublishedLocalBlogEntries } from '@/data/blog';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { Locale } from '@/i18n/site';
 
 interface Props {
@@ -16,9 +18,37 @@ const { entry, locale } = Astro.props;
 const { Content } = await render(entry);
 const { title, description, tags } = entry.data;
 const copy = locale === 'es' ? 'Artículo' : 'Article';
+const slug = entry.data.slug.replace(/\.(?:es|en)$/, '');
+const localizedEntries = (
+  await Promise.all(
+    (['es', 'en'] as const).map((entryLocale) => getPublishedLocalBlogEntries(entryLocale)),
+  )
+).flat().filter((localizedEntry) => localizedEntry.data.slug.replace(/\.(?:es|en)$/, '') === slug);
+const blogAlternates = [
+  ...localizedEntries.map((localizedEntry) => {
+    const entryLocale = localizedEntry.data.locale;
+    return {
+      hreflang: entryLocale,
+      href: getRelativeLocaleUrl(entryLocale, `blog/${slug}`),
+    };
+  }),
+  {
+    hreflang: 'x-default',
+    href: getRelativeLocaleUrl(
+      localizedEntries.some((localizedEntry) => localizedEntry.data.locale === 'es') ? 'es' : locale,
+      `blog/${slug}`,
+    ),
+  },
+];
 ---
 
-<BasePage locale={locale} slug="blog" title={`${title} | ${copy}`} description={description}>
+<BasePage
+  locale={locale}
+  slug={`blog/${slug}`}
+  title={`${title} | ${copy}`}
+  description={description}
+  alternatesOverride={blogAlternates}
+>
   <SectionContainer>
     <SectionPage headingId="blog-post-title" number="04" title={title} intro={description}>
       <article class="blog-post">

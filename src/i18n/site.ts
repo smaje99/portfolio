@@ -21,6 +21,7 @@ type AboutSection = {
   title: string;
   eyebrow: string;
   intro: string;
+  seoDescription: string;
   principles: {
     label: string;
     text: string;
@@ -78,6 +79,25 @@ type BlogSection = {
   mediumLabel: string;
 };
 
+type NotFoundSection = {
+  title: string;
+  description: string;
+  heading: string;
+  intro: string;
+  navigationLabel: string;
+  spanishNavigationLabel: string;
+  englishNavigationLabel: string;
+  languageCodes: {
+    spanish: string;
+    english: string;
+  };
+  links: {
+    home: string;
+    projects: string;
+    contact: string;
+  };
+};
+
 export type FooterCopy = {
   navigationLabel: string;
   contactLabel: string;
@@ -89,6 +109,7 @@ export type FooterCopy = {
 type HomeCopy = {
   title: string;
   description: string;
+  seoDescription: string;
   brandName: string;
   homeLinkLabel: string;
   menuLabel: string;
@@ -127,6 +148,7 @@ type HomeCopy = {
   experienceSection: ExperienceSection;
   henkoSection: HenkoSection;
   blogSection: BlogSection;
+  notFound: NotFoundSection;
   experienceLabels: ExperienceLabels;
   footer: FooterCopy;
 };
@@ -146,6 +168,8 @@ const homeCopy: Record<Locale, HomeCopy> = {
     title: 'Sergio Andrés Majé Franco | Desarrollador de Software',
     description:
       'Portafolio de Sergio Andrés Majé Franco. Ingeniería de soluciones y sistemas de información: planificación, diseño, desarrollo, implementación y mejora continua.',
+    seoDescription:
+      'Portfolio de Sergio Andrés Majé Franco: desarrollo de software, datos, procesos y arquitectura para construir sistemas de información claros y mantenibles.',
     brandName: 'Sergio Majé',
     homeLinkLabel: 'Volver al inicio',
     menuLabel: 'Menú',
@@ -189,6 +213,8 @@ const homeCopy: Record<Locale, HomeCopy> = {
       eyebrow: 'Perfil',
       intro:
         'Soy desarrollador de software y trabajo en la construcción de soluciones digitales donde se conectan procesos, información, desarrollo y arquitectura. Mi experiencia incluye desarrollo backend, extracción y procesamiento de datos, y formación en gestión de procesos de negocio; estas áreas se complementan para construir y mejorar sistemas claros, útiles y mantenibles.',
+      seoDescription:
+        'Perfil de Sergio Andrés Majé Franco: criterio práctico para conectar procesos, datos, desarrollo y arquitectura en sistemas de información.',
       principles: [
         {
           label: 'Pienso en procesos',
@@ -313,6 +339,26 @@ const homeCopy: Record<Locale, HomeCopy> = {
       readLabel: 'Leer artículo',
       mediumLabel: 'Leer en Medium',
     },
+    notFound: {
+      title: 'Página no encontrada',
+      description:
+        'La dirección solicitada no existe. Regresa al portfolio de Sergio Majé para continuar.',
+      heading: 'Perdiste la ruta.',
+      intro:
+        'La página que buscas no está disponible, pero el resto del portfolio sigue a tu alcance.',
+      navigationLabel: 'Navegación bilingüe · Bilingual navigation',
+      spanishNavigationLabel: 'Navegación de recuperación en español',
+      englishNavigationLabel: 'Recovery navigation in English',
+      languageCodes: {
+        spanish: 'ES',
+        english: 'EN',
+      },
+      links: {
+        home: 'Volver al inicio',
+        projects: 'Explorar proyectos',
+        contact: 'Ir a contacto',
+      },
+    },
     experienceLabels: {
       current: 'Actual',
       present: 'Actualidad',
@@ -329,6 +375,8 @@ const homeCopy: Record<Locale, HomeCopy> = {
     title: 'Sergio Andrés Majé Franco | Software Developer',
     description:
       'Portfolio of Sergio Andrés Majé Franco. Solution engineering and information systems: planning, design, development, implementation, and continuous improvement.',
+    seoDescription:
+      'Portfolio of Sergio Andrés Majé Franco: software development, data, processes, and architecture for building clear, maintainable information systems.',
     brandName: 'Sergio Majé',
     homeLinkLabel: 'Back to home',
     menuLabel: 'Menu',
@@ -373,6 +421,8 @@ const homeCopy: Record<Locale, HomeCopy> = {
       eyebrow: 'About',
       intro:
         'I am a software developer working on digital solutions where processes, information, development, and architecture come together. My experience includes backend development, information extraction and processing, and training in business process management; these areas complement one another when building and improving clear, useful, maintainable systems.',
+      seoDescription:
+        'Profile of Sergio Andrés Majé Franco: practical judgment connecting processes, data, development, and architecture in information systems.',
       principles: [
         {
           label: 'I think in processes',
@@ -496,6 +546,26 @@ const homeCopy: Record<Locale, HomeCopy> = {
       empty: 'There are no published posts yet.',
       readLabel: 'Read article',
       mediumLabel: 'Read on Medium',
+    },
+    notFound: {
+      title: 'Page not found',
+      description:
+        'The requested address does not exist. Return to Sergio Majé’s portfolio to continue.',
+      heading: 'You took a wrong turn.',
+      intro:
+        'The page you are looking for is not available, but the rest of the portfolio is still within reach.',
+      navigationLabel: 'Bilingual navigation · Navegación bilingüe',
+      spanishNavigationLabel: 'Navegación de recuperación en español',
+      englishNavigationLabel: 'Recovery navigation in English',
+      languageCodes: {
+        spanish: 'ES',
+        english: 'EN',
+      },
+      links: {
+        home: 'Return home',
+        projects: 'Explore projects',
+        contact: 'Go to contact',
+      },
     },
     experienceLabels: {
       current: 'Current',

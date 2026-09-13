@@ -2280,40 +2280,46 @@ La implementación centraliza las URLs personales y la ruta del CV en `src/i18n/
 ### Sprint 10
 
 #### BLG-F5-S10-01 — Definir requisitos de página 404 y manejo de rutas inexistentes
-**Objetivo:** asegurar una experiencia coherente cuando el usuario llegue a una ruta inválida.  
-**Descripción:** una 404 dedicada contribuye a percepción de profesionalismo y evita rupturas de experiencia.  
+**Objetivo:** asegurar una experiencia coherente cuando el usuario llegue a una ruta inválida.
+**Descripción:** una 404 dedicada contribuye a percepción de profesionalismo y evita rupturas de experiencia.
 **Actividades:**
 * Definir mensaje, CTA y enlaces de recuperación.
 * Definir tono visual coherente con el sitio.
 * Determinar si debe incluir acceso rápido a home, proyectos o contacto.
-**Entregable esperado:** especificación funcional de la 404.  
-**Dependencias:** backlog de confianza técnica.  
-**Tipo de ejecución:** Codex con supervisión  
+**Entregable esperado:** especificación funcional de la 404.
+**Dependencias:** backlog de confianza técnica.
+**Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** el usuario debe poder recuperarse fácilmente sin perder contexto.
 
+**Estado:** `Cerrado` con implementación runtime. Se creó una única salida global `dist/404.html` mediante `src/pages/404.astro`, con copy ES/EN, un solo `h1`, enlaces a inicio, proyectos y contacto en ambos idiomas, reutilización del layout/footer y `noindex,nofollow,noarchive`. No se creó `/en/404` ni se incluyó la salida en el sitemap.
+
 #### BLG-F5-S10-02 — Definir backlog de SEO complementario y validación de metadatos
-**Objetivo:** completar los elementos SEO que no quedaron cubiertos por la base actual.  
-**Descripción:** el sitio ya tiene metadata básica, pero esta tarea busca revisar consistencia, cobertura y calidad.  
+**Objetivo:** completar los elementos SEO que no quedaron cubiertos por la base actual.
+**Descripción:** el sitio ya tiene metadata básica, pero esta tarea busca revisar consistencia, cobertura y calidad.
 **Actividades:**
 * Revisar títulos y descripciones por página.
 * Definir si hacen falta metadatos adicionales.
 * Incluir validación de enlaces sociales y CV.
-**Entregable esperado:** checklist SEO complementario del MVP.  
-**Dependencias:** backlog de confianza técnica.  
-**Tipo de ejecución:** Codex con supervisión  
+**Entregable esperado:** checklist SEO complementario del MVP.
+**Dependencias:** backlog de confianza técnica
+**Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** no debe introducir complejidad desproporcionada para un sitio estático personal.
 
+**Estado:** `Cerrado` con implementación y documentación. Se añadieron `robots.txt`, `sitemap.xml`, la corrección del canonical de fichas de blog y [`docs/portfolio-seo-checklist.md`](./portfolio-seo-checklist.md). El sitemap mantiene los índices del blog, pero excluye entradas mientras no tengan estado `published`; no se añadió analytics, JSON-LD ni una imagen social nueva.
+
 #### BLG-F5-S10-03 — Definir checklist de revisión pre-lanzamiento
-**Objetivo:** dejar un protocolo corto y repetible para revisar calidad antes de publicar cambios importantes.  
-**Descripción:** sirve como filtro antes de cierre de MVP y futuras iteraciones.  
+**Objetivo:** dejar un protocolo corto y repetible para revisar calidad antes de publicar cambios importantes.
+**Descripción:** sirve como filtro antes de cierre de MVP y futuras iteraciones.
 **Actividades:**
 * Definir pruebas funcionales mínimas.
 * Definir validaciones de contenido, navegación, enlaces y descargas.
 * Definir responsable por cada validación cuando aplique.
-**Entregable esperado:** checklist de revisión pre-lanzamiento.  
-**Dependencias:** especificaciones de analytics, footer y 404.  
-**Tipo de ejecución:** Codex con supervisión  
+**Entregable esperado:** checklist de revisión pre-lanzamiento.
+**Dependencias:** especificaciones de analytics, footer y 404.
+**Tipo de ejecución:** Codex con supervisión
 **Notas de validación:** el checklist debe ser corto, realista y ejecutable en una sesión de revisión.
+
+**Estado:** `Cerrado` con documentación y validación automatizada. Se creó [`docs/portfolio-prelaunch-checklist.md`](./portfolio-prelaunch-checklist.md) y `scripts/cms-check.mjs` ahora verifica los artefactos SEO, XML, rutas, metadata, exclusiones y la 404 después del build. La revisión de navegador, despliegue, DNS, Search Console y validación externa permanece manual.
 
 ---
 

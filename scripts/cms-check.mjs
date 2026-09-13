@@ -108,6 +108,145 @@ function assertPublicUrls(file, source) {
   }
 }
 
+function expectedPathForHtml(path, distRoot) {
+  const relativePath = relative(distRoot, path).split(sep).join('/');
+  if (relativePath === 'index.html') return '/';
+  if (relativePath.endsWith('/index.html')) {
+    return `/${relativePath.slice(0, -'/index.html'.length)}/`;
+  }
+  return `/${relativePath.replace(/\.html$/, '')}`;
+}
+
+function extractCanonical(file, source) {
+  const match = source.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i);
+  if (!match) fail(`${file} is missing its canonical URL.`);
+  return match[1];
+}
+
+function assertHtmlMetadata(file, source, expectedPath, publicPaths) {
+  if (!/<title>[^<]+<\/title>/i.test(source)) fail(`${file} is missing a non-empty title.`);
+  const description = source.match(/<meta\s+name="description"\s+content="([^"]+)"/i)?.[1];
+  if (!description) {
+    fail(`${file} is missing a non-empty meta description.`);
+  }
+  if (description.length > 160) fail(`${file} has an SEO description longer than 160 characters.`);
+
+  const canonical = extractCanonical(file, source);
+  let canonicalUrl;
+  try {
+    canonicalUrl = new URL(canonical);
+  } catch {
+    fail(`${file} contains an invalid canonical URL: ${canonical}`);
+  }
+
+  if (canonicalUrl.origin !== 'https://smaje.com.co') {
+    fail(`${file} canonical must use https://smaje.com.co: ${canonical}`);
+  }
+
+  const normalizePath = (path) => path.replace(/\/$/, '') || '/';
+  if (normalizePath(canonicalUrl.pathname) !== normalizePath(expectedPath)) {
+    fail(`${file} canonical does not match its public route: ${canonical}`);
+  }
+
+  if (expectedPath !== '/404') {
+    for (const hreflang of ['es', 'en', 'x-default']) {
+      const alternate = source.match(
+        new RegExp(`<link\\s+rel="alternate"\\s+hreflang="${hreflang}"\\s+href="([^"]+)"`, 'i'),
+      );
+      if (!alternate) fail(`${file} is missing a ${hreflang} alternate URL.`);
+
+      let alternateUrl;
+      try {
+        alternateUrl = new URL(alternate[1]);
+      } catch {
+        fail(`${file} contains an invalid ${hreflang} alternate URL: ${alternate[1]}`);
+      }
+      if (alternateUrl.origin !== 'https://smaje.com.co') {
+        fail(`${file} ${hreflang} alternate must use https://smaje.com.co: ${alternate[1]}`);
+      }
+      const alternatePath = alternateUrl.pathname.replace(/\/$/, '') || '/';
+      if (!publicPaths.has(alternatePath)) {
+        fail(`${file} ${hreflang} alternate does not resolve to a built public route: ${alternate[1]}`);
+      }
+    }
+  }
+
+  for (const metadata of [
+    '<meta property="og:title"',
+    '<meta property="og:description"',
+    '<meta property="og:url"',
+    '<meta name="twitter:title"',
+    '<meta name="twitter:description"',
+  ]) {
+    if (!source.includes(metadata)) fail(`${file} is missing ${metadata} metadata.`);
+  }
+}
+
+function assertSitemap(distRoot, projectEntries) {
+  const sitemapPath = join(distRoot, 'sitemap.xml');
+  const source = readFileSync(sitemapPath, 'utf8');
+  const match = source.match(
+    /^<\?xml version="1\.0" encoding="UTF-8"\?>\n<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">\n([\s\S]*?)\n<\/urlset>\n$/,
+  );
+  if (!match) fail('dist/sitemap.xml is not a well-formed sitemap document.');
+
+  const blocks = match[1].match(/  <url><loc>[^<]+<\/loc><\/url>/g) ?? [];
+  if (!blocks.length || blocks.join('\n') !== match[1]) {
+    fail('dist/sitemap.xml contains malformed or unexpected URL entries.');
+  }
+
+  const urls = blocks.map((block) => block.match(/<loc>([^<]+)<\/loc>/)[1]);
+  const paths = new Set();
+  for (const value of urls) {
+    let url;
+    try {
+      url = new URL(value);
+    } catch {
+      fail(`dist/sitemap.xml contains an invalid URL: ${value}`);
+    }
+    if (url.origin !== 'https://smaje.com.co') {
+      fail(`dist/sitemap.xml contains a non-canonical origin: ${value}`);
+    }
+    if (/\/draft\/|\/keystatic\/|\/404(?:\/|$)/i.test(url.pathname)) {
+      fail(`dist/sitemap.xml exposes a private, preview, or error route: ${value}`);
+    }
+    paths.add(url.pathname.replace(/\/$/, '') || '/');
+  }
+
+  const expectedPaths = new Set([
+    '/',
+    '/en',
+    '/about',
+    '/en/about',
+    '/projects',
+    '/en/projects',
+    '/experience',
+    '/en/experience',
+    '/blog',
+    '/en/blog',
+  ]);
+  for (const entry of projectEntries.filter((item) => item.data.status === 'published')) {
+    const slug = entry.data.slug.replace(/\.(?:es|en)$/, '');
+    expectedPaths.add(`/${entry.data.locale === 'en' ? 'en/' : ''}projects/${slug}`);
+  }
+  for (const entry of entries.filter(
+    (item) =>
+      item.collection === 'blog' &&
+      item.data.status === 'published' &&
+      item.data.channel === 'site',
+  )) {
+    const slug = entry.data.slug.replace(/\.(?:es|en)$/, '');
+    expectedPaths.add(`/${entry.data.locale === 'en' ? 'en/' : ''}blog/${slug}`);
+  }
+
+  for (const expectedPath of expectedPaths) {
+    if (!paths.has(expectedPath)) fail(`dist/sitemap.xml is missing public route: ${expectedPath}.`);
+  }
+  for (const path of paths) {
+    if (!expectedPaths.has(path)) fail(`dist/sitemap.xml contains an unexpected route: ${path}.`);
+  }
+}
+
 function strategicProjectSlugs() {
   const source = readFileSync(join(root, 'src', 'data', 'projects.ts'), 'utf8');
   return [...source.matchAll(/^\s+slug:\s+'([^']+)'/gm)].map((match) => match[1]);
@@ -150,6 +289,20 @@ function assertStaticArtifact() {
     fail('the static build must produce dist/ with at least one HTML page.');
   }
 
+  for (const artifact of ['404.html', 'robots.txt', 'sitemap.xml']) {
+    if (!existsSync(join(distRoot, artifact))) {
+      fail(`static build is missing required artifact: dist/${artifact}.`);
+    }
+  }
+
+  const robots = readFileSync(join(distRoot, 'robots.txt'), 'utf8');
+  for (const directive of ['User-agent: *', 'Allow: /', 'Disallow: /draft/', 'Disallow: /keystatic/']) {
+    if (!robots.includes(directive)) fail(`dist/robots.txt is missing directive: ${directive}.`);
+  }
+  if (!robots.includes('Sitemap: https://smaje.com.co/sitemap.xml')) {
+    fail('dist/robots.txt does not reference the canonical sitemap.');
+  }
+
   const keystaticArtifacts = relativeDistFiles.filter((path) =>
     path.toLowerCase().split(sep).includes('keystatic'),
   );
@@ -164,15 +317,31 @@ function assertStaticArtifact() {
     fail(`production build contains draft preview artifacts: ${draftArtifacts.join(', ')}.`);
   }
 
+  const publicPaths = new Set(htmlFiles.map((path) => {
+    const expectedPath = expectedPathForHtml(path, distRoot);
+    return expectedPath.replace(/\/$/, '') || '/';
+  }));
+
   for (const path of htmlFiles) {
     const file = relative(root, path);
     const source = readFileSync(path, 'utf8');
-    if (!source.includes('<link rel="canonical" href="https://smaje.com.co')) {
-      fail(`${file} is missing the smaje.com.co canonical URL.`);
+    const expectedPath = expectedPathForHtml(path, distRoot);
+    assertHtmlMetadata(file, source, expectedPath, publicPaths);
+    if (expectedPath === '/404') {
+      if (!/<meta\s+name="robots"\s+content="noindex,nofollow,noarchive"/i.test(source)) {
+        fail(`${file} must use noindex,nofollow,noarchive.`);
+      }
+      if (source.match(/<link\s+rel="alternate"/g)?.length) {
+        fail(`${file} must not expose hreflang alternates.`);
+      }
+    } else if (!/<meta\s+name="robots"\s+content="index,follow"/i.test(source)) {
+      fail(`${file} must be indexable with index,follow.`);
     }
     assertNoSecrets(file, source);
     assertPublicUrls(file, source);
   }
+
+  assertSitemap(distRoot, projectEntries);
 
   const expectedPages = [
     'projects/estructuras-de-datos/index.html',

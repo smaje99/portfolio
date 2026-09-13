@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-El portfolio ya empezó. La base narrativa y estructural de la Fase 1 quedó cerrada: el MVP ya tiene sitemap, inventario y taxonomía de proyectos, prioridad de contenido y backlog narrativo canónicos. La Fase 2 refinó el mensaje profesional y la Fase 3 ya conectó el catálogo de proyectos con cuatro fichas bilingües públicas. El blog y su integración con Medium conservan su fase posterior.
+El portfolio ya empezó. La base narrativa y estructural de la Fase 1 quedó cerrada: el MVP ya tiene sitemap, inventario y taxonomía de proyectos, prioridad de contenido y backlog narrativo canónicos. La Fase 2 refinó el mensaje profesional y la Fase 3 ya conectó el catálogo de proyectos con cuatro fichas bilingües públicas. Las rutas del blog ya existen y sus índices son públicos; la publicación editorial y su integración con Medium conservan su fase posterior.
 
 ### Actualización de estado real al 14 de junio de 2026
 
@@ -16,10 +16,21 @@ Con base en la revisión del repositorio y de la implementación actual del siti
 
 Pero siguen abiertas varias brechas estratégicas:
 
-* No existe todavía sección de blog ni integración con Medium.
+* El blog todavía no tiene una entrada local publicada ni integración con Medium; sus índices bilingües ya están implementados.
 * Las fichas públicas de proyectos ya existen; su ampliación futura dependerá de nueva evidencia revisada.
 * Los proyectos visibles actualmente en el sitio no están totalmente alineados con la selección priorizada por este roadmap.
-* No hay evidencia en el repositorio de analytics, página 404 dedicada, footer profesional o validación externa documentada.
+* Analytics y validación externa continúan fuera del alcance runtime; la 404, el footer profesional, robots, sitemap y los checklists ya están documentados e implementados.
+
+### Actualización de estado real al 12 de septiembre de 2026
+
+Sprint 10 cerró el bloque técnico de pre-lanzamiento:
+
+* La 404 global bilingüe se genera como `dist/404.html`, con enlaces de recuperación y `noindex,nofollow,noarchive`.
+* `robots.txt` y `sitemap.xml` se generan desde Astro con `https://smaje.com.co`, incluyen las rutas públicas actuales y excluyen drafts, previews, Keystatic, Medium-only y 404.
+* Las fichas de blog futuras ya calculan su canonical con `/blog/<slug>` o `/en/blog/<slug>`; el único artículo actual sigue en `draft` y no se expone.
+* [`docs/portfolio-seo-checklist.md`](./portfolio-seo-checklist.md) y [`docs/portfolio-prelaunch-checklist.md`](./portfolio-prelaunch-checklist.md) dejan el procedimiento de revisión repetible.
+* `pnpm cms:check` verifica los artefactos, el sitemap, metadata obligatoria, exclusiones y la directiva de la 404 después del build.
+* Analytics no se implementa en este sprint. Despliegue, DNS, Search Console y validación externa siguen pendientes como acciones manuales posteriores.
 
 ### Actualización de estado real al 10 de septiembre de 2026
 
@@ -104,9 +115,9 @@ Un bloque útil sería:
 ## Lo que sigue incompleto o desalineado
 
 1. **Blog y autoridad técnica**
-   * No hay sección de blog.
+   * Las rutas e índices bilingües del blog ya existen, pero no hay una entrada local publicada.
    * No hay integración con Medium.
-   * No hay artículos destacados, categorías ni tarjetas de contenido.
+   * No hay artículos destacados ni categorías editoriales publicadas.
 
 2. **Casos de estudio**
    * La sección de proyectos actual funciona más como listado que como caso de estudio.
@@ -117,10 +128,9 @@ Un bloque útil sería:
    * El sitio actual todavía requiere realinearse con esa selección para que la narrativa pública coincida con el objetivo consultivo.
 
 4. **Cierre de lanzamiento**
-   * No hay evidencia documentada de analytics.
-   * No hay evidencia documentada de página 404 dedicada.
-   * No hay evidencia documentada de footer profesional.
-   * No hay evidencia documentada de validación externa formal.
+   * No hay analytics implementado por decisión de alcance.
+   * La 404 global, el footer profesional y el SEO técnico complementario ya están implementados.
+   * La validación externa formal sigue pendiente.
 
 ## Lectura ejecutiva del avance
 
@@ -284,7 +294,7 @@ Al final de esta fase debes tener claridad absoluta sobre qué va en el portfoli
 
 **Avance estimado:** 100% en su base de planificación narrativa y estructural.
 
-La fase queda cerrada con el inventario público base y su taxonomía, la auditoría de arquitectura de información, el sitemap objetivo, la priorización de contenido y el backlog narrativo inicial. El blog permanece reservado para Fase 4; las fichas de proyectos se publicaron posteriormente mediante la continuidad `BLG-F3-CONT-01`.
+La fase queda cerrada con el inventario público base y su taxonomía, la auditoría de arquitectura de información, el sitemap objetivo, la priorización de contenido y el backlog narrativo inicial. Las rutas del blog se publicaron posteriormente como índices vacíos; su contenido editorial e integración con Medium permanecen en Fase 4. Las fichas de proyectos se publicaron mediante la continuidad `BLG-F3-CONT-01`.
 
 **Siguiente frente:** Fase 2 — refinar propuesta de valor, capacidades, coherencia entre portfolio/GitHub/LinkedIn y jerarquía de CTAs a partir de `docs/portfolio-narrative-backlog.md`.
 
@@ -461,9 +471,9 @@ El portfolio debe sentirse suficientemente serio para enviarlo a un cliente, pro
 
 ### Estado actual de la fase
 
-**Avance estimado:** 50%
+**Avance estimado:** 75%
 
-El sitio ya transmite seriedad y una base defendible, pero todavía le faltan piezas de cierre como analytics, 404, footer y una capa más completa de confianza operativa.
+El sitio ya transmite seriedad y una base defendible, y el cierre técnico básico está resuelto con footer, 404, SEO complementario y checklists. Analytics, despliegue y validación externa permanecen pendientes por decisión de alcance o por depender del entorno público.
 
 ---
 
@@ -649,7 +659,7 @@ Refinar la propuesta de valor, convertir el bloque de enfoque en capacidades def
 4. Catálogo jerarquizado de CTAs.
 5. Especificación funcional cerrada de la home v1.
 
-La entrada operativa es `docs/portfolio-narrative-backlog.md`. El blog continúa reservado para Fase 4; las fichas de proyectos ya están cubiertas por `BLG-F3-CONT-01`.
+La entrada operativa es `docs/portfolio-narrative-backlog.md`. El blog ya tiene índices públicos, pero su contenido editorial continúa en Fase 4; las fichas de proyectos ya están cubiertas por `BLG-F3-CONT-01`.
 
 ---
 
