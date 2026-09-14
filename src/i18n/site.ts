@@ -71,6 +71,21 @@ type HenkoSection = {
   websiteLabel: string;
 };
 
+export type ContactIntent = 'opportunities' | 'consulting' | 'collaborations';
+
+export type ContactLinkKind = 'linkedin' | 'github' | 'email' | 'website' | 'henko-linkedin';
+
+export type ContactOptionCopy = {
+  intent: ContactIntent;
+  title: string;
+  description: string;
+  subject: string;
+  links: {
+    kind: ContactLinkKind;
+    label: string;
+  }[];
+};
+
 type BlogSection = {
   title: string;
   intro: string;
@@ -134,6 +149,7 @@ type HomeCopy = {
   contactSection: {
     eyebrow: string;
     title: string;
+    options: ContactOptionCopy[];
   };
   navigation: NavItem[];
   languageSwitcherLabel: string;
@@ -157,6 +173,11 @@ export const personalLinks = {
   linkedin: 'https://www.linkedin.com/in/smaje/',
   github: 'https://github.com/smaje99',
   email: 'smajefranco@gmail.com',
+} as const;
+
+export const henkoLinks = {
+  linkedin: 'https://www.linkedin.com/company/henko-consulting-and-technology-services/home',
+  website: 'https://henkoconsulting.com.co/',
 } as const;
 
 export function getResumePath(locale: Locale) {
@@ -194,7 +215,43 @@ const homeCopy: Record<Locale, HomeCopy> = {
     },
     contactSection: {
       eyebrow: 'Contacto',
-      title: 'Si tienes una idea, un sistema por ordenar o un proceso por mejorar, conversemos.',
+      title: 'Elige el tipo de conversación que quieres iniciar.',
+      options: [
+        {
+          intent: 'opportunities',
+          title: 'Oportunidades',
+          description: 'Para oportunidades laborales o conversaciones sobre incorporación técnica.',
+          subject: '[Oportunidad] Conversación profesional',
+          links: [
+            { kind: 'linkedin', label: 'Conectar en LinkedIn' },
+            { kind: 'email', label: 'Escribir por correo' },
+          ],
+        },
+        {
+          intent: 'consulting',
+          title: 'Consultoría',
+          description:
+            'Para necesidades organizacionales, procesos por mejorar o soluciones que quieras explorar con Henko.',
+          subject: '[Consultoría] Posible solución para [organización]',
+          links: [
+            { kind: 'email', label: 'Escribir sobre consultoría' },
+            { kind: 'website', label: 'Visitar Henko' },
+            { kind: 'henko-linkedin', label: 'Conocer Henko en LinkedIn' },
+          ],
+        },
+        {
+          intent: 'collaborations',
+          title: 'Colaboraciones',
+          description:
+            'Para colaboraciones técnicas, educativas u open source alrededor de un tema concreto.',
+          subject: '[Colaboración] Propuesta sobre [tema]',
+          links: [
+            { kind: 'github', label: 'Ver GitHub' },
+            { kind: 'linkedin', label: 'Escribir en LinkedIn' },
+            { kind: 'email', label: 'Proponer por correo' },
+          ],
+        },
+      ],
     },
     navigation: [
       { label: 'Inicio', href: '#top' },
@@ -401,8 +458,43 @@ const homeCopy: Record<Locale, HomeCopy> = {
     },
     contactSection: {
       eyebrow: 'Contact',
-      title:
-        "If you have an idea, a system that needs structure, or a process to improve, let's talk.",
+      title: 'Choose the kind of conversation you want to start.',
+      options: [
+        {
+          intent: 'opportunities',
+          title: 'Opportunities',
+          description: 'For professional opportunities or conversations about joining a team.',
+          subject: '[Opportunity] Professional conversation',
+          links: [
+            { kind: 'linkedin', label: 'Connect on LinkedIn' },
+            { kind: 'email', label: 'Write by email' },
+          ],
+        },
+        {
+          intent: 'consulting',
+          title: 'Consulting',
+          description:
+            'For organizational needs, processes to improve, or solutions you want to explore with Henko.',
+          subject: '[Consulting] Possible solution for [organization]',
+          links: [
+            { kind: 'email', label: 'Write about consulting' },
+            { kind: 'website', label: 'Visit Henko' },
+            { kind: 'henko-linkedin', label: 'Meet Henko on LinkedIn' },
+          ],
+        },
+        {
+          intent: 'collaborations',
+          title: 'Collaborations',
+          description:
+            'For technical, educational, or open-source collaborations around a specific topic.',
+          subject: '[Collaboration] Proposal about [topic]',
+          links: [
+            { kind: 'github', label: 'View GitHub' },
+            { kind: 'linkedin', label: 'Write on LinkedIn' },
+            { kind: 'email', label: 'Suggest by email' },
+          ],
+        },
+      ],
     },
     navigation: [
       { label: 'Home', href: '/en/' },

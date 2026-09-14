@@ -1,6 +1,7 @@
 # Perfil externo uniforme — GitHub y LinkedIn
 
 **Fecha de preparación:** 2026-08-31
+**Estado de auditoría:** Completada el 2026-09-13
 **Sprint:** Sprint 04 — `BLG-F2-S04-01`
 **Fuente canónica:** portfolio y semántica validada en `docs/portfolio-backlog.md`.
 
@@ -80,9 +81,11 @@ La diversidad no constituye por sí misma dispersión: el hilo conductor observa
 
 ### Publicación y verificación
 
-1. Sustituir la bio y el README actuales, eliminando `Computer Engineering Student`.
-2. Revisar que el README no presente repositorios archivados o en construcción como experiencia laboral vigente.
-3. Confirmar que el enlace de LinkedIn publicado sea `https://www.linkedin.com/in/smaje/`.
+1. La bio y el README fueron sustituidos; se eliminó `Computer Engineering Student`.
+2. La revisión de repositorios archivados, históricos, académicos y en construcción fue completada sin convertirlos en experiencia laboral vigente.
+3. El enlace canónico de LinkedIn quedó confirmado como `https://www.linkedin.com/in/smaje/`.
+
+**Estado:** `Completada — auditoría propia de perfiles, proyectos y canales externos.` La revisión de terceros y el registro de sus observaciones permanecen fuera de este documento y siguen pendientes.
 
 ## LinkedIn — versión profesional
 
@@ -143,10 +146,10 @@ La captura de Educación recibida el 2026-08-31 confirma el estado académico ap
 
 | Elemento | Evidencia | Estado | Próxima acción |
 | --- | --- | --- | --- |
-| Cargo actual | Experiencia de LinkedIn: desarrollador de software en Cidti 4.0, marzo de 2026 — actualidad, jornada parcial. | Confirmado externamente y en CV | Publicar/validar el copy en los perfiles externos. |
-| Estado académico | Educación de LinkedIn: formación finalizada, grado en trámite. | Confirmado externamente | Sustituir las referencias `student` en GitHub y corregir el extracto de LinkedIn. |
-| Foco profesional | Portfolio, GitHub y LinkedIn convergen en software, backend, datos y sistemas de información; GitHub conserva un lenguaje más amplio de desarrollador full stack. | Parcialmente alineado | Publicar la versión GitHub propuesta y conservar la adaptación técnica para desarrolladores. |
-| Proyectos y repositorios | Las capturas no muestran el estado individual de los repositorios ni permiten auditar todo el inventario. | Pendiente manual | Revisar repositorios actuales, archivados y en construcción sin convertirlos en casos de estudio. |
-| Canales | Las capturas no bastan para confirmar disponibilidad de URLs y correo. | Pendiente manual | Verificar LinkedIn, GitHub y correo desde el portfolio y los perfiles externos. |
+| Cargo actual | Experiencia de LinkedIn: desarrollador de software en Cidti 4.0, marzo de 2026 — actualidad, jornada parcial. | Confirmado externamente y en CV | Conservar la sincronización del copy. |
+| Estado académico | Educación de LinkedIn: formación finalizada, grado en trámite. | Confirmado externamente | Conservar el estado académico canónico. |
+| Foco profesional | Portfolio, GitHub y LinkedIn convergen en software, backend, datos y sistemas de información; GitHub conserva un lenguaje más amplio de desarrollador full stack. | Alineado | Mantener la adaptación técnica para desarrolladores y la adaptación profesional de LinkedIn. |
+| Proyectos y repositorios | La auditoría clasifica repositorios propios, académicos, archivados, históricos y externos, sin presentarlos como experiencia laboral vigente. | Completada | Mantener la clasificación si cambia el inventario o la visibilidad. |
+| Canales | LinkedIn `https://www.linkedin.com/in/smaje/`, GitHub `https://github.com/smaje99` y `smajefranco@gmail.com` fueron comprobados como canales operativos. | Completada | Mantener la vigencia; Henko se gestiona según [`portfolio-contact-strategy.md`](./portfolio-contact-strategy.md). |
 
-La publicación en GitHub y LinkedIn es una acción manual de Sergio. Este archivo prepara el contenido y no modifica perfiles externos.
+La publicación y verificación en GitHub y LinkedIn fue una acción manual de Sergio. Este archivo deja la auditoría propia cerrada; la revisión de terceros sigue pendiente.

@@ -18,7 +18,7 @@ Pero siguen abiertas varias brechas estratégicas:
 
 * El blog todavía no tiene una entrada local publicada ni integración con Medium; sus índices bilingües ya están implementados.
 * Las fichas públicas de proyectos ya existen; su ampliación futura dependerá de nueva evidencia revisada.
-* Los proyectos visibles actualmente en el sitio no están totalmente alineados con la selección priorizada por este roadmap.
+* El contenido y el estado de los proyectos visibles se conservan sin ampliaciones; cualquier profundización queda condicionada a nueva evidencia autorizada.
 * Analytics y validación externa continúan fuera del alcance runtime; la 404, el footer profesional, robots, sitemap y los checklists ya están documentados e implementados.
 
 ### Actualización de estado real al 12 de septiembre de 2026
@@ -30,7 +30,18 @@ Sprint 10 cerró el bloque técnico de pre-lanzamiento:
 * Las fichas de blog futuras ya calculan su canonical con `/blog/<slug>` o `/en/blog/<slug>`; el único artículo actual sigue en `draft` y no se expone.
 * [`docs/portfolio-seo-checklist.md`](./portfolio-seo-checklist.md) y [`docs/portfolio-prelaunch-checklist.md`](./portfolio-prelaunch-checklist.md) dejan el procedimiento de revisión repetible.
 * `pnpm cms:check` verifica los artefactos, el sitemap, metadata obligatoria, exclusiones y la directiva de la 404 después del build.
-* Analytics no se implementa en este sprint. Despliegue, DNS, Search Console y validación externa siguen pendientes como acciones manuales posteriores.
+* Analytics no se implementa en este sprint. El dominio de Henko ya fue comprado; la provisión del VPS, DNS, Cloudflare, Caddy, Zoho Mail, publicación efectiva y validación externa siguen pendientes como acciones manuales posteriores.
+
+### Actualización de estado real al 13 de septiembre de 2026
+
+La auditoría propia de perfiles, proyectos y canales externos quedó completada. La revisión de terceros sigue pendiente como validación humana de lanzamiento.
+
+* `henkoconsulting.com.co` está comprado.
+* Siguen pendientes la provisión del VPS, la configuración de DNS y Cloudflare, Caddy, Zoho Mail y la publicación efectiva de Henko y del entorno público.
+* `smajefranco@gmail.com` continúa siendo el canal operativo durante la transición de correo de Henko.
+* `#contact` se amplía como entrada localizada para oportunidades, consultoría y colaboraciones, sin formulario, backend ni analytics.
+* El contenido y el estado de los proyectos se conservan exactamente como están; su ampliación queda supeditada a nueva evidencia autorizada.
+* El blog continúa pendiente estratégicamente y no cambia de estado.
 
 ### Actualización de estado real al 10 de septiembre de 2026
 
@@ -38,8 +49,8 @@ Henko Consulting queda incorporado como vehículo profesional vigente de Sergio,
 
 * Henko Consulting — razón social: `Henko Consulting and Technology Services` — se publica como actividad profesional independiente, híbrida y con base en Florencia, Caquetá, Colombia, desde el 9 de septiembre de 2026.
 * La home bilingüe incorpora el bloque destacado `#henko` antes de proyectos, con lema, descripción, razón social y áreas de trabajo; no se crea todavía una página independiente de servicios ni un catálogo comercial.
-* La colección bilingüe de experiencias y los CV fuente ES/EN registran `Founder & Solutions Engineer` como experiencia actual y más reciente, sin URL comercial hasta contar con un sitio público verificado.
-* El portfolio conserva `smajefranco@gmail.com` como correo de contacto. Los canales, dominio y correo de Henko permanecen separados y fuera de esta implementación.
+* La colección bilingüe de experiencias y los CV fuente ES/EN registran `Founder & Solutions Engineer` como experiencia actual y más reciente; los enlaces públicos de LinkedIn y sitio se mantienen centralizados, aunque el dominio aún no está operativo.
+* El portfolio conserva `smajefranco@gmail.com` como correo de contacto; el dominio de Henko ya fue comprado, pero la provisión, DNS, hosting, correo y publicación siguen pendientes.
 
 El alcance actual presenta Henko como contexto profesional y evidencia de trayectoria; las áreas publicadas no constituyen un catálogo contractual cerrado ni implican disponibilidad, resultados o casos de estudio aún no documentados.
 
@@ -149,12 +160,12 @@ El portfolio **sí avanzó técnicamente**, pero todavía **no cumple por comple
 
 ### Evaluación actual
 
-**Cumplimiento estimado:** 75%
+**Cumplimiento estimado:** 100%
 
 * La propuesta de valor principal ya está visible.
 * La sección “Sobre mí” ya existe.
 * La estructura visual ya transmite claridad y confianza.
-* La coherencia narrativa completa con GitHub y LinkedIn aún debe revisarse mejor.
+* La auditoría propia de GitHub y LinkedIn, incluidos perfiles, proyectos y canales, quedó completada; la revisión pendiente es con terceros.
 
 ---
 
@@ -226,7 +237,7 @@ Artículos iniciales sugeridos:
 * Ya existe una base pública funcional.
 * Ya existen enlaces funcionales a GitHub, LinkedIn y correo.
 * Ya existe descarga de CV.
-* No hay evidencia en el repositorio de Medium, analytics, dominio documentado ni validación posterior al lanzamiento.
+* No hay evidencia en el repositorio de Medium, analytics, publicación efectiva en dominio propio ni validación posterior al lanzamiento; el dominio de Henko ya está comprado, pero aún no está operativo.
 
 ---
 
@@ -255,8 +266,8 @@ Los mayores retrasos están en:
 
 * blog y Medium
 * casos de estudio
-* realineación de proyectos
-* medición y validación externa
+* blog y casos de estudio
+* publicación externa y validación con terceros
 
 ---
 
@@ -446,15 +457,10 @@ Esta fase no muestra implementación visible al día de hoy.
 ### Entregables
 
 * Responsive design.
-* SEO básico.
-* Metadata por página.
-* Open Graph para compartir enlaces.
-* Optimización de rendimiento.
-* Revisión de accesibilidad.
-* Página 404.
-* Footer profesional.
-* Enlaces sociales verificados.
-* Formulario o correo de contacto.
+* SEO básico, metadata por página y Open Graph para compartir enlaces.
+* Optimización de rendimiento y revisión de accesibilidad.
+* Página 404 y footer profesional.
+* Enlaces sociales verificados y correo de contacto estático.
 
 ### Métricas técnicas mínimas
 
@@ -516,7 +522,7 @@ Pide retroalimentación a perfiles distintos:
 
 **Avance estimado:** 10%
 
-No hay evidencia documentada en el repositorio de una ronda formal de validación externa ni de revisión estructurada por perfiles distintos.
+La base de lanzamiento está preparada. La compra de `henkoconsulting.com.co` está completada; siguen pendientes la provisión del VPS, DNS/Cloudflare, Caddy, Zoho Mail y la publicación efectiva. También permanecen pendientes el protocolo de revisión con terceros, el backlog de feedback y el criterio de cierre formal del MVP.
 
 ---
 
@@ -527,17 +533,15 @@ No hay evidencia documentada en el repositorio de una ronda formal de validació
 * Diseñar sección de blog.
 * Integrar Medium.
 * Ampliar las fichas publicadas solo cuando exista evidencia adicional autorizada.
-* Revisar coherencia narrativa entre portfolio, GitHub y LinkedIn.
-* Refinar el copy principal desde una óptica más consultiva.
+* Validación con terceros y registro de observaciones.
+* Provisión del entorno público y publicación efectiva de los dominios.
 
 ## Pendiente importante
 
 * Sección de tecnologías.
 * Sección de servicios/capacidades.
 * Analytics.
-* Página 404.
-* Footer profesional.
-* Evidencia de validación externa.
+* Configuración de correo profesional de Henko.
 
 ## Pendiente futuro
 
@@ -552,7 +556,9 @@ No hay evidencia documentada en el repositorio de una ronda formal de validació
 * Versión en inglés.
 * Página “Sobre mí”.
 * Contacto básico.
-* Metadata básica y Open Graph.
+* Metadata básica, Open Graph, 404 y footer profesional.
+* Auditoría propia de perfiles, proyectos y canales externos.
+* Estrategia localizada de contacto para oportunidades, consultoría y colaboraciones.
 
 ---
 
@@ -634,7 +640,7 @@ La clave es mostrar también proyectos en evolución, pero con honestidad: **en 
 
 # Próxima acción concreta
 
-Con la base narrativa y estructural de Fase 1 cerrada, la siguiente prioridad es ejecutar Fase 2 sin reabrir sitemap, inventario o priorización. El foco inmediato es hacer más preciso el mensaje profesional de la home y alinear sus afirmaciones con la evidencia y los perfiles externos.
+Con la base narrativa, estructural y de contacto cerrada, la siguiente prioridad es completar la publicación externa de Henko y del portfolio, y ejecutar la validación con terceros sin reabrir el inventario ni el estado de los proyectos. El blog continúa como pendiente estratégico independiente.
 
 ## Sprints Portfolio 03 y 04
 

@@ -2,18 +2,15 @@
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import BasePage from '@/components/BasePage.astro';
+import ContactOptions from '@/components/ContactOptions.astro';
 import ExperienceContainer from '@/components/Experience.astro';
 import HeroActions from '@/components/HeroActions';
 import HenkoSection from '@/components/HenkoSection.astro';
 import ProjectsGrid from '@/components/ProjectsGrid.astro';
 import SectionContainer from '@/components/SectionContainer.astro';
-import SocialPill from '@/components/SocialPill.astro';
 import { getFeaturedProjects } from '@/data/projects';
 import { getExperiences } from '@/data/experiences';
-import GitHubIcon from '@/icons/GitHubIcon.astro';
-import LinkedInIcon from '@/icons/LinkedInIcon.astro';
-import MailIcon from '@/icons/MailIcon.astro';
-import { getResumePath, personalLinks, type Locale } from '@/i18n/site';
+import { getResumePath, type Locale } from '@/i18n/site';
 import { getPageContext } from '@/utils/page';
 
 interface Props {
@@ -97,30 +94,18 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
         </aside>
       </div>
 
-      <div
+      <section
         id="contact"
         class="hero-contact-band animate-in fade-in slide-in-from-bottom-3 duration-700 delay-300"
+        aria-labelledby="contact-title"
       >
         <div class="hero-contact-copy">
           <p class="hero-contact-label">{copy.contactSection.eyebrow}</p>
-          <p class="hero-contact-title">{copy.contactSection.title}</p>
+          <h2 id="contact-title" class="hero-contact-title">{copy.contactSection.title}</h2>
         </div>
 
-        <div class="hero-contact-links" aria-label={copy.socials.contact}>
-          <SocialPill href={personalLinks.linkedin}>
-            <LinkedInIcon />
-            {copy.socials.linkedin}
-          </SocialPill>
-          <SocialPill href={personalLinks.github}>
-            <GitHubIcon />
-            {copy.socials.github}
-          </SocialPill>
-          <SocialPill href={`mailto:${personalLinks.email}`}>
-            <MailIcon />
-            {copy.socials.contact}
-          </SocialPill>
-        </div>
-      </div>
+        <ContactOptions copy={copy.contactSection.options} />
+      </section>
     </section>
   </SectionContainer>
 
@@ -395,7 +380,7 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
   }
 
   .hero-contact-copy,
-  .hero-contact-links {
+  .contact-options {
     position: relative;
     z-index: 1;
   }
@@ -427,18 +412,6 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
     font-size: 0.98rem;
     line-height: 1.55;
     text-wrap: pretty;
-  }
-
-  .hero-contact-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    align-items: center;
-  }
-
-  .hero-contact-links :global(svg) {
-    width: 1.1rem;
-    height: 1.1rem;
   }
 
   .content-panel {

@@ -53,7 +53,7 @@ La decisión es razonable para este portfolio aunque añada complejidad sobre As
 
 La integración debe entenderse como una capa editorial sobre Astro, no como un reemplazo del framework ni como una justificación para convertir toda la interfaz en contenido dinámico. La documentación oficial de Astro describe Keystatic como un CMS headless que estructura contenido y puede sincronizarlo con GitHub; también indica que la integración Astro requiere React, Markdoc y una configuración de esquema. El modo local guarda los cambios en el sistema de archivos, mientras que GitHub mode requiere un repositorio existente, permisos de escritura, autenticación y un host capaz de ejecutar las rutas de API de Keystatic.
 
-**Conclusión de alcance:** se aprueba un piloto incremental en modo local. La publicación remota con GitHub mode no se activa: `/keystatic` permanecerá fuera del build de producción y GitHub mode queda como opción futura. La infraestructura de publicación queda fijada en un Contabo Cloud VPS 4 Core en USA-East, con Ubuntu LTS, Docker y Caddy; `smaje.com.co` se mantiene como dominio personal del portfolio y `henkoconsulting.com.co` como dominio de Henko, con DNS gestionado por Cloudflare. El portfolio conserva `smajefranco@gmail.com`; el correo de Henko se gestionará de forma separada con Zoho Mail. La compra, provisión y configuración inicial siguen siendo tareas manuales.
+**Conclusión de alcance:** se aprueba un piloto incremental en modo local. La publicación remota con GitHub mode no se activa: `/keystatic` permanecerá fuera del build de producción y GitHub mode queda como opción futura. La infraestructura de publicación queda fijada en un Contabo Cloud VPS 4 Core en USA-East, con Ubuntu LTS, Docker y Caddy; `smaje.com.co` se mantiene como dominio personal del portfolio y `henkoconsulting.com.co` como dominio de Henko, con DNS gestionado por Cloudflare. El portfolio conserva `smajefranco@gmail.com`; el correo de Henko se gestionará de forma separada con Zoho Mail. El dominio de Henko ya fue comprado; la provisión y configuración inicial siguen siendo tareas manuales.
 
 ### Alcance inicial
 
@@ -247,7 +247,7 @@ La integración debe entenderse como una capa editorial sobre Astro, no como un 
 * [`deploy/Caddyfile`](../deploy/Caddyfile) deja reproducible el servicio directo de `/srv/portfolio`, la compresión, HTTPS automático y la redirección opcional de `www`.
 * [`docs/hosting-architecture.md`](./hosting-architecture.md) separa el portfolio estático de Docker; Docker queda reservado para servicios futuros de Henko, bases de datos y automatizaciones.
 
-**Pendientes externos:** compras y provisión de dominios, Cloudflare, Contabo, Auto Backup, DNS, Caddy en el VPS, Zoho Mail y la publicación pública efectiva. No se ejecutan desde este repositorio.
+**Pendientes externos:** provisión de Contabo, Auto Backup, Cloudflare, DNS, Caddy en el VPS, Zoho Mail y la publicación pública efectiva. La compra de `henkoconsulting.com.co` ya está completada. Estas tareas no se ejecutan desde este repositorio.
 
 ### Criterio de salida de la capacidad
 
@@ -1465,7 +1465,7 @@ La matriz canónica se define con las columnas `Capacidad`, `Problema abordable`
   **Cuando** se compara la lista pública con perfiles externos y CV
   **Entonces** no se presenta como experiencia laboral vigente ni como caso de estudio cerrado; su análisis profundo se difiere a Fase 3.
 
-**Estado del WI:** `Cerrado — matriz, validación externa y paridad semántica ES/EN aprobadas`.
+**Estado del WI:** `Cerrado — matriz, validación documental externa y paridad semántica ES/EN aprobadas; revisión con terceros pendiente`.
 
 **Actualización de evidencia (2026-09-06):** las capturas de Experiencia y Educación de LinkedIn confirman el cargo actual en Cidti 4.0 y el estado académico aprobado. La contradicción sobre el trabajo actual queda resuelta en la matriz y el cargo fue incorporado a las dos fuentes LaTeX y a los tres PDFs publicados. La publicación del copy uniforme, las aptitudes principales, la verificación de proyectos, la auditoría de repositorios, la comprobación de canales y la paridad semántica ES/EN quedaron validadas manualmente. Se aceptaron las observaciones editoriales sobre `An integral engineer` y la diferencia de alcance entre el sitio y el copy externo respecto a `technical leadership` / `líder técnico`. El documento de publicación es `docs/external-profile-copy.md`.
 
@@ -1601,7 +1601,7 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 * Se creó `src/components/HenkoSection.astro` y se insertó antes de `#projects` en `/` y `/en/`, con ancla `#henko`, razón social, lema, descripción, metadatos de inicio/modalidad/ubicación y áreas de trabajo localizadas.
 * `HomeCopy` incorpora `henkoSection`; la navegación ES/EN incorpora el enlace a `#henko`; los números visuales posteriores pasan a `03` para proyectos y `04` para experiencia.
 * Las fuentes `docs/resume/curriculum-vitae.es.tex` y `docs/resume/curriculum-vitae.en.tex` incluyen Henko como experiencia más reciente. Los tres PDFs publicados se regeneran mediante `make cv`.
-* No se añade URL, correo, dominio, logo rasterizado ni página independiente de servicios para Henko. El correo del portfolio continúa siendo `mailto:smajefranco@gmail.com`.
+* Se centralizan los enlaces públicos de LinkedIn y sitio de Henko; el dominio `henkoconsulting.com.co` está comprado, pero el correo profesional, la infraestructura y la publicación operativa siguen pendientes. El correo del portfolio continúa siendo `mailto:smajefranco@gmail.com`.
 
 **Decisiones de contenido:** las áreas se presentan como áreas de trabajo públicas y no como catálogo contractual cerrado. La razón social se muestra como texto; la captura de referencia no se usa como logo. La experiencia se mantiene separada de los proyectos personales y no atribuye esos proyectos a Henko sin evidencia específica.
 
@@ -1610,6 +1610,22 @@ La verificación de esta ejecución cubre la inspección estática de los destin
 **Estado del incremento:** `Cerrado — implementación y validación técnica completadas` (2026-09-10).
 
 **Evidencia de cierre:** `pnpm lint` terminó correctamente con un aviso informativo preexistente de configuración de Biome; `pnpm build` terminó con 0 errores, warnings ni hints y generó `/`, `/en/`, `/experience` y `/en/experience`; `make cv` compiló y publicó los tres PDFs; `git diff --check` no reportó errores. La inspección estática de las páginas generadas confirmó `#henko`, el orden Henko → proyectos → experiencia y la navegación ES/EN. `pdftotext` confirmó Henko y `smajefranco@gmail.com` en los PDFs ES, EN y predeterminado; la primera página de los CV se revisó visualmente tras la incorporación.
+
+### Incremento transversal — Estrategia de contacto (2026-09-13)
+
+**Objetivo:** convertir `#contact` en una entrada clara para oportunidades profesionales, consultoría y colaboraciones, manteniendo un flujo estático, privado y bilingüe.
+
+**Entregables:**
+
+* Se creó [`docs/portfolio-contact-strategy.md`](./portfolio-contact-strategy.md) con canales, asuntos sugeridos, reglas de privacidad e información esperada.
+* Se añadió `src/components/ContactOptions.astro` con tres bloques localizados ES/EN: Oportunidades, Consultoría y Colaboraciones.
+* `Hablemos` conserva la jerarquía de CTA principal hacia `#contact`; el correo operativo sigue siendo `smajefranco@gmail.com`.
+* Los asuntos de correo se codifican en `mailto:`; Henko no recibe una dirección de correo inventada antes de configurar Zoho Mail.
+* Los enlaces públicos personales y de Henko se centralizan en `src/i18n/site.ts`; los enlaces externos usan `target="_blank"` y `rel="noopener noreferrer"`.
+
+**Límites:** no se modifica `src/content/projects/` ni [`docs/case-study-input-matrix.md`](./case-study-input-matrix.md); no se amplía ni cambia el estado de ningún proyecto. El blog conserva su estado pendiente estratégico.
+
+**Estado del incremento:** `Implementado — pendiente únicamente de validación humana con terceros.`
 
 ---
 
@@ -2331,7 +2347,7 @@ La implementación centraliza las URLs personales y la ruta del CV en `src/i18n/
 **Objetivo:** aterrizar qué falta para considerar el portfolio verdaderamente publicado y presentable.
 **Descripción:** el sitio compila y puede desplegarse, y ya están fijados el dominio y el proveedor de VPS; deben ejecutarse y verificarse las tareas manuales y mixtas ligadas al entorno público y la presentación final.
 **Actividades:**
-* Comprar `henkoconsulting.com.co` y confirmar disponibilidad, renovación e impuestos; mantener `smaje.com.co` bajo la cuenta personal/profesional definida.
+* **Completado:** comprar `henkoconsulting.com.co` y confirmar su disponibilidad; mantener `smaje.com.co` bajo la cuenta personal/profesional definida.
 * Contratar y provisionar un Contabo Cloud VPS 4 Core en USA-East; confirmar variante Core frente a Plus 4, SSD/NVMe, recargo de ubicación, renovación, impuestos y Auto Backup.
 * Instalar Ubuntu 24.04 LTS y configurar Docker, Caddy, firewall, backups, snapshot y subdominios en el VPS.
 * Apuntar los DNS de Cloudflare al VPS y verificar HTTPS, redirecciones y dominios canónicos para el portfolio y Henko.
@@ -2342,6 +2358,8 @@ La implementación centraliza las URLs personales y la ruta del CV en `src/i18n/
 **Dependencias:** backlog de confianza técnica y checklist pre-lanzamiento.
 **Tipo de ejecución:** Mixto
 **Notas de validación:** debe quedar explícito qué parte depende enteramente de ti; la compra de cuentas, dominio y VPS no se automatiza desde el repositorio.
+
+**Estado:** `Parcial — dominio de Henko comprado; provisión del VPS, DNS/Cloudflare, Caddy, Zoho Mail y publicación efectiva pendientes.`
 
 #### BLG-F6-S11-02 — Definir protocolo de revisión externa
 **Objetivo:** estructurar la validación con terceros como actividad de ingeniería y no como retroalimentación informal aislada.
@@ -2427,23 +2445,22 @@ Los puntos de esta cola quedaron implementados o cerrados como contrato/document
 * Cerrar la publicación y el gobierno editorial de Keystatic — `cerrado` en `BLG-CMS-04`; la provisión externa queda pendiente.
 
 **Siguiente acción habilitada:** ejecutar `BLG-F6-S11-01` para registrar y
-confirmar los dominios, provisionar el VPS y activar manualmente el entorno
+confirmar la configuración restante, provisionar el VPS y activar manualmente el entorno
 público. La política de publicación de proyectos en evolución ya quedó cerrada
 en `BLG-F3-S06-03`; los detalles no capturados de cada caso permanecen
 diferidos y no deben rellenarse con supuestos.
 
 ### Prioridad siguiente
 
-* Ejecutar `BLG-F6-S11-01`: registrar el dominio de Henko, confirmar el dominio personal del portfolio y provisionar el Contabo Cloud VPS 4 Core en USA-East.
+* Ejecutar `BLG-F6-S11-01`: provisionar el Contabo Cloud VPS 4 Core en USA-East y completar DNS/Cloudflare, Caddy, Zoho Mail y la publicación efectiva; el dominio de Henko ya está comprado.
 * Definir decisión técnica de integración con Medium.
 * Especificar arquitectura de información del blog.
 * Preparar backlog editorial inicial.
-* Resolver la 404 y el SEO complementario en Sprint 10.
-* Ejecutar la revisión externa y el checklist pre-lanzamiento en los sprints de lanzamiento.
+* Ejecutar la revisión con terceros y registrar sus observaciones; el checklist pre-lanzamiento y la base técnica ya están cerrados.
 
 ### Dependencias externas
 
-* Compra y configuración de `henkoconsulting.com.co` en Cloudflare, manteniendo `smaje.com.co` como dominio independiente del portfolio.
+* Configuración de `henkoconsulting.com.co` en Cloudflare, manteniendo `smaje.com.co` como dominio independiente del portfolio; la compra de Henko ya está completada.
 * Contratación y provisión del Contabo Cloud VPS 4 Core en USA-East, incluyendo Ubuntu LTS, Docker, Caddy, firewall, Auto Backup, snapshot y subdominios.
 * Configuración de Zoho Mail para Henko; el portfolio continúa usando `smajefranco@gmail.com`.
 * Accesos o cuentas necesarias para Medium; analytics no se activa en Sprint 09 y solo se reabre mediante una decisión futura documentada.

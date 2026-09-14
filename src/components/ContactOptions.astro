@@ -1,0 +1,187 @@
+---
+import GitHubIcon from '@/icons/GitHubIcon.astro';
+import LinkedInIcon from '@/icons/LinkedInIcon.astro';
+import MailIcon from '@/icons/MailIcon.astro';
+import {
+  henkoLinks,
+  personalLinks,
+  type ContactLinkKind,
+  type ContactOptionCopy,
+} from '@/i18n/site';
+
+interface Props {
+  copy: ContactOptionCopy[];
+}
+
+const { copy } = Astro.props;
+
+function getHref(kind: ContactLinkKind, subject: string) {
+  if (kind === 'email') {
+    return `mailto:${personalLinks.email}?subject=${encodeURIComponent(subject)}`;
+  }
+
+  if (kind === 'website') {
+    return henkoLinks.website;
+  }
+
+  if (kind === 'henko-linkedin') {
+    return henkoLinks.linkedin;
+  }
+
+  return personalLinks[kind];
+}
+
+function isExternal(kind: ContactLinkKind) {
+  return kind !== 'email';
+}
+---
+
+<div class="contact-options">
+  {copy.map((option) => (
+    <article class={`contact-option contact-option-${option.intent}`}>
+      <div class="contact-option-heading">
+        <span class="contact-option-mark" aria-hidden="true"></span>
+        <h3>{option.title}</h3>
+      </div>
+      <p>{option.description}</p>
+      <ul>
+        {option.links.map((link) => (
+          <li>
+            <a
+              href={getHref(link.kind, option.subject)}
+              target={isExternal(link.kind) ? '_blank' : undefined}
+              rel={isExternal(link.kind) ? 'noopener noreferrer' : undefined}
+              aria-label={link.label}
+            >
+              {link.kind === 'linkedin' || link.kind === 'henko-linkedin' ? (
+                <LinkedInIcon aria-hidden="true" width="16" height="16" />
+              ) : link.kind === 'github' ? (
+                <GitHubIcon aria-hidden="true" width="16" height="16" />
+              ) : link.kind === 'email' ? (
+                <MailIcon aria-hidden="true" width="16" height="16" />
+              ) : (
+                <img src="/henko-mark.svg" alt="" aria-hidden="true" width="16" height="16" />
+              )}
+              <span>{link.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </article>
+  ))}
+</div>
+
+<style>
+  .contact-options {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .contact-option {
+    display: grid;
+    gap: 0.8rem;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 1.2rem;
+    background:
+      linear-gradient(135deg, var(--surface-accent-soft), transparent 72%),
+      var(--surface-glass);
+    box-shadow: var(--shadow-inset-soft);
+  }
+
+  .contact-option-consulting {
+    background:
+      linear-gradient(135deg, var(--surface-primary-soft), transparent 72%),
+      var(--surface-glass);
+  }
+
+  .contact-option-heading {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+  }
+
+  .contact-option-heading h3 {
+    margin: 0;
+    color: var(--foreground);
+    font-size: 1.05rem;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .contact-option-mark {
+    flex: 0 0 0.55rem;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--brand-aqua);
+    box-shadow: 0 0 0 0.28rem var(--surface-accent-strong);
+  }
+
+  .contact-option-consulting .contact-option-mark {
+    background: var(--brand-lime);
+    box-shadow: 0 0 0 0.28rem var(--surface-primary-strong);
+  }
+
+  .contact-option p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .contact-option ul {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact-option a {
+    display: inline-flex;
+    gap: 0.45rem;
+    align-items: center;
+    width: fit-content;
+    color: var(--text-highlight);
+    font-size: 0.86rem;
+    font-weight: 750;
+    line-height: 1.4;
+    text-decoration: underline;
+    text-decoration-color: var(--border-accent);
+    text-underline-offset: 0.18em;
+    transition: color 180ms ease, text-decoration-color 180ms ease, transform 180ms ease;
+  }
+
+  .contact-option a:hover {
+    color: var(--foreground);
+    text-decoration-color: var(--brand-lime-soft);
+    transform: translateX(2px);
+  }
+
+  .contact-option a:focus-visible {
+    outline: 2px solid var(--focus-outline);
+    outline-offset: 4px;
+    border-radius: 0.25rem;
+  }
+
+  .contact-option a :global(svg),
+  .contact-option a img {
+    display: block;
+    flex: 0 0 1rem;
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
+  }
+
+  @media (width >= 720px) {
+    .contact-options {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .contact-option {
+      min-height: 100%;
+    }
+  }
+</style>

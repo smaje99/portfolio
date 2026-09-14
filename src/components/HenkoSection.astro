@@ -1,5 +1,6 @@
 ---
 import type { getHomeCopy } from '@/i18n/site';
+import { henkoLinks } from '@/i18n/site';
 import LinkedInIcon from '@/icons/LinkedInIcon.astro';
 
 interface Props {
@@ -32,7 +33,7 @@ const { copy } = Astro.props;
         <div class="henko-cta">
           <a
             class="henko-cta-link"
-            href="https://www.linkedin.com/company/henko-consulting-and-technology-services/home"
+            href={henkoLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={copy.linkedinLabel}
@@ -42,7 +43,7 @@ const { copy } = Astro.props;
           </a>
           <a
             class="henko-cta-link"
-            href="https://henkoconsulting.com.co/"
+            href={henkoLinks.website}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={copy.websiteLabel}
