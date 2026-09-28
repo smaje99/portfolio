@@ -408,9 +408,9 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
   .hero-contact-title {
     margin: 0;
     max-width: 36rem;
-    color: var(--text-soft);
-    font-size: 0.98rem;
-    line-height: 1.55;
+    color: var(--foreground);
+    font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+    line-height: 1.35;
     text-wrap: pretty;
   }
 
@@ -568,8 +568,14 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
     }
 
     .hero-contact-band {
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      justify-content: space-between;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.25rem;
+    }
+
+    .hero-contact-copy {
+      grid-template-columns: max-content minmax(0, 1fr);
+      gap: 1rem;
+      align-items: baseline;
     }
 
     .panel-header {
@@ -627,6 +633,11 @@ const contactPath = locale === 'es' ? '#contact' : '/en/#contact';
 
     .hero-contact-title {
       max-width: 100%;
+    }
+
+    .hero-contact-copy {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.45rem;
     }
   }
 

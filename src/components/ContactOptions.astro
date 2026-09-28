@@ -79,6 +79,7 @@ function isExternal(kind: ContactLinkKind) {
 
   .contact-option {
     display: grid;
+    grid-template-rows: auto 1fr auto;
     gap: 0.8rem;
     min-width: 0;
     padding: 1rem;
@@ -132,11 +133,17 @@ function isExternal(kind: ContactLinkKind) {
   }
 
   .contact-option ul {
-    display: grid;
-    gap: 0.45rem;
-    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: end;
+    gap: 0.5rem;
+    margin: 0.25rem 0 0;
     padding: 0;
     list-style: none;
+  }
+
+  .contact-option li {
+    max-width: 100%;
   }
 
   .contact-option a {
@@ -144,20 +151,34 @@ function isExternal(kind: ContactLinkKind) {
     gap: 0.45rem;
     align-items: center;
     width: fit-content;
-    color: var(--text-highlight);
-    font-size: 0.86rem;
+    max-width: 100%;
+    padding: 0.48rem 0.62rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 0.75rem;
+    color: var(--text-soft);
+    background: var(--surface-1);
+    font-size: 0.8rem;
     font-weight: 750;
     line-height: 1.4;
-    text-decoration: underline;
-    text-decoration-color: var(--border-accent);
-    text-underline-offset: 0.18em;
-    transition: color 180ms ease, text-decoration-color 180ms ease, transform 180ms ease;
+    text-decoration: none;
+    transition:
+      color 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .contact-option li:first-child a {
+    border-color: var(--border-primary);
+    color: var(--text-highlight);
+    background: var(--surface-primary-soft);
   }
 
   .contact-option a:hover {
     color: var(--foreground);
-    text-decoration-color: var(--brand-lime-soft);
-    transform: translateX(2px);
+    border-color: var(--border-accent);
+    background: var(--surface-accent-soft);
+    transform: translateY(-1px);
   }
 
   .contact-option a:focus-visible {
@@ -182,6 +203,12 @@ function isExternal(kind: ContactLinkKind) {
 
     .contact-option {
       min-height: 100%;
+    }
+  }
+
+  @media (width <= 859px) {
+    .contact-options {
+      grid-template-columns: 1fr;
     }
   }
 </style>
