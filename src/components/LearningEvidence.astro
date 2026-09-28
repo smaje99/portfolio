@@ -34,7 +34,7 @@ const [thesisStart, thesisEnd] = credentials.thesis.split(credentials.thesisEmph
     </ol>
   </div>
 
-  <div class="learning-grid">
+  <div class="learning-grid" data-learning-grid>
     <section class="learning-block learning-pillars" aria-labelledby="learning-pillars-title">
       <h3 id="learning-pillars-title">{copy.pillarsTitle}</h3>
       <ol>
@@ -80,6 +80,40 @@ const [thesisStart, thesisEnd] = credentials.thesis.split(credentials.thesisEmph
     </aside>
   </div>
 </section>
+
+<script>
+  const desktopLayout = window.matchMedia('(min-width: 860px)');
+
+  for (const grid of document.querySelectorAll<HTMLElement>('[data-learning-grid]')) {
+    const pillars = grid.querySelector<HTMLElement>('.learning-pillars');
+    const highlights = grid.querySelector<HTMLElement>('.learning-highlights');
+
+    if (!pillars || !highlights) continue;
+
+    const syncHeight = () => {
+      if (!desktopLayout.matches) {
+        grid.style.removeProperty('--learning-pillars-height');
+        highlights.removeAttribute('tabindex');
+        return;
+      }
+
+      grid.style.setProperty('--learning-pillars-height', `${pillars.getBoundingClientRect().height}px`);
+
+      requestAnimationFrame(() => {
+        if (highlights.scrollHeight > highlights.clientHeight) {
+          highlights.setAttribute('tabindex', '0');
+        } else {
+          highlights.removeAttribute('tabindex');
+        }
+      });
+    };
+
+    const observer = new ResizeObserver(syncHeight);
+    observer.observe(pillars);
+    desktopLayout.addEventListener('change', syncHeight);
+    syncHeight();
+  }
+</script>
 
 <style>
   .learning-panel {
@@ -338,6 +372,52 @@ const [thesisStart, thesisEnd] = credentials.thesis.split(credentials.thesisEmph
 
     .learning-grid {
       grid-template-columns: minmax(0, 0.58fr) minmax(18rem, 0.42fr);
+      align-items: start;
+    }
+
+    .learning-highlights {
+      block-size: var(--learning-pillars-height, auto);
+      min-block-size: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-color:
+        color-mix(in oklab, var(--brand-aqua-400) 72%, var(--brand-ink-900))
+        color-mix(in oklab, var(--brand-ink-900) 78%, transparent);
+      scrollbar-width: thin;
+    }
+
+    @supports selector(::-webkit-scrollbar) {
+      .learning-highlights {
+        scrollbar-color: auto;
+        scrollbar-width: auto;
+      }
+
+      .learning-highlights::-webkit-scrollbar {
+        width: 0.7rem;
+      }
+
+      .learning-highlights::-webkit-scrollbar-track {
+        margin-block: 0.65rem;
+        border-radius: 999px;
+        background: color-mix(in oklab, var(--brand-ink-900) 78%, transparent);
+      }
+
+      .learning-highlights::-webkit-scrollbar-thumb {
+        border: 2px solid transparent;
+        border-radius: 999px;
+        background: color-mix(in oklab, var(--brand-aqua-400) 72%, var(--brand-ink-900));
+        background-clip: padding-box;
+      }
+
+      .learning-highlights::-webkit-scrollbar-thumb:hover {
+        background: color-mix(in oklab, var(--brand-aqua-400) 88%, var(--brand-ink-900));
+        background-clip: padding-box;
+      }
+    }
+
+    .learning-highlights:focus-visible {
+      outline: 2px solid var(--focus-outline);
+      outline-offset: 3px;
     }
   }
 
