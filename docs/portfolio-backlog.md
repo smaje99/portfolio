@@ -2385,6 +2385,16 @@ La implementación centraliza las URLs personales y la ruta del CV en `src/i18n/
 **Tipo de ejecución:** Codex con supervisión  
 **Notas de validación:** los cambios sugeridos no deben romper la estrategia definida por el roadmap.
 
+**Registro de feedback — primer revisor (2026-09-28):** se recibieron cinco sugerencias y todas quedaron implementadas:
+
+1. Reorganizar la tarjeta inicial del perfil y presentar sus principios mediante un acordeón animado (`08fd3c7`).
+2. Dar la misma altura a las tarjetas de capacidades y de hitos en Formación aplicada, con el scroll integrado en la tarjeta de hitos (`f271ece`).
+3. Rediseñar las opciones de contacto de la home como tarjetas de acción de ancho completo (`46502b4`).
+4. Corregir la paginación del CV en español para eliminar el espacio excesivo entre páginas.
+5. Simplificar las etiquetas y descripciones de credenciales y regenerar los PDFs publicados (`06fba67`).
+
+**Estado de estas observaciones:** `Atendidas`. Este registro no cierra la validación externa general de Fase 6; siguen pendientes las revisiones con los perfiles previstos y la priorización de cualquier feedback nuevo.
+
 ### Sprint 12
 
 #### BLG-F6-S12-01 — Definir criterio formal de cierre del MVP

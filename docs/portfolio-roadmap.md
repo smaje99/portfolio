@@ -43,6 +43,18 @@ La auditoría propia de perfiles, proyectos y canales externos quedó completada
 * El contenido y el estado de los proyectos se conservan exactamente como están; su ampliación queda supeditada a nueva evidencia autorizada.
 * El blog continúa pendiente estratégicamente y no cambia de estado.
 
+### Actualización de estado real al 28 de septiembre de 2026
+
+Se implementaron cinco sugerencias del primer revisor como ajustes de presentación y contenido, sin cambiar la estrategia ni el inventario de proyectos:
+
+1. Perfil: se reorganizó la presentación inicial y se convirtió el bloque de principios en un acordeón animado (`08fd3c7`).
+2. Formación aplicada: se igualó la altura de las tarjetas de capacidades y de hitos, y se integró el desplazamiento dentro de la tarjeta de hitos (`f271ece`).
+3. Inicio: se rediseñaron las opciones de contacto como tarjetas de acción de ancho completo (`46502b4`).
+4. CV: se corrigió la paginación en español para evitar el espacio excesivo entre páginas.
+5. Credenciales: se simplificaron las etiquetas y descripciones del diplomado en analítica y del encuentro sobre IA, y se regeneraron los PDFs publicados (`06fba67`).
+
+Estas cinco sugerencias del primer revisor quedaron implementadas. Esto registra feedback recibido y atendido; la validación externa con los perfiles previstos en Fase 6 sigue pendiente y no se considera sustituida por esta revisión.
+
 ### Actualización de estado real al 10 de septiembre de 2026
 
 Henko Consulting queda incorporado como vehículo profesional vigente de Sergio, sin reemplazar la identidad ni el alcance del portfolio personal:
