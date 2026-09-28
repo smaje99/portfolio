@@ -10,7 +10,7 @@ type CredentialHighlight = {
   title: string;
   issuer: string;
   date: string;
-  area: string;
+  area?: string;
   meaning: string;
 };
 
@@ -130,9 +130,8 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
         title: 'I Encuentro Internacional Virtual: Diálogo entre Disciplinas - Impacto de la IA',
         issuer: 'UNIR',
         date: '2025',
-        area: 'Participación académica',
         meaning:
-          'Participación académica en un encuentro internacional sobre el impacto de la inteligencia artificial desde una perspectiva interdisciplinaria.',
+          'Encuentro internacional sobre el impacto de la inteligencia artificial desde una perspectiva interdisciplinaria.',
       },
       {
         title: 'Python, FastAPI y bases de datos',
@@ -264,9 +263,8 @@ export const credentialsByLocale: Record<CredentialLocale, CredentialData> = {
         title: '1st International Virtual Meeting: Dialogue between Disciplines - AI Impact',
         issuer: 'UNIR',
         date: '2025',
-        area: 'Academic participation',
         meaning:
-          'Academic participation in an international meeting exploring the impact of artificial intelligence from an interdisciplinary perspective.',
+          'International meeting exploring the impact of artificial intelligence from an interdisciplinary perspective.',
       },
       {
         title: 'Python, FastAPI, and databases',

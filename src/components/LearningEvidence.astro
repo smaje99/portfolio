@@ -57,7 +57,7 @@ const [thesisStart, thesisEnd] = credentials.thesis.split(credentials.thesisEmph
       <div class="highlight-list">
         {credentials.highlights.map((highlight) => (
           <article>
-            <p>{highlight.area}</p>
+            {highlight.area && <p>{highlight.area}</p>}
             <h4>{highlight.title}</h4>
             <span>{highlight.issuer} · {highlight.date}</span>
             <small>{highlight.meaning}</small>
