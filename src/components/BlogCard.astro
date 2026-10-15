@@ -29,33 +29,31 @@ const externalReadLabels = {
 const label = isExternalChannel ? externalReadLabels[channel][locale] : readLabel;
 ---
 
-{href ? (
-  <a class="blog-card-link" href={href} target={isExternalChannel ? '_blank' : undefined} rel={isExternalChannel ? 'noopener noreferrer' : undefined}>
-    <article class="blog-card">
-      {coverImage ? (
-        <img class="blog-cover" src={coverImage} alt="" loading="lazy" />
-      ) : null}
-      <div>
-        <p class="blog-channel">{channelLabel}</p>
-        <h2>{title}</h2>
-        <p class="blog-description">{description}</p>
-      </div>
-      <ul class="blog-tags" aria-label={locale === 'es' ? 'Etiquetas' : 'Tags'}>
-        {tags.map((tag) => <li>{tag}</li>)}
-      </ul>
-      <span class="blog-read">{label}<span aria-hidden="true"> ↗</span></span>
-    </article>
-  </a>
-) : null}
+<article class="blog-card">
+  {coverImage ? (
+    <img class="blog-cover" src={coverImage} alt="" loading="lazy" />
+  ) : null}
+  <div>
+    <p class="blog-channel">{channelLabel}</p>
+    <h2>{title}</h2>
+    <p class="blog-description">{description}</p>
+  </div>
+  <ul class="blog-tags" aria-label={locale === 'es' ? 'Etiquetas' : 'Tags'}>
+    {tags.map((tag) => <li>{tag}</li>)}
+  </ul>
+  {href ? (
+    <a
+      class="blog-read"
+      href={href}
+      target={isExternalChannel ? '_blank' : undefined}
+      rel={isExternalChannel ? 'noopener noreferrer' : undefined}
+    >
+      {label}<span aria-hidden="true"> ↗</span>
+    </a>
+  ) : null}
+</article>
 
 <style>
-  .blog-card-link {
-    display: block;
-    height: 100%;
-    color: inherit;
-    text-decoration: none;
-  }
-
   .blog-card {
     display: grid;
     gap: 1rem;
@@ -70,17 +68,24 @@ const label = isExternalChannel ? externalReadLabels[channel][locale] : readLabe
     transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
   }
 
-  .blog-card-link:hover .blog-card,
-  .blog-card-link:focus-visible .blog-card {
-    transform: translateY(-3px);
-    border-color: var(--border-accent);
-    box-shadow: 0 14px 30px color-mix(in oklab, var(--brand-ink-950) 28%, transparent);
+  .blog-read {
+    width: fit-content;
+    max-width: 100%;
+    color: var(--brand-lime-soft);
+    font-weight: 800;
+    text-decoration: none;
+    text-underline-offset: 0.2em;
+    overflow-wrap: anywhere;
   }
 
-  .blog-card-link:focus-visible {
-    border-radius: 1.5rem;
+  .blog-read:hover {
+    text-decoration: underline;
+  }
+
+  .blog-read:focus-visible {
     outline: 2px solid var(--brand-aqua);
     outline-offset: 4px;
+    border-radius: 0.2rem;
   }
 
   .blog-cover {
@@ -131,13 +136,6 @@ const label = isExternalChannel ? externalReadLabels[channel][locale] : readLabe
     background: var(--surface-accent);
     color: var(--foreground);
     font-size: 0.85rem;
-  }
-
-  .blog-read {
-    align-self: end;
-    color: var(--brand-lime-soft);
-    font-weight: 800;
-    text-underline-offset: 0.2em;
   }
 
   @media (width >= 720px) {
