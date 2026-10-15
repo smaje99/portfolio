@@ -422,6 +422,9 @@ for (const collection of collections) {
     if (collection === 'blog' && data.channel !== 'site' && data.status === 'published' && !data.externalUrl) {
       fail(`${file} is a published external channel reference without externalUrl.`);
     }
+    if (collection === 'blog' && data.coverImage) {
+      if (!data.coverAlt?.trim()) fail(`${file} has coverImage but no descriptive coverAlt.`);
+    }
     assertNoSecrets(file, source);
     assertPublicUrls(file, source);
 

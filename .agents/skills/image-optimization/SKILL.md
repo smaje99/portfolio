@@ -17,5 +17,6 @@ After conversion:
 
 1. Check the generated file size and dimensions; use `identify <file.webp>` when available.
 2. Update content or component references to the generated `.webp` under `public/`.
+   For blog covers, provide a concise localized `coverAlt` in the entry frontmatter. `BlogCard.astro` owns the shared 1200 × 600 intrinsic dimensions and scales the cover responsively.
 3. Remove an obsolete oversized copy from `public/` once no references use it. Keep an original source outside `public/` only when it is useful for future edits.
 4. Run `pnpm build` and inspect the affected page at desktop, tablet, and mobile widths when browser preview is available.

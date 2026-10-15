@@ -12,4 +12,5 @@ tags:
 channel: devto
 externalUrl: https://dev.to/smaje99/why-i-ended-up-running-python-inside-postgresql-to-validate-xml-ii1
 coverImage: /images/blog-python-postgresql-xml.webp
+coverAlt: Illustration of PostgreSQL with Python at the center, code on one side, and data tables on the other.
 ---

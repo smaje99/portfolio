@@ -10,7 +10,9 @@ interface Props {
 }
 
 const { entry, locale, readLabel } = Astro.props;
-const { title, description, tags, channel, externalUrl, coverImage, slug } = entry.data;
+const { title, description, tags, channel, externalUrl, coverImage, coverAlt, slug } = entry.data;
+// All article covers use this fixed source format; CSS scales it for each viewport.
+const coverSize = { width: 1200, height: 600 } as const;
 const articleSlug = slug.replace(/\.(?:es|en)$/, '');
 const channelLabels = {
   site: { es: 'En este sitio', en: 'On this site' },
@@ -31,7 +33,15 @@ const label = isExternalChannel ? externalReadLabels[channel][locale] : readLabe
 
 <article class="blog-card">
   {coverImage ? (
-    <img class="blog-cover" src={coverImage} alt="" loading="lazy" />
+    <img
+      class="blog-cover"
+      src={coverImage}
+      alt={coverAlt ?? ''}
+      width={coverSize.width}
+      height={coverSize.height}
+      loading="lazy"
+      decoding="async"
+    />
   ) : null}
   <div>
     <p class="blog-channel">{channelLabel}</p>
@@ -91,7 +101,7 @@ const label = isExternalChannel ? externalReadLabels[channel][locale] : readLabe
   .blog-cover {
     display: block;
     width: 100%;
-    aspect-ratio: 1200 / 627;
+    aspect-ratio: 2 / 1;
     object-fit: cover;
     background: var(--surface-2);
   }
