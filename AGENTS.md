@@ -31,6 +31,7 @@ Important paths:
 - `src/i18n/` - locale copy and localization helpers.
 - `src/styles/` - global styles.
 - `public/` - static assets served as-is.
+- `public/images/` - optimized raster assets used by the site.
 - `public/docs/` - published CV PDFs.
 - `docs/resume/` - LaTeX CV sources.
 - `Makefile` - CV build, publish, and cleanup automation.
@@ -96,6 +97,13 @@ For color and visual system changes:
 - Derive state variants, overlays, borders, and highlights with modern CSS functions such as `color-mix()` instead of copying numeric color literals.
 - If the same color variation appears in more than one place, promote it to a reusable token before duplicating it.
 - If a static asset such as an SVG needs color changes, align it with the design system palette instead of picking an isolated value.
+
+For raster images added to or updated in the site:
+
+- Use the `image-optimization` project skill at `.agents/skills/image-optimization/SKILL.md`.
+- Generate production assets with `pnpm images:optimize -- <source-image> --output-dir public/images`.
+- Serve the generated `.webp` from `public/` and update every content reference; do not point production content at the original large source file.
+- Keep the original outside `public/` when it is needed for future edits. The optimizer does not delete source files.
 
 Avoid casual edits to:
 

@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "cms:check": "node scripts/cms-check.mjs",
+    "images:optimize": "node scripts/optimize-image.mjs",
     "shadcn": "shadcn",
     "lint": "biome check .",
     "format": "biome check --write ."
