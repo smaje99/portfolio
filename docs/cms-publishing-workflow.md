@@ -21,7 +21,7 @@ pnpm build
 ```
 
 `pnpm cms:check` verifica estados, locales, pares ES/EN, unicidad de
-`draftSlug`, referencias Medium, detección básica de secretos, `git diff
+`draftSlug`, referencias a canales externos, detección básica de secretos, `git diff
 --check`, el build estático, el dominio canónico `https://smaje.com.co` y la
 ausencia de rutas Keystatic o previews draft en `dist/`. El esquema de Astro
 añade la validación tipada de los campos.
@@ -96,8 +96,9 @@ la corrección debe permanecer, crea un commit de reversión en la rama principa
 Para recuperar una entrada eliminada, localiza su último commit con
 `git log -- src/content` y restaura el archivo en una nueva edición.
 
-## Medium y enlaces draft
+## Canales externos y enlaces draft
 
-Medium no se sincroniza automáticamente. La URL se copia en `externalUrl` solo
-después de publicar manualmente el artículo. Las URLs draft se usan únicamente
-en el entorno local, no son secretas y nunca deben contener datos sensibles.
+Medium, DEV.to y LinkedIn son canales independientes y no se sincronizan
+automáticamente. La URL de cada artículo se copia en `externalUrl` después de
+publicarlo en su plataforma. Las URLs draft se usan únicamente en el entorno
+local, no son secretas y nunca deben contener datos sensibles.

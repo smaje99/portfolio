@@ -7,7 +7,7 @@ const contentRoot = join(root, 'src', 'content');
 const collections = ['projects', 'experiences', 'blog'];
 const statuses = new Set(['draft', 'scheduled', 'published', 'archived']);
 const locales = new Set(['es', 'en']);
-const channels = new Set(['site', 'medium']);
+const channels = new Set(['site', 'medium', 'devto', 'linkedin']);
 const entries = [];
 
 function filesIn(directory) {
@@ -419,8 +419,8 @@ for (const collection of collections) {
         fail(`${file} externalUrl must use http or https.`);
       }
     }
-    if (collection === 'blog' && data.channel === 'medium' && data.status === 'published' && !data.externalUrl) {
-      fail(`${file} is a published Medium reference without externalUrl.`);
+    if (collection === 'blog' && data.channel !== 'site' && data.status === 'published' && !data.externalUrl) {
+      fail(`${file} is a published external channel reference without externalUrl.`);
     }
     assertNoSecrets(file, source);
     assertPublicUrls(file, source);

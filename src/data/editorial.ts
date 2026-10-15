@@ -103,11 +103,11 @@ export function validateEditorialCatalog(catalog: EditorialCatalog) {
 
   for (const entry of catalog.blog) {
     if (
-      entry.data.channel === 'medium' &&
+      entry.data.channel !== 'site' &&
       entry.data.status === 'published' &&
       !entry.data.externalUrl
     ) {
-      throw new Error(`Published Medium entry "${entry.id}" requires externalUrl.`);
+      throw new Error(`Published external blog entry "${entry.id}" requires externalUrl.`);
     }
   }
 

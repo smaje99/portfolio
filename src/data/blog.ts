@@ -8,7 +8,7 @@ export async function getPublishedBlogEntries(locale: Locale) {
     (entry) =>
       isPubliclyPublished(entry) &&
       entry.data.locale === locale &&
-      (entry.data.channel === 'site' || entry.data.channel === 'medium'),
+      ['site', 'medium', 'devto', 'linkedin'].includes(entry.data.channel),
   );
 }
 

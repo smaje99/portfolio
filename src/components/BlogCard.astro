@@ -7,42 +7,105 @@ interface Props {
   entry: CollectionEntry<'blog'>;
   locale: Locale;
   readLabel: string;
-  mediumLabel: string;
 }
 
-const { entry, locale, readLabel, mediumLabel } = Astro.props;
-const { title, description, tags, channel, externalUrl, slug } = entry.data;
+const { entry, locale, readLabel } = Astro.props;
+const { title, description, tags, channel, externalUrl, coverImage, slug } = entry.data;
 const articleSlug = slug.replace(/\.(?:es|en)$/, '');
-const href = channel === 'medium' ? externalUrl : `/${locale === 'en' ? 'en/' : ''}blog/${articleSlug}`;
-const label = channel === 'medium' ? mediumLabel : readLabel;
+const channelLabels = {
+  site: { es: 'En este sitio', en: 'On this site' },
+  medium: { es: 'Medium', en: 'Medium' },
+  devto: { es: 'DEV.to', en: 'DEV.to' },
+  linkedin: { es: 'LinkedIn', en: 'LinkedIn' },
+} as const;
+const channelLabel = channelLabels[channel][locale];
+const isExternalChannel = channel !== 'site';
+const href = isExternalChannel ? externalUrl : `/${locale === 'en' ? 'en/' : ''}blog/${articleSlug}`;
+const externalReadLabels = {
+  medium: { es: 'Leer en Medium', en: 'Read on Medium' },
+  devto: { es: 'Leer en DEV.to', en: 'Read on DEV.to' },
+  linkedin: { es: 'Leer en LinkedIn', en: 'Read on LinkedIn' },
+} as const;
+const label = isExternalChannel ? externalReadLabels[channel][locale] : readLabel;
 ---
 
-<article class="blog-card">
-  <div>
-    <p class="blog-channel">{channel === 'medium' ? 'Medium' : 'On this site'}</p>
-    <h2>{title}</h2>
-    <p class="blog-description">{description}</p>
-  </div>
-  <ul class="blog-tags">
-    {tags.map((tag) => <li>{tag}</li>)}
-  </ul>
-  {href ? (
-    <a href={href} target={channel === 'medium' ? '_blank' : undefined} rel={channel === 'medium' ? 'noopener noreferrer' : undefined}>
-      {label}
-    </a>
-  ) : null}
-</article>
+{href ? (
+  <a class="blog-card-link" href={href} target={isExternalChannel ? '_blank' : undefined} rel={isExternalChannel ? 'noopener noreferrer' : undefined}>
+    <article class="blog-card">
+      {coverImage ? (
+        <img class="blog-cover" src={coverImage} alt="" loading="lazy" />
+      ) : null}
+      <div>
+        <p class="blog-channel">{channelLabel}</p>
+        <h2>{title}</h2>
+        <p class="blog-description">{description}</p>
+      </div>
+      <ul class="blog-tags" aria-label={locale === 'es' ? 'Etiquetas' : 'Tags'}>
+        {tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+      <span class="blog-read">{label}<span aria-hidden="true"> ↗</span></span>
+    </article>
+  </a>
+) : null}
 
 <style>
+  .blog-card-link {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+
   .blog-card {
     display: grid;
     gap: 1rem;
     min-height: 100%;
-    padding: 1.35rem;
+    overflow: hidden;
     border: 1px solid var(--border-faint);
     border-radius: 1.5rem;
     background: var(--surface-1);
     box-shadow: var(--shadow-inset-soft);
+    transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .blog-card-link:hover .blog-card,
+  .blog-card-link:focus-visible .blog-card {
+    transform: translateY(-3px);
+    border-color: var(--border-accent);
+    box-shadow: 0 14px 30px color-mix(in oklab, var(--brand-ink-950) 28%, transparent);
+  }
+
+  .blog-card-link:focus-visible {
+    border-radius: 1.5rem;
+    outline: 2px solid var(--brand-aqua);
+    outline-offset: 4px;
+  }
+
+  .blog-card > div,
+  .blog-tags,
+  .blog-read {
+    margin-right: 1.35rem;
+    margin-left: 1.35rem;
+  }
+
+  .blog-card > div {
+    margin-top: 0.2rem;
+  }
+
+  .blog-cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1200 / 627;
+    object-fit: cover;
+    background: var(--surface-2);
+  }
+
+  .blog-card:not(:has(.blog-cover)) {
+    padding-top: 1.35rem;
+  }
+
+  .blog-card > .blog-read {
+    margin-bottom: 1.35rem;
   }
 
   .blog-channel {
@@ -85,10 +148,14 @@ const label = channel === 'medium' ? mediumLabel : readLabel;
     font-size: 0.85rem;
   }
 
-  .blog-card > a {
+  .blog-read {
     align-self: end;
     color: var(--brand-lime-soft);
     font-weight: 800;
     text-underline-offset: 0.2em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blog-card { transition: none; }
   }
 </style>

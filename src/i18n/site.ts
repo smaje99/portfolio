@@ -91,7 +91,6 @@ type BlogSection = {
   intro: string;
   empty: string;
   readLabel: string;
-  mediumLabel: string;
 };
 
 type NotFoundSection = {
@@ -394,7 +393,6 @@ const homeCopy: Record<Locale, HomeCopy> = {
         'Notas sobre sistemas, procesos, datos y las decisiones que convierten ideas en soluciones útiles.',
       empty: 'Todavía no hay publicaciones disponibles.',
       readLabel: 'Leer artículo',
-      mediumLabel: 'Leer en Medium',
     },
     notFound: {
       title: 'Página no encontrada',
@@ -637,7 +635,6 @@ const homeCopy: Record<Locale, HomeCopy> = {
         'Notes on systems, processes, data, and the decisions that turn ideas into useful solutions.',
       empty: 'There are no published posts yet.',
       readLabel: 'Read article',
-      mediumLabel: 'Read on Medium',
     },
     notFound: {
       title: 'Page not found',

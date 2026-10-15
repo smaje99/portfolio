@@ -55,14 +55,15 @@ faltante, duplicado o desalineado bloquea el build.
 ### Blog
 
 Las entradas del blog son independientes por locale: no necesitan pareja ES/EN.
-`channel: site` genera una página local; `channel: medium` conserva el trabajo
-editorial y, cuando está publicado, muestra un enlace externo a `externalUrl`.
-No existe sincronización automática con Medium.
+Los canales permitidos coexisten: `site` genera una página local, mientras que
+`medium`, `devto` y `linkedin` identifican publicaciones externas enlazadas por
+`externalUrl`. Son plataformas distintas y cada tarjeta conserva la marca del
+canal de origen. Las referencias externas no se sincronizan automáticamente.
 
 Las páginas locales publicadas usan `/blog/<slug>` y
-`/en/blog/<slug>`. Las referencias Medium aparecen en el listado como enlaces
-externos y no intentan renderizar contenido local como si fuera la fuente
-publicada.
+`/en/blog/<slug>`. Las referencias a Medium, DEV.to y LinkedIn aparecen en el
+listado como enlaces externos y no intentan renderizar contenido local como si
+fuera la fuente publicada.
 
 ## Previsualizaciones draft
 
@@ -82,9 +83,9 @@ criptográfico; el contenido tampoco debe contener información sensible.
 ## Reglas de publicación
 
 Ningún estado distinto de `published` puede entrar en rutas o listados públicos.
-Un artículo Medium se publica primero manualmente en Medium y después se cambia
-su referencia local a `published` con la URL final. Un artículo `scheduled` no
-se activa por fecha.
+Un artículo de un canal externo se publica primero en su plataforma y después
+se cambia su referencia local a `published` con la URL final. Un artículo
+`scheduled` no se activa por fecha.
 
 El rollback consiste en revertir el commit que publicó el cambio y reconstruir
 el sitio. El contenido sigue siendo recuperable mediante Git.

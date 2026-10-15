@@ -9,17 +9,18 @@ export const blogSchema = z
     title: z.string(),
     description: z.string(),
     tags: z.array(z.string()).default([]),
-    channel: z.enum(['site', 'medium']),
+    channel: z.enum(['site', 'medium', 'devto', 'linkedin']),
     externalUrl: z.url().optional(),
+    coverImage: z.union([z.url(), z.string().startsWith('/')]).optional(),
   })
   .superRefine((value, context) => {
     validateDraftStatus(value, context);
 
-    if (value.channel === 'medium' && value.status === 'published' && !value.externalUrl) {
+    if (value.channel !== 'site' && value.status === 'published' && !value.externalUrl) {
       context.addIssue({
         code: 'custom',
         path: ['externalUrl'],
-        message: 'externalUrl is required for a published Medium reference',
+        message: 'externalUrl is required for a published external channel reference',
       });
     }
   });
