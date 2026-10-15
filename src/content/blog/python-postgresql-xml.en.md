@@ -11,5 +11,5 @@ tags:
   - Databases
 channel: devto
 externalUrl: https://dev.to/smaje99/why-i-ended-up-running-python-inside-postgresql-to-validate-xml-ii1
-coverImage: /images/blog-python-postgresql-xml.png
+coverImage: /images/blog-python-postgresql-xml.webp
 ---
